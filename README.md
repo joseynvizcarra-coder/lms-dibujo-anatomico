@@ -1,1 +1,0 @@
-# lms-dibujo-anatomico

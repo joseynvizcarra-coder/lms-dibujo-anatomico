@@ -70,35 +70,55 @@
             padding: 0 2rem;
         }
 
-        /* Sistema de alertas */
-        .alerts-section {
+        /* MEJORA: Filtros y Controles */
+        .dashboard-controls {
             background: var(--color-blanco);
-            margin: 2rem 0;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 15px;
+            margin-bottom: 2rem;
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .alert-item {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+        .filter-group {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
-        .alert-item.warning {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid var(--color-amarillo);
+        .filter-select {
+            padding: 0.5rem 1rem;
+            border: 2px solid var(--color-gris-claro);
+            border-radius: 8px;
+            background: white;
+            color: var(--color-negro);
+            cursor: pointer;
         }
 
-        .alert-item.info {
-            background: rgba(0, 123, 255, 0.1);
-            border-left: 4px solid var(--color-azul);
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--color-petroleo);
         }
 
-        /* Estadísticas mejoradas */
+        .refresh-btn {
+            background: var(--color-verde);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+        }
+
+        /* MEJORA: Estadísticas con iconos animados */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -135,6 +155,19 @@
             font-size: 3rem;
             margin-bottom: 1rem;
             display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
         }
 
         .stat-number {
@@ -156,55 +189,20 @@
             padding: 0.3rem 0.8rem;
             border-radius: 15px;
             display: inline-block;
+        }
+
+        .stat-trend.up {
             background: rgba(40, 167, 69, 0.1);
             color: var(--color-verde);
         }
 
-        /* Controles del dashboard */
-        .dashboard-controls {
-            background: var(--color-blanco);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            align-items: center;
+        .stat-trend.down {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--color-rojo);
         }
 
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .filter-select {
-            padding: 0.5rem 1rem;
-            border: 2px solid var(--color-gris-claro);
-            border-radius: 8px;
-            background: white;
-            color: var(--color-negro);
-            cursor: pointer;
-        }
-
-        .refresh-btn {
-            background: var(--color-verde);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
-        }
-
-        /* Tabla mejorada */
-        .section {
+        /* MEJORA: Alertas y notificaciones */
+        .alerts-section {
             background: var(--color-blanco);
             margin: 2rem 0;
             padding: 2rem;
@@ -212,18 +210,108 @@
             box-shadow: 0 8px 30px rgba(0,0,0,0.1);
         }
 
-        .section h2 {
-            color: var(--color-petroleo);
-            margin-bottom: 1.5rem;
-            border-bottom: 3px solid var(--color-rosado);
-            padding-bottom: 0.5rem;
+        .alert-item {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .alert-item.warning {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--color-amarillo);
+        }
+
+        .alert-item.danger {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid var(--color-rojo);
+        }
+
+        .alert-item.info {
+            background: rgba(0, 123, 255, 0.1);
+            border-left: 4px solid var(--color-azul);
+        }
+
+        /* MEJORA: Gráficos simples con CSS */
+        .chart-container {
+            background: var(--color-blanco);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .chart-bars {
+            display: flex;
+            align-items: end;
+            gap: 1rem;
+            height: 200px;
+            margin: 2rem 0;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: linear-gradient(to top, var(--color-petroleo), var(--color-rosado));
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .chart-bar:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        .chart-bar::after {
+            content: attr(data-value) '%';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-negro);
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .chart-bar:hover::after {
+            opacity: 1;
+        }
+
+        .chart-labels {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .chart-label {
+            flex: 1;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-gris-medio);
+        }
+
+        /* MEJORA: Tabla responsive mejorada */
+        .table-container {
+            background: var(--color-blanco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            margin: 2rem 0;
         }
 
         .table-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #eee;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 1rem;
         }
@@ -236,10 +324,14 @@
             min-width: 250px;
         }
 
+        .search-box:focus {
+            outline: none;
+            border-color: var(--color-petroleo);
+        }
+
         .progress-table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
         }
 
         .progress-table th,
@@ -253,15 +345,12 @@
             background: var(--color-gris-claro);
             color: var(--color-petroleo);
             font-weight: bold;
+            position: sticky;
+            top: 0;
         }
 
         .progress-table tr:hover {
             background: rgba(44, 95, 102, 0.05);
-        }
-
-        .student-info {
-            display: flex;
-            align-items: center;
         }
 
         .student-avatar {
@@ -277,12 +366,18 @@
             margin-right: 1rem;
         }
 
+        .student-info {
+            display: flex;
+            align-items: center;
+        }
+
         .progress-bar-advanced {
             background: #e0e0e0;
             border-radius: 10px;
             height: 12px;
             width: 120px;
             overflow: hidden;
+            position: relative;
         }
 
         .progress-fill-advanced {
@@ -290,6 +385,23 @@
             height: 100%;
             border-radius: 10px;
             transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill-advanced::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .status-indicator {
@@ -310,6 +422,11 @@
         .status-inactive {
             background: rgba(108, 117, 125, 0.1);
             color: var(--color-gris-medio);
+        }
+
+        .status-struggling {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--color-rojo);
         }
 
         .action-buttons {
@@ -341,23 +458,46 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .export-btn {
-            background: var(--color-petroleo);
-            color: var(--color-blanco);
-            padding: 0.8rem 1.5rem;
+        /* MEJORA: Panel de comunicación rápida */
+        .quick-actions {
+            background: var(--color-blanco);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .quick-actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .quick-action-btn {
+            background: linear-gradient(135deg, var(--color-petroleo), var(--color-rosado));
+            color: white;
             border: none;
-            border-radius: 25px;
+            padding: 1.5rem 1rem;
+            border-radius: 10px;
             cursor: pointer;
-            margin: 0.5rem;
+            text-align: center;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .export-btn:hover {
-            background: var(--color-negro);
-            transform: translateY(-2px);
+        .quick-action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(44, 95, 102, 0.3);
         }
 
-        /* Responsive */
+        .quick-action-icon {
+            font-size: 2rem;
+        }
+
         @media (max-width: 768px) {
             .dashboard-container {
                 padding: 0 1rem;
@@ -372,8 +512,16 @@
                 align-items: stretch;
             }
             
-            .table-header {
-                flex-direction: column;
+            .filter-group {
+                justify-content: space-between;
+            }
+            
+            .table-container {
+                overflow-x: auto;
+            }
+            
+            .progress-table {
+                min-width: 600px;
             }
         }
     </style>
@@ -423,6 +571,13 @@
                     <button class="action-btn feedback" style="margin-left: 1rem;">Enviar feedback</button>
                 </div>
             </div>
+            <div class="alert-item danger">
+                <span>🔴</span>
+                <div>
+                    <strong>Carlos Rodríguez</strong> muestra bajo rendimiento en evaluaciones.
+                    <button class="action-btn message" style="margin-left: 1rem;">Programar tutoría</button>
+                </div>
+            </div>
         </div>
 
         <!-- Estadísticas principales mejoradas -->
@@ -431,36 +586,76 @@
                 <span class="stat-icon">👥</span>
                 <span class="stat-number" id="totalStudents">17</span>
                 <div class="stat-label">Estudiantes Registrados</div>
-                <div class="stat-trend">↗️ +2 esta semana</div>
+                <div class="stat-trend up">↗️ +2 esta semana</div>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">🔥</span>
                 <span class="stat-number" id="activeStudents">14</span>
                 <div class="stat-label">Estudiantes Activos</div>
-                <div class="stat-trend">↗️ 82% actividad</div>
+                <div class="stat-trend up">↗️ 82% actividad</div>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">✅</span>
                 <span class="stat-number" id="completedModules">28</span>
                 <div class="stat-label">Módulos Completados</div>
-                <div class="stat-trend">↗️ +8 esta semana</div>
+                <div class="stat-trend up">↗️ +8 esta semana</div>
             </div>
             <div class="stat-card">
                 <span class="stat-icon">📊</span>
                 <span class="stat-number" id="avgProgress">73%</span>
                 <div class="stat-label">Progreso Promedio</div>
-                <div class="stat-trend">↗️ +15% vs mes anterior</div>
+                <div class="stat-trend up">↗️ +15% vs mes anterior</div>
             </div>
         </div>
 
-        <!-- Progreso de estudiantes mejorado -->
-        <div class="section">
+        <!-- Gráfico de progreso por módulo -->
+        <div class="chart-container">
+            <h2 style="color: var(--color-petroleo); margin-bottom: 1rem;">📈 Progreso por Módulo</h2>
+            <div class="chart-bars">
+                <div class="chart-bar" data-value="85" style="height: 85%;"></div>
+                <div class="chart-bar" data-value="73" style="height: 73%;"></div>
+                <div class="chart-bar" data-value="45" style="height: 45%;"></div>
+                <div class="chart-bar" data-value="18" style="height: 18%;"></div>
+            </div>
+            <div class="chart-labels">
+                <div class="chart-label">Módulo 1<br>Fundamentos</div>
+                <div class="chart-label">Módulo 2<br>Anatomía Facial</div>
+                <div class="chart-label">Módulo 3<br>Torso y Extremidades</div>
+                <div class="chart-label">Módulo 4<br>Figura Completa</div>
+            </div>
+        </div>
+
+        <!-- Acciones rápidas -->
+        <div class="quick-actions">
+            <h2 style="color: var(--color-petroleo); margin-bottom: 1rem;">⚡ Acciones Rápidas</h2>
+            <div class="quick-actions-grid">
+                <button class="quick-action-btn" onclick="sendBulkMessage()">
+                    <span class="quick-action-icon">💌</span>
+                    <span>Mensaje Grupal</span>
+                </button>
+                <button class="quick-action-btn" onclick="exportDetailedReport()">
+                    <span class="quick-action-icon">📋</span>
+                    <span>Reporte Detallado</span>
+                </button>
+                <button class="quick-action-btn" onclick="scheduleReminder()">
+                    <span class="quick-action-icon">⏰</span>
+                    <span>Programar Recordatorio</span>
+                </button>
+                <button class="quick-action-btn" onclick="createAnnouncement()">
+                    <span class="quick-action-icon">📢</span>
+                    <span>Crear Anuncio</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabla de estudiantes mejorada -->
+        <div class="table-container">
             <div class="table-header">
                 <h2 style="color: var(--color-petroleo);">👥 Progreso Individual de Estudiantes</h2>
                 <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
                     <input type="text" class="search-box" placeholder="🔍 Buscar estudiante..." id="studentSearch">
-                    <button class="export-btn" onclick="exportToCSV()">📄 Exportar CSV</button>
-                    <button class="export-btn" onclick="generateReport()">📊 Generar Reporte</button>
+                    <button class="refresh-btn" onclick="exportToCSV()">📄 Exportar CSV</button>
+                    <button class="refresh-btn" onclick="generateReport()">📊 Generar Reporte</button>
                 </div>
             </div>
             <table class="progress-table" id="studentsTable">
@@ -555,7 +750,7 @@
                 const statusClass = {
                     'active': 'status-active',
                     'inactive': 'status-inactive',
-                    'struggling': 'status-inactive'
+                    'struggling': 'status-struggling'
                 }[student.status];
 
                 const statusIcon = {
@@ -592,7 +787,7 @@
                             ${statusIcon} ${statusText}
                         </span>
                     </td>
-                    <td>${new Date(student.lastAccess).toLocaleDateString()}</td>
+                    <td>${new Date(student.lastAccess).toLocaleDateString()} ${new Date(student.lastAccess).toLocaleTimeString()}</td>
                     <td>
                         <div class="action-buttons">
                             <button class="action-btn message" onclick="sendMessage('${student.name}')">💌</button>
@@ -607,21 +802,221 @@
         // Funciones de interacción
         function sendMessage(studentName) {
             alert(`Enviando mensaje a ${studentName}...`);
+            // Aquí se integraría con el sistema de comunicación real
         }
 
         function provideFeedback(studentName) {
             alert(`Abriendo panel de feedback para ${studentName}...`);
+            // Aquí se abriría un modal o página de feedback
         }
 
         function refreshData() {
-            alert('Datos actualizados correctamente ✅');
+            showNotification('Datos actualizados correctamente ✅');
             updateMainStats();
             updateStudentsTable();
         }
 
-        // Funciones de exportación (mantenidas del original)
+        function sendBulkMessage() {
+            alert('Abriendo compositor de mensaje grupal...');
+        }
+
+        function exportDetailedReport() {
+            alert('Generando reporte detallado...');
+        }
+
+        function scheduleReminder() {
+            alert('Abriendo programador de recordatorios...');
+        }
+
+        function createAnnouncement() {
+            alert('Creando nuevo anuncio...');
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--color-verde);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease;
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Funciones de exportación
         function exportToCSV() {
             let csv = 'Nombre,Email,Progreso %,Módulos Completados,Tiempo Total,Estado,Último Acceso\n';
             
             studentsData.forEach(student => {
                 const completed = student.progress.filter(p => p).length;
+                const progressPercent = Math.round((completed / 4) * 100);
+                csv += `"${student.name}","${student.email}",${progressPercent}%,${completed}/4,${student.timeSpent}h,"${student.status}","${new Date(student.lastAccess).toLocaleDateString()}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'progreso_estudiantes_detallado.csv';
+            a.click();
+            window.URL.revokeObjectURL(url);
+            showNotification('CSV exportado exitosamente 📄');
+        }
+
+        function generateReport() {
+            const totalStudents = studentsData.length;
+            const activeStudents = studentsData.filter(s => s.status === 'active').length;
+            const strugglingStudents = studentsData.filter(s => s.status === 'struggling').length;
+            const totalTime = studentsData.reduce((sum, s) => sum + s.timeSpent, 0);
+            const avgTime = totalTime / totalStudents;
+
+            let report = `
+REPORTE DETALLADO DE PROGRESO DEL CURSO
+Dibujo y Representación del Cuerpo Humano
+Fecha: ${new Date().toLocaleDateString()}
+Hora: ${new Date().toLocaleTimeString()}
+
+RESUMEN EJECUTIVO:
+═══════════════════════════════════════════
+- Total de estudiantes: ${totalStudents}
+- Estudiantes activos: ${activeStudents} (${Math.round((activeStudents/totalStudents)*100)}%)
+- Estudiantes con dificultades: ${strugglingStudents} (${Math.round((strugglingStudents/totalStudents)*100)}%)
+- Tiempo total de estudio: ${totalTime.toFixed(1)} horas
+- Tiempo promedio por estudiante: ${avgTime.toFixed(1)} horas
+
+PROGRESO POR MÓDULO:
+═══════════════════════════════════════════`;
+
+            for (let i = 1; i <= 4; i++) {
+                const completed = studentsData.filter(s => s.progress[i-1]).length;
+                const percentage = Math.round((completed/totalStudents)*100);
+                const moduleName = ['Fundamentos', 'Anatomía Facial', 'Torso y Extremidades', 'Figura Completa'][i-1];
+                report += `\n- Módulo ${i} (${moduleName}): ${completed}/${totalStudents} (${percentage}%)`;
+            }
+
+            report += `
+
+ESTUDIANTES DESTACADOS:
+═══════════════════════════════════════════`;
+            
+            // Estudiantes con curso completo
+            const completedStudents = studentsData.filter(s => s.progress.every(p => p));
+            if (completedStudents.length > 0) {
+                report += '\n\n🏆 CURSO COMPLETADO:';
+                completedStudents.forEach(student => {
+                    report += `\n- ${student.name} (${student.timeSpent}h total)`;
+                });
+            }
+
+            // Estudiantes más activos
+            const mostActive = [...studentsData].sort((a, b) => b.timeSpent - a.timeSpent).slice(0, 3);
+            report += '\n\n⭐ MÁS ACTIVOS (por tiempo de estudio):';
+            mostActive.forEach((student, index) => {
+                report += `\n${index + 1}. ${student.name} - ${student.timeSpent}h`;
+            });
+
+            report += `
+
+ESTUDIANTES QUE REQUIEREN ATENCIÓN:
+═══════════════════════════════════════════`;
+            
+            const needsAttention = studentsData.filter(s => s.status === 'struggling' || s.status === 'inactive');
+            if (needsAttention.length > 0) {
+                needsAttention.forEach(student => {
+                    const daysSinceAccess = Math.floor((new Date() - new Date(student.lastAccess)) / (1000 * 60 * 60 * 24));
+                    report += `\n- ${student.name}: ${student.status} (${daysSinceAccess} días sin acceso)`;
+                });
+            } else {
+                report += '\n¡Todos los estudiantes están progresando bien! ✅';
+            }
+
+            report += `
+
+RECOMENDACIONES:
+═══════════════════════════════════════════
+- Enviar recordatorios a estudiantes inactivos
+- Ofrecer tutorías a estudiantes con dificultades
+- Celebrar logros de estudiantes destacados
+- Considerar extensión de plazos si es necesario
+
+ANÁLISIS TEMPORAL:
+═══════════════════════════════════════════
+- Promedio de tiempo por módulo: ${(avgTime/4).toFixed(1)}h
+- Estudiantes que superan el tiempo esperado: ${studentsData.filter(s => s.timeSpent > 15).length}
+- Estudiantes con poco tiempo dedicado: ${studentsData.filter(s => s.timeSpent < 5).length}
+
+═══════════════════════════════════════════
+Reporte generado automáticamente por LMS Independiente
+Universidad Alberto Hurtado - Pedagogía en Artes Visuales
+═══════════════════════════════════════════`;
+
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `reporte_curso_dibujo_${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+            showNotification('Reporte generado exitosamente 📊');
+        }
+
+        // Búsqueda de estudiantes
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBox = document.getElementById('studentSearch');
+            if (searchBox) {
+                searchBox.addEventListener('input', function(e) {
+                    const searchTerm = e.target.value.toLowerCase();
+                    const rows = document.querySelectorAll('#studentsTableBody tr');
+                    
+                    rows.forEach(row => {
+                        const studentName = row.querySelector('.student-info div div').textContent.toLowerCase();
+                        const studentEmail = row.querySelector('.student-info div div:nth-child(2)').textContent.toLowerCase();
+                        
+                        if (studentName.includes(searchTerm) || studentEmail.includes(searchTerm)) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            }
+
+            // Cargar datos iniciales
+            updateMainStats();
+            updateStudentsTable();
+            
+            // Actualizar datos cada 30 segundos
+            setInterval(() => {
+                updateMainStats();
+                updateStudentsTable();
+            }, 30000);
+
+            // Añadir estilos de animación
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+            `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+</html>

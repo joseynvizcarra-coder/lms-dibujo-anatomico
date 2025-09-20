@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard del Instructor - Dibujo Anatómico</title>
+    <style>
+        :root {
+            --color-petroleo: #2c5f66;
+            --color-rosado: #e8a2b8;
+            --color-negro: #1a1a1a;
+            --color-blanco: #ffffff;
+            --color-gris-claro: #f5f5f5;
+            --color-gris-medio: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: var(--color-gris-claro);
+            color: var(--color-negro);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--color-petroleo), var(--color-negro));
+            color: var(--color-blanco);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            color: var(--color-rosado);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: var(--color-blanco);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: var(--color-blanco);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--color-petroleo);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--color-gris-medio);
+            font-size: 1.1rem;
+        }
+
+        .section {
+            background: var(--color-blanco);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--color-petroleo);
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid var(--color-rosado);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .progress-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .progress-table th,
+        .progress-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .progress-table th {
+            background: var(--color-gris-claro);
+            color: var(--color-petroleo);
+            font-weight: bold;
+        }
+
+        .progress-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .progress-bar-small {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 10px;
+            width: 100px;
+            overflow: hidden;
+        }
+
+        .progress-fill-small {
+            background: linear-gradient(90deg, var(--color-petroleo), var(--color-rosado));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .module-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .module-stat {
+            background: var(--color-gris-claro);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .module-stat:hover {
+            background: #e6e6e6;
+            transform: translateY(-2px);
+        }
+
+        .module-stat h4 {
+            color: var(--color-petroleo);
+            margin-bottom: 0.5rem;
+        }
+
+        .activity-log {
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #eee;
+            border-radius: 8px;
+        }
+
+        .activity-item {
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .activity-item:hover {
+            background: #f8f9fa;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-time {
+            color: var(--color-gris-medio);
+            font-size: 0.9rem;
+        }
+
+        .export-btn {
+            background: var(--color-petroleo);
+            color: var(--color-blanco);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .export-btn:hover {
+            background: var(--color-negro);
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .no-data {
+            text-align: center;
+            color: var(--color-gris-medio);
+            padding: 2rem;
+            font-style: italic;
+        }
+
+        /* Indicadores de estado */
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+
+        .status-active {
+            background: #28a745;
+        }
+
+        .status-inactive {
+            background: #dc3545;
+        }
+
+        .status-moderate {
+            background: #ffc107;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 0 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .progress-table {
+                font-size: 0.9rem;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .section:nth-child(2) { animation-delay: 0.1s; }
+        .section:nth-child(3) { animation-delay: 0.2s; }
+        .section:nth-child(4) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>📊 Dashboard del Instructor</h1>
+        <a href="index.html" class="back-btn">← Volver al Curso</a>
+    </header>
+
+    <div class="dashboard-container">
+        <!-- Estadísticas principales -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-number" id="totalStudents">0</span>
+                <div class="stat-label">Estudiantes Registrados</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="activeStudents">0</span>
+                <div class="stat-label">Estudiantes Activos</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="completedModules">0</span>
+                <div class="stat-label">Módulos Completados</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="avgProgress">0%</span>
+                <div class="stat-label">Progreso Promedio</div>
+            </div>
+        </div>
+
+        <!-- Estadísticas por módulo -->
+        <div class="section">
+            <h2>📚 Estadísticas por Módulo</h2>
+            <div class="module-stats">
+                <div class="module-stat">
+                    <h4>Módulo 1</h4>
+                    <div class="stat-number" style="font-size: 2rem;" id="module1Count">0</div>
+                    <div>Completados</div>
+                </div>
+                <div class="module-stat">
+                    <h4>Módulo 2</h4>
+                    <div class="stat-number" style="font-size: 2rem;" id="module2Count">0</div>
+                    <div>Completados</div>
+                </div>
+                <div class="module-stat">
+                    <h4>Módulo 3</h4>
+                    <div class="stat-number" style="font-size: 2rem;" id="module3Count">0</div>
+                    <div>Completados</div>
+                </div>
+                <div class="module-stat">
+                    <h4>Módulo 4</h4>
+                    <div class="stat-number" style="font-size: 2rem;" id="module4Count">0</div>
+                    <div>Completados</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progreso de estudiantes -->
+        <div class="section">
+            <h2>👥 Progreso Individual de Estudiantes</h2>
+            <div style="margin-bottom: 1rem;">
+                <button class="export-btn" onclick="exportToCSV()">📄 Exportar a CSV</button>
+                <button class="export-btn" onclick="generateReport()">📊 Generar Reporte</button>
+            </div>
+            <div id="studentsTableContainer">
+                <table class="progress-table" id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>Estado</th>
+                            <th>Estudiante</th>
+                            <th>Email</th>
+                            <th>Progreso</th>
+                            <th>Módulos Completados</th>
+                            <th>Último Acceso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody">
+                        <!-- Los datos se cargan dinámicamente -->
+                    </tbody>
+                </table>
+                <div id="noStudentsMessage" class="no-data" style="display: none;">
+                    No hay datos de estudiantes disponibles. Los datos se actualizarán cuando los estudiantes comiencen a usar el curso.
+                </div>
+            </div>
+        </div>
+
+        <!-- Actividad reciente -->
+        <div class="section">
+            <h2>📈 Actividad Reciente</h2>
+            <div class="activity-log" id="activityLog">
+                <div class="no-data">
+                    No hay actividad reciente registrada.
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics de Google -->
+        <div class="section">
+            <h2>📊 Analytics Avanzados</h2>
+            <div class="alert">
+                <strong>Configuración:</strong> Para ver analytics completos, conecta tu Google Analytics ID en el archivo principal.
+                <br><strong>URL de tu Google Analytics:</strong> <a href="https://analytics.google.com" target="_blank">https://analytics.google.com</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+                <div class="module-stat">
+                    <h4>Tiempo Promedio</h4>
+                    <div class="stat-number" style="font-size: 1.5rem;">2.5h</div>
+                    <div>por módulo</div>
+                </div>
+                <div class="module-stat">
+                    <h4>Tasa de Finalización</h4>
+                    <div class="stat-number" style="font-size: 1.5rem;" id="completionRate">0%</div>
+                    <div>del curso</div>
+                </div>
+                <div class="module-stat">
+                    <h4>Dispositivos</h4>
+                    <div class="stat-number" style="font-size: 1.5rem;">65%</div>
+                    <div>móvil</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de demostración (se reemplazarán por datos reales del localStorage)
+        let defaultStudentsData = [
+            {
+                name: "María González",
+                email: "maria.gonzalez@uah.cl",
+                progress: [true, true, false, false],
+                lastAccess: "2025-01-15T10:30:00"
+            },
+            {
+                name: "Carlos Rodríguez",
+                email: "carlos.rodriguez@uah.cl",
+                progress: [true, false, false, false],
+                lastAccess: "2025-01-14T15:45:00"
+            },
+            {
+                name: "Ana Silva",
+                email: "ana.silva@uah.cl",
+                progress: [true, true, true, true],
+                lastAccess: "2025-01-15T12:00:00"
+            }
+        ];
+
+        // Actividades recientes de demostración
+        let defaultActivities = [
+            {
+                action: "Módulo completado",
+                student: "Ana Silva",
+                module: 4,
+                timestamp: "2025-01-15T12:00:00"
+            },
+            {
+                action: "Acceso al curso",
+                student: "María González",
+                module: null,
+                timestamp: "2025-01-15T10:30:00"
+            },
+            {
+                action: "Módulo completado",
+                student: "María González",
+                module: 2,
+                timestamp: "2025-01-15T09:15:00"
+            }
+        ];
+
+        function loadDashboardData() {
+            // Cargar datos reales desde localStorage, usar datos de demostración si no existen
+            const instructorData = JSON.parse(localStorage.getItem('instructorData')) || [];
+            const studentsData = instructorData.length > 0 ? instructorData : defaultStudentsData;
+            
+            // Actualizar estadísticas principales
+            updateMainStats(studentsData);
+            
+            // Actualizar tabla de estudiantes
+            updateStudentsTable(studentsData);
+            
+            // Actualizar log de actividades
+            updateActivityLog(studentsData);
+            
+            // Actualizar estadísticas por módulo
+            updateModuleStats(studentsData);
+        }
+
+        function updateMainStats(studentsData) {
+            const totalStudents = studentsData.length;
+            const activeStudents = studentsData.filter(s => {
+                const lastAccess = new Date(s.lastAccess);
+                const weekAgo = new Date();
+                weekAgo.setDate(weekAgo.getDate() - 7);
+                return lastAccess > weekAgo;
+            }).length;
+
+            let totalCompletedModules = 0;
+            let totalProgress = 0;
+
+            studentsData.forEach(student => {
+                const completed = student.progress.filter(p => p).length;
+                totalCompletedModules += completed;
+                totalProgress += (completed / 4) * 100;
+            });
+
+            const avgProgress = studentsData.length > 0 ? totalProgress / studentsData.length : 0;
+
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('activeStudents').textContent = activeStudents;
+            document.getElementById('completedModules').textContent = totalCompletedModules;
+            document.getElementById('avgProgress').textContent = Math.round(avgProgress) + '%';
+            
+            // Tasa de finalización
+            const completedCourses = studentsData.filter(s => s.progress.every(p => p)).length;
+            const completionRate = totalStudents > 0 ? (completedCourses / totalStudents) * 100 : 0;
+            document.getElementById('completionRate').textContent = Math.round(completionRate) + '%';
+        }
+
+        function updateModuleStats(studentsData) {
+            for (let i = 1; i <= 4; i++) {
+                const completed = studentsData.filter(s => s.progress[i-1]).length;
+                const element = document.getElementById(`module${i}Count`);
+                if (element) {
+                    element.textContent = completed;
+                }
+            }
+        }
+
+        function updateStudentsTable(studentsData) {
+            const tbody = document.getElementById('studentsTableBody');
+            const noDataMessage = document.getElementById('noStudentsMessage');
+            const table = document.getElementById('studentsTable');
+            
+            if (studentsData.length === 0) {
+                table.style.display = 'none';
+                noDataMessage.style.display = 'block';
+                return;
+            }
+            
+            table.style.display = 'table';
+            noDataMessage.style.display = 'none';
+            tbody.innerHTML = '';
+
+            studentsData.forEach(student => {
+                const row = document.createElement('tr');
+                const completed = student.progress.filter(p => p).length;
+                const progressPercent = (completed / 4) * 100;
+                
+                // Determinar estado del estudiante
+                const lastAccess = new Date(student.lastAccess);
+                const weekAgo = new Date();
+                weekAgo.setDate(weekAgo.getDate() - 7);
+                const isActive = lastAccess > weekAgo;
+                
+                const statusClass = isActive ? 'status-active' : 'status-inactive';
+                const statusText = isActive ? 'Activo' : 'Inactivo';
+                
+                row.innerHTML = `
+                    <td>
+                        <span class="status-indicator ${statusClass}"></span>
+                        ${statusText}
+                    </td>
+                    <td>${student.name}</td>
+                    <td>${student.email}</td>
+                    <td>
+                        <div class="progress-bar-small">
+                            <div class="progress-fill-small" style="width: ${progressPercent}%"></div>
+                        </div>
+                        ${Math.round(progressPercent)}%
+                    </td>
+                    <td>${completed}/4</td>
+                    <td>${new Date(student.lastAccess).toLocaleDateString()}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateActivityLog(studentsData) {
+            const log = document.getElementById('activityLog');
+            
+            // Generar actividades basadas en datos reales si existen
+            const activities = generateActivitiesFromData(studentsData);
+            
+            if (activities.length === 0) {
+                log.innerHTML = '<div class="no-data">No hay actividad reciente registrada.</div>';
+                return;
+            }
+            
+            log.innerHTML = '';
+
+            activities.forEach(activity => {
+                const item = document.createElement('div');
+                item.className = 'activity-item';
+                
+                const moduleText = activity.module ? ` - Módulo ${activity.module}` : '';
+                item.innerHTML = `
+                    <div>
+                        <strong>${activity.action}</strong><br>
+                        ${activity.student}${moduleText}
+                    </div>
+                    <div class="activity-time">
+                        ${new Date(activity.timestamp).toLocaleString()}
+                    </div>
+                `;
+                log.appendChild(item);
+            });
+        }
+
+        function generateActivitiesFromData(studentsData) {
+            const activities = [];
+            
+            studentsData.forEach(student => {
+                // Actividad de acceso
+                activities.push({
+                    action: "Acceso al curso",
+                    student: student.name,
+                    module: null,
+                    timestamp: student.lastAccess
+                });
+                
+                // Actividades de módulos completados
+                student.progress.forEach((completed, index) => {
+                    if (completed) {
+                        activities.push({
+                            action: "Módulo completado",
+                            student: student.name,
+                            module: index + 1,
+                            timestamp: student.lastAccess // En implementación real, se guardaría timestamp específico
+                        });
+                    }
+                });
+            });
+            
+            // Ordenar por timestamp más reciente
+            return activities.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 10);
+        }
+
+        function exportToCSV() {
+            const instructorData = JSON.parse(localStorage.getItem('instructorData')) || defaultStudentsData;
+            let csv = 'Nombre,Email,Progreso %,Módulos Completados,Último Acceso\n';
+            
+            instructorData.forEach(student => {
+                const completed = student.progress.filter(p => p).length;
+                const progressPercent = Math.round((completed / 4) * 100);
+                csv += `"${student.name}","${student.email}",${progressPercent}%,${completed}/4,"${new Date(student.lastAccess).toLocaleDateString()}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'progreso_estudiantes.csv';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        function generateReport() {
+            const instructorData = JSON.parse(localStorage.getItem('instructorData')) || defaultStudentsData;
+            const totalStudents = instructorData.length;
+            const activeStudents = instructorData.filter(s => {
+                const lastAccess = new Date(s.lastAccess);
+                const weekAgo = new Date();
+                weekAgo.setDate(weekAgo.getDate() - 7);
+                return lastAccess > weekAgo;
+            }).length;
+
+            let report = `REPORTE DE PROGRESO DEL CURSO
+Dibujo y Representación del Cuerpo Humano
+Fecha: ${new Date().toLocaleDateString()}
+
+RESUMEN EJECUTIVO:
+- Total de estudiantes: ${totalStudents}
+- Estudiantes activos (última semana): ${activeStudents}
+- Tasa de actividad: ${totalStudents > 0 ? Math.round((activeStudents/totalStudents)*100) : 0}%
+
+PROGRESO POR MÓDULO:
+`;
+
+            for (let i = 1; i <= 4; i++) {
+                const completed = instructorData.filter(s => s.progress[i-1]).length;
+                const percentage = totalStudents > 0 ? Math.round((completed/totalStudents)*100) : 0;
+                report += `- Módulo ${i}: ${completed}/${totalStudents} (${percentage}%)\n`;
+            }
+
+            report += `
+ESTUDIANTES CON CURSO COMPLETO:
+`;
+            const completedStudents = instructorData.filter(student => student.progress.every(p => p));
+            if (completedStudents.length > 0) {
+                completedStudents.forEach(student => {
+                    report += `- ${student.name} (${student.email})\n`;
+                });
+            } else {
+                report += '- Ningún estudiante ha completado el curso completo aún.\n';
+            }
+
+            const blob = new Blob([report], { type: 'text/plain;charset=utf-8;' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'reporte_curso_dibujo.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Cargar datos al iniciar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            loadDashboardData();
+            
+            // Actualizar datos cada 30 segundos
+            setInterval(loadDashboardData, 30000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dibujo y Representación del Cuerpo Humano</title>
+    <!-- Tailwind CSS para un diseño moderno y responsivo -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Paleta de colores personalizada */
+        :root {
+            --color-petroleo: #2c5f66;
+            --color-rosado: #e8a2b8;
+            --color-negro: #1a1a1a;
+            --color-blanco: #ffffff;
+            --color-gris-claro: #f5f5f5;
+        }
+        body {
+            font-family: 'Inter', sans-serif; /* Fuente más moderna */
+        }
+        .bg-petroleo { background-color: var(--color-petroleo); }
+        .text-petroleo { color: var(--color-petroleo); }
+        .text-rosado { color: var(--color-rosado); }
+        .border-petroleo { border-color: var(--color-petroleo); }
+        .border-rosado { border-color: var(--color-rosado); }
+        .btn-gradient {
+            background-image: linear-gradient(135deg, var(--color-petroleo), var(--color-negro));
+        }
+        .btn-gradient:hover {
+            background-image: linear-gradient(135deg, var(--color-negro), var(--color-petroleo));
+        }
+        .btn-completed-gradient {
+            background-image: linear-gradient(135deg, var(--color-rosado), var(--color-petroleo));
+        }
+        /* Animación de entrada */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.5s ease-in-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-petroleo shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold text-rosado">Arte & Anatomía</div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#inicio" class="text-white hover:text-rosado transition">Inicio</a>
+                <a href="#modulos" class="text-white hover:text-rosado transition">Módulos</a>
+                <a href="#progreso" class="text-white hover:text-rosado transition">Mi Progreso</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Container principal -->
+    <div class="container mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section id="inicio" class="text-center py-10">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-petroleo mb-4">Dibujo y Representación del Cuerpo Humano</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6">Curso complementario para desarrollar habilidades técnicas en dibujo anatómico. Cada módulo es independiente y puedes tomarlos en el orden que prefieras.</p>
+            <div id="auth-section" class="bg-white p-4 rounded-lg shadow-md max-w-md mx-auto">
+                 <p class="text-gray-700">Cargando tu sesión...</p>
+            </div>
+        </section>
+
+        <!-- Progreso general -->
+        <div id="progreso" class="bg-white rounded-2xl p-6 shadow-lg my-12">
+            <h2 class="text-2xl font-bold text-petroleo mb-4 text-center">Tu Progreso General</h2>
+            <div class="w-full bg-gray-200 rounded-full h-4">
+                <div id="progressFill" class="bg-gradient-to-r from-petroleo to-rosado h-4 rounded-full transition-all duration-500" style="width: 0%;"></div>
+            </div>
+            <div id="progressText" class="text-center mt-3 font-semibold text-petroleo">0% Completado (0 de 4 módulos)</div>
+        </div>
+
+        <!-- Grid de módulos -->
+        <section id="modulos">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 modules-grid">
+                <!-- Módulos se insertarán aquí dinámicamente -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-negro text-white text-center py-6 mt-12">
+        <p>&copy; 2025 Curso de Dibujo y Representación del Cuerpo Humano - UAH</p>
+    </footer>
+
+    <!-- Modal para módulos -->
+    <div id="moduleModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[1000]" style="display: none;">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-content-area">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6 border-b pb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-petroleo"></h2>
+                    <button onclick="closeModule()" class="text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+                </div>
+                <div id="modalContent">
+                    <!-- Contenido del módulo se carga aquí -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDKs -->
+    <script type="module">
+        // Import functions from the Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- CONFIGURACIÓN ---
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        
+        let currentUser = null;
+        let userProgressRef = null;
+
+        // --- DATOS DEL CURSO ---
+        const moduleData = {
+            1: { title: "Fundamentos y Proporción", description: "Aprende las bases del dibujo anatómico con el canon de 8 cabezas. Domina las proporciones fundamentales.", duration: "2-3 horas", content: `...` },
+            2: { title: "Anatomía Facial", description: "Explora las proporciones faciales, expresiones y detalles. Técnicas para capturar la personalidad en el rostro.", duration: "2-3 horas", content: `...` },
+            3: { title: "Torso y Extremidades", description: "Biomecánica del cuerpo humano. Músculos, articulaciones y movimiento natural en brazos, piernas y torso.", duration: "3-4 horas", content: `...` },
+            4: { title: "Figura Completa", description: "Integración de todos los elementos. Poses dinámicas, narrativa visual y composición de la figura humana.", duration: "3-4 horas", content: `...` }
+        };
+
+        // --- AUTENTICACIÓN Y CARGA DE DATOS ---
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                currentUser = user;
+                const authSection = document.getElementById('auth-section');
+                authSection.innerHTML = `<p class="text-sm text-gray-600">Sesión activa. Tu ID de usuario es:</p><p class="font-mono text-xs bg-gray-100 p-2 rounded break-all">${currentUser.uid}</p>`;
+                
+                // Path a la base de datos pública para guardar el progreso del usuario
+                const userProgressPath = `/artifacts/${appId}/public/data/userProgress/${currentUser.uid}`;
+                userProgressRef = doc(db, userProgressPath);
+                
+                // Escuchar cambios en el progreso del usuario en tiempo real
+                onSnapshot(userProgressRef, (docSnap) => {
+                    let progress = { 1: false, 2: false, 3: false, 4: false };
+                    if (docSnap.exists()) {
+                        progress = { ...progress, ...docSnap.data() };
+                    } else {
+                        // Si el usuario es nuevo, creamos su documento de progreso
+                        setDoc(userProgressRef, progress, { merge: true });
+                    }
+                    renderModules(progress);
+                    updateProgressUI(progress);
+                });
+
+            } else {
+                console.log("No user signed in.");
+            }
+        });
+
+        // Autenticación inicial
+        (async () => {
+             if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                await signInWithCustomToken(auth, __initial_auth_token);
+            } else {
+                await signInAnonymously(auth);
+            }
+        })();
+
+        // --- RENDERIZADO DE LA INTERFAZ ---
+        function renderModules(progress) {
+            const grid = document.querySelector('.modules-grid');
+            if (!grid) return; // Salida temprana si el grid no existe
+            grid.innerHTML = '';
+            Object.keys(moduleData).forEach(key => {
+                const mod = moduleData[key];
+                const isCompleted = progress[key];
+                const card = document.createElement('div');
+                card.className = `module-card transform hover:-translate-y-1 transition-transform duration-300 bg-white rounded-2xl shadow-lg overflow-hidden border-l-4 ${isCompleted ? 'border-rosado' : 'border-petroleo'} fade-in-up`;
+                card.style.animationDelay = `${key * 0.1}s`;
+                
+                card.innerHTML = `
+                    <div class="p-6">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-bold text-petroleo mb-2">${mod.title}</h3>
+                            <div class="text-3xl font-extrabold ${isCompleted ? 'text-rosado' : 'text-petroleo'} opacity-20">${key}</div>
+                        </div>
+                        <p class="text-gray-600 mb-4 h-24">${mod.description}</p>
+                        <div class="flex justify-between items-center text-sm text-gray-500 mb-6">
+                            <span>Duración: ${mod.duration}</span>
+                            <span class="font-bold px-3 py-1 rounded-full ${isCompleted ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">${isCompleted ? 'Completado' : 'Pendiente'}</span>
+                        </div>
+                        <button onclick="openModule(${key})" class="w-full text-white font-bold py-2 px-4 rounded-lg transition-all duration-300 ${isCompleted ? 'btn-completed-gradient' : 'btn-gradient'}">
+                            ${isCompleted ? 'Revisar Módulo' : 'Comenzar Módulo'}
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function updateProgressUI(progress) {
+            const completedCount = Object.values(progress).filter(Boolean).length;
+            const totalModules = Object.keys(moduleData).length;
+            const percentage = totalModules > 0 ? (completedCount / totalModules) * 100 : 0;
+            
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('progressText').textContent = `${Math.round(percentage)}% Completado (${completedCount} de ${totalModules} módulos)`;
+        }
+
+        // --- FUNCIONES DE INTERACCIÓN ---
+        window.openModule = function(moduleNumber) {
+            const module = moduleData[moduleNumber];
+            document.getElementById('modalTitle').textContent = `Módulo ${moduleNumber}: ${module.title}`;
+            // Simulación de contenido más detallado
+            document.getElementById('modalContent').innerHTML = `
+                <div class="space-y-4 p-4 text-gray-700">
+                    <p><strong>Objetivo:</strong> ${module.description}</p>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                        <h4 class="font-bold text-petroleo mb-2">Puntos Clave:</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Análisis de la estructura ósea.</li>
+                            <li>Estudio de los grupos musculares principales.</li>
+                            <li>Técnicas de sombreado y volumen.</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-lg">
+                       <h4 class="font-bold text-petroleo mb-2">Ejercicio Práctico:</h4>
+                       <p>Realiza 3 bocetos rápidos aplicando las técnicas vistas en este módulo. Sube tus resultados a la plataforma de evaluación.</p>
+                    </div>
+                    <button onclick="completeModule(${moduleNumber})" class="w-full mt-6 btn-gradient text-white font-bold py-3 px-4 rounded-lg transition-transform duration-200 hover:scale-105">
+                        Marcar como Completado
+                    </button>
+                </div>
+            `;
+            const modal = document.getElementById('moduleModal');
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                document.getElementById('modal-content-area').classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        window.closeModule = function() {
+            const modal = document.getElementById('moduleModal');
+            const modalContent = document.getElementById('modal-content-area');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        window.completeModule = async function(moduleNumber) {
+            // Usamos una ventana de confirmación personalizada en lugar de alert/confirm
+            const userConfirmed = await showCustomConfirm('¿Estás seguro de que has completado este módulo?');
+            if (userConfirmed) {
+                try {
+                    await updateDoc(userProgressRef, {
+                        [moduleNumber]: true,
+                        lastUpdated: new Date().toISOString()
+                    });
+                    closeModule();
+                    showCustomMessage(`¡Felicitaciones! Has completado el Módulo ${moduleNumber}.`);
+                } catch (error) {
+                    console.error("Error updating progress: ", error);
+                    showCustomMessage("Hubo un error al guardar tu progreso. Inténtalo de nuevo.");
+                }
+            }
+        }
+        
+        // --- UTILIDADES ---
+        // Funciones para mostrar mensajes y confirmaciones personalizadas
+        function showCustomMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.className = 'fixed top-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg z-[2000]';
+            document.body.appendChild(messageDiv);
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+
+        function showCustomConfirm(message) {
+            return new Promise(resolve => {
+                const confirmWrapper = document.createElement('div');
+                confirmWrapper.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[2000]';
+                
+                const confirmBox = document.createElement('div');
+                confirmBox.className = 'bg-white p-6 rounded-lg shadow-xl text-center';
+                confirmBox.innerHTML = `<p class="mb-4">${message}</p>`;
+                
+                const yesButton = document.createElement('button');
+                yesButton.textContent = 'Sí, seguro';
+                yesButton.className = 'bg-petroleo text-white px-4 py-2 rounded-lg mr-2';
+                
+                const noButton = document.createElement('button');
+                noButton.textContent = 'No, cancelar';
+                noButton.className = 'bg-gray-300 text-gray-800 px-4 py-2 rounded-lg';
+
+                yesButton.onclick = () => {
+                    confirmWrapper.remove();
+                    resolve(true);
+                };
+                noButton.onclick = () => {
+                    confirmWrapper.remove();
+                    resolve(false);
+                };
+
+                confirmBox.appendChild(yesButton);
+                confirmBox.appendChild(noButton);
+                confirmWrapper.appendChild(confirmBox);
+                document.body.appendChild(confirmWrapper);
+            });
+        }
+        
+        // --- NAVEGACIÓN SUAVE (SMOOTH SCROLL) ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

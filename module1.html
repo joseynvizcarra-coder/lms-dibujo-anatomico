@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Módulo 1: Observación y Gesto - Método Leonardo da Vinci">
+    <title>Módulo 1: Ver para Dibujar - LMS UAH</title>
+    
+    <!-- Bootstrap 5.3.2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #2c5f66;
+            --primary-light: #e8a2b8;
+            --dark: #1a1a1a;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #f44336;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header-uah {
+            background: linear-gradient(135deg, var(--primary-dark), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .back-btn:hover {
+            opacity: 0.8;
+            color: white;
+        }
+
+        .sidebar-lesson {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+        }
+
+        .lesson-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+            border: 2px solid transparent;
+        }
+
+        .lesson-link:hover {
+            background: #f8f9fa;
+        }
+
+        .lesson-link.active {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        .lesson-number {
+            width: 35px;
+            height: 35px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-link.active .lesson-number {
+            background: rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .lesson-link.completed .lesson-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .lesson-link.completed::after {
+            content: '✓';
+            margin-left: auto;
+            font-weight: bold;
+        }
+
+        .progress-uah {
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-bar-uah {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+            color: white;
+            font-weight: bold;
+            transition: width 0.5s ease;
+        }
+
+        .media-container {
+            background: #f8f9fa;
+            border: 2px dashed var(--primary-dark);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-container.video {
+            min-height: 400px;
+            background: linear-gradient(135deg, #f3e5f5, #e8f5e9);
+        }
+
+        .media-container.image {
+            min-height: 350px;
+            background: linear-gradient(135deg, #fff3e0, #fce4ec);
+        }
+
+        .media-placeholder {
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .media-description {
+            color: var(--dark);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            max-width: 600px;
+        }
+
+        .exercise-box {
+            background: linear-gradient(135deg, #fff8e1, #fce4ec);
+            border-left: 4px solid var(--primary-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .exercise-title {
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .leonardo-quote {
+            background: linear-gradient(135deg, #e8f5e9, #e1f5fe);
+            border-left: 4px solid var(--success);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+            font-style: italic;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .lesson-content h3 {
+            color: var(--primary-dark);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .lesson-content h4 {
+            color: var(--dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-content p {
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Quiz Styles */
+        .quiz-option {
+            transition: all 0.3s;
+            cursor: pointer;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        .quiz-option.selected {
+            background-color: rgba(44, 95, 102, 0.1);
+        }
+
+        .quiz-option.correct {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-color: var(--success) !important;
+        }
+
+        .quiz-option.incorrect {
+            background-color: rgba(244, 67, 54, 0.1);
+            border-color: var(--danger) !important;
+        }
+
+        .btn-uah-primary {
+            background: var(--primary-dark);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .btn-uah-primary:hover:not(:disabled) {
+            background: var(--primary-light);
+            color: var(--dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-uah-primary:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-uah-success {
+            background: var(--success);
+            border: none;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .btn-uah-success:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .lesson-content {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar-lesson {
+                position: static;
+                margin-bottom: 2rem;
+            }
+            
+            .media-container {
+                min-height: 250px;
+                padding: 1.5rem;
+            }
+
+            .content-card {
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-uah h1 {
+                font-size: 1rem;
+            }
+
+            .media-placeholder {
+                font-size: 0.9rem;
+            }
+
+            .media-description {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="auth.js"></script>
+
+    <!-- Header -->
+    <header class="header-uah">
+        <div class="container-fluid">
+            <div class="row align-items-center g-2">
+                <div class="col-auto">
+                    <a href="index.html" class="back-btn d-flex align-items-center gap-2">
+                        <i class="bi bi-arrow-left"></i>
+                        <span class="d-none d-md-inline">Volver al Curso</span>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <h1 class="h5 h-md-4 mb-0">Módulo 1: Observación y Gesto</h1>
+                    <small class="text-white-50 d-none d-md-inline">"Ver para Dibujar, Dibujar para Ver"</small>
+                </div>
+                <div class="col-auto">
+                    <span class="badge bg-light text-dark" id="progressText">0%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container-fluid py-4">
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-lg-3">
+                <div class="sidebar-lesson">
+                    <h5 class="mb-3">
+                        <i class="bi bi-eye me-2"></i>Lecciones
+                    </h5>
+                    <div class="lesson-list">
+                        <a class="lesson-link active" data-lesson="1" onclick="loadLesson(1)">
+                            <span class="lesson-number">1</span>
+                            <span class="flex-grow-1">El Acto de Observar</span>
+                        </a>
+                        <a class="lesson-link" data-lesson="2" onclick="loadLesson(2)">
+                            <span class="lesson-number">2</span>
+                            <span class="flex-grow-1">La Línea como Movimiento</span>
+                        </a>
+                        <a class="lesson-link" data-lesson="3" onclick="loadLesson(3)">
+                            <span class="lesson-number">3</span>
+                            <span class="flex-grow-1">Volumen y Masa</span>
+                        </a>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="col-lg-9">
+                <div class="content-card">
+                    <!-- Progress Bar -->
+                    <div class="progress-uah">
+                        <div class="progress-bar-uah" id="moduleProgress" style="width: 0%">
+                            <span>0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Content Header -->
+                    <div class="border-bottom pb-3 mb-4">
+                        <h2 class="lesson-title h4 mb-2" id="lessonTitle">Lección 1: El Acto de Observar</h2>
+                        <div class="d-flex gap-3 text-muted small lesson-meta flex-wrap" id="lessonMeta">
+                            <span><i class="bi bi-clock me-1"></i>15 minutos</span>
+                            <span><i class="bi bi-book me-1"></i>Observación</span>
+                        </div>
+                    </div>
+
+                    <!-- Lesson Content -->
+                    <div class="lesson-content" id="lessonContent">
+                        <p>Cargando contenido...</p>
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top flex-wrap gap-3">
+                        <button class="btn btn-uah-primary" id="prevButton" onclick="goToPreviousLesson()">
+                            <i class="bi bi-arrow-left me-2"></i><span class="d-none d-md-inline">Lección </span>Anterior
+                        </button>
+
+                        <button class="btn btn-uah-success" onclick="completeLesson()" id="completeButton">
+                            <i class="bi bi-check-circle me-2"></i><span class="d-none d-sm-inline">Marcar </span>Completada
+                        </button>
+
+                        <button class="btn btn-uah-primary" id="nextButton" onclick="goToNextLesson()">
+                            Siguiente<span class="d-none d-md-inline"> Lección</span><i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="notificationToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bi bi-check-circle-fill text-success me-2" id="toastIcon"></i>
+                <strong class="me-auto">Notificación</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body" id="toastBody">
+                Mensaje aquí
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let currentUser = null;
+        let currentLesson = 1;
+        let moduleProgress = 0;
+        let completedLessons = [];
+        let isOnline = navigator.onLine;
+        let quizAnswers = {};
+        let quizScores = {};
+        
+        window.currentModuleId = 1;
+
+        const lessonsContent = {
+            1: {
+                title: 'El Acto de Observar',
+                meta: '<span><i class="bi bi-clock me-1"></i>15 minutos</span><span><i class="bi bi-book me-1"></i>Observación</span>',
+                content: `
+                    <div class="leonardo-quote">
+                        <i class="bi bi-quote text-success fs-3"></i>
+                        <p class="mb-0 mt-2">"La pintura es cosa mental. El buen pintor ha de pintar dos cosas principales: el hombre y la intención de su alma."</p>
+                        <small class="text-muted d-block mt-2">— Leonardo da Vinci, Tratado de la Pintura (c. 1490)</small>
+                    </div>
+
+                    <div class="media-container video">
+                        <i class="bi bi-play-circle display-1 text-primary mb-3"></i>
+                        <div class="media-placeholder">📹 VIDEO: "El Saper Vedere de Leonardo"</div>
+                        <div class="media-description">
+                            <strong>Duración:</strong> 3-4 minutos<br>
+                            <strong>Contenido sugerido:</strong> Introducción al concepto, demostración práctica, contraste visual
+                        </div>
+                    </div>
+
+                    <h3>Observación vs. Reconocimiento</h3>
+                    <p class="lead">El primer obstáculo para dibujar bien es que nuestro cerebro <strong>reconoce</strong> en lugar de <strong>observar</strong>.</p>
+
+                    <div class="alert alert-primary border-0">
+                        <h5 class="alert-heading"><i class="bi bi-lightbulb-fill me-2"></i>Principio Fundamental</h5>
+                        <p class="mb-0"><strong>Dibuja lo que VES, no lo que SABES.</strong> Tu conocimiento previo puede sabotear tu capacidad de ver lo que realmente tienes frente a ti.</p>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-title">
+                            <i class="bi bi-pencil-square me-2"></i>Ejercicio 1: "Observación Contemplativa de tu Mano"
+                        </div>
+                        
+                        <p><strong>Tiempo:</strong> 15 minutos (2 min observar + 10 min dibujar + 3 min reflexionar)</p>
+                        
+                        <p><strong>Instrucciones:</strong></p>
+                        <ol>
+                            <li>Coloca tu mano en posición cómoda con buena iluminación</li>
+                            <li><strong>Observa 2 minutos sin dibujar:</strong> forma general, sombras, conexiones</li>
+                            <li><strong>Dibuja 10 minutos:</strong> mira tu mano 90% del tiempo, el papel solo 10%</li>
+                            <li>No corrijas ni borres. Acepta las imperfecciones.</li>
+                        </ol>
+
+                        <div class="alert alert-warning border-0 mt-3">
+                            <p class="mb-0"><strong>Regla crítica:</strong> Si tu mente dice "sé cómo es una mano", detente y pregunta: "¿Cómo es <em>ESTA</em> mano?"</p>
+                        </div>
+
+                        <p class="mt-3"><strong>Entregable:</strong></p>
+                        <ul>
+                            <li>1 fotografía de tu dibujo (buena iluminación, enfoque claro)</li>
+                            <li>Reflexión escrita (100 palabras): "¿Qué vi que nunca había notado antes?"</li>
+                        </ul>
+                    </div>
+
+                    <div class="card border-primary mt-4 mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-question-circle me-2"></i>Evaluación: El Acto de Observar</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3">Responde estas preguntas para verificar tu comprensión:</p>
+                            
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">1. ¿Qué significa "saper vedere" según Leonardo da Vinci?</p>
+                                <div class="quiz-options" data-question="1-1" data-correct="b">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-1">
+                                            <label class="form-check-label">Saber dibujar rápido y con precisión</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-1">
+                                            <label class="form-check-label">Aprender a ver con intención científica y curiosidad artística</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-1">
+                                            <label class="form-check-label">Memorizar las proporciones del cuerpo humano</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">2. ¿Cuál es la diferencia clave entre "reconocimiento" y "observación"?</p>
+                                <div class="quiz-options" data-question="1-2" data-correct="a">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-2">
+                                            <label class="form-check-label">Reconocimiento identifica rápidamente, observación estudia cómo se estructura</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-2">
+                                            <label class="form-check-label">No hay diferencia, son sinónimos</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q1-2">
+                                            <label class="form-check-label">Reconocimiento es para expertos, observación para principiantes</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <button class="btn btn-primary w-100" onclick="submitQuiz(1)" id="submitQuiz1">
+                                <i class="bi bi-check-circle me-2"></i>Verificar Respuestas
+                            </button>
+                            
+                            <div class="alert mt-3" id="quizResult1" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info border-0">
+                        <p class="mb-0"><strong>Evidencia Científica:</strong> Chamberlain et al. (2014) demostraron que "aprender a ver" produce cambios medibles en el cerebro.</p>
+                    </div>
+                `
+            },
+            2: {
+                title: 'La Línea como Movimiento',
+                meta: '<span><i class="bi bi-clock me-1"></i>15 minutos</span><span><i class="bi bi-book me-1"></i>Gesto</span>',
+                content: `
+                    <div class="leonardo-quote">
+                        <i class="bi bi-quote text-success fs-3"></i>
+                        <p class="mb-0 mt-2">"El movimiento es causa de toda vida."</p>
+                        <small class="text-muted d-block mt-2">— Leonardo da Vinci, Cuadernos</small>
+                    </div>
+
+                    <div class="media-container video">
+                        <i class="bi bi-play-circle display-1 text-primary mb-3"></i>
+                        <div class="media-placeholder">📹 VIDEO: "Croquis Gestual en Tiempo Real"</div>
+                        <div class="media-description">
+                            <strong>Duración:</strong> 5-6 minutos<br>
+                            <strong>Contenido:</strong> Demostración práctica de croquis de 30seg, 1min y 2min
+                        </div>
+                    </div>
+
+                    <h3>¿Qué es la Línea de Acción?</h3>
+                    <p>Una curva imaginaria que atraviesa la figura, capturando su <strong>dirección principal</strong> de movimiento o peso.</p>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-primary text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-arrow-up-right text-primary" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">1. Dirección</h6>
+                                    <p class="small mb-0">¿Hacia dónde se mueve la figura?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-circle-half text-warning" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">2. Peso</h6>
+                                    <p class="small mb-0">¿Dónde está el centro de gravedad?</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-success text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-soundwave text-success" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">3. Ritmo</h6>
+                                    <p class="small mb-0">¿Cómo se alternan tensión y relajación?</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-title">
+                            <i class="bi bi-pencil-square me-2"></i>Ejercicio 2: Serie de Croquis Gestuales
+                        </div>
+                        
+                        <p><strong>Tiempo total:</strong> 20 minutos de dibujo activo</p>
+                        
+                        <p><strong>Referencias:</strong> Usa <a href="https://line-of-action.com" target="_blank" class="text-primary">Line of Action</a> (gratuito)</p>
+
+                        <p><strong>Serie de tiempos:</strong></p>
+                        <ul>
+                            <li><strong>5 croquis de 30 segundos:</strong> Solo línea de acción</li>
+                            <li><strong>5 croquis de 1 minuto:</strong> Línea de acción + peso</li>
+                            <li><strong>5 croquis de 2 minutos:</strong> Todo anterior + ritmo</li>
+                        </ul>
+
+                        <div class="alert alert-warning border-0 mt-3">
+                            <p class="mb-0"><strong>Regla:</strong> No levantes el lápiz innecesariamente. No borres nada. Prioriza dirección sobre detalle.</p>
+                        </div>
+
+                        <p class="mt-3"><strong>Entregable:</strong></p>
+                        <ul>
+                            <li>Fotografía de 15 croquis completos</li>
+                            <li>Reflexión (150 palabras): "¿Qué fue más difícil capturar?"</li>
+                        </ul>
+                    </div>
+
+                    <div class="card border-primary mt-4 mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-question-circle me-2"></i>Evaluación: La Línea como Movimiento</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3">Verifica tu comprensión de los conceptos de gesto:</p>
+                            
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">1. ¿Qué es la "línea de acción" en el croquis gestual?</p>
+                                <div class="quiz-options" data-question="2-1" data-correct="c">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-1">
+                                            <label class="form-check-label">El contorno exterior de la figura</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-1">
+                                            <label class="form-check-label">La columna vertebral anatómica real</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-1">
+                                            <label class="form-check-label">Una curva imaginaria que captura la dirección principal del movimiento</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">2. ¿Por qué el croquis gestual debe ser rápido (30 segundos a 2 minutos)?</p>
+                                <div class="quiz-options" data-question="2-2" data-correct="b">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-2">
+                                            <label class="form-check-label">Para ahorrar tiempo y dibujar más figuras</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-2">
+                                            <label class="form-check-label">Para desactivar el pensamiento analítico y capturar solo lo esencial</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q2-2">
+                                            <label class="form-check-label">Porque los detalles no son importantes en el dibujo</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <button class="btn btn-primary w-100" onclick="submitQuiz(2)" id="submitQuiz2">
+                                <i class="bi bi-check-circle me-2"></i>Verificar Respuestas
+                            </button>
+                            
+                            <div class="alert mt-3" id="quizResult2" style="display: none;"></div>
+                        </div>
+                    </div>
+                `
+            },
+            3: {
+                title: 'Volumen y Masa',
+                meta: '<span><i class="bi bi-clock me-1"></i>15 minutos</span><span><i class="bi bi-book me-1"></i>Tridimensionalidad</span>',
+                content: `
+                    <div class="leonardo-quote">
+                        <i class="bi bi-quote text-success fs-3"></i>
+                        <p class="mb-0 mt-2">"La luz y la sombra hacen que el cuerpo parezca tener relieve."</p>
+                        <small class="text-muted d-block mt-2">— Leonardo da Vinci, Tratado de la Pintura</small>
+                    </div>
+
+                    <div class="media-container video">
+                        <i class="bi bi-play-circle display-1 text-primary mb-3"></i>
+                        <div class="media-placeholder">📹 VIDEO: "Construyendo Volumen con Luz"</div>
+                        <div class="media-description">
+                            <strong>Duración:</strong> 4-5 minutos<br>
+                            <strong>Contenido:</strong> Demostración con luz direccional, análisis de zonas
+                        </div>
+                    </div>
+
+                    <h3>De la Línea a la Masa</h3>
+                    <p class="lead">El volumen no se logra con más líneas, sino <strong>observando cómo la luz revela la forma</strong>.</p>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-info text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-circle text-info" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">Esfera</h6>
+                                    <p class="small mb-0">Cabeza, articulaciones, músculos redondeados</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-egg text-warning" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">Cilindro</h6>
+                                    <p class="small mb-0">Cuello, brazos, piernas, torso</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-danger text-center">
+                                <div class="card-body">
+                                    <i class="bi bi-box text-danger" style="font-size: 2.5rem;"></i>
+                                    <h6 class="mt-2">Planos</h6>
+                                    <p class="small mb-0">Rostro, manos, pies, huesos visibles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-primary border-0">
+                        <h5 class="alert-heading"><i class="bi bi-lightbulb-fill me-2"></i>Principio del Volumen</h5>
+                        <p class="mb-0">No dibujes líneas que separan luz de sombra. Usa <strong>gradación de valor</strong> (tono) para crear la transición.</p>
+                    </div>
+
+                    <div class="exercise-box">
+                        <div class="exercise-title">
+                            <i class="bi bi-pencil-square me-2"></i>Ejercicio 3: Estudio de Volumen + Copia de Leonardo
+                        </div>
+                        
+                        <p><strong>Parte A: Tu Brazo con Luz Dirigida (30 minutos)</strong></p>
+                        
+                        <ol>
+                            <li><strong>0-5 min:</strong> Observa sin dibujar</li>
+                            <li><strong>5-10 min:</strong> Contorno básico</li>
+                            <li><strong>10-25 min:</strong> Construye volumen mediante gradación</li>
+                            <li><strong>25-30 min:</strong> Refina transiciones</li>
+                        </ol>
+
+                        <p class="mt-3"><strong>Parte B: Copiar Estudio de Leonardo (20 minutos)</strong></p>
+                        <p>Elige un estudio anatómico de Leonardo (Wikimedia Commons) y copia su método de sombreado.</p>
+
+                        <p class="mt-3"><strong>Entregable:</strong></p>
+                        <ul>
+                            <li>Fotografía de tu estudio de brazo</li>
+                            <li>Fotografía de tu copia de Leonardo</li>
+                            <li>Reflexión (150 palabras)</li>
+                        </ul>
+                    </div>
+
+                    <div class="card border-primary mt-4 mb-4">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0"><i class="bi bi-question-circle me-2"></i>Evaluación: Volumen y Luz</h5>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-3">Verifica tu comprensión de volumen:</p>
+                            
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">1. ¿Cuál es el principio fundamental para crear volumen según Leonardo?</p>
+                                <div class="quiz-options" data-question="3-1" data-correct="b">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-1">
+                                            <label class="form-check-label">Agregar más líneas de contorno</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-1">
+                                            <label class="form-check-label">Observar cómo la luz revela la forma mediante gradación</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-1">
+                                            <label class="form-check-label">Memorizar fórmulas geométricas</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <div class="quiz-question mb-4">
+                                <p class="fw-bold">2. ¿Para qué sirven las formas geométricas simples en el método Leonardo?</p>
+                                <div class="quiz-options" data-question="3-2" data-correct="c">
+                                    <div class="quiz-option border p-3" data-answer="a" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-2">
+                                            <label class="form-check-label">Son la forma final del dibujo</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="b" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-2">
+                                            <label class="form-check-label">Reemplazan la observación anatómica</label>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border p-3" data-answer="c" onclick="selectQuizAnswer(this)">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="q3-2">
+                                            <label class="form-check-label">Son herramientas para comprender cómo la luz afecta las formas</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="quiz-feedback mt-2" style="display: none;"></div>
+                            </div>
+
+                            <button class="btn btn-primary w-100" onclick="submitQuiz(3)" id="submitQuiz3">
+                                <i class="bi bi-check-circle me-2"></i>Verificar Respuestas
+                            </button>
+                            
+                            <div class="alert mt-3" id="quizResult3" style="display: none;"></div>
+                        </div>
+                    </div>
+
+                    <div class="card border-success mt-4">
+                        <div class="card-header bg-success text-white">
+                            <i class="bi bi-check-circle-fill me-2"></i><strong>Logros del Módulo 1</strong>
+                        </div>
+                        <div class="card-body">
+                            <ul class="mb-0">
+                                <li>✅ <strong>Observación contemplativa:</strong> Ver más allá del reconocimiento</li>
+                                <li>✅ <strong>Gesto y movimiento:</strong> Capturar energía antes que detalle</li>
+                                <li>✅ <strong>Volumen y luz:</strong> Comprender tridimensionalidad</li>
+                            </ul>
+                            <p class="mt-3 mb-0 fw-bold text-primary">Siguiente: Módulo 2 - Anatomía como Comprensión Orgánica</p>
+                        </div>
+                    </div>
+                `
+            }
+        };
+
+        function selectQuizAnswer(element) {
+            const optionsContainer = element.parentElement;
+            const questionId = optionsContainer.getAttribute('data-question');
+            const selectedAnswer = element.getAttribute('data-answer');
+            
+            optionsContainer.querySelectorAll('.quiz-option').forEach(opt => {
+                opt.classList.remove('selected');
+                opt.querySelector('input').checked = false;
+            });
+            
+            element.classList.add('selected');
+            element.querySelector('input').checked = true;
+            
+            quizAnswers[questionId] = selectedAnswer;
+            
+            if (typeof logUserActivity === 'function' && currentUser) {
+                logUserActivity('quiz_answer', currentUser, {
+                    moduleId: 1,
+                    lessonId: currentLesson,
+                    questionId: questionId,
+                    answer: selectedAnswer
+                });
+            }
+        }
+
+        function submitQuiz(lessonNumber) {
+            let totalQuestions = 0;
+            let correctCount = 0;
+            
+            document.querySelectorAll(`[data-question^="${lessonNumber}-"]`).forEach(optionsContainer => {
+                const questionId = optionsContainer.getAttribute('data-question');
+                const correctAnswer = optionsContainer.getAttribute('data-correct');
+                totalQuestions++;
+                
+                const userAnswer = quizAnswers[questionId];
+                const feedbackDiv = optionsContainer.parentElement.querySelector('.quiz-feedback');
+                
+                if (userAnswer) {
+                    const isCorrect = userAnswer === correctAnswer;
+                    if (isCorrect) correctCount++;
+                    
+                    optionsContainer.querySelectorAll('.quiz-option').forEach(opt => {
+                        const answer = opt.getAttribute('data-answer');
+                        opt.classList.remove('selected');
+                        
+                        if (answer === correctAnswer) {
+                            opt.classList.add('correct');
+                        } else if (answer === userAnswer && !isCorrect) {
+                            opt.classList.add('incorrect');
+                        }
+                    });
+                    
+                    feedbackDiv.style.display = 'block';
+                    if (isCorrect) {
+                        feedbackDiv.className = 'quiz-feedback alert alert-success mt-2';
+                        feedbackDiv.innerHTML = '<i class="bi bi-check-circle me-2"></i>¡Correcto!';
+                    } else {
+                        feedbackDiv.className = 'quiz-feedback alert alert-danger mt-2';
+                        feedbackDiv.innerHTML = '<i class="bi bi-x-circle me-2"></i>Incorrecto. Revisa el contenido.';
+                    }
+                }
+            });
+            
+            const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+            quizScores[lessonNumber] = scorePercentage;
+            
+            const resultDiv = document.getElementById(`quizResult${lessonNumber}`);
+            resultDiv.style.display = 'block';
+            
+            if (scorePercentage >= 70) {
+                resultDiv.className = 'alert alert-success mt-3';
+                resultDiv.innerHTML = `
+                    <h6 class="alert-heading"><i class="bi bi-trophy-fill me-2"></i>¡Excelente!</h6>
+                    <p class="mb-0">Has obtenido ${correctCount}/${totalQuestions} respuestas correctas (${scorePercentage}%).</p>
+                `;
+            } else {
+                resultDiv.className = 'alert alert-warning mt-3';
+                resultDiv.innerHTML = `
+                    <h6 class="alert-heading"><i class="bi bi-exclamation-triangle-fill me-2"></i>Puedes mejorar</h6>
+                    <p class="mb-0">Has obtenido ${correctCount}/${totalQuestions} correctas (${scorePercentage}%). Revisa el contenido.</p>
+                `;
+            }
+            
+            document.getElementById(`submitQuiz${lessonNumber}`).disabled = true;
+            document.getElementById(`submitQuiz${lessonNumber}`).innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Completada';
+            
+            if (typeof logUserActivity === 'function' && currentUser) {
+                logUserActivity('quiz_completed', currentUser, {
+                    moduleId: 1,
+                    lessonId: lessonNumber,
+                    score: scorePercentage,
+                    correct: correctCount,
+                    total: totalQuestions
+                });
+            }
+        }
+
+        window.addEventListener('online', () => { isOnline = true; });
+        window.addEventListener('offline', () => { isOnline = false; });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof getCurrentUser !== 'undefined' && typeof protectPage !== 'undefined') {
+                if (!protectPage()) return;
+                currentUser = getCurrentUser();
+            } else {
+                const storedUser = localStorage.getItem('currentUser');
+                if (storedUser) {
+                    currentUser = JSON.parse(storedUser);
+                } else {
+                    window.location.href = 'login.html';
+                    return;
+                }
+            }
+            
+            loadModuleProgress();
+            loadLesson(1);
+            
+            if (typeof logUserActivity === 'function') {
+                logUserActivity('module_access', currentUser, { 
+                    moduleId: 1,
+                    moduleTitle: 'Observación y Gesto'
+                });
+            }
+        });
+
+        async function loadModuleProgress() {
+            try {
+                if (isOnline && typeof getStudentProgress === 'function') {
+                    const sheetsProgress = await getStudentProgress(currentUser.username);
+                    
+                    if (sheetsProgress && sheetsProgress.modules && sheetsProgress.modules[1]) {
+                        moduleProgress = sheetsProgress.modules[1].progress || 0;
+                        completedLessons = sheetsProgress.modules[1].completedLessons || [];
+                        syncToLocalStorage(sheetsProgress.modules[1]);
+                        updateProgressDisplay();
+                        updateSidebarProgress();
+                        return;
+                    }
+                }
+            } catch (error) {
+                console.error('Error cargando desde Sheets:', error);
+            }
+            
+            const progressKey = `progress_${currentUser.username || currentUser.email}`;
+            const userProgress = JSON.parse(localStorage.getItem(progressKey) || 'null');
+            
+            if (userProgress && userProgress.modules && userProgress.modules[1]) {
+                moduleProgress = userProgress.modules[1].progress || 0;
+                completedLessons = userProgress.modules[1].completedLessons || [];
+            }
+            
+            updateProgressDisplay();
+            updateSidebarProgress();
+        }
+
+        function syncToLocalStorage(moduleData) {
+            const progressKey = `progress_${currentUser.username || currentUser.email}`;
+            let userProgress = JSON.parse(localStorage.getItem(progressKey) || 'null');
+            
+            if (!userProgress) {
+                userProgress = {
+                    modules: {
+                        1: { completed: false, progress: 0, timeSpent: 0, completedLessons: [] },
+                        2: { completed: false, progress: 0, timeSpent: 0, completedLessons: [] },
+                        3: { completed: false, progress: 0, timeSpent: 0, completedLessons: [] }
+                    },
+                    overallProgress: 0,
+                    totalTimeSpent: 0,
+                    lastActivity: new Date().toISOString()
+                };
+            }
+            
+            userProgress.modules[1] = moduleData;
+            userProgress.lastActivity = new Date().toISOString();
+            localStorage.setItem(progressKey, JSON.stringify(userProgress));
+        }
+
+        function updateProgressDisplay() {
+            document.getElementById('progressText').textContent = moduleProgress + '%';
+            const progressBar = document.getElementById('moduleProgress');
+            progressBar.style.width = moduleProgress + '%';
+            const progressText = progressBar.querySelector('span');
+            if (progressText) progressText.textContent = moduleProgress + '%';
+        }
+
+        function updateSidebarProgress() {
+            document.querySelectorAll('.lesson-link').forEach((link) => {
+                const lessonNum = parseInt(link.getAttribute('data-lesson'));
+                link.classList.remove('completed');
+                if (completedLessons.includes(lessonNum)) {
+                    link.classList.add('completed');
+                }
+            });
+        }
+
+        function loadLesson(lessonNumber) {
+            currentLesson = lessonNumber;
+            
+            document.querySelectorAll('.lesson-link').forEach((link) => {
+                link.classList.remove('active');
+                if (parseInt(link.getAttribute('data-lesson')) === lessonNumber) {
+                    link.classList.add('active');
+                }
+            });
+
+            const lesson = lessonsContent[lessonNumber];
+            if (lesson) {
+                document.getElementById('lessonTitle').textContent = lesson.title;
+                document.getElementById('lessonMeta').innerHTML = lesson.meta;
+                document.getElementById('lessonContent').innerHTML = lesson.content;
+            }
+
+            updateNavigationButtons();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function updateNavigationButtons() {
+            const prevButton = document.getElementById('prevButton');
+            const nextButton = document.getElementById('nextButton');
+            const completeButton = document.getElementById('completeButton');
+
+            prevButton.disabled = (currentLesson <= 1);
+            nextButton.style.display = currentLesson >= 3 ? 'none' : 'inline-block';
+
+            if (completedLessons.includes(currentLesson)) {
+                completeButton.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Completada';
+                completeButton.classList.add('btn', 'btn-success');
+                completeButton.classList.remove('btn-uah-success');
+                completeButton.disabled = true;
+            } else {
+                completeButton.innerHTML = '<i class="bi bi-check-circle me-2"></i><span class="d-none d-sm-inline">Marcar </span>Completada';
+                completeButton.classList.add('btn-uah-success');
+                completeButton.classList.remove('btn', 'btn-success');
+                completeButton.disabled = false;
+            }
+        }
+
+        function goToPreviousLesson() {
+            if (currentLesson > 1) loadLesson(currentLesson - 1);
+        }
+
+        function goToNextLesson() {
+            if (currentLesson < 3) loadLesson(currentLesson + 1);
+        }
+
+        async function completeLesson() {
+            if (completedLessons.includes(currentLesson)) return;
+
+            completedLessons.push(currentLesson);
+            moduleProgress = Math.round((completedLessons.length / 3) * 100);
+            
+            await saveProgress();
+            updateProgressDisplay();
+            updateSidebarProgress();
+            updateNavigationButtons();
+            
+            if (moduleProgress >= 100) {
+                showNotification('¡Felicitaciones! Has completado el Módulo 1', 'success');
+                setTimeout(() => window.location.href = 'index.html', 3000);
+            } else {
+                showNotification('¡Lección ' + currentLesson + ' completada!', 'success');
+                if (currentLesson < 3) {
+                    setTimeout(() => loadLesson(currentLesson + 1), 2000);
+                }
+            }
+        }
+
+        async function saveProgress() {
+            const progressData = {
+                progress: moduleProgress,
+                completed: moduleProgress >= 100,
+                completedLessons: completedLessons,
+                timeSpent: 0,
+                lastUpdate: new Date().toISOString()
+            };
+            
+            syncToLocalStorage(progressData);
+
+            try {
+                if (isOnline && typeof updateModuleProgress === 'function') {
+                    await updateModuleProgress(1, progressData);
+                }
+                
+                if (typeof logUserActivity === 'function') {
+                    logUserActivity('lesson_completed', currentUser, {
+                        moduleId: 1,
+                        lessonId: currentLesson,
+                        progress: moduleProgress
+                    });
+                }
+            } catch (error) {
+                console.error('Error sincronizando:', error);
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const toastEl = document.getElementById('notificationToast');
+            const toastBody = document.getElementById('toastBody');
+            const toastIcon = document.getElementById('toastIcon');
+            
+            const icons = {
+                success: 'bi-check-circle-fill text-success',
+                error: 'bi-x-circle-fill text-danger',
+                warning: 'bi-exclamation-triangle-fill text-warning',
+                info: 'bi-info-circle-fill text-info'
+            };
+            
+            toastIcon.className = icons[type] || icons.success;
+            toastIcon.className += ' me-2';
+            toastBody.textContent = message;
+            
+            const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+            toast.show();
+        }
+
+        window.addEventListener('beforeunload', function() {
+            if (moduleProgress > 0 && completedLessons.length > 0) {
+                saveProgress();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso - LMS Dibujo Anatómico UAH</title>
+    <style>
+        :root {
+            --primary-dark: #2c5f66;
+            --primary-light: #e8a2b8;
+            --dark: #1a1a1a;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-medium: #666666;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #f44336;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--dark) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1rem;
+            color: white;
+        }
+
+        .logo-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-subtitle {
+            color: var(--gray-medium);
+            font-size: 0.9rem;
+        }
+
+        .login-section {
+            background: linear-gradient(135deg, #f8f9fa, white);
+            border: 2px solid var(--primary-dark);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-title {
+            text-align: center;
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-dark);
+        }
+
+        .form-input.error {
+            border-color: var(--danger);
+            background-color: #fef2f2;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 0.8rem;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .quick-access {
+            border-top: 1px solid var(--gray-light);
+            padding-top: 1.5rem;
+        }
+
+        .quick-title {
+            text-align: center;
+            color: var(--gray-medium);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .example-card {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .example-card .role {
+            font-weight: bold;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-card .credentials {
+            color: var(--gray-medium);
+            font-family: monospace;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: var(--gray-medium);
+            font-size: 0.8rem;
+        }
+
+        .notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            border-left: 4px solid var(--success);
+        }
+
+        .notification.error {
+            border-left: 4px solid var(--danger);
+        }
+
+        @media (max-width: 768px) {
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cargar auth.js actualizado -->
+    <script src="auth.js"></script>
+
+    <div class="login-container">
+        <!-- Logo -->
+        <div class="logo-section">
+            <div class="logo-icon">🎨</div>
+            <h1 class="logo-title">Arte & Anatomía UAH</h1>
+            <p class="logo-subtitle">Sistema de Gestión de Aprendizaje</p>
+        </div>
+
+        <!-- Login Form -->
+        <div class="login-section">
+            <h2 class="login-title">🔐 Acceso al Sistema</h2>
+            
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label class="form-label">Usuario</label>
+                    <input type="text" id="username" class="form-input" placeholder="Ej: Joselyn.INSTRUCTOR" required>
+                    <div class="error-message" id="usernameError">Usuario incorrecto</div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" id="password" class="form-input" placeholder="••••••••" required>
+                    <div class="error-message" id="passwordError">Contraseña incorrecta</div>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">Iniciar Sesión</button>
+            </form>
+        </div>
+
+        <!-- Información del sistema -->
+        <div class="quick-access">
+            <p class="quick-title">Sistema LMS UAH</p>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <div class="role">👩‍🏫 Instructores</div>
+                    <div class="credentials">
+                        Acceso completo al<br>
+                        dashboard y contenidos
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="role">👨‍🎓 Estudiantes</div>
+                    <div class="credentials">
+                        Acceso a módulos y<br>
+                        seguimiento de progreso
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="role">👩‍💼 Evaluadores</div>
+                    <div class="credentials">
+                        Acceso para revisión<br>
+                        y evaluación
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="footer-text">© 2025 Universidad Alberto Hurtado</p>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <script>
+        // Verificar sesión existente
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = getCurrentUser();
+            if (currentUser && isAuthenticated()) {
+                showNotification(`Sesión activa: ${currentUser.fullName}`, 'success');
+                setTimeout(() => redirectUser(currentUser.role), 1500);
+            }
+        });
+
+        // Manejar login
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            clearErrors();
+            
+            // Deshabilitar botón
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Verificando...';
+            
+            try {
+                const result = await authenticateUser(username, password);
+                
+                if (result.success) {
+                    showNotification(`¡Bienvenido/a ${result.user.fullName}!`, 'success');
+                    
+                    setTimeout(() => {
+                        redirectUser(result.user.role);
+                    }, 1000);
+                } else {
+                    showErrors();
+                    showNotification(result.error || 'Credenciales incorrectas', 'error');
+                }
+            } catch (error) {
+                showErrors();
+                showNotification('Error de conexión. Verifica tu internet.', 'error');
+            }
+            
+            // Rehabilitar botón
+            loginBtn.disabled = false;
+            loginBtn.textContent = 'Iniciar Sesión';
+        }
+
+        // Redireccionar según rol
+        function redirectUser(role) {
+            switch(role) {
+                case 'instructor':
+                    window.location.href = 'dashboard.html';
+                    break;
+                case 'estudiante':
+                case 'evaluador':
+                default:
+                    window.location.href = 'index.html';
+                    break;
+            }
+        }
+
+        // Mostrar errores
+        function showErrors() {
+            document.getElementById('username').classList.add('error');
+            document.getElementById('password').classList.add('error');
+            document.getElementById('usernameError').classList.add('show');
+            document.getElementById('passwordError').classList.add('show');
+        }
+
+        // Limpiar errores
+        function clearErrors() {
+            document.getElementById('username').classList.remove('error');
+            document.getElementById('password').classList.remove('error');
+            document.getElementById('usernameError').classList.remove('show');
+            document.getElementById('passwordError').classList.remove('show');
+        }
+
+        // Mostrar notificación
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notification.className = `notification ${type}`;
+            notificationText.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Limpiar errores al escribir
+        document.getElementById('username').addEventListener('input', clearErrors);
+        document.getElementById('password').addEventListener('input', clearErrors);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1922 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo 3: Figura Completa - LMS UAH</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <style>
+        :root {
+            --primary-dark: #2c5f66;
+            --primary-light: #e8a2b8;
+            --dark: #1a1a1a;
+            --success: #4CAF50;
+            --warning: #FFC107;
+            --danger: #f44336;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .header-uah {
+            background: linear-gradient(135deg, var(--primary-dark), var(--dark));
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-lesson {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 90px;
+            max-height: calc(100vh - 110px);
+            overflow-y: auto;
+        }
+
+        .lesson-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--dark);
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-link:hover {
+            background: #f8f9fa;
+        }
+
+        .lesson-link.active {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+        }
+
+        .lesson-number {
+            width: 30px;
+            height: 30px;
+            background: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+
+        .lesson-link.active .lesson-number {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .lesson-link.completed .lesson-number {
+            background: var(--success);
+            color: white;
+        }
+
+        .lesson-link.completed::after {
+            content: '\F26B';
+            font-family: 'bootstrap-icons';
+            color: var(--success);
+            font-size: 1.2rem;
+        }
+
+        .progress-module {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 10px;
+            margin-top: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar-module {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-dark), var(--primary-light));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .content-area {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            min-height: 70vh;
+        }
+
+        .lesson-header {
+            border-bottom: 3px solid var(--primary-light);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .lesson-title {
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .lesson-subtitle {
+            color: var(--gray-medium);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .objectives-list {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-dark);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .objectives-list ul {
+            margin-bottom: 0;
+            padding-left: 1.5rem;
+        }
+
+        .objectives-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .accordion-button {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            font-weight: 600;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--primary-dark);
+            color: white;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .video-container {
+            background: #000;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(44,95,102,0.9), rgba(26,26,26,0.9));
+            color: white;
+            font-size: 4rem;
+        }
+
+        .exercise-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 5px solid var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .exercise-reference {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 1rem 0;
+        }
+
+        .reference-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background: #e9ecef;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .checklist {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        .checklist-item {
+            padding: 0.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .evaluation-container {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+
+        .eval-question {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .eval-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .eval-option {
+            padding: 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .eval-option:hover {
+            border-color: var(--primary-dark);
+            background: rgba(44, 95, 102, 0.05);
+        }
+
+        .eval-option.selected {
+            border-color: var(--primary-dark);
+            background: rgba(44, 95, 102, 0.1);
+        }
+
+        .eval-option.correct {
+            border-color: var(--success);
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .eval-option.incorrect {
+            border-color: var(--danger);
+            background: rgba(244, 67, 54, 0.1);
+        }
+
+        .eval-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 50%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eval-option.selected .eval-radio {
+            border-color: var(--primary-dark);
+            background: var(--primary-dark);
+        }
+
+        .eval-option.selected .eval-radio::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .btn-nav {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            border: none;
+            color: white;
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(44, 95, 102, 0.3);
+        }
+
+        .alert-custom {
+            border-left: 4px solid;
+            border-radius: 8px;
+        }
+
+        .rubric-table {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .rubric-table th {
+            background: var(--primary-dark);
+            color: white;
+            font-weight: 600;
+            padding: 1rem;
+        }
+
+        .rubric-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .reference-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .reference-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+
+        .reference-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .reference-card.selected {
+            border-color: var(--primary-dark);
+            background: rgba(44, 95, 102, 0.05);
+        }
+
+        .final-message {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 991px) {
+            .sidebar-lesson {
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-uah">
+        <div class="container-fluid">
+            <div class="row align-items-center g-2">
+                <div class="col-auto">
+                    <a href="index.html" class="text-white text-decoration-none">
+                        <i class="bi bi-arrow-left me-2"></i><span class="d-none d-md-inline">Volver</span>
+                    </a>
+                </div>
+                <div class="col text-center">
+                    <h1 class="h5 h-md-4 mb-0">Módulo 3: Figura Completa - Integración</h1>
+                </div>
+                <div class="col-auto">
+                    <span class="badge bg-light text-dark" id="progressText">0%</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container-fluid py-3 py-md-4">
+        <div class="row">
+            <aside class="col-lg-3">
+                <div class="sidebar-lesson">
+                    <h5 class="mb-3"><i class="bi bi-book me-2"></i>Lecciones</h5>
+                    <a class="lesson-link active" data-lesson="1" onclick="loadLesson(1)">
+                        <span class="lesson-number">1</span>
+                        <span class="flex-grow-1">Síntesis por Capas</span>
+                    </a>
+                    <a class="lesson-link" data-lesson="2" onclick="loadLesson(2)">
+                        <span class="lesson-number">2</span>
+                        <span class="flex-grow-1">Luz, Sombra y Volumen</span>
+                    </a>
+                    <a class="lesson-link" data-lesson="3" onclick="loadLesson(3)">
+                        <span class="lesson-number">3</span>
+                        <span class="flex-grow-1">Proyecto Final</span>
+                    </a>
+                    
+                    <div class="mt-4">
+                        <h6 class="mb-2">Progreso del Módulo</h6>
+                        <div class="progress-module">
+                            <div class="progress-bar-module" id="progressBar" style="width: 0%"></div>
+                        </div>
+                        <small class="text-muted d-block mt-2" id="progressDetail">0 de 3 lecciones completadas</small>
+                    </div>
+
+                    <div class="card border-primary mt-3">
+                        <div class="card-header bg-primary text-white">
+                            <i class="bi bi-info-circle me-2"></i>Módulo 3
+                        </div>
+                        <div class="card-body">
+                            <p class="small mb-2"><strong>Duración:</strong> 5 días</p>
+                            <p class="small mb-2"><strong>Carga:</strong> 200 min + proyecto</p>
+                            <p class="small mb-0"><strong>Entregable:</strong></p>
+                            <ul class="small mb-0">
+                                <li>2 figuras completas (Lección 1)</li>
+                                <li>1 figura con valores (Lección 2)</li>
+                                <li>1 proyecto final (1/4 mercurio)</li>
+                                <li>3 evaluaciones aprobadas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card border-primary mt-3">
+                        <div class="card-header bg-primary text-white">
+                            <i class="bi bi-cloud-upload me-2"></i>Entrega
+                        </div>
+                        <div class="card-body text-center">
+                            <a href="https://forms.gle/URL_FORMULARIO_M3" class="btn btn-primary" target="_blank">
+                                <i class="bi bi-box-arrow-up-right me-2"></i>Subir Trabajos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="col-lg-9">
+                <div class="content-area" id="lessonContent">
+                    <!-- El contenido se carga dinámicamente aquí -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ===== VARIABLES GLOBALES =====
+        let currentLesson = 1;
+        let evaluationAnswers = {};
+        let completedLessons = [];
+        let selectedReference = null;
+        
+        // Simular datos de usuario (en producción vendría de auth.js)
+        const currentUser = {
+            email: 'estudiante@uah.cl',
+            name: 'Estudiante'
+        };
+
+        // ===== GESTIÓN DE PROGRESO =====
+        function loadProgress() {
+            const progressKey = `module3_progress_${currentUser.email}`;
+            const saved = window.moduleProgress || {
+                completedLessons: [],
+                evaluations: {}
+            };
+            completedLessons = saved.completedLessons || [];
+            evaluationAnswers = saved.evaluations || {};
+            updateProgressBar();
+        }
+
+        function saveProgress() {
+            const progressKey = `module3_progress_${currentUser.email}`;
+            window.moduleProgress = {
+                completedLessons: completedLessons,
+                evaluations: evaluationAnswers
+            };
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const totalLessons = 3;
+            const completed = completedLessons.length;
+            const percentage = Math.round((completed / totalLessons) * 100);
+            
+            document.getElementById('progressBar').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = percentage + '%';
+            document.getElementById('progressDetail').textContent = 
+                `${completed} de ${totalLessons} lecciones completadas`;
+            
+            // Actualizar checkmarks en sidebar
+            completedLessons.forEach(lessonNum => {
+                const link = document.querySelector(`[data-lesson="${lessonNum}"]`);
+                if (link) link.classList.add('completed');
+            });
+        }
+
+        function completeLesson(lessonNum) {
+            if (!completedLessons.includes(lessonNum)) {
+                completedLessons.push(lessonNum);
+                saveProgress();
+                
+                const link = document.querySelector(`[data-lesson="${lessonNum}"]`);
+                if (link) link.classList.add('completed');
+                
+                showToast('¡Lección completada!', 'success');
+            }
+        }
+
+        // ===== NAVEGACIÓN =====
+        function loadLesson(lessonNum) {
+            currentLesson = lessonNum;
+            
+            document.querySelectorAll('.lesson-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-lesson="${lessonNum}"]`).classList.add('active');
+            
+            const lessonContent = lessons[`lesson${lessonNum}`];
+            document.getElementById('lessonContent').innerHTML = lessonContent;
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===== EVALUACIONES =====
+        function selectEvalOption(element, optionNumber, lessonNum) {
+            const container = element.parentElement;
+            const question = container.getAttribute('data-question');
+            
+            container.querySelectorAll('.eval-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            
+            if (!evaluationAnswers[lessonNum]) evaluationAnswers[lessonNum] = {};
+            evaluationAnswers[lessonNum][question] = optionNumber;
+        }
+
+        function submitEvaluation(lessonNum) {
+            const correctAnswers = {
+                1: { q1: 2, q2: 3, q3: 1 },
+                2: { q1: 2, q2: 3, q3: 2 },
+                3: { q1: 2, q2: 3, q3: 2 }
+            };
+            
+            const userAnswers = evaluationAnswers[lessonNum] || {};
+            const correct = correctAnswers[lessonNum];
+            
+            if (Object.keys(userAnswers).length < 3) {
+                showToast('Por favor responde todas las preguntas', 'warning');
+                return;
+            }
+            
+            let score = 0;
+            Object.keys(correct).forEach(q => {
+                if (userAnswers[q] === correct[q]) score++;
+            });
+            
+            // Mostrar retroalimentación
+            Object.keys(correct).forEach(q => {
+                const container = document.querySelector(`[data-question="${q}"]`);
+                if (container) {
+                    const options = container.querySelectorAll('.eval-option');
+                    options.forEach((opt, idx) => {
+                        const optNum = idx + 1;
+                        if (optNum === correct[q]) {
+                            opt.classList.add('correct');
+                        } else if (optNum === userAnswers[q]) {
+                            opt.classList.add('incorrect');
+                        }
+                        opt.style.pointerEvents = 'none';
+                    });
+                }
+            });
+            
+            document.getElementById('submitEvalBtn').style.display = 'none';
+            
+            if (score >= 2) {
+                document.getElementById('evalResult').innerHTML = `
+                    <div class="alert alert-success alert-custom">
+                        <i class="bi bi-check-circle-fill me-2"></i>
+                        <strong>¡Excelente!</strong> Aprobaste con ${score}/3 respuestas correctas.
+                    </div>
+                `;
+                completeLesson(lessonNum);
+                document.getElementById('nextLessonBtn').style.display = 'inline-block';
+            } else {
+                document.getElementById('evalResult').innerHTML = `
+                    <div class="alert alert-warning alert-custom">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                        <strong>Atención:</strong> Obtuviste ${score}/3 respuestas correctas. 
+                        Revisa el contenido e inténtalo nuevamente.
+                    </div>
+                `;
+                document.getElementById('retryEvalBtn').style.display = 'inline-block';
+            }
+            
+            saveProgress();
+        }
+
+        function retryEvaluation(lessonNum) {
+            evaluationAnswers[lessonNum] = {};
+            loadLesson(lessonNum);
+            showToast('Puedes intentarlo nuevamente', 'info');
+        }
+
+        function goToNextLesson() {
+            if (currentLesson < 3) {
+                loadLesson(currentLesson + 1);
+            } else {
+                showToast('¡Has completado el Módulo 3!', 'success');
+            }
+        }
+
+        // ===== PROYECTO FINAL =====
+        function selectReference(refNum) {
+            selectedReference = refNum;
+            document.querySelectorAll('.reference-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            document.querySelector(`[data-ref="${refNum}"]`).classList.add('selected');
+            showToast(`Referencia ${refNum} seleccionada`, 'info');
+        }
+
+        function showReferences() {
+            const modal = `
+                <div class="modal fade" id="referencesModal" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Referencias para Proyecto Final</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="reference-grid">
+                                    <div class="reference-card" data-ref="24" onclick="selectReference(24)">
+                                        <div class="reference-image" style="height: 300px;">
+                                            <span>ref24_figura_pose_heroica.jpg</span>
+                                        </div>
+                                        <h6 class="mt-2">Referencia 24</h6>
+                                        <p class="small mb-0">Pose dinámica con peso claro</p>
+                                    </div>
+                                    <div class="reference-card" data-ref="25" onclick="selectReference(25)">
+                                        <div class="reference-image" style="height: 300px;">
+                                            <span>ref25_figura_pose_cotidiana.jpg</span>
+                                        </div>
+                                        <h6 class="mt-2">Referencia 25</h6>
+                                        <p class="small mb-0">Pose relajada y natural</p>
+                                    </div>
+                                    <div class="reference-card" data-ref="26" onclick="selectReference(26)">
+                                        <div class="reference-image" style="height: 300px;">
+                                            <span>ref26_figura_pose_artistica.jpg</span>
+                                        </div>
+                                        <h6 class="mt-2">Referencia 26</h6>
+                                        <p class="small mb-0">Pose con contrapposto marcado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modal);
+            const modalEl = new bootstrap.Modal(document.getElementById('referencesModal'));
+            modalEl.show();
+            document.getElementById('referencesModal').addEventListener('hidden.bs.modal', function () {
+                this.remove();
+            });
+        }
+
+        function downloadRubric() {
+            showToast('Descargando rúbrica de evaluación...', 'info');
+            // En producción, esto enlazaría a un PDF real
+        }
+
+        function submitFinalProject() {
+            if (!selectedReference) {
+                showToast('Por favor selecciona una referencia primero', 'warning');
+                return;
+            }
+            window.open('https://forms.gle/URL_FORMULARIO_PROYECTO_FINAL', '_blank');
+            showToast('Abriendo formulario de entrega...', 'info');
+        }
+
+        // ===== UTILIDADES =====
+        function showToast(message, type) {
+            const colors = {
+                success: '#4CAF50',
+                warning: '#FFC107',
+                info: '#2196F3',
+                danger: '#f44336'
+            };
+            
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 80px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease-out;
+            `;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-out';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ===== CONTENIDO DE LAS LECCIONES =====
+        const lessons = {
+            lesson1: `
+                <div class="lesson-header">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h2 class="lesson-title">Lección 3.1: Síntesis - De Estructura a Forma Final</h2>
+                            <p class="lesson-subtitle">Proceso de construcción en capas</p>
+                        </div>
+                        <span class="badge bg-warning text-dark px-3 py-2">60 minutos</span>
+                    </div>
+                    
+                    <div class="objectives-list">
+                        <h6 class="mb-2"><i class="bi bi-bullseye me-2"></i>Objetivos de Aprendizaje</h6>
+                        <ul>
+                            <li>Integrar conocimientos de gesto + anatomía en 1 figura completa</li>
+                            <li>Aplicar proceso de refinamiento progresivo por capas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Video Explicativo -->
+                <div class="video-container">
+                    <div class="video-placeholder">
+                        <i class="bi bi-play-circle"></i>
+                    </div>
+                </div>
+                <p class="text-center text-muted small">Video: Proceso de síntesis por capas (2:40 min)</p>
+
+                <!-- Acordeones Teóricos -->
+                <div class="accordion mb-4" id="accordionLesson1">
+                    <!-- Acordeón 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1_1">
+                                <i class="bi bi-layers me-2"></i>Capas 1 y 2: Estructura y Anatomía
+                            </button>
+                        </h2>
+                        <div id="collapse1_1" class="accordion-collapse collapse show" data-bs-parent="#accordionLesson1">
+                            <div class="accordion-body">
+                                <h6 class="text-primary">CAPA 1 - GESTO Y ESTRUCTURA (0-10 min):</h6>
+                                <ol>
+                                    <li>Línea de acción claramente visible</li>
+                                    <li>Punto de apoyo marcado</li>
+                                    <li>3 masas básicas (cabeza, torso, pelvis)</li>
+                                    <li>Ejes de hombros y caderas</li>
+                                    <li>Extremidades como líneas direccionales</li>
+                                </ol>
+                                
+                                <div class="alert alert-warning mt-3">
+                                    <strong>NO incluir en Capa 1:</strong>
+                                    <ul class="mb-0">
+                                        <li>Detalles musculares</li>
+                                        <li>Rasgos faciales</li>
+                                        <li>Dedos individuales</li>
+                                    </ul>
+                                </div>
+
+                                <h6 class="text-primary mt-4">CAPA 2 - ANATOMÍA FUNCIONAL (10-30 min):</h6>
+                                <ol>
+                                    <li>Refinar las 3 masas con forma tridimensional</li>
+                                    <li>Agregar articulaciones principales</li>
+                                    <li>Indicar los 6 grupos musculares esenciales</li>
+                                    <li>Proporciones verificadas con medición visual</li>
+                                    <li>Manos y pies simplificados</li>
+                                </ol>
+
+                                <div class="alert alert-info mt-3">
+                                    <strong>Verificación obligatoria:</strong>
+                                    <ul class="mb-0">
+                                        <li>Mide de nuevo las proporciones</li>
+                                        <li>Verifica que la línea de acción siga visible</li>
+                                        <li>Confirma distribución de peso</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acordeón 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1_2">
+                                <i class="bi bi-pencil me-2"></i>Capas 3 y 4: Refinamiento y Volumen
+                            </button>
+                        </h2>
+                        <div id="collapse1_2" class="accordion-collapse collapse" data-bs-parent="#accordionLesson1">
+                            <div class="accordion-body">
+                                <h6 class="text-primary">CAPA 3 - CONTORNO REFINADO (30-60 min):</h6>
+                                <ol>
+                                    <li>Reemplazar líneas de construcción con contorno continuo</li>
+                                    <li>Agregar detalles anatómicos específicos</li>
+                                    <li>Definir rasgos faciales con proporciones correctas</li>
+                                    <li>Manos y pies con estructura articulada completa</li>
+                                    <li>Borrar suavemente líneas de construcción</li>
+                                </ol>
+                                
+                                <div class="alert alert-success">
+                                    <i class="bi bi-lightbulb me-2"></i>
+                                    <strong>Consejo:</strong> No borres completamente las líneas guía hasta estar seguro del contorno final
+                                </div>
+
+                                <h6 class="text-primary mt-4">CAPA 4 - VOLUMEN TRIDIMENSIONAL (60-90 min):</h6>
+                                <ol>
+                                    <li>Identificar fuente de luz</li>
+                                    <li>Marcar zonas de luz y sombra</li>
+                                    <li>Aplicar valores tonales (claro, medio, oscuro)</li>
+                                    <li>Sombras proyectadas</li>
+                                    <li>Texturas si corresponde</li>
+                                </ol>
+
+                                <p class="text-muted small">Esta capa es opcional para las figuras de práctica, pero será requerida en el proyecto final.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acordeón 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1_3">
+                                <i class="bi bi-exclamation-triangle me-2"></i>Errores Frecuentes y Cómo Evitarlos
+                            </button>
+                        </h2>
+                        <div id="collapse1_3" class="accordion-collapse collapse" data-bs-parent="#accordionLesson1">
+                            <div class="accordion-body">
+                                <div class="mb-4">
+                                    <h6 class="text-danger">ERROR 1: Comenzar con detalles</h6>
+                                    <p class="mb-1"><strong>Síntoma:</strong> Dibujas un ojo perfecto pero el cuerpo está desproporcionado</p>
+                                    <p class="text-success"><strong>Solución:</strong> Fuerza el orden: Capa 1 → 2 → 3 → 4</p>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h6 class="text-danger">ERROR 2: Perder la línea de acción inicial</h6>
+                                    <p class="mb-1"><strong>Síntoma:</strong> La figura se ve rígida y sin energía</p>
+                                    <p class="text-success"><strong>Solución:</strong> Revisa constantemente la Capa 1. La línea de acción debe permanecer visible hasta el final</p>
+                                </div>
+
+                                <div class="mb-4">
+                                    <h6 class="text-danger">ERROR 3: Sobre-trabajar áreas aisladas sin ver el conjunto</h6>
+                                    <p class="mb-1"><strong>Síntoma:</strong> Una mano está terminada pero el resto está en boceto</p>
+                                    <p class="text-success"><strong>Solución:</strong> Retrocede visualmente cada 10 minutos. Trabaja todo el dibujo al mismo nivel de detalle</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio Práctico -->
+                <div class="exercise-card">
+                    <h5 class="mb-3">
+                        <i class="bi bi-palette me-2"></i>EJERCICIO 8: 2 Figuras Completas Documentadas
+                    </h5>
+                    <p><strong>Objetivo:</strong> Aplicar proceso completo de 4 capas con documentación fotográfica</p>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Materiales:</h6>
+                            <ul>
+                                <li>2 hojas de papel tamaño carta</li>
+                                <li>Lápices: HB, 2B, 4B</li>
+                                <li>Goma de borrar</li>
+                                <li>Smartphone para fotografiar</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Referencias proporcionadas:</h6>
+                            <div class="exercise-reference">
+                                <div class="reference-image" style="height: 150px;">
+                                    <span>ref21_figura_completa_1.jpg</span>
+                                </div>
+                                <p class="small mt-2 mb-0">Figura completa - Pose 1</p>
+                            </div>
+                            <div class="exercise-reference mt-2">
+                                <div class="reference-image" style="height: 150px;">
+                                    <span>ref22_figura_completa_2.jpg</span>
+                                </div>
+                                <p class="small mt-2 mb-0">Figura completa - Pose 2</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6>Instrucciones - Primera figura (60 minutos):</h6>
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>0-10 min:</strong> Capa 1 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>10-30 min:</strong> Capa 2 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>30-60 min:</strong> Capa 3 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>Resultado:</strong> 3 fotos de proceso + 1 dibujo final</span>
+                            </div>
+                        </div>
+
+                        <h6 class="mt-4">Instrucciones - Segunda figura (90 minutos):</h6>
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>0-10 min:</strong> Capa 1 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>10-30 min:</strong> Capa 2 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>30-60 min:</strong> Capa 3 → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>60-90 min:</strong> Capa 4 (luz y sombra básica) → FOTOGRAFIAR</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>Resultado:</strong> 4 fotos de proceso + 1 dibujo final</span>
+                            </div>
+                        </div>
+
+                        <p class="mt-3"><strong>Total para entregar:</strong> 7 fotografías + 2 dibujos finales</p>
+                    </div>
+                </div>
+
+                <!-- Evaluación -->
+                <div class="evaluation-container">
+                    <h4 class="mb-4"><i class="bi bi-clipboard-check me-2"></i>Evaluación Lección 3.1</h4>
+                    
+                    <div class="eval-question" data-question="q1">
+                        <h6>Pregunta 1:</h6>
+                        <p>¿Qué debe incluirse en la Capa 1 (primeros 10 minutos)?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 1)">
+                                <div class="eval-radio"></div>
+                                <span>A) Detalles musculares y rasgos faciales</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 1)">
+                                <div class="eval-radio"></div>
+                                <span>B) Línea de acción, 3 masas, punto de apoyo</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 1)">
+                                <div class="eval-radio"></div>
+                                <span>C) Sombreado y texturas</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q2">
+                        <h6>Pregunta 2:</h6>
+                        <p>¿En qué capa se refinan los contornos finales?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 1)">
+                                <div class="eval-radio"></div>
+                                <span>A) Capa 1</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 1)">
+                                <div class="eval-radio"></div>
+                                <span>B) Capa 2</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 1)">
+                                <div class="eval-radio"></div>
+                                <span>C) Capa 3</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q3">
+                        <h6>Pregunta 3:</h6>
+                        <p>¿Cuál es el error más frecuente al dibujar figura completa?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 1)">
+                                <div class="eval-radio"></div>
+                                <span>A) Comenzar con detalles antes de estructura</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 1)">
+                                <div class="eval-radio"></div>
+                                <span>B) Usar demasiadas capas</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 1)">
+                                <div class="eval-radio"></div>
+                                <span>C) Fotografiar el proceso</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="evalResult"></div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-lg btn-nav" id="submitEvalBtn" onclick="submitEvaluation(1)">
+                            <i class="bi bi-check-circle me-2"></i>Enviar Evaluación
+                        </button>
+                        <button class="btn btn-warning btn-lg btn-nav" id="retryEvalBtn" style="display: none;" onclick="retryEvaluation(1)">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Reintentar
+                        </button>
+                        <button class="btn btn-primary-custom btn-lg btn-nav" id="nextLessonBtn" style="display: none;" onclick="goToNextLesson()">
+                            Siguiente Lección <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            `,
+
+            lesson2: `
+                <div class="lesson-header">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h2 class="lesson-title">Lección 3.2: Luz, Sombra y Volumen</h2>
+                            <p class="lesson-subtitle">Crear profundidad con valores tonales</p>
+                        </div>
+                        <span class="badge bg-warning text-dark px-3 py-2">60 minutos</span>
+                    </div>
+                    
+                    <div class="objectives-list">
+                        <h6 class="mb-2"><i class="bi bi-bullseye me-2"></i>Objetivos de Aprendizaje</h6>
+                        <ul>
+                            <li>Aplicar principios de luz/sombra para crear volumen tridimensional</li>
+                            <li>Crear 1 figura con valores tonales completos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Acordeones Teóricos -->
+                <div class="accordion mb-4" id="accordionLesson2">
+                    <!-- Acordeón 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2_1">
+                                <i class="bi bi-brightness-high me-2"></i>Los 5 Valores Tonales
+                            </button>
+                        </h2>
+                        <div id="collapse2_1" class="accordion-collapse collapse show" data-bs-parent="#accordionLesson2">
+                            <div class="accordion-body">
+                                <p class="lead">Toda forma tridimensional se puede representar con 5 valores de luz a sombra:</p>
+                                
+                                <div class="mb-3">
+                                    <h6 class="text-primary">1. LUZ DIRECTA (Más claro):</h6>
+                                    <ul>
+                                        <li>Área que recibe luz directamente</li>
+                                        <li>El punto más brillante</li>
+                                        <li>Generalmente se deja en blanco del papel</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6 class="text-primary">2. LUZ REFLEJADA:</h6>
+                                    <ul>
+                                        <li>Luz que rebota de superficies cercanas</li>
+                                        <li>Visible en zonas de sombra</li>
+                                        <li>Más clara que sombra, más oscura que luz directa</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6 class="text-primary">3. TONO MEDIO:</h6>
+                                    <ul>
+                                        <li>Áreas que no reciben luz directa ni están en sombra completa</li>
+                                        <li>La mayor parte de la superficie del cuerpo</li>
+                                        <li>Valor gris medio</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6 class="text-primary">4. SOMBRA PROPIA:</h6>
+                                    <ul>
+                                        <li>Zona del objeto que NO recibe luz</li>
+                                        <li>Opuesta a la fuente de luz</li>
+                                        <li>Más oscura que tono medio</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <h6 class="text-primary">5. SOMBRA PROYECTADA (Más oscuro):</h6>
+                                    <ul>
+                                        <li>Sombra que el objeto proyecta sobre otras superficies</li>
+                                        <li>Generalmente la zona más oscura del dibujo</li>
+                                        <li>Define el contacto con el suelo u otras superficies</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acordeón 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2_2">
+                                <i class="bi bi-lightbulb me-2"></i>Identificar la Fuente de Luz
+                            </button>
+                        </h2>
+                        <div id="collapse2_2" class="accordion-collapse collapse" data-bs-parent="#accordionLesson2">
+                            <div class="accordion-body">
+                                <p class="lead">Antes de aplicar valores, debes identificar de dónde viene la luz.</p>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-primary">LUZ FRONTAL:</h6>
+                                                <ul>
+                                                    <li>Fuente frente al modelo</li>
+                                                    <li>Menos sombras visibles</li>
+                                                    <li>Menos volumen aparente</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-primary">LUZ LATERAL:</h6>
+                                                <ul>
+                                                    <li>Fuente a un lado del modelo</li>
+                                                    <li>Máximo contraste luz/sombra</li>
+                                                    <li>Mejor para mostrar volumen</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-primary">LUZ POSTERIOR (Contraluz):</h6>
+                                                <ul>
+                                                    <li>Fuente detrás del modelo</li>
+                                                    <li>Silueta definida</li>
+                                                    <li>Detalles internos en sombra</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="text-primary">LUZ CENITAL:</h6>
+                                                <ul>
+                                                    <li>Fuente arriba del modelo</li>
+                                                    <li>Sombras bajo nariz, mentón, cejas</li>
+                                                    <li>Común en iluminación natural</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-success mt-3">
+                                    <i class="bi bi-star me-2"></i>
+                                    <strong>Regla de oro:</strong> Una sola fuente de luz dominante crea sombras consistentes y volumen claro.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acordeón 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2_3">
+                                <i class="bi bi-person me-2"></i>Aplicar Valores al Cuerpo Humano
+                            </button>
+                        </h2>
+                        <div id="collapse2_3" class="accordion-collapse collapse" data-bs-parent="#accordionLesson2">
+                            <div class="accordion-body">
+                                <h6 class="text-primary">PROCESO DE APLICACIÓN:</h6>
+                                
+                                <div class="mb-3">
+                                    <strong>PASO 1:</strong> Identificar fuente de luz
+                                    <ul>
+                                        <li>Marca con flecha la dirección de la luz</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <strong>PASO 2:</strong> Dividir figura en zonas luz/sombra
+                                    <ul>
+                                        <li>Traza línea divisoria entre luz y sombra</li>
+                                        <li>Esta línea sigue el contorno de los músculos</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <strong>PASO 3:</strong> Aplicar valores progresivamente
+                                    <ul>
+                                        <li>Comienza con sombras más oscuras</li>
+                                        <li>Luego tonos medios</li>
+                                        <li>Deja blancos para luces directas</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-3">
+                                    <strong>PASO 4:</strong> Unificar y suavizar
+                                    <ul>
+                                        <li>Transiciones graduales entre valores</li>
+                                        <li>No líneas duras entre tonos</li>
+                                    </ul>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-6">
+                                        <div class="alert alert-info">
+                                            <strong>FORMAS QUE RECIBEN MÁS LUZ:</strong>
+                                            <ul class="mb-0">
+                                                <li>Superficies planas perpendiculares a luz</li>
+                                                <li>Protuberancias (mejillas, hombros, rodillas)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="alert alert-secondary">
+                                            <strong>FORMAS QUE GENERAN MÁS SOMBRA:</strong>
+                                            <ul class="mb-0">
+                                                <li>Pliegues y cavidades</li>
+                                                <li>Zonas bajo protuberancias</li>
+                                                <li>Parte opuesta a la luz</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ejercicio Práctico -->
+                <div class="exercise-card">
+                    <h5 class="mb-3">
+                        <i class="bi bi-palette me-2"></i>EJERCICIO 9: 1 Figura con Valores Tonales Completos
+                    </h5>
+                    <p><strong>Objetivo:</strong> Aplicar los 5 valores tonales para crear volumen tridimensional</p>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <h6>Materiales:</h6>
+                            <ul>
+                                <li>1 hoja de papel</li>
+                                <li>Lápices: HB, 2B, 4B, 6B</li>
+                                <li>Goma de borrar</li>
+                                <li>Difumino o papel para difuminar (opcional)</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Referencia proporcionada:</h6>
+                            <div class="exercise-reference">
+                                <div class="reference-image" style="height: 200px;">
+                                    <span>ref23_figura_iluminacion_lateral.jpg</span>
+                                </div>
+                                <p class="small mt-2 mb-0">Fotografía con iluminación dramática lateral clara</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <h6>Instrucciones (90 minutos totales):</h6>
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>0-30 min:</strong> Capas 1 y 2 - Estructura y anatomía básica (NO aplicar valores todavía)</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>30-40 min:</strong> Identificar zonas - Marca con líneas suaves dónde está luz vs sombra - Identifica la fuente de luz</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-circle text-muted"></i>
+                                <span><strong>40-90 min:</strong> Aplicar valores: Comienza con sombras proyectadas (más oscuro), Luego sombras propias, Tonos medios, Luz reflejada en zonas de sombra, Deja blancos para luz directa</span>
+                            </div>
+                        </div>
+
+                        <h6 class="mt-4">Checklist de verificación:</h6>
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <i class="bi bi-square text-muted"></i>
+                                <span>¿Fuente de luz consistente? (Sí/No)</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-square text-muted"></i>
+                                <span>¿Al menos 3 valores diferenciados? (Sí/No)</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-square text-muted"></i>
+                                <span>¿Sombra proyectada presente? (Sí/No)</span>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="bi bi-square text-muted"></i>
+                                <span>¿Transiciones suaves entre valores? (Sí/No)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evaluación -->
+                <div class="evaluation-container">
+                    <h4 class="mb-4"><i class="bi bi-clipboard-check me-2"></i>Evaluación Lección 3.2</h4>
+                    
+                    <div class="eval-question" data-question="q1">
+                        <h6>Pregunta 1:</h6>
+                        <p>¿Cuántos valores tonales básicos existen?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 2)">
+                                <div class="eval-radio"></div>
+                                <span>A) 3 valores</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 2)">
+                                <div class="eval-radio"></div>
+                                <span>B) 5 valores</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 2)">
+                                <div class="eval-radio"></div>
+                                <span>C) 7 valores</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q2">
+                        <h6>Pregunta 2:</h6>
+                        <p>¿Cuál es generalmente la zona más oscura del dibujo?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 2)">
+                                <div class="eval-radio"></div>
+                                <span>A) Sombra propia</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 2)">
+                                <div class="eval-radio"></div>
+                                <span>B) Tono medio</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 2)">
+                                <div class="eval-radio"></div>
+                                <span>C) Sombra proyectada</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q3">
+                        <h6>Pregunta 3:</h6>
+                        <p>¿Qué tipo de iluminación crea el mayor contraste luz/sombra?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 2)">
+                                <div class="eval-radio"></div>
+                                <span>A) Luz frontal</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 2)">
+                                <div class="eval-radio"></div>
+                                <span>B) Luz lateral</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 2)">
+                                <div class="eval-radio"></div>
+                                <span>C) Luz difusa</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="evalResult"></div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-lg btn-nav" id="submitEvalBtn" onclick="submitEvaluation(2)">
+                            <i class="bi bi-check-circle me-2"></i>Enviar Evaluación
+                        </button>
+                        <button class="btn btn-warning btn-lg btn-nav" id="retryEvalBtn" style="display: none;" onclick="retryEvaluation(2)">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Reintentar
+                        </button>
+                        <button class="btn btn-primary-custom btn-lg btn-nav" id="nextLessonBtn" style="display: none;" onclick="goToNextLesson()">
+                            Siguiente Lección <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            `,
+
+            lesson3: `
+                <div class="lesson-header">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div>
+                            <h2 class="lesson-title">Lección 3.3: Proyecto Final</h2>
+                            <p class="lesson-subtitle">Dibujo de Cuerpo Completo - Integración Total</p>
+                        </div>
+                        <span class="badge bg-danger text-white px-3 py-2">80 minutos + 2-3 horas</span>
+                    </div>
+                    
+                    <div class="objectives-list">
+                        <h6 class="mb-2"><i class="bi bi-bullseye me-2"></i>Objetivos de Aprendizaje</h6>
+                        <ul>
+                            <li>Crear una representación completa de figura humana integrando todos los conocimientos del curso</li>
+                            <li>Demostrar dominio técnico en formato profesional 1/4 de mercurio</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Introducción al Proyecto -->
+                <div class="final-message">
+                    <h3 class="mb-3"><i class="bi bi-trophy me-2"></i>¡Es momento de tu obra maestra!</h3>
+                    <p class="lead mb-4">Has completado:</p>
+                    <div class="row text-start">
+                        <div class="col-md-4 mb-3">
+                            <h5><i class="bi bi-check-circle-fill me-2"></i>Módulo 1</h5>
+                            <p class="mb-0">8 croquis de gesto y proporción</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5><i class="bi bi-check-circle-fill me-2"></i>Módulo 2</h5>
+                            <p class="mb-0">12 estudios anatómicos</p>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <h5><i class="bi bi-check-circle-fill me-2"></i>Módulo 3</h5>
+                            <p class="mb-0">3 figuras integradas con valores</p>
+                        </div>
+                    </div>
+                    <p class="lead mt-3 mb-0"><strong>Total de práctica:</strong> Más de 20 dibujos progresivos</p>
+                </div>
+
+                <div class="alert alert-info alert-custom my-4">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    <strong>Mensaje importante:</strong> Este proyecto final no es solo una evaluación, es una celebración de tu progreso. 
+                    Confía en el proceso por capas. No tengas miedo de cometer errores. Cada trazo es aprendizaje. 
+                    Tu primera versión no tiene que ser perfecta.
+                </div>
+
+                <!-- Requisitos del Proyecto -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--primary-dark); color: white;">
+                        <h5 class="mb-0"><i class="bi bi-clipboard-data me-2"></i>Requisitos del Proyecto Final</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-primary">Especificaciones Técnicas:</h6>
+                                <ul>
+                                    <li><strong>Formato:</strong> 1/4 de pliego de mercurio (27.5 x 37.5 cm aprox.)</li>
+                                    <li><strong>Técnica:</strong> Lápiz grafito (permitido usar diferentes durezas)</li>
+                                    <li><strong>Tiempo estimado:</strong> 2-3 horas de ejecución</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-primary">Debe demostrar:</h6>
+                                <ul>
+                                    <li>Línea de acción clara</li>
+                                    <li>Proporciones correctas (medición visual)</li>
+                                    <li>Estructura anatómica (3 masas + articulaciones)</li>
+                                    <li>Grupos musculares identificables</li>
+                                    <li>Manos y pies estructurados</li>
+                                    <li>Valores tonales (mínimo 3 valores diferenciados)</li>
+                                    <li>Composición equilibrada</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Elección de Referencia -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--primary-light); color: white;">
+                        <h5 class="mb-0"><i class="bi bi-images me-2"></i>Elección de Referencia</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">Se proporcionan 3 opciones de referencias fotográficas. Debes elegir <strong>UNA</strong> referencia y trabajar a partir de ella:</p>
+                        
+                        <div class="reference-grid">
+                            <div class="reference-card" data-ref="24" onclick="selectReference(24)">
+                                <div class="reference-image" style="height: 250px;">
+                                    <span>ref24_figura_pose_heroica.jpg</span>
+                                </div>
+                                <h6 class="mt-3 mb-1">Referencia 24</h6>
+                                <p class="small text-muted mb-0">Pose dinámica con peso claro</p>
+                            </div>
+
+                            <div class="reference-card" data-ref="25" onclick="selectReference(25)">
+                                <div class="reference-image" style="height: 250px;">
+                                    <span>ref25_figura_pose_cotidiana.jpg</span>
+                                </div>
+                                <h6 class="mt-3 mb-1">Referencia 25</h6>
+                                <p class="small text-muted mb-0">Pose más relajada y natural</p>
+                            </div>
+
+                            <div class="reference-card" data-ref="26" onclick="selectReference(26)">
+                                <div class="reference-image" style="height: 250px;">
+                                    <span>ref26_figura_pose_artistica.jpg</span>
+                                </div>
+                                <h6 class="mt-3 mb-1">Referencia 26</h6>
+                                <p class="small text-muted mb-0">Pose con contrapposto marcado</p>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <button class="btn btn-outline-primary" onclick="showReferences()">
+                                <i class="bi bi-eye me-2"></i>Ver Referencias en Grande
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proceso Recomendado -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--primary-dark); color: white;">
+                        <h5 class="mb-0"><i class="bi bi-list-ol me-2"></i>Proceso Recomendado de Ejecución</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-3">Sigue el proceso de 4 capas que has practicado:</p>
+                        
+                        <div class="accordion" id="accordionProcess">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#process1">
+                                        CAPA 1: Gesto y Estructura (0-15 min)
+                                    </button>
+                                </h2>
+                                <div id="process1" class="accordion-collapse collapse show" data-bs-parent="#accordionProcess">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Línea de acción clara y visible</li>
+                                            <li>Punto de apoyo y distribución de peso</li>
+                                            <li>3 masas (cabeza, torso, pelvis) con proporciones correctas</li>
+                                            <li>Ejes de hombros y caderas</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#process2">
+                                        CAPA 2: Anatomía Funcional (15-45 min)
+                                    </button>
+                                </h2>
+                                <div id="process2" class="accordion-collapse collapse" data-bs-parent="#accordionProcess">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Refinar masas con volumen tridimensional</li>
+                                            <li>Articulaciones bien ubicadas</li>
+                                            <li>6 grupos musculares principales identificables</li>
+                                            <li>Estructura de manos y pies</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#process3">
+                                        CAPA 3: Contorno Refinado (45-90 min)
+                                    </button>
+                                </h2>
+                                <div id="process3" class="accordion-collapse collapse" data-bs-parent="#accordionProcess">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Contornos finales limpios</li>
+                                            <li>Detalles anatómicos específicos</li>
+                                            <li>Rasgos faciales con proporciones</li>
+                                            <li>Manos y pies articulados completos</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#process4">
+                                        CAPA 4: Valores Tonales (90-180 min)
+                                    </button>
+                                </h2>
+                                <div id="process4" class="accordion-collapse collapse" data-bs-parent="#accordionProcess">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Identificar fuente de luz</li>
+                                            <li>Dividir zonas luz/sombra</li>
+                                            <li>Aplicar 5 valores tonales progresivamente</li>
+                                            <li>Sombras proyectadas</li>
+                                            <li>Transiciones suaves entre valores</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rúbrica de Evaluación -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--success); color: white;">
+                        <h5 class="mb-0"><i class="bi bi-star me-2"></i>Rúbrica de Evaluación (100 puntos totales)</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table rubric-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Criterio</th>
+                                        <th>Puntos</th>
+                                        <th>Descripción</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>1. Gesto y Línea de Acción</strong></td>
+                                        <td><span class="badge bg-primary">20 pts</span></td>
+                                        <td>
+                                            • Línea de acción claramente visible: 10 pts<br>
+                                            • Energía y dirección capturadas: 10 pts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>2. Proporciones</strong></td>
+                                        <td><span class="badge bg-primary">20 pts</span></td>
+                                        <td>
+                                            • Precisión general 90%+: 20 pts<br>
+                                            • Precisión 70-89%: 15 pts<br>
+                                            • Precisión 50-69%: 10 pts<br>
+                                            • Menos de 50%: 5 pts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>3. Anatomía Funcional</strong></td>
+                                        <td><span class="badge bg-primary">20 pts</span></td>
+                                        <td>
+                                            • 3 masas correctamente estructuradas: 8 pts<br>
+                                            • Articulaciones bien ubicadas: 6 pts<br>
+                                            • Grupos musculares identificables: 6 pts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>4. Extremidades</strong></td>
+                                        <td><span class="badge bg-primary">15 pts</span></td>
+                                        <td>
+                                            • Manos con estructura articulada: 8 pts<br>
+                                            • Pies con estructura correcta: 7 pts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>5. Valores Tonales</strong></td>
+                                        <td><span class="badge bg-primary">15 pts</span></td>
+                                        <td>
+                                            • 3+ valores diferenciados: 10 pts<br>
+                                            • Fuente de luz consistente: 5 pts
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>6. Composición y Acabado</strong></td>
+                                        <td><span class="badge bg-primary">10 pts</span></td>
+                                        <td>
+                                            • Balance visual: 5 pts<br>
+                                            • Limpieza y presentación: 5 pts
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="alert alert-success mt-3 mb-0">
+                            <h6 class="mb-2"><strong>Puntaje para Aprobar:</strong></h6>
+                            <ul class="mb-0">
+                                <li><strong>90-100 pts:</strong> Excelente</li>
+                                <li><strong>75-89 pts:</strong> Bueno</li>
+                                <li><strong>60-74 pts:</strong> Suficiente (Aprobado mínimo)</li>
+                                <li><strong>Menos de 60:</strong> Insuficiente</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recursos Disponibles -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--warning); color: var(--dark);">
+                        <h5 class="mb-0"><i class="bi bi-book-half me-2"></i>Recursos Disponibles Durante Ejecución</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-success"><i class="bi bi-check-circle me-2"></i>PERMITIDO:</h6>
+                                <ul>
+                                    <li>Revisar todos los módulos del curso</li>
+                                    <li>Ver tus ejercicios anteriores</li>
+                                    <li>Consultar acordeones teóricos</li>
+                                    <li>Usar reglas y medición visual</li>
+                                    <li>Tomar descansos cuando lo necesites</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-danger"><i class="bi bi-x-circle me-2"></i>NO PERMITIDO:</h6>
+                                <ul>
+                                    <li>Copiar dibujos de terceros</li>
+                                    <li>Usar filtros digitales o tracing</li>
+                                    <li>Entregar trabajos no realizados por ti</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instrucciones de Entrega -->
+                <div class="card mb-4">
+                    <div class="card-header" style="background: var(--primary-dark); color: white;">
+                        <h5 class="mb-0"><i class="bi bi-upload me-2"></i>Instrucciones de Entrega</h5>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="text-primary mb-3">Formato de Entrega:</h6>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Fotografía del dibujo:</strong>
+                                <ol>
+                                    <li>Iluminación uniforme, sin sombras sobre el papel</li>
+                                    <li>Foto completamente frontal (sin distorsión de perspectiva)</li>
+                                    <li>Resolución mínima: 2000 píxeles en el lado más largo</li>
+                                    <li>Formato: JPG o PNG</li>
+                                </ol>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Información requerida:</strong>
+                                <ul>
+                                    <li>Nombre completo del estudiante</li>
+                                    <li>Referencia utilizada (número: 24, 25 o 26)</li>
+                                    <li>Tiempo total invertido</li>
+                                </ul>
+                                
+                                <div class="alert alert-info mt-3">
+                                    <strong>OPCIONAL - Proceso documentado:</strong><br>
+                                    Si fotografiaste las 4 capas durante ejecución, puedes incluirlas como material complementario (suma puntos bonus)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensaje Final y Botones de Acción -->
+                <div class="final-message">
+                    <h4 class="mb-3">¡Momento de Crear tu Obra Maestra!</h4>
+                    <p class="mb-4">Respira profundo, revisa tu referencia elegida, y comienza.</p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center gap-3">
+                        <button class="btn btn-light btn-lg" onclick="showReferences()">
+                            <i class="bi bi-images me-2"></i>Ver Referencias
+                        </button>
+                        <button class="btn btn-light btn-lg" onclick="downloadRubric()">
+                            <i class="bi bi-download me-2"></i>Descargar Rúbrica
+                        </button>
+                        <button class="btn btn-success btn-lg" onclick="submitFinalProject()">
+                            <i class="bi bi-cloud-upload me-2"></i>Subir Proyecto Final
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Evaluación Final del Curso -->
+                <div class="evaluation-container mt-5">
+                    <h4 class="mb-4"><i class="bi bi-clipboard-check me-2"></i>Evaluación Final - Lección 3.3</h4>
+                    
+                    <div class="eval-question" data-question="q1">
+                        <h6>Pregunta 1:</h6>
+                        <p>¿Cuál es el puntaje mínimo para aprobar el proyecto final?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 3)">
+                                <div class="eval-radio"></div>
+                                <span>A) 50 puntos</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 3)">
+                                <div class="eval-radio"></div>
+                                <span>B) 60 puntos</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 3)">
+                                <div class="eval-radio"></div>
+                                <span>C) 70 puntos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q2">
+                        <h6>Pregunta 2:</h6>
+                        <p>¿Qué criterio tiene mayor puntaje en la rúbrica?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 3)">
+                                <div class="eval-radio"></div>
+                                <span>A) Valores tonales (15 pts)</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 3)">
+                                <div class="eval-radio"></div>
+                                <span>B) Extremidades (15 pts)</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 3)">
+                                <div class="eval-radio"></div>
+                                <span>C) Gesto y línea de acción (20 pts)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eval-question" data-question="q3">
+                        <h6>Pregunta 3:</h6>
+                        <p>¿Cuál de las siguientes prácticas NO está permitida en el proyecto final?</p>
+                        <div class="eval-options">
+                            <div class="eval-option" onclick="selectEvalOption(this, 1, 3)">
+                                <div class="eval-radio"></div>
+                                <span>A) Revisar los módulos del curso</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 2, 3)">
+                                <div class="eval-radio"></div>
+                                <span>B) Usar filtros digitales o tracing</span>
+                            </div>
+                            <div class="eval-option" onclick="selectEvalOption(this, 3, 3)">
+                                <div class="eval-radio"></div>
+                                <span>C) Ver tus ejercicios anteriores</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="evalResult"></div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-lg btn-nav" id="submitEvalBtn" onclick="submitEvaluation(3)">
+                            <i class="bi bi-check-circle me-2"></i>Enviar Evaluación
+                        </button>
+                        <button class="btn btn-warning btn-lg btn-nav" id="retryEvalBtn" style="display: none;" onclick="retryEvaluation(3)">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Reintentar
+                        </button>
+                        <button class="btn btn-success btn-lg btn-nav" id="nextLessonBtn" style="display: none;" onclick="window.location.href='index.html'">
+                            <i class="bi bi-house-door me-2"></i>Completar Módulo
+                        </button>
+                    </div>
+                </div>
+
+                <div class="alert alert-success alert-custom mt-4">
+                    <h5><i class="bi bi-trophy-fill me-2"></i>¡Felicitaciones!</h5>
+                    <p class="mb-0">Has llegado al final del curso. Una vez completes y entregues tu proyecto final, habrás demostrado tu dominio en la representación del cuerpo humano. ¡Mucho éxito!</p>
+                </div>
+            `
+        };
+
+        // ===== INICIALIZACIÓN =====
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+            loadLesson(1);
+        });
+
+        // Añadir estilos de animación
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
+                                    
+                

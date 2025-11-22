@@ -116,116 +116,75 @@ body {
     font-size: 1rem;
 }
 
-/* ========== MODO PRESENTACIÓN ========== */
-.presentation-controls {
+/* ========== TIMER (SIEMPRE VISIBLE) ========== */
+.timer-container {
     position: fixed;
     top: 20px;
     right: 20px;
     z-index: 2000;
-    display: flex;
-    gap: 10px;
 }
 
-.control-btn {
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(10px);
-    border: 2px solid var(--primary-light);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    transition: all 0.3s;
-}
-
-.control-btn:hover {
-    background: var(--primary-light);
-    color: var(--dark);
-    transform: translateY(-2px);
-}
-
-.presentation-timer {
+.timer-display {
     background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
     color: var(--accent-teal);
     font-family: 'Courier New', monospace;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 700;
-    padding: 15px 25px;
+    padding: 15px 30px;
     border-radius: 30px;
-    border: 2px solid var(--accent-teal);
-    min-width: 120px;
+    border: 3px solid var(--accent-teal);
+    min-width: 140px;
     text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
 }
 
-.presentation-timer.warning {
+.timer-display:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(78, 205, 196, 0.5);
+}
+
+.timer-display.warning {
     color: var(--warning);
     border-color: var(--warning);
     animation: pulse 1s infinite;
 }
 
-.presentation-timer.danger {
+.timer-display.danger {
     color: var(--danger);
     border-color: var(--danger);
     animation: pulse 0.5s infinite;
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.6; }
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.05); }
 }
 
-/* Notas del Presentador */
-.presenter-notes {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 800px;
-    width: 90%;
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(20px);
-    color: white;
-    padding: 20px 30px;
-    border-radius: 15px;
+.timer-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+.timer-btn {
+    background: rgba(0,0,0,0.8);
     border: 2px solid var(--accent-teal);
-    z-index: 1999;
-    opacity: 0;
-    visibility: hidden;
+    color: var(--accent-teal);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
     transition: all 0.3s;
 }
 
-.presenter-notes.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.presenter-notes h4 {
-    color: var(--accent-teal);
-    margin-bottom: 15px;
-    font-size: 16px;
-}
-
-.presenter-notes ul {
-    list-style: none;
-    padding: 0;
-}
-
-.presenter-notes li {
-    padding: 8px 0;
-    padding-left: 20px;
-    position: relative;
-    font-size: 14px;
-}
-
-.presenter-notes li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--primary-light);
+.timer-btn:hover {
+    background: var(--accent-teal);
+    color: var(--dark);
 }
 
 /* ========== CONTENIDO PRINCIPAL ========== */
@@ -235,7 +194,7 @@ body {
     transition: margin-left 0.3s ease;
 }
 
-.main-content.fullscreen {
+.main-content.fullwidth {
     margin-left: 0;
 }
 
@@ -449,6 +408,118 @@ body {
     color: #6c757d;
 }
 
+/* ========== CARRUSELES ========== */
+.gallery-section {
+    margin: 2rem 0;
+}
+
+.gallery-title {
+    color: var(--primary-dark);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    gap: 1rem;
+}
+
+.carousel-placeholder i {
+    font-size: 4rem;
+}
+
+/* Para imágenes reales */
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: all 0.3s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--primary-light);
+    color: var(--dark);
+}
+
+.carousel-btn.prev {
+    left: 15px;
+}
+
+.carousel-btn.next {
+    right: 15px;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(0,0,0,0.05);
+}
+
+.carousel-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.carousel-dot.active {
+    background: var(--primary-dark);
+    width: 35px;
+    border-radius: 6px;
+}
+
 /* ========== REMEDIACIÓN ========== */
 .remediation-grid {
     display: grid;
@@ -480,7 +551,7 @@ body {
     gap: 0.5rem;
 }
 
-.remediation-card .case-number {
+.case-number {
     background: var(--primary-light);
     color: var(--dark);
     width: 30px;
@@ -612,99 +683,24 @@ body {
     color: var(--dark);
 }
 
-/* ========== MODAL ATAJOS ========== */
-.shortcuts-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0,0,0,0.95);
-    backdrop-filter: blur(20px);
-    border: 2px solid var(--accent-teal);
-    border-radius: 20px;
-    padding: 2rem;
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s;
-    max-width: 500px;
-    width: 90%;
-}
-
-.shortcuts-modal.visible {
-    opacity: 1;
-    visibility: visible;
-}
-
-.shortcuts-modal h3 {
-    color: var(--accent-teal);
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.shortcut-list {
-    display: grid;
-    gap: 1rem;
-}
-
-.shortcut-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    background: rgba(255,255,255,0.05);
-    border-radius: 10px;
-}
-
-.shortcut-key {
-    background: var(--primary-dark);
-    color: var(--accent-gold);
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-family: 'Courier New', monospace;
-    font-weight: 700;
-    border: 2px solid var(--accent-teal);
-}
-
-.shortcut-description {
-    color: rgba(255,255,255,0.8);
-}
-
-.close-shortcuts {
-    margin-top: 1.5rem;
-    width: 100%;
-    padding: 0.75rem;
-    background: var(--accent-teal);
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.close-shortcuts:hover {
-    background: var(--primary-dark);
-}
-
 /* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
     .sidebar {
         transform: translateX(-100%);
     }
     
-    .sidebar.mobile-open {
-        transform: translateX(0);
-    }
-    
     .main-content {
         margin-left: 0;
     }
     
-    .presentation-controls {
+    .timer-container {
         top: 10px;
         right: 10px;
-        flex-direction: column;
+    }
+    
+    .timer-display {
+        font-size: 20px;
+        padding: 10px 20px;
     }
     
     .slide {
@@ -713,6 +709,10 @@ body {
     
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .carousel-slide {
+        height: 300px;
     }
 }
 
@@ -723,14 +723,6 @@ body {
 
 .text-center {
     text-align: center;
-}
-
-.mb-2 {
-    margin-bottom: 2rem;
-}
-
-.mt-2 {
-    margin-top: 2rem;
 }
     </style>
 </head>
@@ -756,56 +748,13 @@ body {
         </ul>
     </div>
 
-    <!-- CONTROLES DE PRESENTACIÓN -->
-    <div class="presentation-controls" id="presentationControls">
-        <div class="presentation-timer" id="timer">07:00</div>
-        <button class="control-btn" id="btnFullscreen">
-            <i class="bi bi-arrows-fullscreen"></i> Presentación
-        </button>
-        <button class="control-btn" id="btnNotes">
-            <i class="bi bi-card-text"></i> Notas
-        </button>
-        <button class="control-btn" id="btnHelp">
-            <i class="bi bi-question-circle"></i>
-        </button>
-    </div>
-
-    <!-- NOTAS DEL PRESENTADOR -->
-    <div class="presenter-notes" id="presenterNotes">
-        <h4><i class="bi bi-chat-quote"></i> Notas del Presentador - Portada</h4>
-        <ul id="notesContent">
-            <li>Presentación personal y contexto del proyecto</li>
-            <li>Enfatizar que es un proyecto real con estudiantes reales</li>
-            <li>Mencionar evaluación el 29 de noviembre</li>
-        </ul>
-    </div>
-
-    <!-- MODAL ATAJOS DE TECLADO -->
-    <div class="shortcuts-modal" id="shortcutsModal">
-        <h3><i class="bi bi-keyboard"></i> Atajos de Teclado</h3>
-        <div class="shortcut-list">
-            <div class="shortcut-item">
-                <span class="shortcut-description">Modo Presentación</span>
-                <span class="shortcut-key">F</span>
-            </div>
-            <div class="shortcut-item">
-                <span class="shortcut-description">Mostrar/Ocultar Notas</span>
-                <span class="shortcut-key">N</span>
-            </div>
-            <div class="shortcut-item">
-                <span class="shortcut-description">Ir al inicio</span>
-                <span class="shortcut-key">Home</span>
-            </div>
-            <div class="shortcut-item">
-                <span class="shortcut-description">Ir al final</span>
-                <span class="shortcut-key">End</span>
-            </div>
-            <div class="shortcut-item">
-                <span class="shortcut-description">Mostrar esta ayuda</span>
-                <span class="shortcut-key">?</span>
-            </div>
+    <!-- TIMER (SIEMPRE VISIBLE) -->
+    <div class="timer-container">
+        <div class="timer-display" id="timerDisplay" title="Click para iniciar/pausar">07:00</div>
+        <div class="timer-controls">
+            <button class="timer-btn" id="btnStart">▶ Iniciar</button>
+            <button class="timer-btn" id="btnReset">↻ Reset</button>
         </div>
-        <button class="close-shortcuts" onclick="closeShortcuts()">Cerrar</button>
     </div>
 
     <!-- CONTENIDO PRINCIPAL -->
@@ -844,7 +793,7 @@ body {
         <section id="contexto" class="slide" style="background:#fff">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">1</div>
+                    <div class="section-number">01</div>
                     <h2 class="section-title">Contexto del Problema</h2>
                     <p class="section-subtitle">Brecha de 4 semestres sin instrucción anatómica</p>
                 </div>
@@ -885,7 +834,7 @@ body {
         <section id="objetivos" class="slide">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">2</div>
+                    <div class="section-number">02</div>
                     <h2 class="section-title">Objetivos del Proyecto</h2>
                     <p class="section-subtitle">Metas claras y medibles</p>
                 </div>
@@ -911,7 +860,7 @@ body {
         <section id="innovacion" class="slide" style="background:#fff">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">3</div>
+                    <div class="section-number">03</div>
                     <h2 class="section-title">Innovación Técnica</h2>
                     <p class="section-subtitle">Simplicidad que supera complejidad comercial</p>
                 </div>
@@ -920,7 +869,7 @@ body {
                     <div class="stat-card success">
                         <div class="stat-icon">⚡</div>
                         <div class="stat-value">1.8s</div>
-                        <div class="stat-label">Tiempo de carga vs 10-30s (Moodle/Canvas)</div>
+                        <div class="stat-label">Tiempo de carga vs 10-30s</div>
                     </div>
                     <div class="stat-card success">
                         <div class="stat-icon">💰</div>
@@ -930,7 +879,7 @@ body {
                     <div class="stat-card success">
                         <div class="stat-icon">📊</div>
                         <div class="stat-value">99.98%</div>
-                        <div class="stat-label">Uptime garantizado (GitHub Pages)</div>
+                        <div class="stat-label">Uptime garantizado</div>
                     </div>
                     <div class="stat-card success">
                         <div class="stat-icon">🔓</div>
@@ -953,7 +902,7 @@ body {
         <section id="estructura" class="slide">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">4</div>
+                    <div class="section-number">04</div>
                     <h2 class="section-title">Estructura del Curso</h2>
                     <p class="section-subtitle">3 módulos progresivos</p>
                 </div>
@@ -992,7 +941,7 @@ body {
                     <div class="stat-card">
                         <div class="stat-icon">🎨</div>
                         <div class="stat-value">1</div>
-                        <div class="stat-label">Proyecto final (rúbrica 7 criterios)</div>
+                        <div class="stat-label">Proyecto final</div>
                     </div>
                 </div>
             </div>
@@ -1002,7 +951,7 @@ body {
         <section id="resultados" class="slide" style="background:#fff">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">5</div>
+                    <div class="section-number">05</div>
                     <h2 class="section-title">Resultados: Metas Superadas</h2>
                     <p class="section-subtitle">Datos reales del piloto (13-24 Nov 2025)</p>
                 </div>
@@ -1043,50 +992,203 @@ body {
             </div>
         </section>
 
-        <!-- EVIDENCIAS -->
+        <!-- EVIDENCIAS CON CARRUSELES -->
         <section id="evidencias" class="slide">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">6</div>
+                    <div class="section-number">06</div>
                     <h2 class="section-title">Evidencias del LMS</h2>
-                    <p class="section-subtitle">Screenshots del sistema funcionando</p>
+                    <p class="section-subtitle">Registro fotográfico del proceso</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
-                    <div style="background: #fff; padding: 1rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,.08);">
-                        <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 180px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; margin-bottom: 1rem;">
-                            <div><i class="bi bi-graph-up" style="font-size: 48px;"></i><br><small>Screenshot: Dashboard</small></div>
+                <!-- Carrusel 1: Dashboard y Screenshots LMS -->
+                <div class="gallery-section">
+                    <h3 class="gallery-title"><i class="bi bi-laptop"></i> Dashboard y Vistas del LMS</h3>
+                    <div class="carousel-container" id="carousel1">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-grid-3x3-gap"></i>
+                                    <span>Dashboard Principal - Vista General</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: dashboard-general.png</small>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Dashboard - Métricas de Progreso</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: dashboard-metricas.png</small>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-person-circle"></i>
+                                    <span>Dashboard - Vista Estudiante Individual</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: dashboard-estudiante.png</small>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-bar-chart"></i>
+                                    <span>Dashboard - Estadísticas Completas</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: dashboard-stats.png</small>
+                                </div>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-book"></i>
+                                    <span>Vista de Módulo con Sidebar</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: modulo-sidebar.png</small>
+                                </div>
+                            </div>
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder">
+                                    <i class="bi bi-list-check"></i>
+                                    <span>Vista de Lecciones</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: vista-lecciones.png</small>
+                                </div>
+                            </div>
                         </div>
-                        <h5 style="color: var(--primary-dark);">Dashboard de Progreso</h5>
-                        <p style="font-size: 0.85rem; color: #666;">Métricas en tiempo real</p>
-                    </div>
-                    <div style="background: #fff; padding: 1rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,.08);">
-                        <div style="background: linear-gradient(135deg, #f093fb, #f5576c); height: 180px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; margin-bottom: 1rem;">
-                            <div><i class="bi bi-book" style="font-size: 48px;"></i><br><small>Screenshot: Módulo</small></div>
-                        </div>
-                        <h5 style="color: var(--primary-dark);">Módulo con Sidebar</h5>
-                        <p style="font-size: 0.85rem; color: #666;">Navegación intuitiva</p>
-                    </div>
-                    <div style="background: #fff; padding: 1rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,.08);">
-                        <div style="background: linear-gradient(135deg, #4facfe, #00f2fe); height: 180px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; text-align: center; margin-bottom: 1rem;">
-                            <div><i class="bi bi-clipboard-check" style="font-size: 48px;"></i><br><small>Screenshot: Rúbrica</small></div>
-                        </div>
-                        <h5 style="color: var(--primary-dark);">Rúbrica Analítica</h5>
-                        <p style="font-size: 0.85rem; color: #666;">7 criterios detallados</p>
+                        <button class="carousel-btn prev" onclick="moveCarousel('carousel1', -1)"><i class="bi bi-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="moveCarousel('carousel1', 1)"><i class="bi bi-chevron-right"></i></button>
+                        <div class="carousel-dots" id="dots-carousel1"></div>
                     </div>
                 </div>
 
-                <div style="margin-top: 2rem; padding: 1rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--warning); border-radius: 10px; text-align: center;">
-                    <p style="color: #666;"><i class="bi bi-info-circle-fill" style="color: var(--warning);"></i> <strong>Nota:</strong> Reemplazar con screenshots reales del LMS antes de la presentación final</p>
+                <!-- Carrusel 2: Clase Presencial -->
+                <div class="gallery-section">
+                    <h3 class="gallery-title"><i class="bi bi-people"></i> Taller Presencial con Estudiantes</h3>
+                    <div class="carousel-container" id="carousel2">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-camera"></i>
+                                    <span>Estudiantes Trabajando en Taller</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: taller-general.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-camera"></i>
+                                    <span>Ambiente de Trabajo Presencial</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: taller-ambiente.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-camera"></i>
+                                    <span>Estudiantes Dibujando Modelo en Vivo</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: taller-modelo.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-camera"></i>
+                                    <span>Proceso Creativo</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: taller-proceso.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    <i class="bi bi-camera"></i>
+                                    <span>Retroalimentación Docente</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: taller-feedback.jpg</small>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev" onclick="moveCarousel('carousel2', -1)"><i class="bi bi-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="moveCarousel('carousel2', 1)"><i class="bi bi-chevron-right"></i></button>
+                        <div class="carousel-dots" id="dots-carousel2"></div>
+                    </div>
+                </div>
+
+                <!-- Carrusel 3: Trabajos Finales M3L3 -->
+                <div class="gallery-section">
+                    <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales M3L3 (Google Forms)</h3>
+                    <div class="carousel-container" id="carousel3">
+                        <div class="carousel-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 1</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est01.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 2</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est02.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 3</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est03.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 4</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est04.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 5</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est05.jpg</small>
+                                </div>
+                            </div>
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide">
+                                <div class="carousel-placeholder" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <span>Trabajo Final - Estudiante 6</span>
+                                    <small style="font-size: 0.9rem; opacity: 0.8;">Reemplazar con: trabajo-est06.jpg</small>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev" onclick="moveCarousel('carousel3', -1)"><i class="bi bi-chevron-left"></i></button>
+                        <button class="carousel-btn next" onclick="moveCarousel('carousel3', 1)"><i class="bi bi-chevron-right"></i></button>
+                        <div class="carousel-dots" id="dots-carousel3"></div>
+                    </div>
+                </div>
+
+                <!-- Instrucciones -->
+                <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--warning); border-radius: 10px; text-align: center;">
+                    <p style="color: #666; font-size: 0.95rem;">
+                        <i class="bi bi-info-circle-fill" style="color: var(--warning);"></i> 
+                        <strong>Instrucciones:</strong> Reemplazar los placeholders con las imágenes reales capturadas del LMS y taller presencial.
+                        Formato recomendado: PNG para screenshots, JPG para fotografías. Dimensión: 1920x1080px o similar.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- REMEDIACIÓN -->
-        <section id="remedial" class="slide">
+        <section id="remedial" class="slide" style="background:#fff">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">7</div>
+                    <div class="section-number">07</div>
                     <h2 class="section-title">Protocolo de Remediación</h2>
                     <p class="section-subtitle">Acompañamiento diferenciado según causa raíz</p>
                 </div>
@@ -1157,10 +1259,10 @@ body {
         </section>
 
         <!-- CONCLUSIONES -->
-        <section id="conclusiones" class="slide" style="background:#fff">
+        <section id="conclusiones" class="slide">
             <div class="slide-container">
                 <div class="section-header">
-                    <div class="section-number">8</div>
+                    <div class="section-number">08</div>
                     <h2 class="section-title">Lecciones Aprendidas</h2>
                     <p class="section-subtitle">Reflexión crítica y proyección</p>
                 </div>
@@ -1291,60 +1393,13 @@ body {
 // ========== VARIABLES GLOBALES ==========
 let timerInterval = null;
 let timerSeconds = 420; // 7 minutos
-let isFullscreen = false;
+let timerRunning = false;
 
-// Notas del presentador por sección
-const presenterNotes = {
-    'portada': [
-        'Presentación personal y contexto del proyecto',
-        'Enfatizar que es un proyecto real con estudiantes reales',
-        'Mencionar evaluación el 29 de noviembre'
-    ],
-    'contexto': [
-        'Problema detectado empíricamente con encuesta',
-        '71% sin técnicas básicas = oportunidad',
-        'Ventana de 12 días antes de evaluación final'
-    ],
-    'objetivos': [
-        'Meta clara: ≥70% completación',
-        'Incentivo: +1 punto extra (10 décimas)',
-        'Diseño instruccional ADDIE aplicado'
-    ],
-    'innovacion': [
-        'ARGUMENTO CENTRAL: Simplicidad > Complejidad',
-        '1.8s vs 10-30s (observable en vivo)',
-        '$0 permanente vs $1.5M/año Canvas'
-    ],
-    'estructura': [
-        '3 módulos progresivos',
-        '10 lecciones + 23 ejercicios',
-        'Rúbrica analítica 7 criterios'
-    ],
-    'resultados': [
-        'METAS SUPERADAS: 76% vs 70%',
-        '92% aprobación evaluaciones',
-        'Explicar gráficos brevemente'
-    ],
-    'evidencias': [
-        'Screenshots del LMS funcionando',
-        'Ideal: demo en vivo si hay tiempo',
-        'Resaltar dashboard y rúbricas'
-    ],
-    'remedial': [
-        'Protocolo sistémico, no reactivo',
-        '4 escenarios diferenciados',
-        'Timeline de 12 días estructurado'
-    ],
-    'conclusiones': [
-        'Honestidad: timing subóptimo',
-        'Lo que funcionó vs mejoras',
-        'Proyección: 2-3 instituciones 2026-2027'
-    ],
-    'final': [
-        'Mensaje inspirador pero realista',
-        'Innovación ≠ Presupuesto millonario',
-        'Agradecer y abrir a preguntas'
-    ]
+// Posición actual de cada carrusel
+const carouselPositions = {
+    'carousel1': 0,
+    'carousel2': 0,
+    'carousel3': 0
 };
 
 // ========== NAVEGACIÓN ==========
@@ -1359,9 +1414,6 @@ document.querySelectorAll('.nav-link').forEach(link => {
         // Scroll suave
         const targetId = this.getAttribute('href').substring(1);
         document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
-        
-        // Actualizar notas
-        updatePresenterNotes(targetId);
     });
 });
 
@@ -1379,7 +1431,6 @@ window.addEventListener('scroll', () => {
         link.classList.remove('active');
         if (link.getAttribute('href') === '#' + current) {
             link.classList.add('active');
-            updatePresenterNotes(current);
         }
     });
 });
@@ -1392,7 +1443,7 @@ function formatTime(seconds) {
 }
 
 function updateTimer() {
-    const timerEl = document.getElementById('timer');
+    const timerEl = document.getElementById('timerDisplay');
     timerEl.textContent = formatTime(timerSeconds);
     
     // Cambiar color según tiempo restante
@@ -1405,15 +1456,17 @@ function updateTimer() {
 }
 
 function startTimer() {
-    if (timerInterval) return;
+    if (timerInterval) return; // Ya está corriendo
+    
+    timerRunning = true;
+    document.getElementById('btnStart').textContent = '⏸ Pausar';
     
     timerInterval = setInterval(() => {
         timerSeconds--;
         updateTimer();
         
         if (timerSeconds <= 0) {
-            clearInterval(timerInterval);
-            timerInterval = null;
+            pauseTimer();
             alert('¡Tiempo terminado!');
         }
     }, 1000);
@@ -1423,6 +1476,8 @@ function pauseTimer() {
     if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
+        timerRunning = false;
+        document.getElementById('btnStart').textContent = '▶ Iniciar';
     }
 }
 
@@ -1432,100 +1487,81 @@ function resetTimer() {
     updateTimer();
 }
 
-// Click en timer para controlar
-document.getElementById('timer').addEventListener('click', function() {
-    if (timerInterval) {
+// Click en timer o botones
+document.getElementById('timerDisplay').addEventListener('click', function() {
+    if (timerRunning) {
         pauseTimer();
     } else {
         startTimer();
     }
 });
 
-// ========== MODO PRESENTACIÓN ==========
-document.getElementById('btnFullscreen').addEventListener('click', function() {
-    isFullscreen = !isFullscreen;
-    
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-    
-    if (isFullscreen) {
-        // Entrar en fullscreen
-        if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-        }
-        sidebar.classList.add('hidden');
-        mainContent.classList.add('fullscreen');
-        this.innerHTML = '<i class="bi bi-fullscreen-exit"></i> Salir';
+document.getElementById('btnStart').addEventListener('click', function() {
+    if (timerRunning) {
+        pauseTimer();
     } else {
-        // Salir de fullscreen
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        }
-        sidebar.classList.remove('hidden');
-        mainContent.classList.remove('fullscreen');
-        this.innerHTML = '<i class="bi bi-arrows-fullscreen"></i> Presentación';
+        startTimer();
     }
 });
 
-// ========== NOTAS DEL PRESENTADOR ==========
-function updatePresenterNotes(sectionId) {
-    const notesEl = document.getElementById('notesContent');
-    const notes = presenterNotes[sectionId] || ['Sin notas para esta sección'];
+document.getElementById('btnReset').addEventListener('click', resetTimer);
+
+// ========== CARRUSELES ==========
+function initCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    const track = carousel.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById(`dots-${carouselId}`);
     
-    notesEl.innerHTML = notes.map(note => `<li>${note}</li>`).join('');
+    // Crear dots
+    slides.forEach((slide, index) => {
+        const dot = document.createElement('div');
+        dot.classList.add('carousel-dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(carouselId, index));
+        dotsContainer.appendChild(dot);
+    });
 }
 
-document.getElementById('btnNotes').addEventListener('click', function() {
-    const notesEl = document.getElementById('presenterNotes');
-    notesEl.classList.toggle('visible');
-});
-
-// ========== MODAL ATAJOS ==========
-document.getElementById('btnHelp').addEventListener('click', function() {
-    document.getElementById('shortcutsModal').classList.add('visible');
-});
-
-function closeShortcuts() {
-    document.getElementById('shortcutsModal').classList.remove('visible');
-}
-
-// ========== ATAJOS DE TECLADO ==========
-document.addEventListener('keydown', function(e) {
-    // Ignorar si estás escribiendo
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+function moveCarousel(carouselId, direction) {
+    const carousel = document.getElementById(carouselId);
+    const track = carousel.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
     
-    switch(e.key) {
-        case 'f':
-        case 'F':
-            e.preventDefault();
-            document.getElementById('btnFullscreen').click();
-            break;
-        case 'n':
-        case 'N':
-            e.preventDefault();
-            document.getElementById('btnNotes').click();
-            break;
-        case '?':
-            e.preventDefault();
-            document.getElementById('shortcutsModal').classList.add('visible');
-            break;
-        case 'Escape':
-            closeShortcuts();
-            document.getElementById('presenterNotes').classList.remove('visible');
-            break;
-        case 'Home':
-            e.preventDefault();
-            document.getElementById('portada').scrollIntoView({ behavior: 'smooth' });
-            break;
-        case 'End':
-            e.preventDefault();
-            document.getElementById('final').scrollIntoView({ behavior: 'smooth' });
-            break;
+    carouselPositions[carouselId] += direction;
+    
+    // Wrap around
+    if (carouselPositions[carouselId] < 0) {
+        carouselPositions[carouselId] = totalSlides - 1;
+    } else if (carouselPositions[carouselId] >= totalSlides) {
+        carouselPositions[carouselId] = 0;
     }
-});
+    
+    updateCarousel(carouselId);
+}
+
+function goToSlide(carouselId, index) {
+    carouselPositions[carouselId] = index;
+    updateCarousel(carouselId);
+}
+
+function updateCarousel(carouselId) {
+    const carousel = document.getElementById(carouselId);
+    const track = carousel.querySelector('.carousel-track');
+    const dots = document.querySelectorAll(`#dots-${carouselId} .carousel-dot`);
+    const position = carouselPositions[carouselId];
+    
+    track.style.transform = `translateX(-${position * 100}%)`;
+    
+    // Actualizar dots
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === position);
+    });
+}
 
 // ========== GRÁFICOS CHART.JS ==========
-document.addEventListener('DOMContentLoaded', function() {
+function initCharts() {
     // Gráfico de Módulos
     const ctx1 = document.getElementById('chartModulos');
     if (ctx1) {
@@ -1573,14 +1609,24 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Inicializar
-    updateTimer();
-    updatePresenterNotes('portada');
-});
+}
 
-console.log('✅ Presentación DIADIFO cargada correctamente');
-console.log('⌨️ Atajos: F (Fullscreen) | N (Notas) | ? (Ayuda)');
+// ========== INICIALIZACIÓN ==========
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar timer
+    updateTimer();
+    
+    // Inicializar gráficos
+    initCharts();
+    
+    // Inicializar carruseles
+    initCarousel('carousel1');
+    initCarousel('carousel2');
+    initCarousel('carousel3');
+    
+    console.log('✅ Presentación DIADIFO cargada correctamente');
+    console.log('⏱️ Timer: Click para iniciar/pausar');
+});
     </script>
 </body>
 </html>

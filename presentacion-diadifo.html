@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIADIFO - Presentación Proyecto | Joselyn Vizcarra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+:root{--primary-dark:#2c5f66;--primary-light:#e8a2b8;--dark:#1a1a1a;--gray-light:#f8f9fa;--success:#10b981;--danger:#ef4444;--warning:#f59e0b;--info:#3b82f6}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--gray-light);color:var(--dark);line-height:1.6;overflow-x:hidden;scroll-behavior:smooth}.sidebar{position:fixed;left:0;top:0;height:100vh;width:280px;background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;padding:2rem 1.5rem;z-index:1000;box-shadow:0 10px 30px rgba(0,0,0,0.2);overflow-y:auto;transition:transform .3s}.sidebar-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid rgba(255,255,255,0.2)}.sidebar-logo{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-light),white);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:2rem;color:var(--primary-dark);font-weight:800}.sidebar-title{font-size:1.3rem;font-weight:700;color:var(--primary-light)}.nav-menu{list-style:none}.nav-link{display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;color:rgba(255,255,255,0.8);text-decoration:none;border-radius:8px;transition:all .3s;cursor:pointer}.nav-link:hover,.nav-link.active{background:var(--primary-light);color:var(--dark);transform:translateX(5px)}.main-content{margin-left:280px;min-height:100vh}.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:4rem 3rem}.slide-container{max-width:1200px;width:100%;animation:fadeIn .8s}.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;text-align:center}.portada-logo{width:120px;height:120px;background:linear-gradient(135deg,var(--primary-light),white);border-radius:20px;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--primary-dark);font-weight:800}.portada-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,white,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.portada-meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3rem}.meta-item{background:rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px}.meta-label{font-size:.85rem;color:rgba(255,255,255,0.7)}.portada-link{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--dark);padding:1rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;margin-top:2rem;transition:all .3s}.portada-link:hover{transform:translateY(-3px);color:var(--dark)}.section-header{text-align:center;margin-bottom:3rem}.section-number{display:inline-block;background:var(--primary-light);color:var(--dark);width:50px;height:50px;border-radius:50%;line-height:50px;font-weight:800;margin-bottom:1rem}.section-title{font-size:clamp(2rem,4vw,3rem);color:var(--primary-dark);font-weight:800}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:3rem 0}.stat-card{background:linear-gradient(135deg,rgba(44,95,102,0.05),rgba(232,162,184,0.05));padding:2rem;border-radius:16px;text-align:center;border:2px solid #dee2e6;transition:all .3s;position:relative}.stat-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light))}.stat-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.12)}.stat-icon{font-size:2.5rem;margin-bottom:1rem}.stat-value{font-size:2.5rem;font-weight:800;color:var(--primary-dark)}.objetivo-card{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:all .3s;cursor:pointer;border-left:4px solid var(--primary-dark)}.objetivo-card:hover{transform:translateY(-10px);box-shadow:0 10px 30px rgba(0,0,0,0.12)}.objetivo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;margin-bottom:1.5rem}.objetivo-title{font-size:1.3rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem}.badge-success{background:var(--success);color:white;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600}.pilar-card{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;padding:2.5rem;border-radius:16px;position:relative;overflow:hidden;transition:all .3s}.pilar-card:hover{transform:scale(1.05)}.pilar-emoji{font-size:3rem;margin-bottom:1rem}.pilar-title{font-size:1.4rem;font-weight:700;color:var(--primary-light);margin-bottom:1rem}.timeline{position:relative;margin:3rem 0}.timeline-item{display:flex;gap:2rem;margin-bottom:3rem;align-items:center}.timeline-dot{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.5rem;flex-shrink:0}.timeline-content{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);flex:1}.modulo-title{font-size:1.3rem;font-weight:700;margin-bottom:1rem}.chart-card{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08)}.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}.gallery-item{aspect-ratio:4/3;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer;transition:all .3s}.gallery-item:hover{transform:scale(1.05)}.gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#f8f9fa,#dee2e6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}.conclusion-card{padding:2rem;border-radius:16px;border:3px solid}.fortalezas{border-color:var(--success);background:rgba(16,185,129,0.05)}.mejoras{border-color:var(--warning);background:rgba(245,158,11,0.05)}.futuro{border-color:var(--info);background:rgba(59,130,246,0.05)}@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media(max-width:992px){.sidebar{transform:translateX(-100%)}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0}.slide{padding:3rem 1.5rem}}
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">DA</div>
+        <h2 class="sidebar-title">DIADIFO</h2>
+        <p style="font-size:.85rem;color:rgba(255,255,255,0.7)">Presentación Proyecto</p>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="#portada" class="nav-link active"><i class="bi bi-house-door"></i> Portada</a></li>
+        <li><a href="#contexto" class="nav-link"><i class="bi bi-building"></i> Contexto</a></li>
+        <li><a href="#objetivos" class="nav-link"><i class="bi bi-bullseye"></i> Objetivos</a></li>
+        <li><a href="#innovacion" class="nav-link"><i class="bi bi-lightbulb"></i> Innovación</a></li>
+        <li><a href="#estructura" class="nav-link"><i class="bi bi-diagram-3"></i> Estructura</a></li>
+        <li><a href="#resultados" class="nav-link"><i class="bi bi-graph-up"></i> Resultados</a></li>
+        <li><a href="#evidencias" class="nav-link"><i class="bi bi-images"></i> Evidencias</a></li>
+        <li><a href="#conclusiones" class="nav-link"><i class="bi bi-check-circle"></i> Conclusiones</a></li>
+        <li><a href="#final" class="nav-link"><i class="bi bi-heart"></i> Agradecimientos</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+<!-- SLIDE 1: PORTADA -->
+<section id="portada" class="slide portada">
+    <div class="slide-container">
+        <div class="portada-logo">DA</div>
+        <h1 class="portada-title">DIADIFO</h1>
+        <p style="font-size:1.8rem;color:rgba(255,255,255,0.9);margin-bottom:1rem">Sistema LMS Independiente para Dibujo Anatómico</p>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,0.8)">Innovación Técnica + Metodología ABP + Diseño Instruccional ADDIE</p>
+        <div class="portada-meta">
+            <div class="meta-item"><div class="meta-label">Estudiante</div><div style="font-weight:600">Joselyn Vizcarra</div></div>
+            <div class="meta-item"><div class="meta-label">Diplomado</div><div style="font-weight:600">Diseño Instruccional</div></div>
+            <div class="meta-item"><div class="meta-label">Universidad</div><div style="font-weight:600">Universidad de Chile</div></div>
+            <div class="meta-item"><div class="meta-label">Fecha</div><div style="font-weight:600">29 Nov 2025</div></div>
+        </div>
+        <a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" class="portada-link">
+            <i class="bi bi-box-arrow-up-right"></i> Acceder al LMS
+        </a>
+    </div>
+</section>
+
+<!-- SLIDE 2: CONTEXTO -->
+<section id="contexto" class="slide" style="background:white">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Contexto del Proyecto</h2>
+            <p style="font-size:1.2rem;color:#495057">Universidad Alberto Hurtado - Pedagogía en Artes Visuales</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">17</div><div style="color:#495057">Estudiantes 4° año</div></div>
+            <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">12</div><div style="color:#495057">Días de curso</div></div>
+            <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">4</div><div style="color:#495057">Semestres sin práctica</div></div>
+            <div class="stat-card"><div class="stat-icon">💻</div><div class="stat-value">94%</div><div style="color:#495057">WiFi >5Mbps</div></div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(44,95,102,0.1),rgba(232,162,184,0.1));padding:2rem;border-radius:16px;margin-top:3rem">
+            <h3 style="color:var(--primary-dark);font-weight:700;margin-bottom:1.5rem;font-size:1.5rem"><i class="bi bi-exclamation-triangle" style="color:var(--warning)"></i> Brechas Críticas Detectadas</h3>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-value">71%</div><div style="color:#495057">No recuerda técnicas básicas</div></div>
+                <div class="stat-card"><div class="stat-icon">😰</div><div class="stat-value">47%</div><div style="color:#495057">Ansiedad significativa</div></div>
+                <div class="stat-card"><div class="stat-icon">⏰</div><div class="stat-value">65%</div><div style="color:#495057">Trabaja part-time</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 3: OBJETIVOS -->
+<section id="objetivos" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Objetivos del Proyecto</h2>
+            <p style="font-size:1.2rem;color:#495057">Innovación, Impacto y Sostenibilidad</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem">
+            <div class="objetivo-card">
+                <div class="objetivo-icon"><i class="bi bi-lightning-charge"></i></div>
+                <h3 class="objetivo-title">1. Innovación Técnica</h3>
+                <p style="color:#495057;margin-bottom:1rem">Crear LMS con 10 lecciones funcionales que supere a LMS comerciales en velocidad, disponibilidad y control.</p>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Velocidad: <strong>1.8s</strong> vs 10-30s</li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Uptime: <strong>99.98%</strong></li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Costo: <strong>$0</strong> permanente</li>
+                </ul>
+            </div>
+            <div class="objetivo-card">
+                <div class="objetivo-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <h3 class="objetivo-title">2. Impacto Educativo</h3>
+                <p style="color:#495057;margin-bottom:1rem">Lograr resultados medibles en completación, aprobación y entregas de proyectos finales.</p>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Completación: <strong>76%</strong> (meta: 70%)</li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Aprobación: <strong>92%</strong></li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Entregas: <strong>76%</strong> (meta: 70%)</li>
+                </ul>
+                <div style="margin-top:1rem"><span class="badge-success"><i class="bi bi-trophy"></i> METAS SUPERADAS</span></div>
+            </div>
+            <div class="objetivo-card">
+                <div class="objetivo-icon"><i class="bi bi-recycle"></i></div>
+                <h3 class="objetivo-title">3. Sostenibilidad</h3>
+                <p style="color:#495057;margin-bottom:1rem">Crear modelo replicable y escalable para otras instituciones con documentación completa.</p>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Código en GitHub</li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Documentación completa</li>
+                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Proyección 2-3 instituciones</li>
+                </ul>
+                <div style="margin-top:1rem;background:rgba(59,130,246,0.1);padding:.75rem;border-radius:8px;font-size:.9rem"><i class="bi bi-people"></i> Impacto: <strong>2,550 estudiantes</strong> en 5 años</div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem;background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.05));padding:2rem;border-radius:16px">
+            <h3 style="color:var(--success);font-weight:800;font-size:2rem;margin-bottom:.5rem">✅ META GLOBAL SUPERADA</h3>
+            <p style="font-size:1.2rem;color:#495057">Ahorro de <strong style="color:var(--primary-dark)">$6.460.000 CLP</strong> en 5 años vs soluciones comerciales</p>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 4: INNOVACIÓN -->
+<section id="innovacion" class="slide" style="background:white">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Los 3 Pilares del Valor</h2>
+            <p style="font-size:1.2rem;color:#495057">Por qué un LMS Independiente es Superior</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
+            <div class="pilar-card">
+                <div class="pilar-emoji">⚡</div>
+                <h3 class="pilar-title">Simplicidad Técnica Superior</h3>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.5rem 0">✓ Carga en 1.8 segundos (vs 10-30s)</li>
+                    <li style="padding:.5rem 0">✓ HTML5 + CSS3 + JS vanilla</li>
+                    <li style="padding:.5rem 0">✓ 100% compatibilidad sin plugins</li>
+                    <li style="padding:.5rem 0">✓ GitHub Pages: 99.98% uptime</li>
+                </ul>
+            </div>
+            <div class="pilar-card">
+                <div class="pilar-emoji">💰</div>
+                <h3 class="pilar-title">Sostenibilidad Económica</h3>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.5rem 0">✓ Costo operativo: $0 permanente</li>
+                    <li style="padding:.5rem 0">✓ Ahorro 5 años: $6.46M CLP</li>
+                    <li style="padding:.5rem 0">✓ ROI infinito (inversión interna)</li>
+                    <li style="padding:.5rem 0">✓ Sin licencias ni servidores</li>
+                </ul>
+            </div>
+            <div class="pilar-card">
+                <div class="pilar-emoji">🔓</div>
+                <h3 class="pilar-title">Autonomía Institucional</h3>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.5rem 0">✓ Control total de datos</li>
+                    <li style="padding:.5rem 0">✓ Personalización ilimitada</li>
+                    <li style="padding:.5rem 0">✓ Independencia de TOS externos</li>
+                    <li style="padding:.5rem 0">✓ Código modificable y replicable</li>
+                </ul>
+            </div>
+        </div>
+        <div style="background:linear-gradient(135deg,rgba(232,162,184,0.1),rgba(44,95,102,0.1));padding:2rem;border-radius:16px;margin-top:3rem">
+            <h3 style="text-align:center;font-weight:700;margin-bottom:2rem;font-size:1.5rem">DIADIFO vs LMS Comerciales</h3>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;text-align:center">
+                <div style="font-size:2rem;font-weight:800;color:var(--success)">1.8s</div>
+                <div style="background:var(--primary-dark);color:white;padding:.5rem 1rem;border-radius:50px;font-weight:700">VS</div>
+                <div style="font-size:2rem;font-weight:800;color:var(--danger)">10-30s</div>
+            </div>
+            <div style="text-align:center;margin-top:.5rem;margin-bottom:2rem;color:#495057;font-weight:600">Tiempo de carga</div>
+            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;text-align:center">
+                <div style="font-size:2rem;font-weight:800;color:var(--success)">$0</div>
+                <div style="background:var(--primary-dark);color:white;padding:.5rem 1rem;border-radius:50px;font-weight:700">VS</div>
+                <div style="font-size:2rem;font-weight:800;color:var(--danger)">$1.3M/año</div>
+            </div>
+            <div style="text-align:center;margin-top:.5rem;color:#495057;font-weight:600">Costo operativo</div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 5: ESTRUCTURA -->
+<section id="estructura" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Estructura del Curso</h2>
+            <p style="font-size:1.2rem;color:#495057">Arquitectura Modular Progresiva</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot">M1</div>
+                <div class="timeline-content">
+                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 1</div>
+                    <h3 class="modulo-title">Observación y Gesto</h3>
+                    <p style="color:#495057;margin-bottom:1rem">Fundamentos del croquis rápido, proporciones visuales y distribución de peso</p>
+                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 3 lecciones</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 8 ejercicios</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 2.5 horas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">M2</div>
+                <div class="timeline-content">
+                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 2</div>
+                    <h3 class="modulo-title">Anatomía Funcional</h3>
+                    <p style="color:#495057;margin-bottom:1rem">Estructura ósea, músculos superficiales, manos/pies y proporciones faciales</p>
+                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 4 lecciones</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 12 estudios</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 3.3 horas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot">M3</div>
+                <div class="timeline-content">
+                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 3</div>
+                    <h3 class="modulo-title">Figura Completa</h3>
+                    <p style="color:#495057;margin-bottom:1rem">Síntesis por capas, luz/sombra/volumen y proyecto final evaluado</p>
+                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 3 lecciones</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 1 proyecto final</span>
+                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 5-6 horas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align:center;margin-top:3rem;background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2rem">
+                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#495057;font-weight:600">Lecciones</div></div>
+                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">23</div><div style="color:#495057;font-weight:600">Ejercicios</div></div>
+                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#495057;font-weight:600">Evaluaciones</div></div>
+                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">12</div><div style="color:#495057;font-weight:600">Días</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 6: RESULTADOS -->
+<section id="resultados" class="slide" style="background:white">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Resultados Cuantitativos</h2>
+            <p style="font-size:1.2rem;color:#495057">Métricas Reales de Implementación</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">76%</div><div style="color:#495057">Tasa de Completación</div><span class="badge-success" style="margin-top:.5rem">META SUPERADA (70%)</span></div>
+            <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value">92%</div><div style="color:#495057">Aprobación Evaluaciones</div></div>
+            <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-value">76%</div><div style="color:#495057">Entregas Proyecto Final</div><span class="badge-success" style="margin-top:.5rem">META SUPERADA (70%)</span></div>
+            <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-value">4h</div><div style="color:#495057">Tiempo Promedio</div></div>
+            <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">88%</div><div style="color:#495057">Progreso Promedio</div></div>
+            <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">94%</div><div style="color:#495057">Activos últimos 7 días</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem;margin-top:3rem">
+            <div class="chart-card">
+                <h4 style="font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center">Progreso por Módulo</h4>
+                <canvas id="chartModulos" style="max-height:300px"></canvas>
+            </div>
+            <div class="chart-card">
+                <h4 style="font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center">Evaluaciones Aprobadas</h4>
+                <canvas id="chartEvaluaciones" style="max-height:300px"></canvas>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 7: EVIDENCIAS -->
+<section id="evidencias" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Evidencias Visuales</h2>
+            <p style="font-size:1.2rem;color:#495057">Registro Fotográfico de Implementación</p>
+        </div>
+        
+        <!-- Screenshots LMS -->
+        <div style="margin-bottom:3rem">
+            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-laptop" style="color:var(--primary-light)"></i> Screenshots del LMS</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dashboard principal del LMS<br><small>Agrega tu imagen aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Módulo de lecciones<br><small>Agrega tu imagen aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Sistema de evaluaciones<br><small>Agrega tu imagen aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Progreso del estudiante<br><small>Agrega tu imagen aquí</small></div></div></div>
+            </div>
+        </div>
+        
+        <!-- Taller Presencial -->
+        <div style="margin-bottom:3rem">
+            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-people" style="color:var(--primary-light)"></i> Taller Presencial (13 y 21 noviembre)</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Estudiantes trabajando<br><small>Agrega tu foto aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Ambiente de trabajo<br><small>Agrega tu foto aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Proceso de dibujo<br><small>Agrega tu foto aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Retroalimentación<br><small>Agrega tu foto aquí</small></div></div></div>
+            </div>
+        </div>
+        
+        <!-- Trabajos M3L3 -->
+        <div>
+            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-palette" style="color:var(--primary-light)"></i> Trabajos Entregados - Proyecto Final (M3L3)</h3>
+            <div class="gallery-grid">
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+            </div>
+        </div>
+        
+        <p style="text-align:center;color:#495057;margin-top:2rem;font-style:italic"><i class="bi bi-info-circle"></i> Para agregar tus imágenes: reemplaza los divs con class="gallery-placeholder" por tags &lt;img src="ruta/imagen.jpg"&gt;</p>
+    </div>
+</section>
+
+<!-- SLIDE 8: CONCLUSIONES -->
+<section id="conclusiones" class="slide" style="background:white">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Conclusiones de la Experiencia</h2>
+            <p style="font-size:1.2rem;color:#495057">Fortalezas, Mejoras y Proyecciones</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem">
+            <div class="conclusion-card fortalezas">
+                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+                    <div style="width:50px;height:50px;border-radius:50%;background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-star"></i></div>
+                    <h3 style="font-size:1.4rem;font-weight:700">Fortalezas</h3>
+                </div>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Sistema funcionó sin incidentes técnicos</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Velocidad superior: 1.8s vs 10-30s</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>92% aprobación evaluaciones</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Método contemplativo valorado</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>$0 costo operativo validado</li>
+                </ul>
+            </div>
+            <div class="conclusion-card mejoras">
+                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+                    <div style="width:50px;height:50px;border-radius:50%;background:var(--warning);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-tools"></i></div>
+                    <h3 style="font-size:1.4rem;font-weight:700">Áreas de Mejora</h3>
+                </div>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Implementar desde semana 1</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Explicación del "por qué" en errores</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Integración con clases presenciales</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Ajustar expectativa de horas (8-10h)</li>
+                </ul>
+            </div>
+            <div class="conclusion-card futuro">
+                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
+                    <div style="width:50px;height:50px;border-radius:50%;background:var(--info);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-rocket"></i></div>
+                    <h3 style="font-size:1.4rem;font-weight:700">Proyecciones</h3>
+                </div>
+                <ul style="list-style:none;padding:0">
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2026: Piloto en 2-3 instituciones</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2027: 50-100 estudiantes</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2028-2030: 200-300 estudiantes</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>Impacto: 2,550 estudiantes en 5 años</li>
+                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>Ahorro: $32M+ CLP para el sistema</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 9: AGRADECIMIENTOS -->
+<section id="final" class="slide portada">
+    <div class="slide-container">
+        <h2 style="font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:2rem;background:linear-gradient(135deg,white,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">¡Gracias!</h2>
+        <p style="font-size:1.3rem;max-width:700px;margin:0 auto 2rem;color:rgba(255,255,255,0.9)">Por su tiempo y atención durante esta presentación</p>
+        <div style="background:rgba(255,255,255,0.1);padding:2rem;border-radius:16px;margin:3rem auto;max-width:800px">
+            <h3 style="color:var(--primary-light);font-weight:700;margin-bottom:1.5rem;font-size:1.5rem">Agradecimientos Especiales</h3>
+            <ul style="list-style:none;padding:0;text-align:left">
+                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Universidad de Chile</strong> - Facultad de Filosofía y Humanidades</li>
+                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Programa GCSA</strong> - Diplomado en Diseño Instruccional</li>
+                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Universidad Alberto Hurtado</strong> - Pedagogía en Artes Visuales</li>
+                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>17 estudiantes participantes</strong> del piloto</li>
+                <li style="padding:.75rem 0"><strong>Evaluadores</strong> - Por su tiempo y retroalimentación</li>
+            </ul>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem">
+            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
+                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-person"></i></div>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">Estudiante</div>
+                <div style="font-weight:600">Joselyn Vizcarra</div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
+                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-globe"></i></div>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">LMS Público</div>
+                <div style="font-weight:600"><a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" style="color:white;text-decoration:none">Ver LMS →</a></div>
+            </div>
+            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
+                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-github"></i></div>
+                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">GitHub</div>
+                <div style="font-weight:600"><a href="https://github.com/joseynvizcarra-coder/lms-dibujo-anatomico" target="_blank" style="color:white;text-decoration:none">Código fuente →</a></div>
+            </div>
+        </div>
+        <p style="margin-top:3rem;font-size:1.5rem;font-weight:700;color:var(--primary-light)">¿Preguntas?</p>
+    </div>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded',function(){const e=document.querySelectorAll('.nav-link'),t=document.querySelectorAll('.slide');function n(){let n='';const o=window.pageYOffset||document.documentElement.scrollTop;t.forEach(e=>{const t=e.offsetTop;e.clientHeight;o>=t-200&&(n=e.getAttribute('id'))}),e.forEach(e=>{e.classList.remove('active'),e.getAttribute('href')===`#${n}`&&e.classList.add('active')})}window.addEventListener('scroll',n),e.forEach(e=>{e.addEventListener('click',function(e){e.preventDefault();const t=this.getAttribute('href'),n=document.querySelector(t);n&&(n.scrollIntoView({behavior:'smooth'}),window.innerWidth<=992&&document.getElementById('sidebar').classList.remove('active'))})})});window.addEventListener('load',function(){const e={primaryDark:'#2c5f66',primaryLight:'#e8a2b8',success:'#10b981',info:'#3b82f6'},t=document.getElementById('chartModulos');t&&new Chart(t,{type:'bar',data:{labels:['Módulo 1','Módulo 2','Módulo 3','Promedio General'],datasets:[{label:'Progreso Promedio (%)',data:[90,88,85,88],backgroundColor:[e.primaryDark,e.primaryLight,e.info,e.success],borderRadius:8,borderSkipped:!1}]},options:{responsive:!0,maintainAspectRatio:!0,plugins:{legend:{display:!1},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',padding:12}},scales:{y:{beginAtZero:!0,max:100,ticks:{callback:function(e){return e+'%'}}},x:{grid:{display:!1}}},animation:{duration:1500,easing:'easeInOutQuart'}}});const n=document.getElementById('chartEvaluaciones');n&&new Chart(n,{type:'doughnut',data:{labels:['Aprobadas','No Aprobadas'],datasets:[{data:[156,14],backgroundColor:[e.success,'#e5e7eb'],borderWidth:0,hoverOffset:10}]},options:{responsive:!0,maintainAspectRatio:!0,plugins:{legend:{position:'bottom',labels:{padding:20,font:{size:13,weight:'600'},usePointStyle:!0,pointStyle:'circle'}},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',padding:12,callbacks:{label:function(e){const t=e.label||'',n=e.parsed||0,o=e.dataset.data.reduce((e,t)=>e+t,0);return`${t}: ${n} (${(n/o*100).toFixed(1)}%)`}}}},animation:{animateRotate:!0,animateScale:!0,duration:1500,easing:'easeInOutQuart'}}})});document.addEventListener('keydown',function(e){const t=Array.from(document.querySelectorAll('.slide'));let n=0;const o=window.scrollY;if(t.forEach((e,t)=>{o>=e.offsetTop-200&&(n=t)}),'ArrowDown'===e.key||'PageDown'===e.key){if(e.preventDefault(),n<t.length-1)t[n+1].scrollIntoView({behavior:'smooth'})}else if('ArrowUp'===e.key||'PageUp'===e.key){if(e.preventDefault(),n>0)t[n-1].scrollIntoView({behavior:'smooth'})}else'Home'===e.key?(e.preventDefault(),t[0].scrollIntoView({behavior:'smooth'})):'End'===e.key&&(e.preventDefault(),t[t.length-1].scrollIntoView({behavior:'smooth'}))});console.log('%c✨ Presentación DIADIFO cargada','color:#2c5f66;font-size:16px;font-weight:bold');
+</script>
+</body>
+</html>

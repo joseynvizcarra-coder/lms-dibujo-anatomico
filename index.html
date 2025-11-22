@@ -152,7 +152,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .menu-toggle{position:fixed;top:.8rem;left:.8rem;z-index:1001;background:var(--primary-dark);color:#fff;border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:1.2rem}
 .tooltip-trigger{position:relative;cursor:help;display:inline-flex;align-items:center;gap:.3rem;color:var(--primary-dark);text-decoration:underline;text-decoration-style:dotted}
 .tooltip-trigger:hover{color:var(--primary-light)}
-.tooltip{position:absolute;bottom:125%;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:.75rem 1rem;border-radius:8px;font-size:.85rem;white-space:nowrap;max-width:300px;white-space:normal;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.tooltip{position:absolute;bottom:125%;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:.75rem 1rem;border-radius:8px;font-size:.85rem;white-space:normal;max-width:300px;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark)}
 .tooltip-trigger:hover .tooltip,.tooltip-trigger:focus .tooltip{opacity:1;pointer-events:auto}
 .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:2000;padding:2rem}
@@ -739,6 +739,87 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </main>
 
 <!-- MODALS -->
+<!-- Modal: Rúbrica Proyecto Final -->
+<div class="modal" id="modalRubrica">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-clipboard-check"></i> Rúbrica Proyecto Final</h2>
+            <button class="modal-close" onclick="closeModal('modalRubrica')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="bi bi-info-circle"></i> Especificaciones</h3>
+                <ul class="modal-list">
+                    <li><strong>Formato:</strong> 1/4 mercurio (27.5 × 37.5 cm)</li>
+                    <li><strong>Técnica:</strong> Lápiz grafito</li>
+                    <li><strong>Tiempo:</strong> 2-3 horas presenciales</li>
+                    <li><strong>Modalidad:</strong> Presencial con supervisión docente</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-list-check"></i> 7 Criterios de Evaluación</h3>
+                <ul class="modal-list">
+                    <li>Gesto y Línea de Acción (4 pts)</li>
+                    <li>Proporciones por Observación (4 pts)</li>
+                    <li>Estructura Anatómica (4 pts)</li>
+                    <li>Extremidades (manos y pies) (4 pts)</li>
+                    <li>Valores Tonales y Volumetría (4 pts)</li>
+                    <li>Composición y Limpieza Técnica (4 pts)</li>
+                    <li>Síntesis y Coherencia del Proceso (4 pts)</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-award"></i> Sistema de Calificación</h3>
+                <ul class="modal-list">
+                    <li><strong>Puntaje máximo:</strong> 28 puntos</li>
+                    <li><strong>Mínimo aprobatorio:</strong> 17 puntos (60%)</li>
+                    <li><strong>25-28 pts:</strong> Excelente</li>
+                    <li><strong>21-24 pts:</strong> Bueno</li>
+                    <li><strong>17-20 pts:</strong> Suficiente</li>
+                    <li><strong>&lt;17 pts:</strong> Insuficiente (requiere rehacerlo)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Mentor Anatómico IA -->
+<div class="modal" id="modalMentor">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-robot"></i> Mentor Anatómico IA</h2>
+            <button class="modal-close" onclick="closeModal('modalMentor')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="bi bi-clock"></i> Disponibilidad</h3>
+                <ul class="modal-list">
+                    <li><strong>Disponibilidad:</strong> 24/7 sin costo</li>
+                    <li><strong>Base de conocimiento:</strong> 60+ respuestas predefinidas</li>
+                    <li><strong>Respuesta inmediata:</strong> Sin tiempos de espera</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-layers"></i> 3 Capas de Soporte</h3>
+                <ul class="modal-list">
+                    <li><strong>Conversación básica:</strong> Saludos, despedidas, ayuda general</li>
+                    <li><strong>Soporte emocional:</strong> Detección de frustración, ansiedad, bloqueo</li>
+                    <li><strong>Soporte técnico:</strong> Línea de acción, proporciones, anatomía, manos</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-heart"></i> Características Avanzadas</h3>
+                <ul class="modal-list">
+                    <li><strong>Detección emocional:</strong> Con intensidad (baja, media, alta)</li>
+                    <li><strong>Memoria conversacional:</strong> Contexto de últimas 10 interacciones</li>
+                    <li><strong>Respuestas personalizadas:</strong> Adaptadas al estado emocional</li>
+                    <li><strong>Oferta de breaks:</strong> Cuando detecta estrés acumulado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal: Detalles Técnicos -->
 <div class="modal" id="modalTecnico">
     <div class="modal-content">

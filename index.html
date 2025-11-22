@@ -81,13 +81,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .gallery-section{margin-bottom:2rem}
 .gallery-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
 .gallery-title i{color:var(--primary-light)}
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.8rem}
-.gallery-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);cursor:pointer;transition:all .3s}
-.gallery-item:hover{transform:scale(1.03)}
-.gallery-item img{width:100%;height:100%;object-fit:cover}
-.gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#e9ecef,#dee2e6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#6c757d}
-.gallery-placeholder i{font-size:1.6rem}
-.gallery-placeholder span{font-size:.75rem;text-align:center;padding:0 .4rem}
+.carousel-container{position:relative;overflow:hidden;border-radius:12px;background:#000}
+.carousel-track{display:flex;transition:transform .4s ease}
+.carousel-slide{min-width:100%;aspect-ratio:16/9;flex-shrink:0}
+.carousel-slide img{width:100%;height:100%;object-fit:cover}
+.carousel-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#2c5f66,#1a1a1a);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff}
+.carousel-placeholder i{font-size:3rem;margin-bottom:1rem;opacity:.7}
+.carousel-placeholder span{font-size:1.1rem;opacity:.8}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.9);border:none;width:40px;height:40px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .3s}
+.carousel-btn:hover{background:#fff;transform:translateY(-50%) scale(1.1)}
+.carousel-btn.prev{left:1rem}
+.carousel-btn.next{right:1rem}
+.carousel-dots{position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:10}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;transition:all .3s}
+.carousel-dot.active{background:#fff;width:24px;border-radius:5px}
 .conclusion-card{padding:1.5rem;border-radius:12px;border:2px solid;transition:all .3s}
 .conclusion-card:hover{transform:translateY(-4px)}
 .conclusion-card.fortalezas{border-color:var(--success);background:rgba(16,185,129,.05)}
@@ -134,11 +141,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .vs-badge{background:var(--primary-dark);color:#fff;padding:.3rem .6rem;border-radius:15px;font-weight:700;font-size:.8rem}
 .vs-label{font-size:.85rem;color:#6c757d;font-weight:600;text-align:center}
 .menu-toggle{position:fixed;top:.8rem;left:.8rem;z-index:1001;background:var(--primary-dark);color:#fff;border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:1.2rem}
+.tooltip-trigger{position:relative;cursor:help;display:inline-flex;align-items:center;gap:.3rem;color:var(--primary-dark);text-decoration:underline;text-decoration-style:dotted}
+.tooltip-trigger:hover{color:var(--primary-light)}
+.tooltip{position:absolute;bottom:125%;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:.75rem 1rem;border-radius:8px;font-size:.85rem;white-space:nowrap;max-width:300px;white-space:normal;z-index:100;opacity:0;pointer-events:none;transition:opacity .3s;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.tooltip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:6px solid transparent;border-top-color:var(--dark)}
+.tooltip-trigger:hover .tooltip,.tooltip-trigger:focus .tooltip{opacity:1;pointer-events:auto}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;z-index:2000;padding:2rem}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:16px;max-width:800px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:modalSlideIn .3s ease-out}
+@keyframes modalSlideIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+.modal-header{background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));color:#fff;padding:1.5rem;border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-size:1.5rem;font-weight:700;margin:0}
+.modal-close{background:rgba(255,255,255,.2);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.3rem;transition:all .3s}
+.modal-close:hover{background:rgba(255,255,255,.3);transform:rotate(90deg)}
+.modal-body{padding:2rem}
+.modal-section{margin-bottom:1.5rem}
+.modal-section:last-child{margin-bottom:0}
+.modal-section h3{color:var(--primary-dark);font-size:1.2rem;font-weight:700;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.modal-section h3 i{color:var(--primary-light)}
+.modal-list{list-style:none;padding:0}
+.modal-list li{padding:.6rem 0;padding-left:1.5rem;position:relative;border-bottom:1px solid #f0f0f0}
+.modal-list li:last-child{border-bottom:none}
+.modal-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700}
+.btn-modal{background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));color:#fff;border:none;padding:.75rem 1.5rem;border-radius:8px;cursor:pointer;font-weight:600;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-modal:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(44,95,102,.3)}
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .animate-on-scroll{opacity:0;transform:translateY(15px);transition:all .5s}
 .animate-on-scroll.visible{opacity:1;transform:translateY(0)}
-@media(max-width:992px){.sidebar{transform:translateX(-100%);width:220px}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0}.menu-toggle{display:flex!important}}
-@media(max-width:576px){.slide{padding:2rem 1rem}.stats-grid{grid-template-columns:repeat(2,1fr)}.timeline::before{left:18px}.timeline-dot{width:36px;height:36px;font-size:.9rem}}
+.lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:3000;padding:2rem}
+.lightbox.active{display:flex}
+.lightbox-content{max-width:90%;max-height:90vh;position:relative}
+.lightbox-img{max-width:100%;max-height:90vh;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.lightbox-close{position:absolute;top:-40px;right:0;background:rgba(255,255,255,.2);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center}
+@media(max-width:992px){.sidebar{transform:translateX(-100%);width:220px}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0}.menu-toggle{display:flex!important}.modal-body{padding:1.5rem}.carousel-btn{width:36px;height:36px}.tooltip{max-width:250px}}
+@media(max-width:576px){.slide{padding:2rem 1rem}.stats-grid{grid-template-columns:repeat(2,1fr)}.timeline::before{left:18px}.timeline-dot{width:36px;height:36px;font-size:.9rem}.carousel-btn{width:32px;height:32px;font-size:.9rem}.modal-body{padding:1rem}}
     </style>
 </head>
 <body>
@@ -179,6 +215,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <div class="meta-item"><div class="meta-label">Fecha</div><div class="meta-value">29 Nov 2025</div></div>
         </div>
         <a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" class="portada-btn"><i class="bi bi-box-arrow-up-right"></i> Acceder al LMS</a>
+        <div style="margin-top:2rem">
+            <button class="btn-modal" onclick="openModal('modalMentor')"><i class="bi bi-robot"></i> Ver Mentor IA</button>
+        </div>
     </div>
 </section>
 
@@ -197,7 +236,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <div class="stat-card animate-on-scroll"><div class="stat-icon">💻</div><div class="stat-value"><span class="counter" data-target="94">0</span>%</div><div class="stat-label">WiFi >5Mbps</div></div>
         </div>
         <div class="brechas-container animate-on-scroll">
-            <h3 class="brechas-title"><i class="bi bi-exclamation-triangle"></i> Brechas Críticas Detectadas</h3>
+            <h3 class="brechas-title">
+                <i class="bi bi-exclamation-triangle"></i> 
+                <span class="tooltip-trigger">Brechas Críticas Detectadas
+                    <span class="tooltip">Diagnóstico: Focus groups (17/17), entrevistas (5 estudiantes, 120 min c/u), observación directa. Validación PESTEL: 25 factores positivos vs 1 negativo menor</span>
+                </span>
+            </h3>
             <div class="stats-grid">
                 <div class="stat-card danger"><div class="stat-icon">📊</div><div class="stat-value"><span class="counter" data-target="71">0</span>%</div><div class="stat-label">No recuerda técnicas</div></div>
                 <div class="stat-card warning"><div class="stat-icon">😰</div><div class="stat-value"><span class="counter" data-target="47">0</span>%</div><div class="stat-label">Ansiedad significativa</div></div>
@@ -218,7 +262,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <div class="card-grid">
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
-                <h3 class="feature-title">1. Innovación Técnica</h3>
+                <h3 class="feature-title">
+                    <span class="tooltip-trigger">1. Innovación Técnica
+                        <span class="tooltip">Stack: HTML5 + CSS3 + JS vanilla. Hosting: GitHub Pages (CDN global)</span>
+                    </span>
+                </h3>
                 <ul class="feature-list">
                     <li>Velocidad: <strong>1.8s</strong> vs 10-30s</li>
                     <li>Uptime: <strong>99.98%</strong></li>
@@ -227,7 +275,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             </div>
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                <h3 class="feature-title">2. Impacto Educativo</h3>
+                <h3 class="feature-title">
+                    <span class="tooltip-trigger">2. Impacto Educativo
+                        <span class="tooltip">13/17 estudiantes completaron 100%. 4 no completaron: 2 técnicos/logísticos, 1 sin acceso, 1 parcial</span>
+                    </span>
+                </h3>
                 <ul class="feature-list">
                     <li>Completación: <strong>76%</strong> (meta: 70%)</li>
                     <li>Aprobación: <strong>92%</strong></li>
@@ -237,7 +289,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             </div>
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-recycle"></i></div>
-                <h3 class="feature-title">3. Sostenibilidad</h3>
+                <h3 class="feature-title">
+                    <span class="tooltip-trigger">3. Sostenibilidad
+                        <span class="tooltip">Proyección: 2026 (piloto 2-3 instituciones), 2027 (50-100), 2028-30 (200-300). Impacto total: 2,550 estudiantes</span>
+                    </span>
+                </h3>
                 <ul class="feature-list">
                     <li>Código en GitHub</li>
                     <li>Documentación completa</li>
@@ -266,11 +322,18 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">🔓</div><h3 class="pilar-title">Autonomía Institucional</h3><ul class="pilar-list"><li>✓ Control total de datos</li><li>✓ Personalización ilimitada</li><li>✓ Independencia de TOS</li><li>✓ Código modificable</li></ul></div>
         </div>
         <div class="vs-container animate-on-scroll">
-            <h4 style="text-align:center;font-weight:700;margin-bottom:1rem;color:var(--primary-dark)">DIADIFO vs LMS Comerciales</h4>
+            <h4 style="text-align:center;font-weight:700;margin-bottom:1rem;color:var(--primary-dark)">
+                <span class="tooltip-trigger">DIADIFO vs LMS Comerciales
+                    <span class="tooltip">Fundamentación: Loomis (1943), Nicolaïdes (1941), Bridgman (1920), Richer (1890). Análisis PESTEL completo disponible</span>
+                </span>
+            </h4>
             <div class="vs-row"><div><div class="vs-value good">1.8s</div></div><div class="vs-badge">VS</div><div><div class="vs-value bad">10-30s</div></div></div>
             <div class="vs-label">Tiempo de carga</div>
             <div class="vs-row" style="margin-top:1rem"><div><div class="vs-value good">$0</div></div><div class="vs-badge">VS</div><div><div class="vs-value bad">$1.3M/año</div></div></div>
             <div class="vs-label">Costo operativo</div>
+        </div>
+        <div style="margin-top:1.5rem;text-align:center">
+            <button class="btn-modal" onclick="openModal('modalTecnico')"><i class="bi bi-gear"></i> Ver Detalles Técnicos</button>
         </div>
     </div>
 </section>
@@ -296,6 +359,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">12</div><div style="color:#6c757d;font-size:.85rem">Días</div></div>
             </div>
         </div>
+        <div style="margin-top:1.5rem;text-align:center">
+            <button class="btn-modal" onclick="openModal('modalRubrica')"><i class="bi bi-clipboard-check"></i> Ver Rúbrica Proyecto Final</button>
+        </div>
     </div>
 </section>
 
@@ -308,10 +374,27 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <p class="section-subtitle">Métricas Reales de Implementación</p>
         </div>
         <div class="stats-grid">
-            <div class="stat-card success animate-on-scroll"><div class="stat-icon">🎯</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Completación</div><span class="stat-badge">META ✓</span></div>
+            <div class="stat-card success animate-on-scroll">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value">
+                    <span class="tooltip-trigger"><span class="counter" data-target="76">0</span>%
+                        <span class="tooltip">13/17 estudiantes completaron 100%. 4 no completaron: 2 técnicos/logísticos, 1 sin acceso, 1 parcial</span>
+                    </span>
+                </div>
+                <div class="stat-label">Completación</div>
+                <span class="stat-badge">META ✓</span>
+            </div>
             <div class="stat-card animate-on-scroll"><div class="stat-icon">✅</div><div class="stat-value"><span class="counter" data-target="92">0</span>%</div><div class="stat-label">Aprobación</div></div>
             <div class="stat-card success animate-on-scroll"><div class="stat-icon">📦</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Entregas</div><span class="stat-badge">META ✓</span></div>
-            <div class="stat-card animate-on-scroll"><div class="stat-icon">⏱️</div><div class="stat-value">4h</div><div class="stat-label">Tiempo Prom.</div></div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">⏱️</div>
+                <div class="stat-value">
+                    <span class="tooltip-trigger">4h
+                        <span class="tooltip">Tiempo promedio real vs 12-14h esperadas. El contenido resultó más eficiente de lo planificado</span>
+                    </span>
+                </div>
+                <div class="stat-label">Tiempo Prom.</div>
+            </div>
             <div class="stat-card animate-on-scroll"><div class="stat-icon">📈</div><div class="stat-value"><span class="counter" data-target="88">0</span>%</div><div class="stat-label">Progreso Prom.</div></div>
             <div class="stat-card animate-on-scroll"><div class="stat-icon">👥</div><div class="stat-value"><span class="counter" data-target="94">0</span>%</div><div class="stat-label">Activos 7d</div></div>
         </div>
@@ -330,32 +413,112 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <h2 class="section-title">Evidencias Visuales</h2>
             <p class="section-subtitle">Registro Fotográfico</p>
         </div>
+        
+        <!-- Carrusel 1: Screenshots LMS -->
         <div class="gallery-section animate-on-scroll">
             <h3 class="gallery-title"><i class="bi bi-laptop"></i> Screenshots del LMS</h3>
-            <div class="gallery-grid">
-                <!-- REEMPLAZA gallery-placeholder con <img src="tu-imagen.jpg" alt="desc"> -->
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Dashboard</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Lecciones</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Evaluaciones</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Progreso</span></div></div>
+            <div class="carousel-container" id="carousel1">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-grid-3x3-gap"></i>
+                            <span>Dashboard Principal</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-book"></i>
+                            <span>Módulo de Lecciones</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-clipboard-check"></i>
+                            <span>Sistema de Evaluaciones</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-graph-up"></i>
+                            <span>Progreso del Estudiante</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel1', -1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel1', 1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel1"></div>
             </div>
         </div>
+
+        <!-- Carrusel 2: Taller Presencial -->
         <div class="gallery-section animate-on-scroll">
             <h3 class="gallery-title"><i class="bi bi-people"></i> Taller Presencial</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Estudiantes</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Ambiente</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Proceso</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Feedback</span></div></div>
+            <div class="carousel-container" id="carousel2">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-camera"></i>
+                            <span>Estudiantes Trabajando</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-camera"></i>
+                            <span>Ambiente de Trabajo</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-camera"></i>
+                            <span>Proceso de Dibujo</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-camera"></i>
+                            <span>Retroalimentación Docente</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel2', -1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel2', 1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel2"></div>
             </div>
         </div>
+
+        <!-- Carrusel 3: Proyectos Finales -->
         <div class="gallery-section animate-on-scroll">
-            <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales</h3>
-            <div class="gallery-grid">
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 1</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 2</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 3</span></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 4</span></div></div>
+            <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales M3L3</h3>
+            <div class="carousel-container" id="carousel3">
+                <div class="carousel-track">
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-file-earmark-image"></i>
+                            <span>Trabajo Estudiante 1</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-file-earmark-image"></i>
+                            <span>Trabajo Estudiante 2</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-file-earmark-image"></i>
+                            <span>Trabajo Estudiante 3</span>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-placeholder">
+                            <i class="bi bi-file-earmark-image"></i>
+                            <span>Trabajo Estudiante 4</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel3', -1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel3', 1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel3"></div>
             </div>
         </div>
     </div>
@@ -375,13 +538,20 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 <ul class="conclusion-list"><li>Sistema sin incidentes técnicos</li><li>Velocidad: 1.8s vs 10-30s</li><li>92% aprobación evaluaciones</li><li>Método contemplativo valorado</li><li>$0 costo operativo validado</li></ul>
             </div>
             <div class="conclusion-card mejoras animate-on-scroll">
-                <div class="conclusion-header"><div class="conclusion-icon warning"><i class="bi bi-tools"></i></div><h3 class="conclusion-title">Áreas de Mejora</h3></div>
+                <div class="conclusion-header"><div class="conclusion-icon warning"><i class="bi bi-tools"></i></div><h3 class="conclusion-title">
+                    <span class="tooltip-trigger">Áreas de Mejora
+                        <span class="tooltip">Feedback: "Llegó muy tarde", "Se sintió como dos cosas separadas". Calificación promedio: 7.8/10</span>
+                    </span>
+                </h3></div>
                 <ul class="conclusion-list"><li>Implementar desde semana 1</li><li>Explicar "por qué" en errores</li><li>Integrar con clases presenciales</li><li>Ajustar expectativa horas</li></ul>
             </div>
             <div class="conclusion-card futuro animate-on-scroll">
                 <div class="conclusion-header"><div class="conclusion-icon info"><i class="bi bi-rocket"></i></div><h3 class="conclusion-title">Proyecciones</h3></div>
                 <ul class="conclusion-list"><li>2026: Piloto 2-3 instituciones</li><li>2027: 50-100 estudiantes</li><li>2028-30: 200-300 estudiantes</li><li>Impacto: 2,550 estudiantes</li><li>Ahorro: $32M+ CLP</li></ul>
             </div>
+        </div>
+        <div style="margin-top:1.5rem;text-align:center">
+            <button class="btn-modal" onclick="openModal('modalProtocolo')"><i class="bi bi-shield-check"></i> Ver Protocolo de Intervención</button>
         </div>
     </div>
 </section>
@@ -411,6 +581,96 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 
 </main>
 
+<!-- MODALS -->
+<!-- Modal: Detalles Técnicos -->
+<div class="modal" id="modalTecnico">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-gear"></i> Detalles Técnicos</h2>
+            <button class="modal-close" onclick="closeModal('modalTecnico')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="bi bi-clock"></i> Disponibilidad</h3>
+                <ul class="modal-list">
+                    <li><strong>Disponibilidad:</strong> 24/7 sin costo</li>
+                    <li><strong>Base de conocimiento:</strong> 60+ respuestas predefinidas</li>
+                    <li><strong>Respuesta inmediata:</strong> Sin tiempos de espera</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-layers"></i> 3 Capas de Soporte</h3>
+                <ul class="modal-list">
+                    <li><strong>Conversación básica:</strong> Saludos, despedidas, ayuda general</li>
+                    <li><strong>Soporte emocional:</strong> Detección de frustración, ansiedad, bloqueo</li>
+                    <li><strong>Soporte técnico:</strong> Línea de acción, proporciones, anatomía, manos</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-heart"></i> Características Avanzadas</h3>
+                <ul class="modal-list">
+                    <li><strong>Detección emocional:</strong> Con intensidad (baja, media, alta)</li>
+                    <li><strong>Memoria conversacional:</strong> Contexto de últimas 10 interacciones</li>
+                    <li><strong>Respuestas personalizadas:</strong> Adaptadas al estado emocional</li>
+                    <li><strong>Oferta de breaks:</strong> Cuando detecta estrés acumulado</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Protocolo de Intervención -->
+<div class="modal" id="modalProtocolo">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-shield-check"></i> Protocolo de Intervención</h2>
+            <button class="modal-close" onclick="closeModal('modalProtocolo')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="bi bi-1-circle"></i> Nivel 1: Riesgo Técnico</h3>
+                <ul class="modal-list">
+                    <li><strong>Condición:</strong> Falla técnica >3 veces</li>
+                    <li><strong>Acción:</strong> Contacto directo inmediato</li>
+                    <li><strong>Responsable:</strong> Equipo técnico</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-2-circle"></i> Nivel 2: Riesgo Bajo</h3>
+                <ul class="modal-list">
+                    <li><strong>Condición:</strong> 1-25% progreso en día 6</li>
+                    <li><strong>Acción:</strong> Correo motivacional</li>
+                    <li><strong>Mensaje:</strong> Recordatorio amable y recursos</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-3-circle"></i> Nivel 3: Riesgo Medio</h3>
+                <ul class="modal-list">
+                    <li><strong>Condición:</strong> &lt;25% progreso en día 8</li>
+                    <li><strong>Acción:</strong> Contacto individual personalizado</li>
+                    <li><strong>Objetivo:</strong> Identificar barreras específicas</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-4-circle"></i> Nivel 4: Riesgo Alto</h3>
+                <ul class="modal-list">
+                    <li><strong>Condición:</strong> 0% progreso en día 6</li>
+                    <li><strong>Acción:</strong> Correo + WhatsApp + verificación</li>
+                    <li><strong>Resultado:</strong> 1 caso nivel 4 (Francisca Sepúlveda - sin acceso confirmado)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox para ampliar imágenes -->
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <button class="lightbox-close" onclick="closeLightbox()"><i class="bi bi-x"></i></button>
+        <img id="lightboxImg" class="lightbox-img" src="" alt="">
+    </div>
+</div>
+
 <script>
 // NAV ACTIVE
 const navLinks=document.querySelectorAll('.nav-link'),slides=document.querySelectorAll('.slide');
@@ -419,7 +679,7 @@ window.addEventListener('scroll',updateNav);
 navLinks.forEach(e=>e.addEventListener('click',function(ev){ev.preventDefault();const t=this.getAttribute('href');document.querySelector(t).scrollIntoView({behavior:'smooth'});if(window.innerWidth<=992)document.getElementById('sidebar').classList.remove('active')}));
 
 // KEYBOARD NAV
-document.addEventListener('keydown',e=>{const s=Array.from(slides);let i=0;const y=window.scrollY;s.forEach((el,idx)=>{if(y>=el.offsetTop-200)i=idx});if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(i<s.length-1)s[i+1].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(i>0)s[i-1].scrollIntoView({behavior:'smooth'})}});
+document.addEventListener('keydown',e=>{const s=Array.from(slides);let i=0;const y=window.scrollY;s.forEach((el,idx)=>{if(y>=el.offsetTop-200)i=idx});if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(i<s.length-1)s[i+1].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(i>0)s[i-1].scrollIntoView({behavior:'smooth'})}else if(e.key==='Escape'){closeAllModals();closeLightbox()}});
 
 // SCROLL ANIMATIONS
 const animateEls=document.querySelectorAll('.animate-on-scroll');
@@ -429,6 +689,34 @@ animateEls.forEach(e=>obs.observe(e));
 // COUNTERS
 function animateCounters(el){el.querySelectorAll('.counter').forEach(c=>{if(c.dataset.animated)return;c.dataset.animated='true';const t=+c.dataset.target,d=t/30;let n=0;const u=setInterval(()=>{n+=d;if(n>=t){c.textContent=t;clearInterval(u)}else{c.textContent=Math.floor(n)}},30)})}
 
+// MODALS
+function openModal(id){document.getElementById(id).classList.add('active');document.body.style.overflow='hidden'}
+function closeModal(id){document.getElementById(id).classList.remove('active');document.body.style.overflow=''}
+function closeAllModals(){document.querySelectorAll('.modal').forEach(m=>m.classList.remove('active'));document.body.style.overflow=''}
+document.querySelectorAll('.modal').forEach(modal=>{modal.addEventListener('click',e=>{if(e.target===modal)closeModal(modal.id)})});
+
+// CAROUSELS
+const carousels={};
+function initCarousel(id){const container=document.getElementById(id);const track=container.querySelector('.carousel-track');const slides=track.querySelectorAll('.carousel-slide');const dotsContainer=document.getElementById(`dots-${id}`);carousels[id]={container,track,slides,index:0,total:slides.length};for(let i=0;i<slides.length;i++){const dot=document.createElement('button');dot.className='carousel-dot';if(i===0)dot.classList.add('active');dot.onclick=()=>goToSlide(id,i);dotsContainer.appendChild(dot)}updateCarousel(id)}
+function moveCarousel(id,dir){const c=carousels[id];c.index=(c.index+dir+c.total)%c.total;updateCarousel(id)}
+function goToSlide(id,idx){carousels[id].index=idx;updateCarousel(id)}
+function updateCarousel(id){const c=carousels[id];c.track.style.transform=`translateX(-${c.index*100}%)`;c.container.querySelectorAll('.carousel-dot').forEach((dot,i)=>{dot.classList.toggle('active',i===c.index)})}
+['carousel1','carousel2','carousel3'].forEach(id=>initCarousel(id));
+
+// AUTO-PLAY CAROUSELS (opcional, pausable al hover)
+let autoplayIntervals={};
+function startAutoplay(id,interval=5000){autoplayIntervals[id]=setInterval(()=>moveCarousel(id,1),interval)}
+function stopAutoplay(id){if(autoplayIntervals[id]){clearInterval(autoplayIntervals[id]);delete autoplayIntervals[id]}}
+['carousel1','carousel2','carousel3'].forEach(id=>{const container=document.getElementById(id);container.addEventListener('mouseenter',()=>stopAutoplay(id));container.addEventListener('mouseleave',()=>startAutoplay(id))});
+// Iniciar autoplay
+['carousel1','carousel2','carousel3'].forEach(id=>startAutoplay(id,4000));
+
+// LIGHTBOX
+function openLightbox(src){document.getElementById('lightboxImg').src=src;document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden'}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow=''}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox()});
+document.querySelectorAll('.carousel-slide img, .gallery-item img').forEach(img=>{img.addEventListener('click',()=>openLightbox(img.src))});
+
 // CHARTS
 window.addEventListener('load',()=>{
 const c1=document.getElementById('chartModulos');
@@ -436,6 +724,100 @@ if(c1)new Chart(c1,{type:'bar',data:{labels:['M1','M2','M3','Prom.'],datasets:[{
 const c2=document.getElementById('chartEvaluaciones');
 if(c2)new Chart(c2,{type:'doughnut',data:{labels:['Aprobadas','No Aprobadas'],datasets:[{data:[156,14],backgroundColor:['#10b981','#e5e7eb'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:15,font:{size:12}}}}}});
 });
+
+// PARALLAX EFFECT (sutil en backgrounds)
+window.addEventListener('scroll',()=>{const scrolled=window.pageYOffset;document.querySelectorAll('.slide').forEach((slide,i)=>{if(i%2===0){slide.style.backgroundPositionY=`${scrolled*0.5}px`}})});
+
+// ENTRADA ESCALONADA PARA CARDS
+document.querySelectorAll('.card-grid, .stats-grid').forEach(grid=>{const cards=grid.querySelectorAll('.feature-card, .stat-card, .pilar-card');cards.forEach((card,i)=>{card.style.animationDelay=`${i*0.1}s`})});
+
+// TOOLTIPS MOBILE (tap to toggle)
+if('ontouchstart' in window){document.querySelectorAll('.tooltip-trigger').forEach(trigger=>{trigger.addEventListener('click',e=>{e.preventDefault();const tooltip=trigger.querySelector('.tooltip');const allTooltips=document.querySelectorAll('.tooltip');allTooltips.forEach(t=>{if(t!==tooltip)t.style.opacity='0'});tooltip.style.opacity=tooltip.style.opacity==='1'?'0':'1'})})}
+
+// CERRAR TOOLTIPS AL HACER CLICK FUERA
+document.addEventListener('click',e=>{if(!e.target.closest('.tooltip-trigger')){document.querySelectorAll('.tooltip').forEach(t=>t.style.opacity='0')}});
 </script>
 </body>
-</html>
+</html>-section">
+                <h3><i class="bi bi-speedometer2"></i> Rendimiento</h3>
+                <ul class="modal-list">
+                    <li><strong>Tiempo de carga:</strong> 1.8s promedio</li>
+                    <li><strong>Uptime confirmado:</strong> 99.98%</li>
+                    <li><strong>Compatibilidad:</strong> 100% navegadores sin plugins</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-code-slash"></i> Stack Tecnológico</h3>
+                <ul class="modal-list">
+                    <li>HTML5 + CSS3 + JavaScript vanilla</li>
+                    <li>Hosting: GitHub Pages (CDN global)</li>
+                    <li>Sin frameworks pesados</li>
+                    <li>Sin dependencias externas críticas</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-cash-coin"></i> Costos</h3>
+                <ul class="modal-list">
+                    <li><strong>Desarrollo:</strong> Inversión interna (tiempo)</li>
+                    <li><strong>Operativo:</strong> $0 permanente</li>
+                    <li><strong>Mantenimiento:</strong> Mínimo (actualizaciones de contenido)</li>
+                    <li><strong>Escalabilidad:</strong> Ilimitada sin costos adicionales</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Rúbrica Proyecto Final -->
+<div class="modal" id="modalRubrica">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-clipboard-check"></i> Rúbrica Proyecto Final</h2>
+            <button class="modal-close" onclick="closeModal('modalRubrica')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal-section">
+                <h3><i class="bi bi-info-circle"></i> Especificaciones</h3>
+                <ul class="modal-list">
+                    <li><strong>Formato:</strong> 1/4 mercurio (27.5 × 37.5 cm)</li>
+                    <li><strong>Técnica:</strong> Lápiz grafito</li>
+                    <li><strong>Tiempo:</strong> 2-3 horas presenciales</li>
+                    <li><strong>Modalidad:</strong> Presencial con supervisión docente</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-list-check"></i> 7 Criterios de Evaluación</h3>
+                <ul class="modal-list">
+                    <li>Gesto y Línea de Acción (4 pts)</li>
+                    <li>Proporciones por Observación (4 pts)</li>
+                    <li>Estructura Anatómica (4 pts)</li>
+                    <li>Extremidades (manos y pies) (4 pts)</li>
+                    <li>Valores Tonales y Volumetría (4 pts)</li>
+                    <li>Composición y Limpieza Técnica (4 pts)</li>
+                    <li>Síntesis y Coherencia del Proceso (4 pts)</li>
+                </ul>
+            </div>
+            <div class="modal-section">
+                <h3><i class="bi bi-award"></i> Sistema de Calificación</h3>
+                <ul class="modal-list">
+                    <li><strong>Puntaje máximo:</strong> 28 puntos</li>
+                    <li><strong>Mínimo aprobatorio:</strong> 17 puntos (60%)</li>
+                    <li><strong>25-28 pts:</strong> Excelente</li>
+                    <li><strong>21-24 pts:</strong> Bueno</li>
+                    <li><strong>17-20 pts:</strong> Suficiente</li>
+                    <li><strong>&lt;17 pts:</strong> Insuficiente (requiere rehacerlo)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal: Mentor Anatómico IA -->
+<div class="modal" id="modalMentor">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title"><i class="bi bi-robot"></i> Mentor Anatómico IA</h2>
+            <button class="modal-close" onclick="closeModal('modalMentor')"><i class="bi bi-x"></i></button>
+        </div>
+        <div class="modal-body">
+            <div class="modal

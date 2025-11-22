@@ -3,33 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DIADIFO - Presentación Proyecto | Joselyn Vizcarra</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>DIADIFO - Presentación | Joselyn Vizcarra</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-:root{--primary-dark:#2c5f66;--primary-light:#e8a2b8;--dark:#1a1a1a;--gray-light:#f8f9fa;--success:#10b981;--danger:#ef4444;--warning:#f59e0b;--info:#3b82f6}*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--gray-light);color:var(--dark);line-height:1.6;overflow-x:hidden;scroll-behavior:smooth}.sidebar{position:fixed;left:0;top:0;height:100vh;width:280px;background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;padding:2rem 1.5rem;z-index:1000;box-shadow:0 10px 30px rgba(0,0,0,0.2);overflow-y:auto;transition:transform .3s}.sidebar-header{margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:2px solid rgba(255,255,255,0.2)}.sidebar-logo{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-light),white);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:1rem;font-size:2rem;color:var(--primary-dark);font-weight:800}.sidebar-title{font-size:1.3rem;font-weight:700;color:var(--primary-light)}.nav-menu{list-style:none}.nav-link{display:flex;align-items:center;gap:1rem;padding:.75rem 1rem;color:rgba(255,255,255,0.8);text-decoration:none;border-radius:8px;transition:all .3s;cursor:pointer}.nav-link:hover,.nav-link.active{background:var(--primary-light);color:var(--dark);transform:translateX(5px)}.main-content{margin-left:280px;min-height:100vh}.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:4rem 3rem}.slide-container{max-width:1200px;width:100%;animation:fadeIn .8s}.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;text-align:center}.portada-logo{width:120px;height:120px;background:linear-gradient(135deg,var(--primary-light),white);border-radius:20px;margin:0 auto 2rem;display:flex;align-items:center;justify-content:center;font-size:4rem;color:var(--primary-dark);font-weight:800}.portada-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,white,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}.portada-meta{display:flex;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3rem}.meta-item{background:rgba(255,255,255,0.1);padding:1rem 1.5rem;border-radius:12px}.meta-label{font-size:.85rem;color:rgba(255,255,255,0.7)}.portada-link{display:inline-flex;align-items:center;gap:.5rem;background:var(--primary-light);color:var(--dark);padding:1rem 2rem;border-radius:50px;text-decoration:none;font-weight:600;margin-top:2rem;transition:all .3s}.portada-link:hover{transform:translateY(-3px);color:var(--dark)}.section-header{text-align:center;margin-bottom:3rem}.section-number{display:inline-block;background:var(--primary-light);color:var(--dark);width:50px;height:50px;border-radius:50%;line-height:50px;font-weight:800;margin-bottom:1rem}.section-title{font-size:clamp(2rem,4vw,3rem);color:var(--primary-dark);font-weight:800}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:3rem 0}.stat-card{background:linear-gradient(135deg,rgba(44,95,102,0.05),rgba(232,162,184,0.05));padding:2rem;border-radius:16px;text-align:center;border:2px solid #dee2e6;transition:all .3s;position:relative}.stat-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light))}.stat-card:hover{transform:translateY(-5px);box-shadow:0 10px 30px rgba(0,0,0,0.12)}.stat-icon{font-size:2.5rem;margin-bottom:1rem}.stat-value{font-size:2.5rem;font-weight:800;color:var(--primary-dark)}.objetivo-card{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:all .3s;cursor:pointer;border-left:4px solid var(--primary-dark)}.objetivo-card:hover{transform:translateY(-10px);box-shadow:0 10px 30px rgba(0,0,0,0.12)}.objetivo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:12px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.8rem;margin-bottom:1.5rem}.objetivo-title{font-size:1.3rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem}.badge-success{background:var(--success);color:white;padding:.5rem 1rem;border-radius:50px;font-size:.85rem;font-weight:600}.pilar-card{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:white;padding:2.5rem;border-radius:16px;position:relative;overflow:hidden;transition:all .3s}.pilar-card:hover{transform:scale(1.05)}.pilar-emoji{font-size:3rem;margin-bottom:1rem}.pilar-title{font-size:1.4rem;font-weight:700;color:var(--primary-light);margin-bottom:1rem}.timeline{position:relative;margin:3rem 0}.timeline-item{display:flex;gap:2rem;margin-bottom:3rem;align-items:center}.timeline-dot{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:1.5rem;flex-shrink:0}.timeline-content{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08);flex:1}.modulo-title{font-size:1.3rem;font-weight:700;margin-bottom:1rem}.chart-card{background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08)}.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1.5rem}.gallery-item{aspect-ratio:4/3;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer;transition:all .3s}.gallery-item:hover{transform:scale(1.05)}.gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#f8f9fa,#dee2e6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}.conclusion-card{padding:2rem;border-radius:16px;border:3px solid}.fortalezas{border-color:var(--success);background:rgba(16,185,129,0.05)}.mejoras{border-color:var(--warning);background:rgba(245,158,11,0.05)}.futuro{border-color:var(--info);background:rgba(59,130,246,0.05)}@keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}@media(max-width:992px){.sidebar{transform:translateX(-100%)}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0}.slide{padding:3rem 1.5rem}}
+:root{--primary-dark:#2c5f66;--primary-light:#e8a2b8;--dark:#1a1a1a;--gray-light:#f8f9fa;--success:#10b981;--danger:#ef4444;--warning:#f59e0b;--info:#3b82f6}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--gray-light);color:var(--dark);line-height:1.6;overflow-x:hidden}
+.sidebar{position:fixed;left:0;top:0;height:100vh;width:240px;background:linear-gradient(180deg,var(--primary-dark),var(--dark));color:#fff;padding:1.5rem 1rem;z-index:1000;box-shadow:4px 0 20px rgba(0,0,0,.15);overflow-y:auto;transition:transform .3s}
+.sidebar-header{text-align:center;padding-bottom:1rem;border-bottom:2px solid rgba(255,255,255,.15);margin-bottom:1rem}
+.sidebar-logo{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:14px;margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--primary-dark);font-weight:800}
+.sidebar-title{font-size:1.3rem;font-weight:700;color:var(--primary-light)}
+.nav-menu{list-style:none}
+.nav-link{display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;color:rgba(255,255,255,.75);text-decoration:none;border-radius:8px;transition:all .25s;cursor:pointer;font-size:.85rem;margin-bottom:.2rem}
+.nav-link:hover,.nav-link.active{background:var(--primary-light);color:var(--dark);transform:translateX(3px)}
+.nav-link i{font-size:1rem}
+.main-content{margin-left:240px;min-height:100vh}
+.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2.5rem 2rem;position:relative}
+.slide-container{max-width:1000px;width:100%;animation:fadeInUp .5s ease-out}
+.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
+.portada-logo{width:90px;height:90px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:18px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--primary-dark);font-weight:800;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.portada-title{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.portada-subtitle{font-size:1.2rem;color:rgba(255,255,255,.9);margin-bottom:.4rem}
+.portada-tagline{font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:1.5rem}
+.portada-meta{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.meta-item{background:rgba(255,255,255,.1);padding:.6rem 1rem;border-radius:8px}
+.meta-label{font-size:.7rem;color:rgba(255,255,255,.6)}
+.meta-value{font-weight:600;font-size:.9rem}
+.portada-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--primary-light);color:var(--dark);padding:.75rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;transition:all .3s}
+.portada-btn:hover{transform:translateY(-2px)}
+.section-header{text-align:center;margin-bottom:2rem}
+.section-number{display:inline-flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--dark);width:40px;height:40px;border-radius:50%;font-weight:800;font-size:1.1rem;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--primary-dark);font-weight:800}
+.section-subtitle{font-size:1rem;color:#6c757d;margin-top:.4rem}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem}
+.stat-card{background:#fff;padding:1.2rem .8rem;border-radius:12px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.06);position:relative;overflow:hidden;transition:all .3s;cursor:pointer}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light))}
+.stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.stat-card.success::before{background:var(--success)}
+.stat-card.danger::before{background:var(--danger)}
+.stat-card.warning::before{background:var(--warning)}
+.stat-icon{font-size:1.6rem;margin-bottom:.3rem}
+.stat-value{font-size:1.7rem;font-weight:800;color:var(--primary-dark)}
+.stat-label{font-size:.8rem;color:#6c757d}
+.stat-badge{display:inline-block;background:var(--success);color:#fff;padding:.15rem .5rem;border-radius:15px;font-size:.65rem;font-weight:600;margin-top:.4rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.feature-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-left:4px solid var(--primary-dark)}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.feature-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;margin-bottom:.8rem}
+.feature-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.6rem}
+.feature-list{list-style:none;padding:0}
+.feature-list li{padding:.3rem 0;padding-left:1.3rem;position:relative;font-size:.85rem;color:#495057}
+.feature-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700}
+.pilar-card{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;padding:1.5rem;border-radius:14px;transition:all .3s}
+.pilar-card:hover{transform:scale(1.02)}
+.pilar-emoji{font-size:2rem;margin-bottom:.5rem}
+.pilar-title{font-size:1.1rem;font-weight:700;color:var(--primary-light);margin-bottom:.6rem}
+.pilar-list{list-style:none;padding:0}
+.pilar-list li{padding:.25rem 0;font-size:.85rem;opacity:.9}
+.timeline{position:relative;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:25px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--primary-dark),var(--primary-light))}
+.timeline-item{display:flex;gap:1.2rem;margin-bottom:1.5rem;position:relative}
+.timeline-dot{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;z-index:1}
+.timeline-content{background:#fff;padding:1.2rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);flex:1;transition:all .3s}
+.timeline-content:hover{transform:translateX(4px)}
+.timeline-label{font-size:.7rem;color:var(--primary-dark);font-weight:700;text-transform:uppercase}
+.timeline-title{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}
+.timeline-desc{font-size:.85rem;color:#6c757d;margin-bottom:.5rem}
+.timeline-stats{display:flex;gap:.8rem;flex-wrap:wrap;padding-top:.5rem;border-top:1px solid #eee}
+.timeline-stat{display:flex;align-items:center;gap:.3rem;font-size:.75rem;color:#495057}
+.timeline-stat i{color:var(--primary-dark)}
+.chart-card{background:#fff;padding:1.2rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.chart-title{font-size:1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem;text-align:center}
+.chart-container{height:200px;position:relative}
+.gallery-section{margin-bottom:2rem}
+.gallery-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.gallery-title i{color:var(--primary-light)}
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.8rem}
+.gallery-item{aspect-ratio:4/3;border-radius:10px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.08);cursor:pointer;transition:all .3s}
+.gallery-item:hover{transform:scale(1.03)}
+.gallery-item img{width:100%;height:100%;object-fit:cover}
+.gallery-placeholder{width:100%;height:100%;background:linear-gradient(135deg,#e9ecef,#dee2e6);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;color:#6c757d}
+.gallery-placeholder i{font-size:1.6rem}
+.gallery-placeholder span{font-size:.75rem;text-align:center;padding:0 .4rem}
+.conclusion-card{padding:1.5rem;border-radius:12px;border:2px solid;transition:all .3s}
+.conclusion-card:hover{transform:translateY(-4px)}
+.conclusion-card.fortalezas{border-color:var(--success);background:rgba(16,185,129,.05)}
+.conclusion-card.mejoras{border-color:var(--warning);background:rgba(245,158,11,.05)}
+.conclusion-card.futuro{border-color:var(--info);background:rgba(59,130,246,.05)}
+.conclusion-header{display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem}
+.conclusion-icon{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.2rem}
+.conclusion-icon.success{background:var(--success)}
+.conclusion-icon.warning{background:var(--warning)}
+.conclusion-icon.info{background:var(--info)}
+.conclusion-title{font-size:1.1rem;font-weight:700}
+.conclusion-list{list-style:none;padding:0}
+.conclusion-list li{padding:.4rem 0;padding-left:1.5rem;position:relative;font-size:.85rem;border-bottom:1px solid rgba(0,0,0,.05)}
+.conclusion-list li:last-child{border-bottom:none}
+.conclusion-list li::before{content:'→';position:absolute;left:0;font-weight:800}
+.fortalezas .conclusion-list li::before{color:var(--success)}
+.mejoras .conclusion-list li::before{color:var(--warning)}
+.futuro .conclusion-list li::before{color:var(--info)}
+.final-slide{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
+.final-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.8rem}
+.final-thanks{background:rgba(255,255,255,.1);padding:1.2rem;border-radius:12px;margin:1.5rem auto;max-width:600px}
+.final-thanks h3{color:var(--primary-light);margin-bottom:.8rem;font-size:1.1rem}
+.final-thanks ul{list-style:none;padding:0;text-align:left}
+.final-thanks li{padding:.4rem 0;border-bottom:1px solid rgba(255,255,255,.1);font-size:.9rem}
+.final-thanks li:last-child{border-bottom:none}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem;margin-top:1.5rem}
+.contact-item{background:rgba(255,255,255,.1);padding:1rem;border-radius:10px;transition:all .3s}
+.contact-item:hover{background:rgba(255,255,255,.15);transform:translateY(-2px)}
+.contact-item i{font-size:1.3rem;color:var(--primary-light);margin-bottom:.4rem}
+.contact-item a{color:#fff;text-decoration:none;font-weight:500;font-size:.85rem}
+.questions{margin-top:1.5rem;font-size:1.5rem;font-weight:700;color:var(--primary-light)}
+.highlight-box{background:linear-gradient(135deg,rgba(16,185,129,.1),rgba(16,185,129,.05));padding:1.2rem;border-radius:12px;text-align:center;margin-top:1.5rem;border:2px solid var(--success)}
+.highlight-box h3{color:var(--success);font-size:1.3rem;font-weight:800;margin-bottom:.3rem}
+.highlight-box p{font-size:1rem;color:#495057}
+.highlight-box strong{color:var(--primary-dark)}
+.brechas-container{background:linear-gradient(135deg,rgba(44,95,102,.08),rgba(232,162,184,.08));padding:1.2rem;border-radius:12px;margin-top:1.5rem}
+.brechas-title{color:var(--primary-dark);font-weight:700;font-size:1.1rem;margin-bottom:.8rem;display:flex;align-items:center;gap:.4rem}
+.brechas-title i{color:var(--warning)}
+.vs-container{background:linear-gradient(135deg,rgba(232,162,184,.1),rgba(44,95,102,.1));padding:1.2rem;border-radius:12px;margin-top:1.2rem}
+.vs-row{display:grid;grid-template-columns:1fr auto 1fr;gap:1rem;align-items:center;text-align:center;margin-bottom:.6rem}
+.vs-value{font-size:1.6rem;font-weight:800}
+.vs-value.good{color:var(--success)}
+.vs-value.bad{color:var(--danger)}
+.vs-badge{background:var(--primary-dark);color:#fff;padding:.3rem .6rem;border-radius:15px;font-weight:700;font-size:.8rem}
+.vs-label{font-size:.85rem;color:#6c757d;font-weight:600;text-align:center}
+.menu-toggle{position:fixed;top:.8rem;left:.8rem;z-index:1001;background:var(--primary-dark);color:#fff;border:none;width:40px;height:40px;border-radius:8px;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:1.2rem}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.animate-on-scroll{opacity:0;transform:translateY(15px);transition:all .5s}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+@media(max-width:992px){.sidebar{transform:translateX(-100%);width:220px}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0}.menu-toggle{display:flex!important}}
+@media(max-width:576px){.slide{padding:2rem 1rem}.stats-grid{grid-template-columns:repeat(2,1fr)}.timeline::before{left:18px}.timeline-dot{width:36px;height:36px;font-size:.9rem}}
     </style>
 </head>
 <body>
 
-<!-- Sidebar -->
+<button class="menu-toggle" onclick="document.getElementById('sidebar').classList.toggle('active')"><i class="bi bi-list"></i></button>
+
 <nav class="sidebar" id="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">DA</div>
         <h2 class="sidebar-title">DIADIFO</h2>
-        <p style="font-size:.85rem;color:rgba(255,255,255,0.7)">Presentación Proyecto</p>
     </div>
     <ul class="nav-menu">
         <li><a href="#portada" class="nav-link active"><i class="bi bi-house-door"></i> Portada</a></li>
         <li><a href="#contexto" class="nav-link"><i class="bi bi-building"></i> Contexto</a></li>
         <li><a href="#objetivos" class="nav-link"><i class="bi bi-bullseye"></i> Objetivos</a></li>
-        <li><a href="#innovacion" class="nav-link"><i class="bi bi-lightbulb"></i> Innovación</a></li>
+        <li><a href="#innovacion" class="nav-link"><i class="bi bi-lightning-charge"></i> Innovación</a></li>
         <li><a href="#estructura" class="nav-link"><i class="bi bi-diagram-3"></i> Estructura</a></li>
         <li><a href="#resultados" class="nav-link"><i class="bi bi-graph-up"></i> Resultados</a></li>
         <li><a href="#evidencias" class="nav-link"><i class="bi bi-images"></i> Evidencias</a></li>
         <li><a href="#conclusiones" class="nav-link"><i class="bi bi-check-circle"></i> Conclusiones</a></li>
-        <li><a href="#final" class="nav-link"><i class="bi bi-heart"></i> Agradecimientos</a></li>
+        <li><a href="#final" class="nav-link"><i class="bi bi-heart"></i> Gracias</a></li>
     </ul>
 </nav>
 
@@ -40,40 +170,38 @@
     <div class="slide-container">
         <div class="portada-logo">DA</div>
         <h1 class="portada-title">DIADIFO</h1>
-        <p style="font-size:1.8rem;color:rgba(255,255,255,0.9);margin-bottom:1rem">Sistema LMS Independiente para Dibujo Anatómico</p>
-        <p style="font-size:1.1rem;color:rgba(255,255,255,0.8)">Innovación Técnica + Metodología ABP + Diseño Instruccional ADDIE</p>
+        <p class="portada-subtitle">Sistema LMS Independiente para Dibujo Anatómico</p>
+        <p class="portada-tagline">Innovación Técnica + Metodología ABP + Diseño ADDIE</p>
         <div class="portada-meta">
-            <div class="meta-item"><div class="meta-label">Estudiante</div><div style="font-weight:600">Joselyn Vizcarra</div></div>
-            <div class="meta-item"><div class="meta-label">Diplomado</div><div style="font-weight:600">Diseño Instruccional</div></div>
-            <div class="meta-item"><div class="meta-label">Universidad</div><div style="font-weight:600">Universidad de Chile</div></div>
-            <div class="meta-item"><div class="meta-label">Fecha</div><div style="font-weight:600">29 Nov 2025</div></div>
+            <div class="meta-item"><div class="meta-label">Estudiante</div><div class="meta-value">Joselyn Vizcarra</div></div>
+            <div class="meta-item"><div class="meta-label">Diplomado</div><div class="meta-value">Diseño Instruccional</div></div>
+            <div class="meta-item"><div class="meta-label">Universidad</div><div class="meta-value">U. de Chile</div></div>
+            <div class="meta-item"><div class="meta-label">Fecha</div><div class="meta-value">29 Nov 2025</div></div>
         </div>
-        <a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" class="portada-link">
-            <i class="bi bi-box-arrow-up-right"></i> Acceder al LMS
-        </a>
+        <a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" class="portada-btn"><i class="bi bi-box-arrow-up-right"></i> Acceder al LMS</a>
     </div>
 </section>
 
 <!-- SLIDE 2: CONTEXTO -->
-<section id="contexto" class="slide" style="background:white">
+<section id="contexto" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">01</span>
             <h2 class="section-title">Contexto del Proyecto</h2>
-            <p style="font-size:1.2rem;color:#495057">Universidad Alberto Hurtado - Pedagogía en Artes Visuales</p>
+            <p class="section-subtitle">Universidad Alberto Hurtado - Pedagogía en Artes Visuales</p>
         </div>
         <div class="stats-grid">
-            <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">17</div><div style="color:#495057">Estudiantes 4° año</div></div>
-            <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-value">12</div><div style="color:#495057">Días de curso</div></div>
-            <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">4</div><div style="color:#495057">Semestres sin práctica</div></div>
-            <div class="stat-card"><div class="stat-icon">💻</div><div class="stat-value">94%</div><div style="color:#495057">WiFi >5Mbps</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">👥</div><div class="stat-value counter" data-target="17">0</div><div class="stat-label">Estudiantes 4° año</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">📅</div><div class="stat-value counter" data-target="12">0</div><div class="stat-label">Días de curso</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">📚</div><div class="stat-value counter" data-target="4">0</div><div class="stat-label">Semestres sin práctica</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">💻</div><div class="stat-value"><span class="counter" data-target="94">0</span>%</div><div class="stat-label">WiFi >5Mbps</div></div>
         </div>
-        <div style="background:linear-gradient(135deg,rgba(44,95,102,0.1),rgba(232,162,184,0.1));padding:2rem;border-radius:16px;margin-top:3rem">
-            <h3 style="color:var(--primary-dark);font-weight:700;margin-bottom:1.5rem;font-size:1.5rem"><i class="bi bi-exclamation-triangle" style="color:var(--warning)"></i> Brechas Críticas Detectadas</h3>
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-exclamation-triangle"></i> Brechas Críticas Detectadas</h3>
             <div class="stats-grid">
-                <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-value">71%</div><div style="color:#495057">No recuerda técnicas básicas</div></div>
-                <div class="stat-card"><div class="stat-icon">😰</div><div class="stat-value">47%</div><div style="color:#495057">Ansiedad significativa</div></div>
-                <div class="stat-card"><div class="stat-icon">⏰</div><div class="stat-value">65%</div><div style="color:#495057">Trabaja part-time</div></div>
+                <div class="stat-card danger"><div class="stat-icon">📊</div><div class="stat-value"><span class="counter" data-target="71">0</span>%</div><div class="stat-label">No recuerda técnicas</div></div>
+                <div class="stat-card warning"><div class="stat-icon">😰</div><div class="stat-value"><span class="counter" data-target="47">0</span>%</div><div class="stat-label">Ansiedad significativa</div></div>
+                <div class="stat-card"><div class="stat-icon">⏰</div><div class="stat-value"><span class="counter" data-target="65">0</span>%</div><div class="stat-label">Trabaja part-time</div></div>
             </div>
         </div>
     </div>
@@ -85,103 +213,64 @@
         <div class="section-header">
             <span class="section-number">02</span>
             <h2 class="section-title">Objetivos del Proyecto</h2>
-            <p style="font-size:1.2rem;color:#495057">Innovación, Impacto y Sostenibilidad</p>
+            <p class="section-subtitle">Innovación, Impacto y Sostenibilidad</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem">
-            <div class="objetivo-card">
-                <div class="objetivo-icon"><i class="bi bi-lightning-charge"></i></div>
-                <h3 class="objetivo-title">1. Innovación Técnica</h3>
-                <p style="color:#495057;margin-bottom:1rem">Crear LMS con 10 lecciones funcionales que supere a LMS comerciales en velocidad, disponibilidad y control.</p>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Velocidad: <strong>1.8s</strong> vs 10-30s</li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Uptime: <strong>99.98%</strong></li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Costo: <strong>$0</strong> permanente</li>
+        <div class="card-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
+                <h3 class="feature-title">1. Innovación Técnica</h3>
+                <ul class="feature-list">
+                    <li>Velocidad: <strong>1.8s</strong> vs 10-30s</li>
+                    <li>Uptime: <strong>99.98%</strong></li>
+                    <li>Costo: <strong>$0</strong> permanente</li>
                 </ul>
             </div>
-            <div class="objetivo-card">
-                <div class="objetivo-icon"><i class="bi bi-graph-up-arrow"></i></div>
-                <h3 class="objetivo-title">2. Impacto Educativo</h3>
-                <p style="color:#495057;margin-bottom:1rem">Lograr resultados medibles en completación, aprobación y entregas de proyectos finales.</p>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Completación: <strong>76%</strong> (meta: 70%)</li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Aprobación: <strong>92%</strong></li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Entregas: <strong>76%</strong> (meta: 70%)</li>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <h3 class="feature-title">2. Impacto Educativo</h3>
+                <ul class="feature-list">
+                    <li>Completación: <strong>76%</strong> (meta: 70%)</li>
+                    <li>Aprobación: <strong>92%</strong></li>
+                    <li>Entregas: <strong>76%</strong> (meta: 70%)</li>
                 </ul>
-                <div style="margin-top:1rem"><span class="badge-success"><i class="bi bi-trophy"></i> METAS SUPERADAS</span></div>
+                <span class="stat-badge">✓ METAS SUPERADAS</span>
             </div>
-            <div class="objetivo-card">
-                <div class="objetivo-icon"><i class="bi bi-recycle"></i></div>
-                <h3 class="objetivo-title">3. Sostenibilidad</h3>
-                <p style="color:#495057;margin-bottom:1rem">Crear modelo replicable y escalable para otras instituciones con documentación completa.</p>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Código en GitHub</li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Documentación completa</li>
-                    <li style="padding:.25rem 0"><i class="bi bi-check-circle" style="color:var(--success)"></i> Proyección 2-3 instituciones</li>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-recycle"></i></div>
+                <h3 class="feature-title">3. Sostenibilidad</h3>
+                <ul class="feature-list">
+                    <li>Código en GitHub</li>
+                    <li>Documentación completa</li>
+                    <li>Impacto: 2,550 estudiantes</li>
                 </ul>
-                <div style="margin-top:1rem;background:rgba(59,130,246,0.1);padding:.75rem;border-radius:8px;font-size:.9rem"><i class="bi bi-people"></i> Impacto: <strong>2,550 estudiantes</strong> en 5 años</div>
             </div>
         </div>
-        <div style="text-align:center;margin-top:3rem;background:linear-gradient(135deg,rgba(16,185,129,0.1),rgba(16,185,129,0.05));padding:2rem;border-radius:16px">
-            <h3 style="color:var(--success);font-weight:800;font-size:2rem;margin-bottom:.5rem">✅ META GLOBAL SUPERADA</h3>
-            <p style="font-size:1.2rem;color:#495057">Ahorro de <strong style="color:var(--primary-dark)">$6.460.000 CLP</strong> en 5 años vs soluciones comerciales</p>
+        <div class="highlight-box animate-on-scroll">
+            <h3>✅ META GLOBAL SUPERADA</h3>
+            <p>Ahorro de <strong>$6.460.000 CLP</strong> en 5 años vs soluciones comerciales</p>
         </div>
     </div>
 </section>
 
 <!-- SLIDE 4: INNOVACIÓN -->
-<section id="innovacion" class="slide" style="background:white">
+<section id="innovacion" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">03</span>
             <h2 class="section-title">Los 3 Pilares del Valor</h2>
-            <p style="font-size:1.2rem;color:#495057">Por qué un LMS Independiente es Superior</p>
+            <p class="section-subtitle">Por qué un LMS Independiente es Superior</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem">
-            <div class="pilar-card">
-                <div class="pilar-emoji">⚡</div>
-                <h3 class="pilar-title">Simplicidad Técnica Superior</h3>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.5rem 0">✓ Carga en 1.8 segundos (vs 10-30s)</li>
-                    <li style="padding:.5rem 0">✓ HTML5 + CSS3 + JS vanilla</li>
-                    <li style="padding:.5rem 0">✓ 100% compatibilidad sin plugins</li>
-                    <li style="padding:.5rem 0">✓ GitHub Pages: 99.98% uptime</li>
-                </ul>
-            </div>
-            <div class="pilar-card">
-                <div class="pilar-emoji">💰</div>
-                <h3 class="pilar-title">Sostenibilidad Económica</h3>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.5rem 0">✓ Costo operativo: $0 permanente</li>
-                    <li style="padding:.5rem 0">✓ Ahorro 5 años: $6.46M CLP</li>
-                    <li style="padding:.5rem 0">✓ ROI infinito (inversión interna)</li>
-                    <li style="padding:.5rem 0">✓ Sin licencias ni servidores</li>
-                </ul>
-            </div>
-            <div class="pilar-card">
-                <div class="pilar-emoji">🔓</div>
-                <h3 class="pilar-title">Autonomía Institucional</h3>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.5rem 0">✓ Control total de datos</li>
-                    <li style="padding:.5rem 0">✓ Personalización ilimitada</li>
-                    <li style="padding:.5rem 0">✓ Independencia de TOS externos</li>
-                    <li style="padding:.5rem 0">✓ Código modificable y replicable</li>
-                </ul>
-            </div>
+        <div class="card-grid">
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">⚡</div><h3 class="pilar-title">Simplicidad Técnica</h3><ul class="pilar-list"><li>✓ Carga en 1.8 segundos</li><li>✓ HTML5 + CSS3 + JS vanilla</li><li>✓ 100% compatible</li><li>✓ GitHub Pages: 99.98%</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">💰</div><h3 class="pilar-title">Sostenibilidad Económica</h3><ul class="pilar-list"><li>✓ Costo operativo: $0</li><li>✓ Ahorro: $6.46M CLP</li><li>✓ ROI infinito</li><li>✓ Sin licencias</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">🔓</div><h3 class="pilar-title">Autonomía Institucional</h3><ul class="pilar-list"><li>✓ Control total de datos</li><li>✓ Personalización ilimitada</li><li>✓ Independencia de TOS</li><li>✓ Código modificable</li></ul></div>
         </div>
-        <div style="background:linear-gradient(135deg,rgba(232,162,184,0.1),rgba(44,95,102,0.1));padding:2rem;border-radius:16px;margin-top:3rem">
-            <h3 style="text-align:center;font-weight:700;margin-bottom:2rem;font-size:1.5rem">DIADIFO vs LMS Comerciales</h3>
-            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;text-align:center">
-                <div style="font-size:2rem;font-weight:800;color:var(--success)">1.8s</div>
-                <div style="background:var(--primary-dark);color:white;padding:.5rem 1rem;border-radius:50px;font-weight:700">VS</div>
-                <div style="font-size:2rem;font-weight:800;color:var(--danger)">10-30s</div>
-            </div>
-            <div style="text-align:center;margin-top:.5rem;margin-bottom:2rem;color:#495057;font-weight:600">Tiempo de carga</div>
-            <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;text-align:center">
-                <div style="font-size:2rem;font-weight:800;color:var(--success)">$0</div>
-                <div style="background:var(--primary-dark);color:white;padding:.5rem 1rem;border-radius:50px;font-weight:700">VS</div>
-                <div style="font-size:2rem;font-weight:800;color:var(--danger)">$1.3M/año</div>
-            </div>
-            <div style="text-align:center;margin-top:.5rem;color:#495057;font-weight:600">Costo operativo</div>
+        <div class="vs-container animate-on-scroll">
+            <h4 style="text-align:center;font-weight:700;margin-bottom:1rem;color:var(--primary-dark)">DIADIFO vs LMS Comerciales</h4>
+            <div class="vs-row"><div><div class="vs-value good">1.8s</div></div><div class="vs-badge">VS</div><div><div class="vs-value bad">10-30s</div></div></div>
+            <div class="vs-label">Tiempo de carga</div>
+            <div class="vs-row" style="margin-top:1rem"><div><div class="vs-value good">$0</div></div><div class="vs-badge">VS</div><div><div class="vs-value bad">$1.3M/año</div></div></div>
+            <div class="vs-label">Costo operativo</div>
         </div>
     </div>
 </section>
@@ -192,85 +281,43 @@
         <div class="section-header">
             <span class="section-number">04</span>
             <h2 class="section-title">Estructura del Curso</h2>
-            <p style="font-size:1.2rem;color:#495057">Arquitectura Modular Progresiva</p>
+            <p class="section-subtitle">Arquitectura Modular Progresiva</p>
         </div>
         <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot">M1</div>
-                <div class="timeline-content">
-                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 1</div>
-                    <h3 class="modulo-title">Observación y Gesto</h3>
-                    <p style="color:#495057;margin-bottom:1rem">Fundamentos del croquis rápido, proporciones visuales y distribución de peso</p>
-                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 3 lecciones</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 8 ejercicios</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 2.5 horas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot">M2</div>
-                <div class="timeline-content">
-                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 2</div>
-                    <h3 class="modulo-title">Anatomía Funcional</h3>
-                    <p style="color:#495057;margin-bottom:1rem">Estructura ósea, músculos superficiales, manos/pies y proporciones faciales</p>
-                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 4 lecciones</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 12 estudios</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 3.3 horas</span>
-                    </div>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-dot">M3</div>
-                <div class="timeline-content">
-                    <div style="font-size:.85rem;color:var(--primary-dark);font-weight:700;margin-bottom:.5rem">MÓDULO 3</div>
-                    <h3 class="modulo-title">Figura Completa</h3>
-                    <p style="color:#495057;margin-bottom:1rem">Síntesis por capas, luz/sombra/volumen y proyecto final evaluado</p>
-                    <div style="display:flex;gap:1.5rem;margin-top:1rem;padding-top:1rem;border-top:2px solid #dee2e6">
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-book" style="color:var(--primary-dark)"></i> 3 lecciones</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-pencil" style="color:var(--primary-dark)"></i> 1 proyecto final</span>
-                        <span style="display:flex;align-items:center;gap:.5rem;font-size:.9rem;color:#495057"><i class="bi bi-clock" style="color:var(--primary-dark)"></i> 5-6 horas</span>
-                    </div>
-                </div>
-            </div>
+            <div class="timeline-item animate-on-scroll"><div class="timeline-dot">M1</div><div class="timeline-content"><div class="timeline-label">Módulo 1</div><h3 class="timeline-title">Observación y Gesto</h3><p class="timeline-desc">Fundamentos del croquis rápido, proporciones y peso</p><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-book"></i> 3 lecciones</span><span class="timeline-stat"><i class="bi bi-pencil"></i> 8 ejercicios</span><span class="timeline-stat"><i class="bi bi-clock"></i> 2.5h</span></div></div></div>
+            <div class="timeline-item animate-on-scroll"><div class="timeline-dot">M2</div><div class="timeline-content"><div class="timeline-label">Módulo 2</div><h3 class="timeline-title">Anatomía Funcional</h3><p class="timeline-desc">Estructura ósea, músculos, manos/pies y rostro</p><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-book"></i> 4 lecciones</span><span class="timeline-stat"><i class="bi bi-pencil"></i> 12 estudios</span><span class="timeline-stat"><i class="bi bi-clock"></i> 3.3h</span></div></div></div>
+            <div class="timeline-item animate-on-scroll"><div class="timeline-dot">M3</div><div class="timeline-content"><div class="timeline-label">Módulo 3</div><h3 class="timeline-title">Figura Completa</h3><p class="timeline-desc">Síntesis por capas, luz/sombra y proyecto final</p><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-book"></i> 3 lecciones</span><span class="timeline-stat"><i class="bi bi-pencil"></i> 1 proyecto</span><span class="timeline-stat"><i class="bi bi-clock"></i> 5-6h</span></div></div></div>
         </div>
-        <div style="text-align:center;margin-top:3rem;background:white;padding:2rem;border-radius:16px;box-shadow:0 4px 12px rgba(0,0,0,0.08)">
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2rem">
-                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#495057;font-weight:600">Lecciones</div></div>
-                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">23</div><div style="color:#495057;font-weight:600">Ejercicios</div></div>
-                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#495057;font-weight:600">Evaluaciones</div></div>
-                <div><div style="font-size:2.5rem;font-weight:800;color:var(--primary-dark)">12</div><div style="color:#495057;font-weight:600">Días</div></div>
+        <div style="background:#fff;padding:1.2rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin-top:1.5rem" class="animate-on-scroll">
+            <div class="stats-grid" style="text-align:center">
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#6c757d;font-size:.85rem">Lecciones</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">23</div><div style="color:#6c757d;font-size:.85rem">Ejercicios</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#6c757d;font-size:.85rem">Evaluaciones</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">12</div><div style="color:#6c757d;font-size:.85rem">Días</div></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- SLIDE 6: RESULTADOS -->
-<section id="resultados" class="slide" style="background:white">
+<section id="resultados" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">05</span>
             <h2 class="section-title">Resultados Cuantitativos</h2>
-            <p style="font-size:1.2rem;color:#495057">Métricas Reales de Implementación</p>
+            <p class="section-subtitle">Métricas Reales de Implementación</p>
         </div>
         <div class="stats-grid">
-            <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">76%</div><div style="color:#495057">Tasa de Completación</div><span class="badge-success" style="margin-top:.5rem">META SUPERADA (70%)</span></div>
-            <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value">92%</div><div style="color:#495057">Aprobación Evaluaciones</div></div>
-            <div class="stat-card"><div class="stat-icon">📦</div><div class="stat-value">76%</div><div style="color:#495057">Entregas Proyecto Final</div><span class="badge-success" style="margin-top:.5rem">META SUPERADA (70%)</span></div>
-            <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-value">4h</div><div style="color:#495057">Tiempo Promedio</div></div>
-            <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">88%</div><div style="color:#495057">Progreso Promedio</div></div>
-            <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-value">94%</div><div style="color:#495057">Activos últimos 7 días</div></div>
+            <div class="stat-card success animate-on-scroll"><div class="stat-icon">🎯</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Completación</div><span class="stat-badge">META ✓</span></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">✅</div><div class="stat-value"><span class="counter" data-target="92">0</span>%</div><div class="stat-label">Aprobación</div></div>
+            <div class="stat-card success animate-on-scroll"><div class="stat-icon">📦</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Entregas</div><span class="stat-badge">META ✓</span></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">⏱️</div><div class="stat-value">4h</div><div class="stat-label">Tiempo Prom.</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">📈</div><div class="stat-value"><span class="counter" data-target="88">0</span>%</div><div class="stat-label">Progreso Prom.</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">👥</div><div class="stat-value"><span class="counter" data-target="94">0</span>%</div><div class="stat-label">Activos 7d</div></div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:2rem;margin-top:3rem">
-            <div class="chart-card">
-                <h4 style="font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center">Progreso por Módulo</h4>
-                <canvas id="chartModulos" style="max-height:300px"></canvas>
-            </div>
-            <div class="chart-card">
-                <h4 style="font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center">Evaluaciones Aprobadas</h4>
-                <canvas id="chartEvaluaciones" style="max-height:300px"></canvas>
-            </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem">
+            <div class="chart-card animate-on-scroll"><h4 class="chart-title">Progreso por Módulo</h4><div class="chart-container"><canvas id="chartModulos"></canvas></div></div>
+            <div class="chart-card animate-on-scroll"><h4 class="chart-title">Evaluaciones</h4><div class="chart-container"><canvas id="chartEvaluaciones"></canvas></div></div>
         </div>
     </div>
 </section>
@@ -281,140 +328,114 @@
         <div class="section-header">
             <span class="section-number">06</span>
             <h2 class="section-title">Evidencias Visuales</h2>
-            <p style="font-size:1.2rem;color:#495057">Registro Fotográfico de Implementación</p>
+            <p class="section-subtitle">Registro Fotográfico</p>
         </div>
-        
-        <!-- Screenshots LMS -->
-        <div style="margin-bottom:3rem">
-            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-laptop" style="color:var(--primary-light)"></i> Screenshots del LMS</h3>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-laptop"></i> Screenshots del LMS</h3>
             <div class="gallery-grid">
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dashboard principal del LMS<br><small>Agrega tu imagen aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Módulo de lecciones<br><small>Agrega tu imagen aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Sistema de evaluaciones<br><small>Agrega tu imagen aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Progreso del estudiante<br><small>Agrega tu imagen aquí</small></div></div></div>
+                <!-- REEMPLAZA gallery-placeholder con <img src="tu-imagen.jpg" alt="desc"> -->
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Dashboard</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Lecciones</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Evaluaciones</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-image"></i><span>Progreso</span></div></div>
             </div>
         </div>
-        
-        <!-- Taller Presencial -->
-        <div style="margin-bottom:3rem">
-            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-people" style="color:var(--primary-light)"></i> Taller Presencial (13 y 21 noviembre)</h3>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-people"></i> Taller Presencial</h3>
             <div class="gallery-grid">
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Estudiantes trabajando<br><small>Agrega tu foto aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Ambiente de trabajo<br><small>Agrega tu foto aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Proceso de dibujo<br><small>Agrega tu foto aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Retroalimentación<br><small>Agrega tu foto aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Estudiantes</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Ambiente</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Proceso</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-camera"></i><span>Feedback</span></div></div>
             </div>
         </div>
-        
-        <!-- Trabajos M3L3 -->
-        <div>
-            <h3 style="font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem"><i class="bi bi-palette" style="color:var(--primary-light)"></i> Trabajos Entregados - Proyecto Final (M3L3)</h3>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales</h3>
             <div class="gallery-grid">
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
-                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image" style="font-size:3rem;color:#495057"></i><div style="color:#495057;font-size:.85rem;text-align:center;padding:0 1rem">Dibujo 1/4 mercurio<br><small>Agrega trabajo aquí</small></div></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 1</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 2</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 3</span></div></div>
+                <div class="gallery-item"><div class="gallery-placeholder"><i class="bi bi-file-earmark-image"></i><span>Trabajo 4</span></div></div>
             </div>
         </div>
-        
-        <p style="text-align:center;color:#495057;margin-top:2rem;font-style:italic"><i class="bi bi-info-circle"></i> Para agregar tus imágenes: reemplaza los divs con class="gallery-placeholder" por tags &lt;img src="ruta/imagen.jpg"&gt;</p>
     </div>
 </section>
 
 <!-- SLIDE 8: CONCLUSIONES -->
-<section id="conclusiones" class="slide" style="background:white">
+<section id="conclusiones" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">07</span>
-            <h2 class="section-title">Conclusiones de la Experiencia</h2>
-            <p style="font-size:1.2rem;color:#495057">Fortalezas, Mejoras y Proyecciones</p>
+            <h2 class="section-title">Conclusiones</h2>
+            <p class="section-subtitle">Fortalezas, Mejoras y Proyecciones</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:2rem">
-            <div class="conclusion-card fortalezas">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-                    <div style="width:50px;height:50px;border-radius:50%;background:var(--success);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-star"></i></div>
-                    <h3 style="font-size:1.4rem;font-weight:700">Fortalezas</h3>
-                </div>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Sistema funcionó sin incidentes técnicos</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Velocidad superior: 1.8s vs 10-30s</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>92% aprobación evaluaciones</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>Método contemplativo valorado</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--success);font-weight:800;font-size:1.2rem">→</span>$0 costo operativo validado</li>
-                </ul>
+        <div class="card-grid">
+            <div class="conclusion-card fortalezas animate-on-scroll">
+                <div class="conclusion-header"><div class="conclusion-icon success"><i class="bi bi-star"></i></div><h3 class="conclusion-title">Fortalezas</h3></div>
+                <ul class="conclusion-list"><li>Sistema sin incidentes técnicos</li><li>Velocidad: 1.8s vs 10-30s</li><li>92% aprobación evaluaciones</li><li>Método contemplativo valorado</li><li>$0 costo operativo validado</li></ul>
             </div>
-            <div class="conclusion-card mejoras">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-                    <div style="width:50px;height:50px;border-radius:50%;background:var(--warning);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-tools"></i></div>
-                    <h3 style="font-size:1.4rem;font-weight:700">Áreas de Mejora</h3>
-                </div>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Implementar desde semana 1</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Explicación del "por qué" en errores</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Integración con clases presenciales</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--warning);font-weight:800;font-size:1.2rem">→</span>Ajustar expectativa de horas (8-10h)</li>
-                </ul>
+            <div class="conclusion-card mejoras animate-on-scroll">
+                <div class="conclusion-header"><div class="conclusion-icon warning"><i class="bi bi-tools"></i></div><h3 class="conclusion-title">Áreas de Mejora</h3></div>
+                <ul class="conclusion-list"><li>Implementar desde semana 1</li><li>Explicar "por qué" en errores</li><li>Integrar con clases presenciales</li><li>Ajustar expectativa horas</li></ul>
             </div>
-            <div class="conclusion-card futuro">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-                    <div style="width:50px;height:50px;border-radius:50%;background:var(--info);color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem"><i class="bi bi-rocket"></i></div>
-                    <h3 style="font-size:1.4rem;font-weight:700">Proyecciones</h3>
-                </div>
-                <ul style="list-style:none;padding:0">
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2026: Piloto en 2-3 instituciones</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2027: 50-100 estudiantes</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>2028-2030: 200-300 estudiantes</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative;border-bottom:1px solid #dee2e6"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>Impacto: 2,550 estudiantes en 5 años</li>
-                    <li style="padding:.75rem 0;padding-left:2rem;position:relative"><span style="position:absolute;left:0;color:var(--info);font-weight:800;font-size:1.2rem">→</span>Ahorro: $32M+ CLP para el sistema</li>
-                </ul>
+            <div class="conclusion-card futuro animate-on-scroll">
+                <div class="conclusion-header"><div class="conclusion-icon info"><i class="bi bi-rocket"></i></div><h3 class="conclusion-title">Proyecciones</h3></div>
+                <ul class="conclusion-list"><li>2026: Piloto 2-3 instituciones</li><li>2027: 50-100 estudiantes</li><li>2028-30: 200-300 estudiantes</li><li>Impacto: 2,550 estudiantes</li><li>Ahorro: $32M+ CLP</li></ul>
             </div>
         </div>
     </div>
 </section>
 
-<!-- SLIDE 9: AGRADECIMIENTOS -->
-<section id="final" class="slide portada">
+<!-- SLIDE 9: FINAL -->
+<section id="final" class="slide final-slide">
     <div class="slide-container">
-        <h2 style="font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:2rem;background:linear-gradient(135deg,white,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent">¡Gracias!</h2>
-        <p style="font-size:1.3rem;max-width:700px;margin:0 auto 2rem;color:rgba(255,255,255,0.9)">Por su tiempo y atención durante esta presentación</p>
-        <div style="background:rgba(255,255,255,0.1);padding:2rem;border-radius:16px;margin:3rem auto;max-width:800px">
-            <h3 style="color:var(--primary-light);font-weight:700;margin-bottom:1.5rem;font-size:1.5rem">Agradecimientos Especiales</h3>
-            <ul style="list-style:none;padding:0;text-align:left">
-                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Universidad de Chile</strong> - Facultad de Filosofía y Humanidades</li>
-                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Programa GCSA</strong> - Diplomado en Diseño Instruccional</li>
-                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>Universidad Alberto Hurtado</strong> - Pedagogía en Artes Visuales</li>
-                <li style="padding:.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1)"><strong>17 estudiantes participantes</strong> del piloto</li>
-                <li style="padding:.75rem 0"><strong>Evaluadores</strong> - Por su tiempo y retroalimentación</li>
+        <h2 class="final-title">¡Gracias!</h2>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,.9);margin-bottom:1rem">Por su tiempo y atención</p>
+        <div class="final-thanks">
+            <h3>Agradecimientos</h3>
+            <ul>
+                <li><strong>Universidad de Chile</strong> - Diplomado Diseño Instruccional</li>
+                <li><strong>Universidad Alberto Hurtado</strong> - Pedagogía Artes Visuales</li>
+                <li><strong>17 estudiantes participantes</strong> del piloto</li>
+                <li><strong>Evaluadores</strong> por su retroalimentación</li>
             </ul>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:3rem">
-            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
-                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-person"></i></div>
-                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">Estudiante</div>
-                <div style="font-weight:600">Joselyn Vizcarra</div>
-            </div>
-            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
-                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-globe"></i></div>
-                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">LMS Público</div>
-                <div style="font-weight:600"><a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank" style="color:white;text-decoration:none">Ver LMS →</a></div>
-            </div>
-            <div style="background:rgba(255,255,255,0.1);padding:1.5rem;border-radius:12px">
-                <div style="font-size:2rem;margin-bottom:1rem;color:var(--primary-light)"><i class="bi bi-github"></i></div>
-                <div style="font-size:.85rem;color:rgba(255,255,255,0.7);margin-bottom:.5rem">GitHub</div>
-                <div style="font-weight:600"><a href="https://github.com/joseynvizcarra-coder/lms-dibujo-anatomico" target="_blank" style="color:white;text-decoration:none">Código fuente →</a></div>
-            </div>
+        <div class="contact-grid">
+            <div class="contact-item"><i class="bi bi-person"></i><div>Joselyn Vizcarra</div></div>
+            <div class="contact-item"><i class="bi bi-globe"></i><a href="https://joseynvizcarra-coder.github.io/lms-dibujo-anatomico" target="_blank">Ver LMS →</a></div>
+            <div class="contact-item"><i class="bi bi-github"></i><a href="https://github.com/joseynvizcarra-coder/lms-dibujo-anatomico" target="_blank">GitHub →</a></div>
         </div>
-        <p style="margin-top:3rem;font-size:1.5rem;font-weight:700;color:var(--primary-light)">¿Preguntas?</p>
+        <p class="questions">¿Preguntas?</p>
     </div>
 </section>
 
 </main>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded',function(){const e=document.querySelectorAll('.nav-link'),t=document.querySelectorAll('.slide');function n(){let n='';const o=window.pageYOffset||document.documentElement.scrollTop;t.forEach(e=>{const t=e.offsetTop;e.clientHeight;o>=t-200&&(n=e.getAttribute('id'))}),e.forEach(e=>{e.classList.remove('active'),e.getAttribute('href')===`#${n}`&&e.classList.add('active')})}window.addEventListener('scroll',n),e.forEach(e=>{e.addEventListener('click',function(e){e.preventDefault();const t=this.getAttribute('href'),n=document.querySelector(t);n&&(n.scrollIntoView({behavior:'smooth'}),window.innerWidth<=992&&document.getElementById('sidebar').classList.remove('active'))})})});window.addEventListener('load',function(){const e={primaryDark:'#2c5f66',primaryLight:'#e8a2b8',success:'#10b981',info:'#3b82f6'},t=document.getElementById('chartModulos');t&&new Chart(t,{type:'bar',data:{labels:['Módulo 1','Módulo 2','Módulo 3','Promedio General'],datasets:[{label:'Progreso Promedio (%)',data:[90,88,85,88],backgroundColor:[e.primaryDark,e.primaryLight,e.info,e.success],borderRadius:8,borderSkipped:!1}]},options:{responsive:!0,maintainAspectRatio:!0,plugins:{legend:{display:!1},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',padding:12}},scales:{y:{beginAtZero:!0,max:100,ticks:{callback:function(e){return e+'%'}}},x:{grid:{display:!1}}},animation:{duration:1500,easing:'easeInOutQuart'}}});const n=document.getElementById('chartEvaluaciones');n&&new Chart(n,{type:'doughnut',data:{labels:['Aprobadas','No Aprobadas'],datasets:[{data:[156,14],backgroundColor:[e.success,'#e5e7eb'],borderWidth:0,hoverOffset:10}]},options:{responsive:!0,maintainAspectRatio:!0,plugins:{legend:{position:'bottom',labels:{padding:20,font:{size:13,weight:'600'},usePointStyle:!0,pointStyle:'circle'}},tooltip:{backgroundColor:'rgba(0,0,0,0.8)',padding:12,callbacks:{label:function(e){const t=e.label||'',n=e.parsed||0,o=e.dataset.data.reduce((e,t)=>e+t,0);return`${t}: ${n} (${(n/o*100).toFixed(1)}%)`}}}},animation:{animateRotate:!0,animateScale:!0,duration:1500,easing:'easeInOutQuart'}}})});document.addEventListener('keydown',function(e){const t=Array.from(document.querySelectorAll('.slide'));let n=0;const o=window.scrollY;if(t.forEach((e,t)=>{o>=e.offsetTop-200&&(n=t)}),'ArrowDown'===e.key||'PageDown'===e.key){if(e.preventDefault(),n<t.length-1)t[n+1].scrollIntoView({behavior:'smooth'})}else if('ArrowUp'===e.key||'PageUp'===e.key){if(e.preventDefault(),n>0)t[n-1].scrollIntoView({behavior:'smooth'})}else'Home'===e.key?(e.preventDefault(),t[0].scrollIntoView({behavior:'smooth'})):'End'===e.key&&(e.preventDefault(),t[t.length-1].scrollIntoView({behavior:'smooth'}))});console.log('%c✨ Presentación DIADIFO cargada','color:#2c5f66;font-size:16px;font-weight:bold');
+// NAV ACTIVE
+const navLinks=document.querySelectorAll('.nav-link'),slides=document.querySelectorAll('.slide');
+function updateNav(){let c='';const s=window.scrollY;slides.forEach(e=>{if(s>=e.offsetTop-200)c=e.id});navLinks.forEach(e=>{e.classList.remove('active');if(e.getAttribute('href')==='#'+c)e.classList.add('active')})}
+window.addEventListener('scroll',updateNav);
+navLinks.forEach(e=>e.addEventListener('click',function(ev){ev.preventDefault();const t=this.getAttribute('href');document.querySelector(t).scrollIntoView({behavior:'smooth'});if(window.innerWidth<=992)document.getElementById('sidebar').classList.remove('active')}));
+
+// KEYBOARD NAV
+document.addEventListener('keydown',e=>{const s=Array.from(slides);let i=0;const y=window.scrollY;s.forEach((el,idx)=>{if(y>=el.offsetTop-200)i=idx});if(e.key==='ArrowDown'||e.key==='PageDown'){e.preventDefault();if(i<s.length-1)s[i+1].scrollIntoView({behavior:'smooth'})}else if(e.key==='ArrowUp'||e.key==='PageUp'){e.preventDefault();if(i>0)s[i-1].scrollIntoView({behavior:'smooth'})}});
+
+// SCROLL ANIMATIONS
+const animateEls=document.querySelectorAll('.animate-on-scroll');
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');animateCounters(e.target)}})},{threshold:.2});
+animateEls.forEach(e=>obs.observe(e));
+
+// COUNTERS
+function animateCounters(el){el.querySelectorAll('.counter').forEach(c=>{if(c.dataset.animated)return;c.dataset.animated='true';const t=+c.dataset.target,d=t/30;let n=0;const u=setInterval(()=>{n+=d;if(n>=t){c.textContent=t;clearInterval(u)}else{c.textContent=Math.floor(n)}},30)})}
+
+// CHARTS
+window.addEventListener('load',()=>{
+const c1=document.getElementById('chartModulos');
+if(c1)new Chart(c1,{type:'bar',data:{labels:['M1','M2','M3','Prom.'],datasets:[{label:'%',data:[90,88,85,88],backgroundColor:['#2c5f66','#e8a2b8','#3b82f6','#10b981'],borderRadius:6}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,max:100}}}});
+const c2=document.getElementById('chartEvaluaciones');
+if(c2)new Chart(c2,{type:'doughnut',data:{labels:['Aprobadas','No Aprobadas'],datasets:[{data:[156,14],backgroundColor:['#10b981','#e5e7eb'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:15,font:{size:12}}}}}});
+});
 </script>
 </body>
 </html>

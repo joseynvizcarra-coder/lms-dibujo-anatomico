@@ -845,12 +845,8 @@ const totalSlides = slides.length;
 
 // ========== ACTUALIZAR INDICADOR DE PROGRESO ==========
 function updateProgressIndicator() {
-    const progressText = document.getElementById('progressText');
-    const progressBarFill = document.getElementById('progressBarFill');
-    const percentage = ((currentSlideIndex + 1) / totalSlides) * 100;
-    
-    progressText.textContent = `Slide ${currentSlideIndex + 1} de ${totalSlides}`;
-    progressBarFill.style.width = `${percentage}%`;
+    // Elementos eliminados - función deshabilitada
+    return;
 }
 
 // ========== NAVEGACIÓN ==========
@@ -895,26 +891,11 @@ navLinks.forEach(link => link.addEventListener('click', function(ev) {
 
 // ========== BOTONES DE NAVEGACIÓN ==========
 function updateNavButtons() {
-    const btnPrev = document.getElementById('btnPrev');
-    const btnNext = document.getElementById('btnNext');
-    
-    btnPrev.disabled = currentSlideIndex === 0;
-    btnNext.disabled = currentSlideIndex === totalSlides - 1;
+    // Botones eliminados - función deshabilitada
+    return;
 }
 
-document.getElementById('btnPrev').addEventListener('click', () => {
-    if (currentSlideIndex > 0) {
-        currentSlideIndex--;
-        slides[currentSlideIndex].scrollIntoView({behavior: 'smooth'});
-    }
-});
-
-document.getElementById('btnNext').addEventListener('click', () => {
-    if (currentSlideIndex < totalSlides - 1) {
-        currentSlideIndex++;
-        slides[currentSlideIndex].scrollIntoView({behavior: 'smooth'});
-    }
-});
+// Event listeners de botones eliminados - código removido
 
 // ========== TIMER ==========
 let timerInterval = null;

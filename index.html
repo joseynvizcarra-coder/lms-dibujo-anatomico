@@ -1063,8 +1063,8 @@ function initCarousel(id) {
         slides: slides,
         index: 0,
         total: slides.length,
-        autoPlay: false,
-        autoPlaySpeed: 4000
+        autoPlay: true, // CAMBIADO: autoPlay inicia en true
+        autoPlaySpeed: 2000 // CAMBIADO: 2 segundos en lugar de 4
     };
     
     // Crear dots
@@ -1077,6 +1077,14 @@ function initCarousel(id) {
     }
     
     updateCarousel(id);
+    
+    // NUEVO: Iniciar autoplay automáticamente
+    const btnSpan = document.getElementById(`playBtn-${id}`);
+    if (btnSpan) {
+        btnSpan.textContent = '⏸ Pausa';
+        btnSpan.parentElement.classList.add('playing');
+        startAutoPlay(id);
+    }
 }
 
 function moveCarousel(id, direction) {
@@ -1105,15 +1113,15 @@ function toggleAutoPlay(id) {
     const carousel = carousels[id];
     carousel.autoPlay = !carousel.autoPlay;
     
-    const btn = document.getElementById(`playBtn-${id}`);
+    const btnSpan = document.getElementById(`playBtn-${id}`);
     
     if (carousel.autoPlay) {
-        btn.textContent = '⏸ Pausa';
-        btn.parentElement.classList.add('playing');
+        btnSpan.textContent = '⏸ Pausa';
+        btnSpan.parentElement.classList.add('playing');
         startAutoPlay(id);
     } else {
-        btn.textContent = '▶ Auto';
-        btn.parentElement.classList.remove('playing');
+        btnSpan.textContent = '▶ Auto';
+        btnSpan.parentElement.classList.remove('playing');
         stopAutoPlay(id);
     }
 }

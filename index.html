@@ -26,133 +26,21 @@
 .info-mode-toggle:hover{background:#3b82f6;transform:scale(1.05)}
 .info-mode-toggle.active{background:var(--success);border-color:var(--success)}
 
-/* ========== TOOLTIPS MEJORADOS ========== */
-.info-tooltip {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    vertical-align: middle;
-}
-
-.info-icon {
-    width: 22px;
-    height: 22px;
-    background: linear-gradient(135deg, #3b82f6, #60a5fa);
-    color: #fff;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.75rem;
-    font-weight: 700;
-    margin-left: 6px;
-    cursor: help;
-    opacity: 0;
-    transition: all 0.3s;
-    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
-}
-
-.info-icon:hover {
-    transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.5);
-}
-
-.info-mode-active .info-icon {
-    opacity: 1;
-}
-
-.info-tooltip-content {
-    position: absolute;
-    bottom: calc(100% + 12px);
-    left: 50%;
-    transform: translateX(-50%) translateY(-5px);
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(30, 30, 30, 0.95));
-    color: #fff;
-    padding: 14px 18px;
-    border-radius: 12px;
-    font-size: 0.85rem;
-    max-width: 320px;
-    min-width: 200px;
-    white-space: normal;
-    line-height: 1.5;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    pointer-events: none;
-    z-index: 99999;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.1);
-    text-align: left;
-    backdrop-filter: blur(10px);
-}
-
-.info-tooltip-content strong {
-    color: var(--accent-teal);
-    font-weight: 700;
-    display: block;
-    margin-bottom: 6px;
-    font-size: 0.9rem;
-}
-
-.info-tooltip-content::before {
-    content: '';
-    position: absolute;
-    bottom: -7px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid rgba(0, 0, 0, 0.95);
-}
-
-.info-icon:hover + .info-tooltip-content {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(-50%) translateY(0);
-}
-
-.info-tooltip-content ul {
-    margin: 8px 0 0 0;
-    padding-left: 18px;
-}
-
-.info-tooltip-content li {
-    margin: 4px 0;
-    line-height: 1.4;
-}
-
-/* Variantes de posición para tooltips que se salen */
-.info-tooltip-content.tooltip-left {
-    left: auto;
-    right: 0;
-    transform: translateX(0) translateY(-5px);
-}
-
-.info-tooltip-content.tooltip-left::before {
-    left: auto;
-    right: 20px;
-    transform: translateX(0);
-}
-
-.info-icon:hover + .info-tooltip-content.tooltip-left {
-    transform: translateX(0) translateY(0);
-}
-
-.info-tooltip-content.tooltip-right {
-    left: 0;
-    right: auto;
-    transform: translateX(0) translateY(-5px);
-}
-
-.info-tooltip-content.tooltip-right::before {
-    left: 20px;
-    transform: translateX(0);
-}
-
-.info-icon:hover + .info-tooltip-content.tooltip-right {
-    transform: translateX(0) translateY(0);
-}
+/* ========== TOOLTIPS DE INFO MODE MEJORADOS ========== */
+.info-tooltip{position:relative;display:inline-flex;align-items:center;vertical-align:middle}
+.info-icon{width:20px;height:20px;background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-left:6px;cursor:help;opacity:0;transition:all 0.3s;box-shadow:0 2px 6px rgba(59,130,246,0.3)}
+.info-icon:hover{transform:scale(1.1);box-shadow:0 4px 10px rgba(59,130,246,0.5)}
+.info-mode-active .info-icon{opacity:1}
+.info-tooltip-content{position:absolute;bottom:calc(100% + 12px);left:50%;transform:translateX(-50%);background:linear-gradient(135deg,rgba(0,0,0,0.96),rgba(20,20,20,0.96));color:#fff;padding:14px 18px;border-radius:12px;font-size:0.82rem;max-width:340px;min-width:180px;white-space:normal;line-height:1.5;opacity:0;visibility:hidden;transition:all 0.3s cubic-bezier(0.68,-0.55,0.265,1.55);pointer-events:none;z-index:999999;box-shadow:0 12px 35px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.1);text-align:left;backdrop-filter:blur(10px)}
+.info-tooltip-content::before{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid rgba(0,0,0,0.96)}
+.info-icon:hover + .info-tooltip-content{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
+.info-tooltip-content strong{color:var(--accent-teal);font-weight:700;display:block;margin-bottom:5px}
+.info-tooltip-content.tooltip-left{left:auto;right:0;transform:translateX(0) translateY(-5px)}
+.info-tooltip-content.tooltip-left::before{left:auto;right:15px;transform:translateX(0)}
+.info-icon:hover + .info-tooltip-content.tooltip-left{transform:translateX(0) translateY(0)}
+.info-tooltip-content.tooltip-right{left:0;right:auto;transform:translateX(0) translateY(-5px)}
+.info-tooltip-content.tooltip-right::before{left:15px;right:auto;transform:translateX(0)}
+.info-icon:hover + .info-tooltip-content.tooltip-right{transform:translateX(0) translateY(0)}
 
 /* ========== BASE ========== */
 html{scroll-behavior:smooth}
@@ -172,7 +60,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .main-content{margin-left:240px;min-height:100vh}
 .slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2.5rem 2rem;position:relative}
 .slide-container{max-width:1000px;width:100%;animation:fadeInUp .5s ease-out}
-        /* ========== PORTADA ========== */
+
+/* ========== PORTADA ========== */
 .portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
 .portada-logo{width:90px;height:90px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:18px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--primary-dark);font-weight:800;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
@@ -211,191 +100,109 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .feature-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
 .feature-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;margin-bottom:.8rem}
 .feature-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.6rem}
-.feature-list{list-style:none;margin-top:.6rem}
+.feature-list{list-style:none;padding:0}
 .feature-list li{padding:.35rem 0;padding-left:1.3rem;position:relative;font-size:.85rem;color:#495057}
 .feature-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700}
 
-/* ========== BRECHAS ========== */
-.brechas-container{margin-top:2rem;padding:1.5rem;background:#fff;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
-.brechas-title{font-size:1.2rem;font-weight:700;color:var(--danger);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem}
-
-/* ========== METODOLOGÍA ========== */
-.metodologia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:1.5rem}
-.metodo-card{background:#fff;padding:1.3rem;border-radius:12px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-top:4px solid var(--primary-dark)}
-.metodo-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.metodo-numero{width:45px;height:45px;background:var(--primary-light);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem;margin:0 auto .8rem}
-.metodo-nombre{font-weight:700;font-size:1rem;color:var(--primary-dark);margin-bottom:.5rem}
-.metodo-desc{font-size:.8rem;color:#6c757d}
-
-/* ========== RUTA DIDÁCTICA ========== */
-.ruta-container{margin-top:2rem}
-.modulo-card{background:#fff;padding:1.5rem;border-radius:14px;margin-bottom:1.5rem;box-shadow:0 3px 12px rgba(0,0,0,.06);border-left:5px solid var(--primary-dark);transition:all .3s}
-.modulo-card:hover{transform:translateX(5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.modulo-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
-.modulo-numero{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));color:#fff;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.3rem}
-.modulo-info h3{font-size:1.1rem;color:var(--primary-dark);margin-bottom:.2rem}
-.modulo-info p{font-size:.8rem;color:#6c757d}
-.modulo-lecciones{list-style:none}
-.modulo-lecciones li{padding:.4rem 0;padding-left:1.5rem;position:relative;font-size:.85rem;color:#495057}
-.modulo-lecciones li::before{content:'📖';position:absolute;left:0}
-
 /* ========== PILARES ========== */
-.pilares-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
-.pilar-card{background:#fff;padding:2rem 1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);position:relative;overflow:hidden;transition:all .3s}
-.pilar-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light))}
-.pilar-card:hover{transform:translateY(-8px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
-.pilar-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
-.pilar-title{font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem}
-.pilar-stats{list-style:none;margin-top:.8rem}
-.pilar-stats li{padding:.4rem 0;font-size:.85rem;color:#495057;display:flex;align-items:center;gap:.5rem}
-.pilar-stats li::before{content:'▸';color:var(--accent-teal);font-weight:700}
+.pilares-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.pilar-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);border-top:4px solid var(--primary-dark);transition:all .3s}
+.pilar-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.pilar-icon{font-size:2.5rem;display:block;margin-bottom:.8rem}
+.pilar-title{font-size:1.1rem;font-weight:700;color:var(--primary-light);margin-bottom:.6rem}
+.pilar-list{list-style:none;padding:0}
+.pilar-list li{padding:.25rem 0;font-size:.85rem;opacity:.9}
 
-/* ========== ACOMPAÑAMIENTO ========== */
-.acomp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;margin-top:2rem}
-.acomp-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-top:4px solid}
-.acomp-card:nth-child(1){border-top-color:var(--info)}
-.acomp-card:nth-child(2){border-top-color:var(--warning)}
-.acomp-card:nth-child(3){border-top-color:var(--success)}
-.acomp-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.acomp-numero{width:40px;height:40px;background:var(--primary-light);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;margin-bottom:.8rem}
-.acomp-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem}
-.acomp-desc{font-size:.85rem;color:#6c757d;line-height:1.5}
-        /* ========== TABLA DE ALINEACIÓN ========== */
-.alignment-table{width:100%;border-collapse:collapse;margin-top:1.5rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.06)}
-.alignment-table thead{background:var(--primary-dark);color:#fff}
-.alignment-table th{padding:1rem .8rem;text-align:left;font-weight:600;font-size:.85rem}
-.alignment-table td{padding:.9rem .8rem;border-bottom:1px solid #e9ecef;font-size:.8rem;color:#495057}
-.alignment-table tbody tr:hover{background:var(--gray-light)}
-.alignment-table tbody tr:last-child td{border-bottom:none}
+/* ========== TIMELINE ========== */
+.timeline{position:relative;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:25px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--primary-dark),var(--primary-light))}
+.timeline-item{display:flex;gap:1.2rem;margin-bottom:1.5rem;position:relative}
+.timeline-dot{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;z-index:1}
+.timeline-content{background:#fff;padding:1.2rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);flex:1;transition:all .3s}
+.timeline-content:hover{transform:translateX(4px)}
+.timeline-label{font-size:.7rem;color:var(--primary-dark);font-weight:700;text-transform:uppercase}
+.timeline-title{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}
+.timeline-desc{font-size:.85rem;color:#6c757d;margin-bottom:.5rem}
+.timeline-stats{display:flex;gap:.8rem;flex-wrap:wrap;padding-top:.5rem;border-top:1px solid #eee}
+.timeline-stat{display:flex;align-items:center;gap:.3rem;font-size:.75rem;color:#495057}
 
-/* ========== INTERVENCIÓN TABLE ========== */
-.intervencion-table{width:100%;border-collapse:collapse;margin-top:1.5rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.06)}
-.intervencion-table thead{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff}
-.intervencion-table th{padding:.9rem .7rem;text-align:left;font-weight:600;font-size:.8rem}
-.intervencion-table td{padding:.8rem .7rem;border-bottom:1px solid #e9ecef;font-size:.75rem;color:#495057}
-.intervencion-table tbody tr:hover{background:var(--gray-light)}
-.intervencion-table tbody tr:last-child td{border-bottom:none}
+/* ========== CARRUSEL MEJORADO ========== */
+.carousel-container{position:relative;width:100%;max-width:650px;margin:1.5rem auto;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.15)}
+.carousel-track{display:flex;transition:transform .5s ease}
+.carousel-slide{min-width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f8f9fa;position:relative}
+.carousel-slide img{max-width:100%;max-height:500px;width:auto;height:auto;display:block;object-fit:contain}
+.carousel-placeholder{width:100%;height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5e7eb,#f3f4f6);color:#6b7280;font-size:1rem}
+.carousel-placeholder i{font-size:3rem;margin-bottom:1rem;opacity:.5}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.7);color:#fff;border:none;width:45px;height:45px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
+.carousel-btn:hover{background:rgba(0,0,0,0.9);transform:translateY(-50%) scale(1.1)}
+.carousel-btn.prev{left:15px}
+.carousel-btn.next{right:15px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;padding:15px 0;background:rgba(0,0,0,0.05)}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:#ccc;border:none;cursor:pointer;transition:all .3s}
+.carousel-dot.active{background:var(--primary-dark);width:30px;border-radius:5px}
+.carousel-controls-bottom{position:absolute;bottom:15px;right:15px;display:flex;gap:10px;z-index:11}
+.carousel-control-btn{background:rgba(0,0,0,0.7);color:#fff;border:none;padding:8px 12px;border-radius:20px;font-size:0.75rem;cursor:pointer;transition:all .3s;font-weight:600}
+.carousel-control-btn:hover{background:rgba(0,0,0,0.9)}
+.carousel-control-btn.playing{background:var(--danger)}
+.carousel-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--accent-teal);width:0%;transition:width 0.1s linear;z-index:12}
 
-/* ========== PESTEL TABLE ========== */
-.pestel-table{width:100%;border-collapse:collapse;margin-top:1.5rem;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.06)}
-.pestel-table thead{background:var(--primary-dark);color:#fff}
-.pestel-table th{padding:1rem .8rem;text-align:left;font-weight:600;font-size:.85rem}
-.pestel-table td{padding:.9rem .8rem;border-bottom:1px solid #e9ecef;font-size:.8rem}
-.pestel-table tbody tr:hover{background:var(--gray-light)}
-.pestel-table .factor-icon{font-size:1.2rem;margin-right:.5rem}
-.pestel-table .evaluation-badge{display:inline-flex;align-items:center;gap:.4rem;padding:.3rem .7rem;border-radius:20px;font-size:.75rem;font-weight:600}
-.pestel-table .evaluation-badge.favorable{background:rgba(16,185,129,.1);color:var(--success)}
+/* ========== HIGHLIGHT BOX ========== */
+.highlight-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:4px solid var(--warning);padding:1.5rem;border-radius:12px;margin:1.5rem 0;text-align:center}
+.highlight-box h3{color:var(--dark);font-size:1.3rem;margin-bottom:.8rem}
+.highlight-box p{color:#78716c;font-size:.95rem;margin-bottom:.5rem}
 
-/* ========== CARRUSEL DE EVIDENCIAS ========== */
-.carousel-container{position:relative;max-width:800px;margin:2rem auto;border-radius:14px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.15)}
-.carousel-track{display:flex;transition:transform .5s ease-in-out}
-.carousel-slide{min-width:100%;display:flex;align-items:center;justify-content:center;background:#000;height:500px}
-.carousel-slide img{max-width:100%;max-height:100%;object-fit:contain}
-.carousel-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;font-size:1.2rem;text-align:center;padding:2rem}
-.carousel-nav{position:absolute;top:50%;width:100%;display:flex;justify-content:space-between;padding:0 1rem;transform:translateY(-50%);pointer-events:none}
-.carousel-btn{pointer-events:all;background:rgba(0,0,0,.7);color:#fff;border:none;width:50px;height:50px;border-radius:50%;cursor:pointer;font-size:1.5rem;display:flex;align-items:center;justify-content:center;transition:all .3s}
-.carousel-btn:hover{background:var(--primary-light);color:var(--dark);transform:scale(1.1)}
-.carousel-indicators{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:10px}
-.carousel-indicator{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.5);border:none;cursor:pointer;transition:all .3s}
-.carousel-indicator.active{background:#fff;width:30px;border-radius:5px}
-.carousel-caption{position:absolute;bottom:60px;left:0;right:0;text-align:center;color:#fff;padding:0 2rem;background:linear-gradient(to top,rgba(0,0,0,.8),transparent);padding-top:2rem;padding-bottom:1rem}
-.carousel-caption h4{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
-.carousel-caption p{font-size:.85rem;opacity:.9}
+/* ========== BRECHAS CONTAINER ========== */
+.brechas-container{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin:1.5rem 0}
+.brechas-title{color:var(--primary-dark);font-size:1.2rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
 
-/* ========== FORTALEZAS/DEBILIDADES ========== */
-.insights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
-.insight-card{background:#fff;padding:1.8rem 1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s}
-.insight-card.fortalezas{border-left:5px solid var(--success)}
-.insight-card.debilidades{border-left:5px solid var(--warning)}
-.insight-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.insight-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
-.insight-icon{font-size:2rem}
-.insight-title{font-size:1.2rem;font-weight:700;color:var(--primary-dark)}
-.insight-list{list-style:none}
-.insight-list li{padding:.5rem 0;padding-left:1.8rem;position:relative;font-size:.85rem;color:#495057;line-height:1.5}
-.insight-card.fortalezas .insight-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700;font-size:1.1rem}
-.insight-card.debilidades .insight-list li::before{content:'⚠';position:absolute;left:0;color:var(--warning);font-size:1rem}
-
-/* ========== TESTIMONIOS ========== */
-.testimonios-container{margin-top:2rem}
-.testimonio-card{background:#fff;padding:1.5rem;border-radius:14px;margin-bottom:1.2rem;box-shadow:0 3px 12px rgba(0,0,0,.06);border-left:4px solid var(--accent-teal);transition:all .3s}
-.testimonio-card:hover{transform:translateX(5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.testimonio-header{display:flex;align-items:center;gap:1rem;margin-bottom:.8rem}
-.testimonio-avatar{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-light),var(--accent-teal));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.2rem}
-.testimonio-info h4{font-size:1rem;font-weight:700;color:var(--primary-dark)}
-.testimonio-info p{font-size:.75rem;color:#6c757d}
-.testimonio-text{font-size:.85rem;color:#495057;line-height:1.6;font-style:italic;padding-left:1rem;border-left:3px solid var(--gray-light)}
-.testimonio-rating{margin-top:.8rem;display:flex;align-items:center;gap:.5rem}
-.testimonio-rating span{color:var(--warning);font-size:1.1rem}
-.testimonio-rating strong{color:var(--primary-dark);font-size:.9rem;margin-left:.3rem}
-
-/* ========== PROYECCIONES ========== */
-.proyecciones-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem;margin-top:2rem}
-.proyeccion-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;position:relative;overflow:hidden}
-.proyeccion-card::before{content:'';position:absolute;top:0;left:0;width:5px;height:100%;background:linear-gradient(180deg,var(--primary-dark),var(--primary-light))}
-.proyeccion-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.proyeccion-year{font-size:1.8rem;font-weight:800;color:var(--primary-light);margin-bottom:.5rem}
-.proyeccion-title{font-size:1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem}
-.proyeccion-stats{list-style:none}
-.proyeccion-stats li{padding:.3rem 0;font-size:.8rem;color:#495057;display:flex;align-items:center;gap:.5rem}
-.proyeccion-stats li::before{content:'►';color:var(--accent-teal);font-size:.7rem}
-
-/* ========== REMEDIACIÓN ========== */
-.casos-grid{display:grid;gap:1.5rem;margin-top:2rem}
-.caso-card{background:#fff;padding:1.8rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);border-top:4px solid;transition:all .3s}
-.caso-card:nth-child(1){border-top-color:var(--info)}
-.caso-card:nth-child(2){border-top-color:var(--warning)}
-.caso-card:nth-child(3){border-top-color:var(--danger)}
-.caso-card:nth-child(4){border-top-color:var(--success)}
-.caso-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.caso-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;padding-bottom:1rem;border-bottom:2px solid var(--gray-light)}
-.caso-numero{width:45px;height:45px;background:var(--primary-light);color:var(--dark);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.2rem}
-.caso-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark)}
-.caso-section{margin-bottom:1rem}
-.caso-section h4{font-size:.9rem;font-weight:700;color:var(--primary-dark);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
-.caso-section ul{list-style:none;margin-left:1.5rem}
-.caso-section li{padding:.3rem 0;font-size:.8rem;color:#495057;position:relative;padding-left:1.2rem}
-.caso-section li::before{content:'•';position:absolute;left:0;color:var(--accent-teal);font-weight:700}
-.caso-badge{display:inline-block;padding:.3rem .7rem;border-radius:15px;font-size:.75rem;font-weight:600;margin-top:.5rem}
-.caso-badge.success{background:rgba(16,185,129,.1);color:var(--success)}
-        /* ========== CONCLUSIONES ========== */
-.conclusiones-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;margin-top:2rem}
-.conclusion-card{background:#fff;padding:1.8rem 1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-left:5px solid var(--primary-dark)}
-.conclusion-card:hover{transform:translateY(-5px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
-.conclusion-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
-.conclusion-title{font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:.8rem}
-.conclusion-list{list-style:none}
-.conclusion-list li{padding:.4rem 0;padding-left:1.5rem;position:relative;font-size:.85rem;color:#495057;line-height:1.5}
-.conclusion-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700}
-
-/* ========== CIERRE ========== */
-.cierre{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
-.cierre-content{max-width:700px;margin:0 auto}
-.cierre-icon{font-size:4rem;margin-bottom:1.5rem;animation:float 3s ease-in-out infinite}
-.cierre-title{font-size:2.5rem;font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.cierre-message{font-size:1.1rem;line-height:1.8;margin-bottom:2rem;color:rgba(255,255,255,.9)}
-.cierre-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;margin-bottom:2rem}
-.cierre-stat{background:rgba(255,255,255,.1);padding:1.2rem;border-radius:12px}
-.cierre-stat-value{font-size:2rem;font-weight:800;color:var(--accent-teal);margin-bottom:.3rem}
-.cierre-stat-label{font-size:.85rem;color:rgba(255,255,255,.8)}
-.cierre-agradecimientos{margin-top:2rem;padding-top:2rem;border-top:2px solid rgba(255,255,255,.2)}
-.cierre-agradecimientos h3{font-size:1.3rem;margin-bottom:1rem}
-.cierre-agradecimientos p{font-size:.95rem;color:rgba(255,255,255,.8);margin-bottom:.5rem}
-.cierre-contact{margin-top:2rem;display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap}
-.contact-btn{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);color:#fff;padding:.7rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;transition:all .3s;border:2px solid rgba(255,255,255,.3)}
-.contact-btn:hover{background:var(--primary-light);color:var(--dark);border-color:var(--primary-light);transform:translateY(-2px)}
+/* ========== VS CONTAINER ========== */
+.vs-container{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin:1.5rem 0}
 
 /* ========== CHARTS ========== */
-.chart-container{background:#fff;padding:2rem 1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin-top:1.5rem}
-.chart-container h3{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center}
-.chart-wrapper{position:relative;height:300px}
+.chart-card{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.chart-title{font-size:1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;text-align:center}
+.chart-container{position:relative;height:250px}
 
-/* ========== MODAL LMS DEMO ========== */
-.lms-demo-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.9);z-index:9999;backdrop-filter:blur(5px)}
-.lms-demo-modal.active{display:flex;align-items:center;justify-content:center}
-.lms-demo-content{width:95%;height:95%;max-width:1400px;max-height:900px;background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.5);display:flex;flex-direction:column}
+/* ========== GALLERY ========== */
+.gallery-section{margin:2rem 0}
+.gallery-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+
+/* ========== CONCLUSIONES ========== */
+.conclusion-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-top:4px solid var(--primary-dark)}
+.conclusion-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.conclusion-card.fortalezas{border-top-color:var(--success)}
+.conclusion-card.mejoras{border-top-color:var(--warning)}
+.conclusion-card.futuro{border-top-color:var(--info)}
+.conclusion-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.conclusion-icon{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem}
+.conclusion-icon.success{background:var(--success)}
+.conclusion-icon.warning{background:var(--warning)}
+.conclusion-icon.info{background:var(--info)}
+.conclusion-title{font-size:1.2rem;font-weight:700;color:var(--primary-dark)}
+.conclusion-list{list-style:none;padding:0}
+.conclusion-list li{padding:.4rem 0;padding-left:1.3rem;position:relative;font-size:.9rem;color:#495057}
+.conclusion-list li::before{content:'•';position:absolute;left:0;color:var(--primary-dark);font-weight:700;font-size:1.2rem}
+
+/* ========== FINAL SLIDE ========== */
+.final-slide{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.final-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.final-thanks{background:rgba(255,255,255,0.1);padding:2rem;border-radius:12px;margin:2rem auto;max-width:600px}
+.final-thanks h3{font-size:1.3rem;margin-bottom:1rem;color:var(--primary-light)}
+.final-thanks ul{list-style:none;padding:0;text-align:left}
+.final-thanks li{padding:.5rem 0;font-size:.95rem;opacity:.9}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0}
+.contact-item{background:rgba(255,255,255,0.1);padding:1rem;border-radius:8px;display:flex;align-items:center;gap:.8rem;font-size:.9rem}
+.contact-item i{font-size:1.3rem;color:var(--primary-light)}
+.contact-item a{color:#fff;text-decoration:none;transition:all .3s}
+.contact-item a:hover{color:var(--primary-light)}
+.questions{font-size:1.5rem;font-weight:700;margin-top:2rem;color:var(--accent-teal)}
+
+/* ========== MODAL DEMO LMS ========== */
+.lms-demo-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.lms-demo-modal.active{display:flex;opacity:1}
+.lms-demo-content{width:90%;height:90%;background:#fff;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 10px 50px rgba(0,0,0,0.5)}
 .lms-demo-header{background:var(--primary-dark);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
-.lms-demo-header h3{font-size:1.2rem;font-weight:700}
+        .lms-demo-header h3{font-size:1.2rem;font-weight:700}
 .lms-demo-close{background:var(--danger);color:#fff;border:none;width:35px;height:35px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
 .lms-demo-close:hover{transform:rotate(90deg);background:var(--dark)}
 .lms-demo-iframe{width:100%;height:calc(100% - 60px);border:none}
@@ -422,7 +229,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     .demo-lms-btn{bottom:100px;right:20px;padding:12px 24px;font-size:0.9rem}
     .card-grid{grid-template-columns:1fr}
     .stats-grid{grid-template-columns:repeat(2,1fr)}
-    .info-tooltip-content{max-width:260px;font-size:0.8rem;padding:12px 14px}
+    .info-tooltip-content{max-width:260px;font-size:0.75rem;padding:12px 14px}
 }
 
 @media (max-width:768px){
@@ -432,10 +239,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     .carousel-slide{height:400px}
     .carousel-slide img{max-height:400px}
     .carousel-placeholder{height:400px}
-    .info-tooltip-content{max-width:220px;font-size:0.75rem;padding:10px 12px}
-    .pilares-grid{grid-template-columns:1fr}
-    .metodologia-grid{grid-template-columns:1fr}
-    .stats-grid{grid-template-columns:1fr}
+    .info-tooltip-content{max-width:220px;font-size:0.7rem;padding:10px 12px}
 }
 </style>
 </head>
@@ -451,11 +255,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     </div>
 </div>
 
+<!-- INDICADOR DE PROGRESO -->
 <!-- MODO INFO TOGGLE -->
 <button class="info-mode-toggle" id="infoModeToggle">
     <i class="bi bi-info-circle"></i>
     <span>Modo Info: OFF</span>
 </button>
+
+<!-- NAVEGACIÓN FLOTANTE -->
 
 <!-- BOTÓN DEMO LMS -->
 <button class="demo-lms-btn" onclick="openLMSDemo()">
@@ -499,7 +306,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 </nav>
 
 <main class="main-content">
-    <!-- SLIDE 1: PORTADA -->
+
+<!-- SLIDE 1: PORTADA -->
 <section id="portada" class="slide portada">
     <div class="slide-container">
         <div class="portada-logo">DA</div>
@@ -536,7 +344,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Población objetivo</strong>
-                            17 estudiantes de 4° año de Pedagogía en Artes Visuales UAH que no recibieron instrucción formal en dibujo anatómico durante 4 semestres previos.
+                            17 estudiantes de 4° año de Pedagogía en Artes Visuales UAH sin instrucción formal en dibujo anatómico durante 4 semestres previos.
                         </span>
                     </span>
                 </div>
@@ -549,7 +357,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Período intensivo</strong>
-                            13-24 noviembre 2025. Curso complementario implementado antes de la presentación final del curso UAH en diciembre 2025.
+                            13-24 noviembre 2025. Curso complementario antes de presentación final del curso UAH en diciembre 2025. Incentivo: 1 punto extra (10 décimas).
                         </span>
                     </span>
                 </div>
@@ -561,8 +369,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Brecha temporal crítica</strong>
-                            Los estudiantes no tuvieron instrucción formal en dibujo anatómico durante 4 semestres, creando una necesidad urgente de intervención.
+                            <strong>Brecha crítica</strong>
+                            Sin instrucción formal durante 4 semestres, creando necesidad urgente de intervención antes de evaluación final.
                         </span>
                     </span>
                 </div>
@@ -574,8 +382,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Viabilidad técnica confirmada</strong>
-                            94% de estudiantes (16/17) tienen acceso a conexión WiFi superior a 5Mbps, garantizando acceso fluido al LMS.
+                            <strong>Viabilidad técnica</strong>
+                            94% (16/17 estudiantes) con acceso a WiFi >5Mbps, garantizando acceso fluido al LMS.
                         </span>
                     </span>
                 </div>
@@ -591,11 +399,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-tooltip">
                             <span class="info-icon">i</span>
                             <span class="info-tooltip-content tooltip-right">
-                                <strong>Metodología de diagnóstico</strong>
-                                • Focus groups: 17/17 estudiantes (100% cobertura)<br>
-                                • Entrevistas en profundidad: 5 estudiantes (120 min c/u)<br>
-                                • Observación directa durante curso UAH<br>
-                                <strong>Resultado:</strong> 71% requiere refuerzo sistemático en técnicas básicas
+                                <strong>Diagnóstico empírico</strong>
+                                Focus groups: 17/17 estudiantes (100% cobertura). Entrevistas: 5 estudiantes (120 min c/u). Observación directa durante curso UAH. Resultado: 71% requiere refuerzo sistemático.
                             </span>
                         </span>
                     </div>
@@ -607,8 +412,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-tooltip">
                             <span class="info-icon">i</span>
                             <span class="info-tooltip-content">
-                                <strong>Impacto emocional identificado</strong>
-                                8/17 estudiantes reportaron ansiedad significativa al dibujar figura humana, requiriendo soporte emocional integrado en el diseño instruccional.
+                                <strong>Impacto emocional</strong>
+                                8/17 estudiantes reportaron ansiedad significativa al dibujar figura humana, requiriendo soporte emocional integrado (Mentor IA con 25 respuestas emocionales).
                             </span>
                         </span>
                     </div>
@@ -620,8 +425,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-tooltip">
                             <span class="info-icon">i</span>
                             <span class="info-tooltip-content tooltip-left">
-                                <strong>Flexibilidad requerida</strong>
-                                65% de estudiantes trabaja part-time, justificando la modalidad 100% asíncrona online con máxima flexibilidad horaria.
+                                <strong>Flexibilidad horaria</strong>
+                                65% trabaja part-time, justificando modalidad 100% asíncrona online con máxima flexibilidad.
                             </span>
                         </span>
                     </div>
@@ -630,7 +435,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-
 <!-- SLIDE 3: OBJETIVOS DEL PROYECTO -->
 <section id="objetivos-proyecto" class="slide">
     <div class="slide-container">
@@ -647,11 +451,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Paradigma disruptivo</strong>
-                            LMS independiente autocontenido que supera a soluciones comerciales:<br>
-                            • Carga: 1.8s vs 10-30s (Canvas/Moodle)<br>
-                            • Uptime: 99.98% sin infraestructura costosa<br>
-                            • Control: 100% institucional<br>
-                            • Ahorro: $6.46M CLP en 5 años
+                            LMS independiente que supera a comerciales: Carga 1.8s vs 10-30s (Canvas/Moodle), Uptime 99.98% sin infraestructura, Control 100% institucional, Ahorro $6.46M CLP en 5 años.
                         </span>
                     </span>
                 </h3>
@@ -668,12 +468,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Resultados superan metas</strong>
-                            • Completación: 76% (meta: 70%) ✓<br>
-                            • Entregas finales: 76% (meta: 70%) ✓<br>
-                            • Aprobación evaluaciones: 92%<br>
-                            • Progreso promedio: 88%<br>
-                            Evidencia empírica confirma efectividad del diseño instruccional.
+                            <strong>Metas superadas</strong>
+                            Completación: 76% vs 70% meta (+6pp). Entregas: 76% vs 70% meta (+6pp). Aprobación evaluaciones: 92%. Progreso promedio: 88%. Evidencia empírica valida diseño.
                         </span>
                     </span>
                 </h3>
@@ -690,11 +486,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Proyección escalable</strong>
-                            • 2026-2027: 2-3 instituciones (50-100 estudiantes)<br>
-                            • 2028-2029: 10-15 instituciones (200-300 estudiantes)<br>
-                            • Impacto multiplicador: 2,550 estudiantes secundarios en 5 años<br>
-                            • Ahorro agregado: $32M+ CLP para el sistema educativo
+                            <strong>Escalabilidad demostrable</strong>
+                            2026-27: 2-3 instituciones (50-100 estudiantes). 2028-29: 10-15 instituciones (200-300 estudiantes). Impacto multiplicador: 2,550 estudiantes secundarios en 5 años. Ahorro: $32M+ CLP.
                         </span>
                     </span>
                 </h3>
@@ -708,152 +501,260 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
+
 <!-- SLIDE 4: OBJETIVOS DE APRENDIZAJE -->
 <section id="objetivos-aprendizaje" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">03</span>
             <h2 class="section-title">Objetivos de Aprendizaje</h2>
-            <p class="section-subtitle">Progresión Cognitiva según Taxonomía de Bloom</p>
+            <p class="section-subtitle">Progresión según Taxonomía de Bloom</p>
         </div>
-        <div class="metodologia-grid">
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">OE1</div>
-                <h3 class="metodo-nombre">COMPRENDER
+        <div class="card-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-lightbulb"></i></div>
+                <h3 class="feature-title">OE1: COMPRENDER (Nivel 2 Bloom)
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Nivel 2 de Bloom</strong>
-                            10 evaluaciones formativas automáticas con criterios diferenciados:<br>
-                            • Fundacionales: 3/3 correctas (100%)<br>
-                            • Práctica: 2/3 correctas (66%)<br>
-                            <strong>Resultado:</strong> 92% aprobación (156/170 intentos)
+                            <strong>Evaluación adaptativa</strong>
+                            10 evaluaciones formativas con criterios diferenciados: Fundacionales 3/3 correctas (100%), Práctica 2/3 correctas (66%). Resultado: 92% aprobación (156/170 intentos).
                         </span>
                     </span>
                 </h3>
-                <p class="metodo-desc">Interpretar principios fundamentales mediante evaluaciones formativas con múltiples intentos</p>
-                <div class="stat-badge success">92% aprobación lograda</div>
+                <ul class="feature-list">
+                    <li>Interpretar principios fundamentales mediante evaluaciones formativas</li>
+                    <li>10 evaluaciones con múltiples intentos sin penalización</li>
+                    <li>Feedback inmediato por pregunta</li>
+                    <li>✅ Resultado: 92% tasa de aprobación lograda</li>
+                </ul>
             </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">OE2</div>
-                <h3 class="metodo-nombre">APLICAR
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-pencil"></i></div>
+                <h3 class="feature-title">OE2: APLICAR (Nivel 3 Bloom)
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Nivel 3 de Bloom</strong>
-                            23 ejercicios cronometrados progresivos:<br>
-                            • M1: Captura gestual (2-5 min)<br>
-                            • M2: Construcción anatómica (10-15 min)<br>
-                            • M3: Representación volumétrica (20-30 min)<br>
-                            <strong>Resultado:</strong> 88% progreso promedio
+                            <strong>Práctica progresiva</strong>
+                            23 ejercicios cronometrados: M1 captura gestual (2-5 min), M2 construcción anatómica (10-15 min), M3 representación volumétrica (20-30 min). Resultado: 88% progreso promedio.
                         </span>
                     </span>
                 </h3>
-                <p class="metodo-desc">Ejecutar técnicas de captura gestual, construcción anatómica y representación volumétrica</p>
-                <div class="stat-badge success">88% progreso promedio</div>
+                <ul class="feature-list">
+                    <li>Ejecutar técnicas de captura gestual y construcción anatómica</li>
+                    <li>23 ejercicios cronometrados progresivos</li>
+                    <li>Andamiaje modular: gesto → anatomía → volumen</li>
+                    <li>✅ Resultado: 88% progreso promedio alcanzado</li>
+                </ul>
             </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">OE3</div>
-                <h3 class="metodo-nombre">CREAR
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-palette"></i></div>
+                <h3 class="feature-title">OE3: CREAR (Nivel 6 Bloom)
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Nivel 6 de Bloom</strong>
-                            Proyecto final autónomo:<br>
-                            • Formato: 1/4 mercurio (27.5 × 37.5 cm)<br>
-                            • Criterio: Mínimo 17/28 puntos en rúbrica analítica de 7 criterios<br>
-                            • Integra: Observación + Anatomía + Volumen<br>
-                            <strong>Resultado:</strong> 13/17 entregas (76%)
+                            <strong>Proyecto integrador</strong>
+                            Formato: 1/4 mercurio (27.5 × 37.5 cm). Criterio: Mínimo 17/28 puntos en rúbrica analítica de 7 criterios. Integra observación + anatomía + volumen. Resultado: 13/17 entregas (76%).
                         </span>
                     </span>
                 </h3>
-                <p class="metodo-desc">Crear proyecto final autónomo que sintetice todos los aprendizajes del curso</p>
-                <div class="stat-badge success">76% entregas recibidas</div>
+                <ul class="feature-list">
+                    <li>Crear proyecto final autónomo que sintetice aprendizajes</li>
+                    <li>Dibujo 1/4 mercurio evaluado con rúbrica analítica</li>
+                    <li>Integra observación + anatomía + luz/volumen</li>
+                    <li>✅ Resultado: 76% entregas recibidas (meta superada)</li>
+                </ul>
             </div>
+        </div>
+        <div class="highlight-box animate-on-scroll" style="margin-top:2rem">
+            <h3>🎯 Objetivo General de Aprendizaje
+                <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip-content">
+                        <strong>Competencia docente</strong>
+                        Desarrollar habilidades para enseñar dibujo de figura humana a futuros estudiantes de educación secundaria. Impacto multiplicador proyectado.
+                    </span>
+                </span>
+            </h3>
+            <p><strong>CREAR</strong> una representación completa del cuerpo humano en formato 1/4 mercurio (27.5 × 37.5 cm) <strong>INTEGRANDO:</strong> técnicas de observación directa + análisis anatómico funcional + principios de luz y volumen</p>
+            <p><strong>Criterio de éxito:</strong> Mínimo 17/28 puntos en rúbrica analítica de 7 criterios</p>
         </div>
     </div>
 </section>
-
 <!-- SLIDE 5: RECURSOS Y ACTIVIDADES -->
 <section id="recursos" class="slide">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">04</span>
             <h2 class="section-title">Recursos y Actividades</h2>
-            <p class="section-subtitle">Ruta Didáctica Modular Progresiva</p>
+            <p class="section-subtitle">Ruta Didáctica Modular Progresiva con Andamiaje</p>
         </div>
-        <div class="ruta-container">
-            <div class="modulo-card animate-on-scroll">
-                <div class="modulo-header">
-                    <div class="modulo-numero">M1</div>
-                    <div class="modulo-info">
-                        <h3>Observación y Gesto
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Fundamentación pedagógica</strong>
-                                    Inspirado en método contemplativo de Leonardo da Vinci vs construcción geométrica tradicional.<br>
-                                    <strong>Estudiantes:</strong> "Aprendí a VER, no a aplicar fórmulas mecánicas"
-                                </span>
+        
+        <div class="timeline">
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">M1</div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Módulo 1</span>
+                    <h3 class="timeline-title">Observación y Gesto
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Método contemplativo</strong>
+                                Inspirado en Leonardo da Vinci vs construcción geométrica tradicional. Estudiantes: "Aprendí a VER, no a aplicar fórmulas mecánicas".
                             </span>
-                        </h3>
-                        <p>3 días | 2.5 horas | 8 croquis + 3 evaluaciones</p>
+                        </span>
+                    </h3>
+                    <p class="timeline-desc">Fundamentos de captura rápida, proporciones visuales y distribución de peso mediante observación contemplativa</p>
+                    <div class="timeline-stats">
+                        <span class="timeline-stat"><i class="bi bi-calendar3"></i> 3 días</span>
+                        <span class="timeline-stat"><i class="bi bi-clock"></i> 2.5 horas</span>
+                        <span class="timeline-stat"><i class="bi bi-pencil"></i> 8 croquis</span>
+                        <span class="timeline-stat"><i class="bi bi-clipboard-check"></i> 3 evaluaciones</span>
                     </div>
                 </div>
-                <ul class="modulo-lecciones">
-                    <li>L1.1: Fundamentos del Croquis Rápido (45 min)</li>
-                    <li>L1.2: Proporciones Visuales (50 min)</li>
-                    <li>L1.3: Distribución de Peso y Balance (55 min)</li>
-                </ul>
             </div>
-            <div class="modulo-card animate-on-scroll">
-                <div class="modulo-header">
-                    <div class="modulo-numero">M2</div>
-                    <div class="modulo-info">
-                        <h3>Anatomía Funcional
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Enfoque simplificado</strong>
-                                    3 masas corporales (cabeza, torso, pelvis) según método Bridgman, no memorización exhaustiva de 200+ músculos.
-                                </span>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">M2</div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Módulo 2</span>
+                    <h3 class="timeline-title">Anatomía Funcional
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Simplificación efectiva</strong>
+                                3 masas corporales (cabeza, torso, pelvis) según método Bridgman. NO memorización de 200+ músculos. Enfoque funcional para artistas.
                             </span>
-                        </h3>
-                        <p>4 días | 3.3 horas | 12 estudios + 4 evaluaciones</p>
+                        </span>
+                    </h3>
+                    <p class="timeline-desc">Estructura ósea simplificada, músculos superficiales, manos/pies estructurados y proporciones faciales básicas</p>
+                    <div class="timeline-stats">
+                        <span class="timeline-stat"><i class="bi bi-calendar3"></i> 4 días</span>
+                        <span class="timeline-stat"><i class="bi bi-clock"></i> 3.3 horas</span>
+                        <span class="timeline-stat"><i class="bi bi-pencil"></i> 12 estudios</span>
+                        <span class="timeline-stat"><i class="bi bi-clipboard-check"></i> 4 evaluaciones</span>
                     </div>
                 </div>
-                <ul class="modulo-lecciones">
-                    <li>L2.1: Estructura Ósea Simplificada (50 min)</li>
-                    <li>L2.2: Músculos Superficiales (50 min)</li>
-                    <li>L2.3: Manos y Pies Estructurados (50 min)</li>
-                    <li>L2.4: Rostro - Proporciones Básicas (50 min)</li>
-                </ul>
             </div>
-            <div class="modulo-card animate-on-scroll">
-                <div class="modulo-header">
-                    <div class="modulo-numero">M3</div>
-                    <div class="modulo-info">
-                        <h3>Figura Completa
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Síntesis integradora</strong>
-                                    Combina observación gestual (M1) + análisis anatómico (M2) + representación volumétrica en proyecto final evaluado con rúbrica analítica.
-                                </span>
+            
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">M3</div>
+                <div class="timeline-content">
+                    <span class="timeline-label">Módulo 3</span>
+                    <h3 class="timeline-title">Figura Completa
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Síntesis integradora</strong>
+                                Combina observación gestual (M1) + análisis anatómico (M2) + representación volumétrica. Proyecto final evaluado con rúbrica analítica de 7 criterios.
                             </span>
-                        </h3>
-                        <p>5 días | 5-6 horas | Proyecto final evaluado</p>
+                        </span>
+                    </h3>
+                    <p class="timeline-desc">Síntesis por capas, luz/sombra/volumen y proyecto final integrador evaluado con rúbrica analítica</p>
+                    <div class="timeline-stats">
+                        <span class="timeline-stat"><i class="bi bi-calendar3"></i> 5 días</span>
+                        <span class="timeline-stat"><i class="bi bi-clock"></i> 5-6 horas</span>
+                        <span class="timeline-stat"><i class="bi bi-pencil"></i> Proyecto final</span>
+                        <span class="timeline-stat"><i class="bi bi-clipboard-check"></i> 3 evaluaciones</span>
                     </div>
                 </div>
-                <ul class="modulo-lecciones">
-                    <li>L3.1: Síntesis por Capas (60 min)</li>
-                    <li>L3.2: Luz, Sombra y Volumen (60 min)</li>
-                    <li>L3.3: Proyecto Final (2-3 hrs ejecución)</li>
-                </ul>
             </div>
         </div>
-        <div class="brechas-container animate-on-scroll" style="margin-top:2rem">
-            <h3 class="brechas-title"><i class="bi bi-book"></i> Fundamentación Bibliográfica (Validación CRAAP)</h3>
+
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-collection"></i> Recursos Pedagógicos Creados</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-value counter" data-target="10">0</div>
+                    <div class="stat-label">Lecciones interactivas
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Navegación intuitiva</strong>
+                                10 lecciones completas con navegación secuencial, acordeones expandibles, referencias curadas y ejercicios cronometrados integrados.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📖</div>
+                    <div class="stat-value counter" data-target="30">0</div>
+                    <div class="stat-label">Acordeones teóricos
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Contenido progresivo</strong>
+                                30 acordeones expandibles con teoría estructurada basada en Loomis, Nicolaïdes, Bridgman y otros maestros validados por industria (Pixar/Disney/RISD).
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🖼️</div>
+                    <div class="stat-value counter" data-target="26">0</div>
+                    <div class="stat-label">Referencias curadas
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Alta calidad</strong>
+                                26 referencias fotográficas de alta calidad, dominio público, con diversidad de poses, edades, géneros y tipos corporales.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎥</div>
+                    <div class="stat-value counter" data-target="3">0</div>
+                    <div class="stat-label">Videos explicativos
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Multimedial</strong>
+                                3 videos explicativos (8 min total) embebidos de YouTube con demostraciones técnicas y ejemplos prácticos.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✏️</div>
+                    <div class="stat-value counter" data-target="23">0</div>
+                    <div class="stat-label">Ejercicios progresivos
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Cronometrados</strong>
+                                23 ejercicios con tiempos específicos (2-30 min) y criterios claros de éxito, aumentando complejidad gradualmente.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value counter" data-target="10">0</div>
+                    <div class="stat-label">Evaluaciones automáticas
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">
+                                <strong>Feedback inmediato</strong>
+                                10 evaluaciones formativas con feedback instantáneo, múltiples intentos y avance automático entre lecciones al aprobar.
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-book"></i> Fundamentación Bibliográfica (Validación CRAAP)
+                <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip-content">
+                        <strong>Doble fundamentación</strong>
+                        Capa visible: Contenido anatómico de maestros clásicos. Capa invisible: Diseño instruccional basado en investigación educativa rigurosa.
+                    </span>
+                </span>
+            </h3>
             <div class="card-grid">
                 <div class="feature-card">
                     <h4 style="color:var(--primary-dark);margin-bottom:.8rem">📚 Contenido Anatómico</h4>
@@ -861,7 +762,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <li>Loomis (1943) - Figure Drawing for All It's Worth</li>
                         <li>Nicolaïdes (1941) - The Natural Way to Draw</li>
                         <li>Bridgman (1920) - Constructive Anatomy</li>
-                        <li>Validación: Pixar | Disney | RISD</li>
+                        <li>Richer (1890) - Artistic Anatomy</li>
+                        <li>Goldfinger (1991) - Human Anatomy for Artists</li>
+                        <li><strong>Validación de industria:</strong> Pixar | Disney | RISD</li>
                     </ul>
                 </div>
                 <div class="feature-card">
@@ -871,21 +774,23 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <li>Means (2013) → Personalización digital</li>
                         <li>Mayer (2014) → Diseño multimedia</li>
                         <li>Bloom (1956) → Progresión cognitiva</li>
+                        <li>Wiggins (1998) → Rúbrica analítica</li>
+                        <li>Hattie (2009) → Dashboard y feedback</li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
 <!-- SLIDE 6: INSTANCIA FORMATIVA EN EL LMS -->
 <section id="formativa" class="slide" style="background:#fff">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">05</span>
             <h2 class="section-title">Instancia Formativa en el LMS</h2>
-            <p class="section-subtitle">Sistema de Evaluación Adaptativa + Mentor IA</p>
+            <p class="section-subtitle">Sistema de Evaluación Adaptativa + Mentor IA 24/7</p>
         </div>
+        
         <div class="card-grid">
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-clipboard-check"></i></div>
@@ -894,9 +799,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Criterios diferenciados</strong>
-                            Fundacionales (L1 de cada módulo): 3/3 correctas (100%)<br>
-                            Práctica (L2-L4): 2/3 correctas (66%)<br>
-                            Fundamentación: Conceptos base requieren dominio completo, práctica permite aprendizaje iterativo.
+                            Fundacionales (L1 cada módulo): 3/3 correctas (100%). Práctica (L2-L4): 2/3 correctas (66%). Fundamentación: Conceptos base requieren dominio completo, práctica permite aprendizaje iterativo sin frustración.
                         </span>
                     </span>
                 </h3>
@@ -905,968 +808,193 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <li>Criterios adaptativos: 100% fundacionales, 66% práctica</li>
                     <li>Múltiples intentos sin penalización</li>
                     <li>Avance automático entre lecciones</li>
+                    <li>Contador visual de progreso (X/3 respondidas)</li>
                 </ul>
-                <div class="stat-badge success">92% tasa de aprobación</div>
+                <div class="stat-badge success">✅ 92% tasa de aprobación lograda</div>
             </div>
+            
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-robot"></i></div>
                 <h3 class="feature-title">Mentor Anatómico IA
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Base de conocimiento tricapa</strong>
-                            • Conversación básica: 5 respuestas<br>
-                            • Soporte emocional: 25 respuestas (frustración, ansiedad, bloqueo creativo)<br>
-                            • Soporte técnico: 35 respuestas (todos los módulos)<br>
-                            Tecnología: JavaScript local, costo $0, disponibilidad 24/7
+                            <strong>Base tricapa 60+ respuestas</strong>
+                            Conversación básica (5), Soporte emocional (25): frustración leve/moderada/severa, ansiedad, bloqueo creativo, comparación social, perfeccionismo. Soporte técnico (35): M1/M2/M3 + transversal. Tecnología: JavaScript local, $0 costo, 24/7.
                         </span>
                     </span>
                 </h3>
                 <ul class="feature-list">
-                    <li>Disponibilidad 24/7 sin costo operativo</li>
+                    <li>Disponibilidad 24/7 sin costo operativo ($0)</li>
                     <li>60+ respuestas especializadas (técnicas + emocionales)</li>
                     <li>Detección emocional con intensidad</li>
                     <li>Memoria conversacional contextual</li>
+                    <li>Sugerencias inteligentes de descanso</li>
                 </ul>
+                <div class="stat-badge" style="background:var(--info)">Testimonio: "Lo usé tipo 11pm cuando nadie estaba disponible"</div>
             </div>
+            
             <div class="feature-card animate-on-scroll">
                 <div class="feature-icon"><i class="bi bi-speedometer2"></i></div>
-                <h3 class="feature-title">Dashboard de Progreso
+                <h3 class="feature-title">Dashboard de Progreso Dual
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
-                            <strong>Vista dual</strong>
-                            Estudiante: Autorregulación (progreso, lecciones completadas, próximos pasos)<br>
-                            Instructor: Analytics (métricas grupales, estudiantes en riesgo, gráficos de distribución)
+                            <strong>Vista estudiante/instructor</strong>
+                            Estudiante (autorregulación): Progreso %, estado por módulo, lecciones completadas, evaluaciones aprobadas, tiempo dedicado, próximos pasos. Instructor (analytics): Métricas grupales, progreso individual, estudiantes en riesgo, gráficos distribución.
                         </span>
                     </span>
                 </h3>
                 <ul class="feature-list">
                     <li>Visualización en tiempo real</li>
                     <li>Tracking automático de avance</li>
-                    <li>Identificación de estudiantes en riesgo</li>
+                    <li>Identificación de estudiantes en riesgo (&lt;25% progreso)</li>
                     <li>Métricas generales del grupo</li>
+                    <li>Log de acciones del sistema</li>
                 </ul>
+                <div class="stat-badge" style="background:var(--danger)">⚠️ 1 estudiante identificado en riesgo</div>
+            </div>
+        </div>
+
+        <div class="brechas-container animate-on-scroll" style="margin-top:2rem">
+            <h3 class="brechas-title"><i class="bi bi-clipboard-data"></i> Resultados del Sistema de Evaluación
+                <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip-content">
+                        <strong>Datos empíricos</strong>
+                        156/170 evaluaciones aprobadas (92%). 100% aprobación en lecciones fundacionales. 92% aprobación en lecciones de práctica. Intentos promedio: 1.2 por evaluación.
+                    </span>
+                </span>
+            </h3>
+            <div class="stats-grid">
+                <div class="stat-card success">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-value"><span class="counter" data-target="92">0</span>%</div>
+                    <div class="stat-label">Aprobación total (156/170)</div>
+                </div>
+                <div class="stat-card success">
+                    <div class="stat-icon">💯</div>
+                    <div class="stat-value"><span class="counter" data-target="100">0</span>%</div>
+                    <div class="stat-label">Aprobación fundacionales</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔄</div>
+                    <div class="stat-value">1.2</div>
+                    <div class="stat-label">Intentos promedio</div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
 <!-- SLIDE 7: INNOVACIÓN - LMS INDEPENDIENTE -->
 <section id="innovacion" class="slide">
     <div class="slide-container">
         <div class="section-header">
             <span class="section-number">06</span>
             <h2 class="section-title">Paradigma Innovador: LMS Independiente</h2>
-            <p class="section-subtitle">Funcionalidad profesional SIN infraestructura costosa</p>
+            <p class="section-subtitle">Funcionalidad profesional SIN infraestructura costosa NI dependencias comerciales</p>
         </div>
+
         <div class="pilares-grid">
-            <div class="pilar-card animate-on-scroll">
+            <div class="pilar-card animate-on-scroll" style="border-top-color:var(--accent-teal)">
                 <span class="pilar-icon">⚡</span>
-                <h3 class="pilar-title">Simplicidad Técnica Superior
+                <h3 class="pilar-title" style="color:var(--primary-dark)">Simplicidad Técnica Superior
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Stack tecnológico</strong>
-                            HTML5 + CSS3 + JavaScript vanilla (estándar universal consolidado)<br>
-                            Hosting: GitHub Pages (99.98% uptime gratuito)<br>
-                            <strong>Testimonio estudiante:</strong> "Funcionó MEJOR que Moodle. Más rápido, más limpio, más fácil de usar"
+                            HTML5 + CSS3 + JavaScript vanilla (estándar universal consolidado). Hosting: GitHub Pages (99.98% uptime gratuito). Testimonio estudiante: "Funcionó MEJOR que Moodle. Más rápido, más limpio, más fácil de usar".
                         </span>
                     </span>
                 </h3>
-                <ul class="pilar-stats">
-                    <li>Carga: 1.8 seg vs 10-30 seg (Canvas/Moodle)</li>
-                    <li>Compatibilidad: 100% navegadores sin plugins</li>
-                    <li>Uptime: 99.98% confirmado durante implementación</li>
+                <ul class="pilar-list">
+                    <li>✓ Carga: 1.8 seg vs 10-30 seg (Canvas/Moodle)</li>
+                    <li>✓ Stack: HTML5 + CSS3 + JavaScript vanilla</li>
+                    <li>✓ Compatibilidad: 100% navegadores sin plugins</li>
+                    <li>✓ Hosting: GitHub Pages gratuito (99.98% uptime)</li>
                 </ul>
             </div>
-            <div class="pilar-card animate-on-scroll">
+            
+            <div class="pilar-card animate-on-scroll" style="border-top-color:var(--success)">
                 <span class="pilar-icon">💰</span>
-                <h3 class="pilar-title">Sostenibilidad Económica Absoluta
+                <h3 class="pilar-title" style="color:var(--primary-dark)">Sostenibilidad Económica Absoluta
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Análisis de ahorro</strong>
-                            Canvas: $1,292,000 CLP/año<br>
-                            × 5 años = $6,460,000 CLP<br>
-                            DIADIFO: $0 permanente<br>
-                            ROI: Infinito (inversión interna única)
+                            Canvas: $1,292,000 CLP/año × 5 años = $6,460,000 CLP. DIADIFO: $0 permanente. ROI: Infinito (inversión interna única). Sin licencias, sin servidores, sin mantenimiento costoso.
                         </span>
                     </span>
                 </h3>
-                <ul class="pilar-stats">
-                    <li>Costo operativo: $0 permanente</li>
-                    <li>Ahorro 5 años: $6.46M CLP vs Canvas</li>
-                    <li>Sin licencias, sin servidores, sin mantenimiento costoso</li>
+                <ul class="pilar-list">
+                    <li>✓ Costo operativo: $0 permanente</li>
+                    <li>✓ Ahorro 5 años: $6.46M CLP vs Canvas</li>
+                    <li>✓ ROI: Infinito (inversión interna)</li>
+                    <li>✓ Sin licencias, sin servidores, sin mantenimiento</li>
                 </ul>
             </div>
-            <div class="pilar-card animate-on-scroll">
+            
+            <div class="pilar-card animate-on-scroll" style="border-top-color:var(--warning)">
                 <span class="pilar-icon">🔓</span>
-                <h3 class="pilar-title">Autonomía Institucional Total
+                <h3 class="pilar-title" style="color:var(--primary-dark)">Autonomía Institucional Total
                     <span class="info-tooltip">
                         <span class="info-icon">i</span>
                         <span class="info-tooltip-content">
                             <strong>Control completo</strong>
-                            • Datos no en manos de terceros<br>
-                            • Personalización ilimitada sin restricciones comerciales<br>
-                            • Independencia de cambios de TOS externos<br>
-                            • Código fuente propio, modificable, replicable
+                            Datos no en manos de terceros. Personalización ilimitada sin restricciones comerciales. Independencia de cambios de TOS externos. Código fuente propio, modificable, replicable en GitHub.
                         </span>
                     </span>
                 </h3>
-                <ul class="pilar-stats">
-                    <li>Control total de datos (no en manos de terceros)</li>
-                    <li>Personalización ilimitada sin restricciones</li>
-                    <li>Código fuente propio en GitHub</li>
+                <ul class="pilar-list">
+                    <li>✓ Control total de datos (no en manos de terceros)</li>
+                    <li>✓ Personalización ilimitada sin restricciones</li>
+                    <li>✓ Independencia de cambios de TOS externos</li>
+                    <li>✓ Código fuente propio, modificable, replicable</li>
                 </ul>
             </div>
         </div>
-        <div class="brechas-container animate-on-scroll" style="margin-top:2rem">
-            <h3 class="brechas-title"><i class="bi bi-globe"></i> Viabilidad Confirmada: Análisis PESTEL</h3>
-            <table class="pestel-table">
-                <thead>
-                    <tr>
-                        <th>Dimensión</th>
-                        <th>Evaluación</th>
-                        <th>Factor Clave</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><span class="factor-icon">🏛</span> Político</td>
-                        <td><span class="evaluation-badge favorable">✓ Favorable</span></td>
-                        <td>Ley 21.091 promueve innovación educativa</td>
-                    </tr>
-                    <tr>
-                        <td><span class="factor-icon">💰</span> Económico</td>
-                        <td><span class="evaluation-badge favorable">✓ Viable</span></td>
-                        <td>Ahorro $6.46M en 5 años</td>
-                    </tr>
-                    <tr>
-                        <td><span class="factor-icon">👥</span> Social</td>
-                        <td><span class="evaluation-badge favorable">✓ Aceptación</span></td>
-                        <td>94% preferencia control institucional</td>
-                    </tr>
-                    <tr>
-                        <td><span class="factor-icon">💻</span> Tecnológico</td>
-                        <td><span class="evaluation-badge favorable">✓ Maduro</span></td>
-                        <td>HTML5 estándar universal consolidado</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</section>
 
-<!-- SLIDE 8: TUTORÍA Y ACOMPAÑAMIENTO -->
-<section id="tutoria" class="slide" style="background:#fff">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">07</span>
-            <h2 class="section-title">Estrategia de Acompañamiento Híbrido</h2>
-            <p class="section-subtitle">Automatización + Monitoreo + Intervención Humana</p>
-        </div>
-        <div class="acomp-grid">
-            <div class="acomp-card animate-on-scroll">
-                <div class="acomp-numero">1</div>
-                <h3 class="acomp-title">Acompañamiento Automatizado (24/7)
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Resultados automáticos</strong>
-                            • 156/170 evaluaciones aprobadas (92%)<br>
-                            • 100% aprobación en lecciones fundacionales<br>
-                            • Dashboard identifica automáticamente estudiantes en riesgo (&lt;25% progreso)
-                        </span>
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-shield-check"></i> Viabilidad Confirmada: Análisis PESTEL
+                <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip-content">
+                        <strong>25 factores positivos vs 1 negativo menor</strong>
+                        Análisis exhaustivo confirma viabilidad técnica, económica, social, legal y ambiental del modelo LMS independiente.
                     </span>
-                </h3>
-                <p class="acomp-desc">Evaluaciones formativas automáticas con feedback inmediato, Mentor Anatómico IA disponible permanentemente, y dashboard de progreso en tiempo real.</p>
-            </div>
-            <div class="acomp-card animate-on-scroll">
-                <div class="acomp-numero">2</div>
-                <h3 class="acomp-title">Monitoreo Proactivo
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Protocolo escalonado</strong>
-                            5 monitoreos durante 12 días:<br>
-                            • Día 1: Baseline (17/17 accedieron)<br>
-                            • Día 6: Identificar 0% progreso (1 estudiante)<br>
-                            • Día 8: Verificar listos para presencial (16/17)<br>
-                            • Día 10: Post-sesión (13/17 completaron 100%)<br>
-                            • Día 12: Cierre (9/17 entregas finales)
-                        </span>
-                    </span>
-                </h3>
-                <p class="acomp-desc">Monitoreo de 5 puntos críticos durante implementación con protocolo de intervención escalonada según nivel de riesgo (técnico, bajo, medio, alto).</p>
-            </div>
-            <div class="acomp-card animate-on-scroll">
-                <div class="acomp-numero">3</div>
-                <h3 class="acomp-title">Intervención Presencial
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Sesiones estratégicas</strong>
-                            13 y 21 noviembre (10:50-12:50 hrs)<br>
-                            Estructura: 3 bloques de trabajo (gesto → anatomía → refinamiento) + 3 pausas de retroalimentación individualizada<br>
-                            <strong>Asistencia:</strong> 16/17 primera sesión (94%)
-                        </span>
-                    </span>
-                </h3>
-                <p class="acomp-desc">Sesiones presenciales con modelo en vivo para ejecución del proyecto final evaluado. Retroalimentación individualizada en 3 pausas según necesidad observada.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SLIDE 9: ESTRUCTURA METODOLÓGICA -->
-<section id="estructura" class="slide">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">08</span>
-            <h2 class="section-title">Estructura Metodológica ADDIE + ABP</h2>
-            <p class="section-subtitle">Integración de diseño instruccional con aprendizaje basado en proyectos</p>
-        </div>
-        <div class="metodologia-grid">
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">A</div>
-                <h3 class="metodo-nombre">Análisis</h3>
-                <p class="metodo-desc">Focus groups (17/17), entrevistas (5 estudiantes), observación directa. Identificación de brechas críticas y necesidades.</p>
-            </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">D</div>
-                <h3 class="metodo-nombre">Diseño</h3>
-                <p class="metodo-desc">Objetivos alineados a Bloom, ruta modular progresiva, evaluaciones adaptativas, sistema de acompañamiento híbrido.</p>
-            </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">D</div>
-                <h3 class="metodo-nombre">Desarrollo</h3>
-                <p class="metodo-desc">10 lecciones interactivas, 30 acordeones teóricos, 26 referencias curadas, 3 videos, Mentor IA, dashboard dual.</p>
-            </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">I</div>
-                <h3 class="metodo-nombre">Implementación</h3>
-                <p class="metodo-desc">13-24 nov 2025, 17 estudiantes UAH, modalidad asíncrona + sesiones presenciales estratégicas.</p>
-            </div>
-            <div class="metodo-card animate-on-scroll">
-                <div class="metodo-numero">E</div>
-                <h3 class="metodo-nombre">Evaluación</h3>
-                <p class="metodo-desc">Datos cuantitativos (76% completación, 92% aprobación) + cualitativos (cuestionarios, testimonios, observación).</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SLIDE 10: RESULTADOS -->
-<section id="resultados" class="slide" style="background:#fff">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">09</span>
-            <h2 class="section-title">Resultados de la Implementación</h2>
-            <p class="section-subtitle">13-24 noviembre 2025 | 17 estudiantes</p>
-        </div>
-        <div class="stats-grid">
-            <div class="stat-card success animate-on-scroll">
-                <div class="stat-icon">✅</div>
-                <div class="stat-value"><span class="counter" data-target="76">0</span>%</div>
-                <div class="stat-label">Completación
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>META SUPERADA</strong>
-                            13/17 estudiantes completaron 100% del curso<br>
-                            Meta original: 70%<br>
-                            Logrado: 76% (+6 puntos porcentuales)
-                        </span>
-                    </span>
-                </div>
-                <div class="stat-badge">META SUPERADA 🎉</div>
-            </div>
-            <div class="stat-card success animate-on-scroll">
-                <div class="stat-icon">📊</div>
-                <div class="stat-value"><span class="counter" data-target="92">0</span>%</div>
-                <div class="stat-label">Aprobación evaluaciones
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Evaluaciones formativas</strong>
-                            156/170 intentos aprobados (92%)<br>
-                            • Fundacionales (100% req): 100% aprobación<br>
-                            • Práctica (66% req): 92% aprobación<br>
-                            Intentos promedio: 1.2 por evaluación
-                        </span>
-                    </span>
-                </div>
-            </div>
-            <div class="stat-card success animate-on-scroll">
-                <div class="stat-icon">🎨</div>
-                <div class="stat-value"><span class="counter" data-target="76">0</span>%</div>
-                <div class="stat-label">Entregas finales
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Proyecto final</strong>
-                            13/17 estudiantes entregaron proyecto final<br>
-                            Meta original: 70%<br>
-                            Logrado: 76% (+6 puntos porcentuales)<br>
-                            Formato: Dibujo 1/4 mercurio con rúbrica analítica
-                        </span>
-                    </span>
-                </div>
-                <div class="stat-badge">META SUPERADA 🎉</div>
-            </div>
-            <div class="stat-card animate-on-scroll">
-                <div class="stat-icon">📈</div>
-                <div class="stat-value"><span class="counter" data-target="88">0</span>%</div>
-                <div class="stat-label">Progreso promedio
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Progreso del grupo</strong>
-                            Promedio ponderado de todos los estudiantes<br>
-                            16/17 activos en últimos 7 días (94%)<br>
-                            1 estudiante en riesgo (Francisca Sepúlveda - sin acceso)
-                        </span>
-                    </span>
-                </div>
-            </div>
-        </div>
-        <div class="testimonios-container animate-on-scroll">
-            <h3 style="font-size:1.3rem;color:var(--primary-dark);margin-bottom:1.5rem;text-align:center"><i class="bi bi-chat-quote"></i> Testimonios de Estudiantes</h3>
-            <div class="testimonio-card">
-                <div class="testimonio-header">
-                    <div class="testimonio-avatar">CM</div>
-                    <div class="testimonio-info">
-                        <h4>Catalina Morgado</h4>
-                        <p>22 años, 4° año Pedagogía en Artes Visuales</p>
-                    </div>
-                </div>
-                <p class="testimonio-text">"Funcionó MEJOR que Moodle. Más rápido, más limpio, más fácil de usar. Aprendí a VER, no a aplicar fórmulas mecánicas. Habría funcionado mejor si iban paralelas desde el inicio."</p>
-                <div class="testimonio-rating">
-                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                    <strong>7/10</strong> (9/10 con mejor integración)
-                </div>
-            </div>
-            <div class="testimonio-card">
-                <div class="testimonio-header">
-                    <div class="testimonio-avatar">PB</div>
-                    <div class="testimonio-info">
-                        <h4>Pablo Becerra</h4>
-                        <p>24 años, 4° año Pedagogía en Artes Visuales</p>
-                    </div>
-                </div>
-                <p class="testimonio-text">"Funcionó perfecto. Incluso desde el celular cargaba rápido. Esos ejercicios donde nos hacía mirar 2-3 minutos antes de dibujar me cambiaron la forma de ver. El LMS después me explicó que eso venía de Loomis."</p>
-                <div class="testimonio-rating">
-                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                    <strong>8/10</strong> (9.5/10 con mejor integración)
-                </div>
-            </div>
-            <div class="testimonio-card">
-                <div class="testimonio-header">
-                    <div class="testimonio-avatar">GG</div>
-                    <div class="testimonio-info">
-                        <h4>Gisselle Guajardo</h4>
-                        <p>22 años, 4° año Pedagogía en Artes Visuales</p>
-                    </div>
-                </div>
-                <p class="testimonio-text">"Funcionó súper bien, incluso mejor que Moodle que siempre se pega. Me enseñó a dibujar observando de verdad. Cuando leí en el LMS que eso venía de Leonardo da Vinci me voló la cabeza. Usaría el Mentor Anatómico cuando tenía dudas tipo 11pm."</p>
-                <div class="testimonio-rating">
-                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                    <strong>8.5/10</strong> (10/10 con integración desde inicio)
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- SLIDE 11: PROTOCOLO DE REMEDIACIÓN -->
-<section id="remediacion" class="slide">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">10</span>
-            <h2 class="section-title">Protocolo de Remediación DIADIFO</h2>
-            <p class="section-subtitle">Para estudiantes con &lt;17 puntos en rúbrica final (60% mínimo)</p>
-        </div>
-        <div class="casos-grid">
-            <div class="caso-card animate-on-scroll">
-                <div class="caso-header">
-                    <div class="caso-numero">1</div>
-                    <div>
-                        <h3 class="caso-title">Estudiantes con 100% Progreso sin Entrega Final
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Identificados:</strong> Gisselle Guajardo, Iván Soto (2/17)<br>
-                                    <strong>Causa:</strong> Logística/timing, no falta de dominio<br>
-                                    <strong>Timeline:</strong> 7 días adicionales
-                                </span>
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="caso-section">
-                    <h4>🔍 Causa probable</h4>
-                    <p style="font-size:0.85rem;color:#495057">Logística/timing, no dominio de contenido</p>
-                </div>
-                <div class="caso-section">
-                    <h4>✅ Acción remediadora</h4>
-                    <ul>
-                        <li>Extensión de plazo: +7 días adicionales</li>
-                        <li>Sesión 1:1 opcional (30 min) para dudas</li>
-                        <li>Acceso extendido al Mentor Anatómico</li>
-                        <li>Recordatorio con rúbrica explícita</li>
-                    </ul>
-                </div>
-                <div class="caso-badge success">Criterio éxito: Entrega ≥17/28 puntos</div>
-            </div>
-            <div class="caso-card animate-on-scroll">
-                <div class="caso-header">
-                    <div class="caso-numero">2</div>
-                    <div>
-                        <h3 class="caso-title">Estudiante con Progreso Parcial (67%)
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Identificado:</strong> Juan Pablo Bascuñán<br>
-                                    <strong>Causa:</strong> Brecha de conocimiento en M3<br>
-                                    <strong>Timeline:</strong> 10-12 días
-                                </span>
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="caso-section">
-                    <h4>🔍 Causa probable</h4>
-                    <p style="font-size:0.85rem;color:#495057">Brecha de conocimiento en módulos finales</p>
-                </div>
-                <div class="caso-section">
-                    <h4>✅ Acción remediadora</h4>
-                    <ul>
-                        <li>Diagnóstico: Identificar lección de bloqueo</li>
-                        <li>Recursos complementarios para módulo faltante</li>
-                        <li>Tutoría asíncrona vía correo (24-48h respuesta)</li>
-                        <li>Ruta personalizada: completar M3 + proyecto</li>
-                    </ul>
-                </div>
-                <div class="caso-badge success">Criterio éxito: 100% + proyecto ≥17 pts</div>
-            </div>
-            <div class="caso-card animate-on-scroll">
-                <div class="caso-header">
-                    <div class="caso-numero">3</div>
-                    <div>
-                        <h3 class="caso-title">Estudiante sin Acceso (0% Progreso)
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Identificada:</strong> Francisca Sepúlveda<br>
-                                    <strong>Causa:</strong> Problema técnico/acceso confirmado<br>
-                                    <strong>Timeline:</strong> 5 días intensivo con acompañamiento diario
-                                </span>
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="caso-section">
-                    <h4>🔍 Causa confirmada</h4>
-                    <p style="font-size:0.85rem;color:#495057">Problema técnico/acceso</p>
-                </div>
-                <div class="caso-section">
-                    <h4>✅ Acción remediadora</h4>
-                    <ul>
-                        <li>Verificación de acceso (email, WiFi, dispositivo)</li>
-                        <li>Onboarding personalizado 1:1 (15 min)</li>
-                        <li>Cronograma condensado: 10 lecciones en 5 días</li>
-                        <li>Acompañamiento diario vía WhatsApp</li>
-                        <li>Evaluaciones sin límite de intentos</li>
-                    </ul>
-                </div>
-                <div class="caso-badge success">Criterio éxito: 70% + proyecto ≥17 pts</div>
-            </div>
-            <div class="caso-card animate-on-scroll">
-                <div class="caso-header">
-                    <div class="caso-numero">4</div>
-                    <div>
-                        <h3 class="caso-title">Proyecto Final Insuficiente (&lt;17 puntos)
-                            <span class="info-tooltip">
-                                <span class="info-icon">i</span>
-                                <span class="info-tooltip-content">
-                                    <strong>Población:</strong> Estudiantes que entregan pero no alcanzan mínimo<br>
-                                    <strong>Timeline:</strong> 5 días para reentrega con feedback específico
-                                </span>
-                            </span>
-                        </h3>
-                    </div>
-                </div>
-                <div class="caso-section">
-                    <h4>✅ Acción remediadora</h4>
-                    <ul>
-                        <li>Feedback detallado por criterio de rúbrica</li>
-                        <li>Recursos según debilidad (M1/M2/M3)</li>
-                        <li>Segunda oportunidad de entrega (+5 días)</li>
-                        <li>Sesión presencial remedial opcional (1 hora)</li>
-                    </ul>
-                </div>
-                <div class="caso-badge success">Criterio éxito: Reentrega ≥17 pts</div>
-            </div>
-        </div>
-        <div style="text-align:center;margin-top:2rem;padding:1.5rem;background:#fff;border-radius:12px">
-            <p style="font-size:0.9rem;color:#6c757d"><strong>Responsable:</strong> Joselyn Vizcarra (diseñadora instruccional)</p>
-            <p style="font-size:0.9rem;color:#6c757d;margin-top:0.5rem"><strong>Timeline general:</strong> Días 1-2 (identificación), Días 3-10 (implementación), Días 11-12 (evaluación final)</p>
-        </div>
-    </div>
-</section>
-<!-- SLIDE 12: EVIDENCIAS -->
-<section id="evidencias" class="slide" style="background:#fff">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">11</span>
-            <h2 class="section-title">Evidencias de la Implementación</h2>
-            <p class="section-subtitle">Registros visuales y documentales</p>
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-track" id="carouselTrack">
-                <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <i class="bi bi-image" style="font-size:3rem;display:block;margin-bottom:1rem"></i>
-                            <p><strong>Evidencia 1:</strong> Dashboard inicial<br>17/17 estudiantes accedieron</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <i class="bi bi-image" style="font-size:3rem;display:block;margin-bottom:1rem"></i>
-                            <p><strong>Evidencia 2:</strong> Sesión presencial 13 nov<br>16/17 asistencia (94%)</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <i class="bi bi-image" style="font-size:3rem;display:block;margin-bottom:1rem"></i>
-                            <p><strong>Evidencia 3:</strong> Dashboard intermedio<br>88% progreso promedio</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-slide">
-                    <div class="carousel-placeholder">
-                        <div>
-                            <i class="bi bi-image" style="font-size:3rem;display:block;margin-bottom:1rem"></i>
-                            <p><strong>Evidencia 4:</strong> Dashboard final<br>13/17 completaron 100%</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-nav">
-                <button class="carousel-btn" onclick="prevSlide()">‹</button>
-                <button class="carousel-btn" onclick="nextSlide()">›</button>
-            </div>
-            <div class="carousel-indicators" id="carouselIndicators"></div>
-        </div>
-        <div class="brechas-container" style="margin-top:2rem">
-            <h3 class="brechas-title"><i class="bi bi-folder-check"></i> Documentación Completa Disponible</h3>
+                </span>
+            </h3>
             <div class="card-grid">
                 <div class="feature-card">
-                    <h4 style="color:var(--primary-dark);margin-bottom:.8rem">📊 Datos Cuantitativos</h4>
+                    <h4 style="color:var(--success);margin-bottom:.5rem">✅ Dimensiones Favorables</h4>
                     <ul class="feature-list">
-                        <li>Dashboard con métricas reales (Excel)</li>
-                        <li>Screenshots de 6 momentos documentados</li>
-                        <li>Log de evaluaciones automáticas</li>
-                        <li>Registro de intervenciones</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h4 style="color:var(--primary-dark);margin-bottom:.8rem">💬 Datos Cualitativos</h4>
-                    <ul class="feature-list">
-                        <li>3 cuestionarios post-implementación</li>
-                        <li>Notas de observación (3 pausas presenciales)</li>
-                        <li>Fotografías de sesiones de trabajo</li>
-                        <li>Testimonios textuales de estudiantes</li>
-                    </ul>
-                </div>
-                <div class="feature-card">
-                    <h4 style="color:var(--primary-dark);margin-bottom:.8rem">🔗 Recursos Públicos</h4>
-                    <ul class="feature-list">
-                        <li>LMS funcional y público (GitHub Pages)</li>
-                        <li>Código fuente completo (GitHub)</li>
-                        <li>Documentación técnica y pedagógica</li>
-                        <li>Rúbrica analítica aplicada</li>
+                        <li>🏛 Político: Ley 21.091 promueve innovación educativa</li>
+                        <li>💰 Económico: Ahorro $6.46M en 5 años</li>
+                        <li>👥 Social: 94% preferencia control institucional</li>
+                        <li>💻 Tecnológico: HTML5 estándar universal consolidado</li>
+                        <li>🌱 Ambiental: Huella de carbono mínima (CDN green)</li>
+                        <li>⚖️ Legal: Independencia de TOS externos</li>
                     </ul>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- SLIDE 13: CONCLUSIONES -->
-<section id="conclusiones" class="slide">
-    <div class="slide-container">
-        <div class="section-header">
-            <span class="section-number">12</span>
-            <h2 class="section-title">Conclusiones de la Experiencia</h2>
-            <p class="section-subtitle">Lecciones aprendidas y proyecciones</p>
-        </div>
-        <div class="insights-grid">
-            <div class="insight-card fortalezas animate-on-scroll">
-                <div class="insight-header">
-                    <span class="insight-icon">✅</span>
-                    <h3 class="insight-title">Fortalezas Identificadas
-                        <span class="info-tooltip">
-                            <span class="info-icon">i</span>
-                            <span class="info-tooltip-content">
-                                <strong>Lo que funcionó extraordinariamente bien</strong>
-                                Confirmado tanto por datos cuantitativos como por testimonios cualitativos de estudiantes y observaciones directas.
-                            </span>
-                        </span>
-                    </h3>
-                </div>
-                <ul class="insight-list">
-                    <li>Sistema funcionó sin incidentes técnicos (0 caídas, 0 errores críticos)</li>
-                    <li>Velocidad superior a LMS comerciales (1.8s vs 10-30s)</li>
-                    <li>92% aprobación en evaluaciones formativas</li>
-                    <li>Método contemplativo valorado sobre fórmulas tradicionales</li>
-                    <li>"Aprendí a VER, no a aplicar fórmulas mecánicas" - estudiantes</li>
-                    <li>Metas de completación y entregas SUPERADAS (76% vs 70%)</li>
-                </ul>
-            </div>
-            <div class="insight-card debilidades animate-on-scroll">
-                <div class="insight-header">
-                    <span class="insight-icon">⚠️</span>
-                    <h3 class="insight-title">Áreas de Mejora
-                        <span class="info-tooltip">
-                            <span class="info-icon">i</span>
-                            <span class="info-tooltip-content">
-                                <strong>Oportunidades de optimización</strong>
-                                Identificadas principalmente por feedback de estudiantes en cuestionarios post-implementación.
-                            </span>
-                        </span>
-                    </h3>
-                </div>
-                <ul class="insight-list">
-                    <li>Timing de implementación: "Llegó muy tarde (13 noviembre)"</li>
-                    <li>Desconexión percibida: "Se sintió como dos cosas separadas"</li>
-                    <li>Evaluaciones: Agregar explicación del "por qué" del error</li>
-                    <li>Integración: Referencias cruzadas entre clases presenciales y LMS</li>
-                    <li>4 estudiantes no completaron (logística/acceso, no dominio)</li>
-                </ul>
-            </div>
-        </div>
-        <div class="conclusiones-grid" style="margin-top:2rem">
-            <div class="conclusion-card animate-on-scroll">
-                <span class="conclusion-icon">🎯</span>
-                <h3 class="conclusion-title">Lo que Funcionó</h3>
-                <ul class="conclusion-list">
-                    <li>Simplicidad técnica supera complejidad comercial</li>
-                    <li>Evaluación adaptativa (100% fundacionales, 66% práctica)</li>
-                    <li>Acompañamiento híbrido escalable sin sacrificar calidad</li>
-                    <li>LMS independiente viable económicamente ($0 operativo)</li>
-                    <li>Velocidad de adopción: 94% activos en 7 días</li>
-                </ul>
-            </div>
-            <div class="conclusion-card animate-on-scroll">
-                <span class="conclusion-icon">🔄</span>
-                <h3 class="conclusion-title">Lo que Mejoraría</h3>
-                <ul class="conclusion-list">
-                    <li>Implementar desde semana 1 del semestre</li>
-                    <li>Retroalimentación explicativa en evaluaciones</li>
-                    <li>Referencias explícitas entre clases y módulos LMS</li>
-                    <li>Ajustar expectativa de horas (8-10h vs 12-14h)</li>
-                </ul>
-            </div>
-            <div class="conclusion-card animate-on-scroll">
-                <span class="conclusion-icon">🚀</span>
-                <h3 class="conclusion-title">Proyecciones
-                    <span class="info-tooltip">
-                        <span class="info-icon">i</span>
-                        <span class="info-tooltip-content">
-                            <strong>Escalabilidad demostrable</strong>
-                            • 2026-2027: 50-100 estudiantes (3-5 instituciones)<br>
-                            • 2028-2029: 200-300 estudiantes (10-15 instituciones)<br>
-                            • Impacto multiplicador: 2,550 estudiantes secundarios<br>
-                            • Ahorro agregado: $32M+ CLP
-                        </span>
+        <div class="highlight-box animate-on-scroll">
+            <h3>🚀 Escalabilidad Demostrable
+                <span class="info-tooltip">
+                    <span class="info-icon">i</span>
+                    <span class="info-tooltip-content">
+                        <strong>Proyección 2025-2030</strong>
+                        Año 1 (2025): 17 estudiantes piloto validado. Años 2-3 (2026-27): 50-100 estudiantes (3-5 instituciones). Años 4-5 (2028-29): 200-300 estudiantes (10-15 instituciones). Impacto multiplicador: 2,550 estudiantes secundarios. Ahorro agregado: $32M+ CLP.
                     </span>
-                </h3>
-                <ul class="conclusion-list">
-                    <li>Piloto en 2-3 instituciones similares (2026-2027)</li>
-                    <li>Escalamiento a 10-15 instituciones (2028-2029)</li>
-                    <li>Adaptación para educación secundaria</li>
-                    <li>Impacto proyectado: 2,550 estudiantes en 5 años</li>
-                </ul>
-            </div>
+                </span>
+            </h3>
+            <p><strong>Año 1 (2025):</strong> 17 estudiantes UAH - Piloto validado ✅</p>
+            <p><strong>Años 2-3 (2026-2027):</strong> 50-100 estudiantes (3-5 instituciones)</p>
+            <p><strong>Años 4-5 (2028-2029):</strong> 200-300 estudiantes (10-15 instituciones)</p>
+            <p><strong>Impacto multiplicador:</strong> 2,550 estudiantes secundarios en 5 años</p>
+            <p><strong>Ahorro agregado:</strong> $32+ millones CLP para el sistema educativo</p>
         </div>
     </div>
 </section>
-
-<!-- SLIDE 14: CIERRE -->
-<section id="final" class="slide cierre">
-    <div class="slide-container">
-        <div class="cierre-content">
-            <div class="cierre-icon">🎨</div>
-            <h1 class="cierre-title">Gracias</h1>
-            <p class="cierre-message">
-                DIADIFO demuestra que la innovación educativa no requiere infraestructura costosa ni dependencias comerciales. 
-                Un LMS independiente autocontenido puede superar a soluciones comerciales mientras mantiene $0 de costo operativo permanente.
-            </p>
-            <div class="cierre-stats">
-                <div class="cierre-stat">
-                    <div class="cierre-stat-value">76%</div>
-                    <div class="cierre-stat-label">Completación (meta superada)</div>
-                </div>
-                <div class="cierre-stat">
-                    <div class="cierre-stat-value">$0</div>
-                    <div class="cierre-stat-label">Costo operativo permanente</div>
-                </div>
-                <div class="cierre-stat">
-                    <div class="cierre-stat-value">92%</div>
-                    <div class="cierre-stat-label">Aprobación evaluaciones</div>
-                </div>
-                <div class="cierre-stat">
-                    <div class="cierre-stat-value">99.98%</div>
-                    <div class="cierre-stat-label">Uptime confirmado</div>
-                </div>
-            </div>
-            <div class="cierre-agradecimientos">
-                <h3>Agradecimientos</h3>
-                <p><strong>Universidad de Chile</strong> - Facultad de Filosofía y Humanidades</p>
-                <p>Diplomado en Diseño Instruccional</p>
-                <p><strong>Universidad Alberto Hurtado</strong> - Pedagogía en Artes Visuales</p>
-                <p>17 estudiantes participantes del piloto</p>
-                <p><strong>Evaluadores</strong> - Por su tiempo y retroalimentación valiosa</p>
-            </div>
-            <div class="cierre-contact">
-                <a href="https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms" target="_blank" class="contact-btn">
-                    <i class="bi bi-box-arrow-up-right"></i> Ver LMS Público
-                </a>
-                <a href="https://github.com/joseynvizcarra-coder/dibujo-anatomico-lms" target="_blank" class="contact-btn">
-                    <i class="bi bi-github"></i> Código en GitHub
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
-
-</main>
-
-<script>
-// ========== TIMER ==========
-let timerSeconds = 420; // 7 minutos
-let timerInterval = null;
-let timerRunning = false;
-
-const timerDisplay = document.getElementById('timerDisplay');
-const btnStart = document.getElementById('btnStart');
-const btnReset = document.getElementById('btnReset');
-
-function updateTimerDisplay() {
-    const mins = Math.floor(timerSeconds / 60);
-    const secs = timerSeconds % 60;
-    timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    
-    // Cambiar colores según tiempo
-    timerDisplay.classList.remove('warning', 'danger');
-    if (timerSeconds <= 60) {
-        timerDisplay.classList.add('danger');
-    } else if (timerSeconds <= 120) {
-        timerDisplay.classList.add('warning');
-    }
-}
-
-function startTimer() {
-    if (!timerRunning) {
-        timerRunning = true;
-        btnStart.textContent = '⏸ Pausar';
-        timerInterval = setInterval(() => {
-            if (timerSeconds > 0) {
-                timerSeconds--;
-                updateTimerDisplay();
-            } else {
-                clearInterval(timerInterval);
-                timerRunning = false;
-                btnStart.textContent = '▶ Iniciar';
-                alert('⏰ ¡Tiempo completado!');
-            }
-        }, 1000);
-    } else {
-        clearInterval(timerInterval);
-        timerRunning = false;
-        btnStart.textContent = '▶ Continuar';
-    }
-}
-
-function resetTimer() {
-    clearInterval(timerInterval);
-    timerRunning = false;
-    timerSeconds = 420;
-    btnStart.textContent = '▶ Iniciar';
-    updateTimerDisplay();
-}
-
-btnStart.addEventListener('click', startTimer);
-btnReset.addEventListener('click', resetTimer);
-
-// ========== INFO MODE TOGGLE ==========
-const infoModeToggle = document.getElementById('infoModeToggle');
-let infoModeActive = false;
-
-infoModeToggle.addEventListener('click', () => {
-    infoModeActive = !infoModeActive;
-    document.body.classList.toggle('info-mode-active', infoModeActive);
-    infoModeToggle.classList.toggle('active', infoModeActive);
-    infoModeToggle.querySelector('span').textContent = infoModeActive ? 'Modo Info: ON' : 'Modo Info: OFF';
-});
-
-// ========== NAVEGACIÓN ==========
-const navLinks = document.querySelectorAll('.nav-link');
-navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        navLinks.forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
-        const targetId = this.getAttribute('href');
-        document.querySelector(targetId).scrollIntoView({ behavior: 'smooth' });
-    });
-});
-
-// ========== INTERSECTION OBSERVER ==========
-const observerOptions = {
-    threshold: 0.2,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    observer.observe(el);
-});
-
-// ========== COUNTER ANIMATION ==========
-function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
-    const increment = target / (duration / 16);
-    let current = 0;
-    
-    const updateCounter = () => {
-        current += increment;
-        if (current < target) {
-            element.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-        } else {
-            element.textContent = target;
-        }
-    };
-    
-    updateCounter();
-}
-
-const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-            animateCounter(entry.target);
-            entry.target.classList.add('counted');
-        }
-    });
-}, { threshold: 0.5 });
-
-document.querySelectorAll('.counter').forEach(counter => {
-    counterObserver.observe(counter);
-});
-
-// ========== FULLSCREEN ==========
-function toggleFullscreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        document.exitFullscreen();
-    }
-}
-
-// ========== LMS DEMO MODAL ==========
-function openLMSDemo() {
-    const modal = document.getElementById('lmsDemoModal');
-    const iframe = document.getElementById('lmsDemoIframe');
-    modal.classList.add('active');
-    iframe.src = 'https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms';
-}
-
-function closeLMSDemo() {
-    const modal = document.getElementById('lmsDemoModal');
-    const iframe = document.getElementById('lmsDemoIframe');
-    modal.classList.remove('active');
-    iframe.src = '';
-}
-
-// ========== CAROUSEL ==========
-let currentSlide = 0;
-const track = document.getElementById('carouselTrack');
-const slides = document.querySelectorAll('.carousel-slide');
-const indicatorsContainer = document.getElementById('carouselIndicators');
-
-// Crear indicadores
-slides.forEach((_, index) => {
-    const indicator = document.createElement('button');
-    indicator.classList.add('carousel-indicator');
-    if (index === 0) indicator.classList.add('active');
-    indicator.addEventListener('click', () => goToSlide(index));
-    indicatorsContainer.appendChild(indicator);
-});
-
-function updateCarousel() {
-    track.style.transform = `translateX(-${currentSlide * 100}%)`;
-    document.querySelectorAll('.carousel-indicator').forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === currentSlide);
-    });
-}
-
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateCarousel();
-}
-
-function prevSlide() {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateCarousel();
-}
-
-function goToSlide(index) {
-    currentSlide = index;
-    updateCarousel();
-}
-
-// Auto-advance carousel
-setInterval(nextSlide, 5000);
-
-// ========== ACTIVE SECTION TRACKING ==========
-const sections = document.querySelectorAll('.slide');
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-    });
-}, { threshold: 0.5 });
-
-sections.forEach(section => {
-    sectionObserver.observe(section);
-});
-
-console.log('🎨 DIADIFO - LMS Independiente Autocontenido');
-console.log('📊 Resultados: 76% completación | 92% aprobación | $0 costo');
-console.log('🌐 Ver LMS: https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms');
-</script>
-
-</body>
-</html>

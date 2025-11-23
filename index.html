@@ -1,0 +1,1418 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIADIFO - Presentación Completa | Joselyn Vizcarra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+:root{--primary-dark:#2c5f66;--primary-light:#e8a2b8;--accent-teal:#4ecdc4;--dark:#1a1a1a;--gray-light:#f8f9fa;--success:#10b981;--danger:#ef4444;--warning:#f59e0b;--info:#3b82f6}
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* ========== TIMER MEJORADO ========== */
+.timer-container{position:fixed;top:20px;right:20px;z-index:2000}
+.timer-display{background:rgba(0,0,0,.9);backdrop-filter:blur(10px);color:var(--accent-teal);font-family:'Courier New',monospace;font-size:16px;font-weight:700;padding:8px 16px;border-radius:30px;border:2px solid var(--accent-teal);min-width:140px;text-align:center;cursor:pointer;transition:all .3s;box-shadow:0 5px 20px rgba(0,0,0,.4)}
+.timer-display:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(78,205,196,.5)}
+.timer-display.warning{color:var(--warning);border-color:var(--warning);animation:pulse 1s infinite}
+.timer-display.danger{color:var(--danger);border-color:var(--danger);animation:pulse .5s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
+.timer-controls{display:flex;gap:8px;margin-top:10px;justify-content:center}
+.timer-btn{background:rgba(0,0,0,.8);border:2px solid var(--accent-teal);color:var(--accent-teal);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .3s}
+.timer-btn:hover{background:var(--accent-teal);color:var(--dark)}
+
+
+
+/* ========== MODO INFO TOGGLE ========== */
+.info-mode-toggle{position:fixed;top:20px;left:260px;z-index:2001;background:rgba(59,130,246,0.9);color:#fff;border:2px solid #3b82f6;padding:10px 20px;border-radius:25px;font-weight:600;font-size:0.85rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:8px}
+.info-mode-toggle:hover{background:#3b82f6;transform:scale(1.05)}
+.info-mode-toggle.active{background:var(--success);border-color:var(--success)}
+
+/* ========== TOOLTIPS DE INFO MODE ========== */
+.info-tooltip{position:relative;display:inline-flex;align-items:center}
+.info-icon{width:18px;height:18px;background:var(--info);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-left:6px;cursor:help;opacity:0;transition:opacity 0.3s}
+.info-mode-active .info-icon{opacity:1}
+.info-tooltip-content{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.95);color:#fff;padding:12px 16px;border-radius:10px;font-size:0.8rem;max-width:280px;width:max-content;min-width:150px;white-space:normal;line-height:1.4;opacity:0;visibility:hidden;transition:all 0.3s;pointer-events:none;z-index:10001;box-shadow:0 8px 24px rgba(0,0,0,0.5);text-align:center}
+.info-tooltip-content::before{content:'';position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid rgba(0,0,0,0.95)}
+.info-icon:hover + .info-tooltip-content{opacity:1;visibility:visible}
+.info-tooltip-content.tooltip-left{left:auto;right:0;transform:translateX(0)}
+.info-tooltip-content.tooltip-right{left:0;right:auto;transform:translateX(0)}
+
+
+
+
+/* ========== BASE ========== */
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--gray-light);color:var(--dark);line-height:1.6;overflow-x:hidden}
+
+/* ========== SIDEBAR ========== */
+.sidebar{position:fixed;left:0;top:0;height:100vh;width:240px;background:linear-gradient(180deg,var(--primary-dark),var(--dark));color:#fff;padding:1.5rem 1rem;z-index:1000;box-shadow:4px 0 20px rgba(0,0,0,.15);overflow-y:auto;transition:transform .3s}
+.sidebar-header{text-align:center;padding-bottom:1rem;border-bottom:2px solid rgba(255,255,255,.15);margin-bottom:1rem}
+.sidebar-logo{width:60px;height:60px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:14px;margin:0 auto .75rem;display:flex;align-items:center;justify-content:center;font-size:1.8rem;color:var(--primary-dark);font-weight:800}
+.sidebar-title{font-size:1.3rem;font-weight:700;color:var(--primary-light)}
+.nav-menu{list-style:none}
+.nav-link{display:flex;align-items:center;gap:.6rem;padding:.55rem .8rem;color:rgba(255,255,255,.75);text-decoration:none;border-radius:8px;transition:all .25s;cursor:pointer;font-size:0.8rem;margin-bottom:.2rem}
+.nav-link:hover,.nav-link.active{background:var(--primary-light);color:var(--dark);transform:translateX(3px)}
+.nav-link i{font-size:1rem}
+
+/* ========== MAIN CONTENT ========== */
+.main-content{margin-left:240px;min-height:100vh}
+.slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2.5rem 2rem;position:relative}
+.slide-container{max-width:1000px;width:100%;animation:fadeInUp .5s ease-out}
+
+/* ========== PORTADA ========== */
+.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
+.portada-logo{width:90px;height:90px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:18px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--primary-dark);font-weight:800;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.portada-title{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
+.portada-subtitle{font-size:1.2rem;color:rgba(255,255,255,.9);margin-bottom:.4rem}
+.portada-tagline{font-size:.95rem;color:rgba(255,255,255,.7);margin-bottom:1.5rem}
+.portada-meta{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.meta-item{background:rgba(255,255,255,.1);padding:.6rem 1rem;border-radius:8px}
+.meta-label{font-size:.7rem;color:rgba(255,255,255,.6)}
+.meta-value{font-weight:600;font-size:.9rem}
+.portada-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--primary-light);color:var(--dark);padding:.75rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;transition:all .3s}
+.portada-btn:hover{transform:translateY(-2px)}
+
+/* ========== SECTION HEADERS ========== */
+.section-header{text-align:center;margin-bottom:2rem}
+.section-number{display:inline-flex;align-items:center;justify-content:center;background:var(--primary-light);color:var(--dark);width:40px;height:40px;border-radius:50%;font-weight:800;font-size:1.1rem;margin-bottom:.5rem}
+.section-title{font-size:clamp(1.6rem,3.5vw,2.2rem);color:var(--primary-dark);font-weight:800}
+.section-subtitle{font-size:1rem;color:#6c757d;margin-top:.4rem}
+        /* ========== STATS CARDS ========== */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.8rem}
+.stat-card{background:#fff;padding:1.2rem .8rem;border-radius:12px;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,.06);position:relative;overflow:hidden;transition:all .3s}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light))}
+.stat-card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
+.stat-card.success::before{background:var(--success)}
+.stat-card.danger::before{background:var(--danger)}
+.stat-card.warning::before{background:var(--warning)}
+.stat-icon{font-size:1.6rem;margin-bottom:.3rem}
+.stat-value{font-size:1.7rem;font-weight:800;color:var(--primary-dark)}
+.stat-label{font-size:.8rem;color:#6c757d}
+.stat-badge{display:inline-block;background:var(--success);color:#fff;padding:.15rem .5rem;border-radius:15px;font-size:.65rem;font-weight:600;margin-top:.4rem}
+
+/* ========== CARD GRIDS ========== */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
+.feature-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-left:4px solid var(--primary-dark)}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.feature-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem;margin-bottom:.8rem}
+.feature-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:.6rem}
+.feature-list{list-style:none;padding:0}
+.feature-list li{padding:.3rem 0;padding-left:1.3rem;position:relative;font-size:.85rem;color:#495057}
+.feature-list li::before{content:'✓';position:absolute;left:0;color:var(--success);font-weight:700}
+
+/* ========== PILARES ========== */
+.pilar-card{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;padding:1.5rem;border-radius:14px;transition:all .3s}
+.pilar-card:hover{transform:scale(1.02)}
+.pilar-emoji{font-size:2rem;margin-bottom:.5rem}
+.pilar-title{font-size:1.1rem;font-weight:700;color:var(--primary-light);margin-bottom:.6rem}
+.pilar-list{list-style:none;padding:0}
+.pilar-list li{padding:.25rem 0;font-size:.85rem;opacity:.9}
+
+/* ========== TIMELINE ========== */
+.timeline{position:relative;margin:1.5rem 0}
+.timeline::before{content:'';position:absolute;left:25px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--primary-dark),var(--primary-light))}
+.timeline-item{display:flex;gap:1.2rem;margin-bottom:1.5rem;position:relative}
+.timeline-dot{width:50px;height:50px;background:linear-gradient(135deg,var(--primary-dark),var(--primary-light));border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:1.1rem;flex-shrink:0;z-index:1}
+.timeline-content{background:#fff;padding:1.2rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);flex:1;transition:all .3s}
+.timeline-content:hover{transform:translateX(4px)}
+.timeline-label{font-size:.7rem;color:var(--primary-dark);font-weight:700;text-transform:uppercase}
+.timeline-title{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:.3rem}
+.timeline-desc{font-size:.85rem;color:#6c757d;margin-bottom:.5rem}
+.timeline-stats{display:flex;gap:.8rem;flex-wrap:wrap;padding-top:.5rem;border-top:1px solid #eee}
+.timeline-stat{display:flex;align-items:center;gap:.3rem;font-size:.75rem;color:#495057}
+
+/* ========== CARRUSEL MEJORADO ========== */
+.carousel-container{position:relative;width:100%;max-width:650px;margin:1.5rem auto;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.15)}
+.carousel-track{display:flex;transition:transform .5s ease}
+.carousel-slide{min-width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f8f9fa;position:relative}
+.carousel-slide img{max-width:100%;max-height:500px;width:auto;height:auto;display:block;object-fit:contain}
+.carousel-placeholder{width:100%;height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5e7eb,#f3f4f6);color:#6b7280;font-size:1rem}
+.carousel-placeholder i{font-size:3rem;margin-bottom:1rem;opacity:.5}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.7);color:#fff;border:none;width:45px;height:45px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
+.carousel-btn:hover{background:rgba(0,0,0,0.9);transform:translateY(-50%) scale(1.1)}
+.carousel-btn.prev{left:15px}
+.carousel-btn.next{right:15px}
+.carousel-dots{display:flex;justify-content:center;gap:8px;padding:15px 0;background:rgba(0,0,0,0.05)}
+.carousel-dot{width:10px;height:10px;border-radius:50%;background:#ccc;border:none;cursor:pointer;transition:all .3s}
+.carousel-dot.active{background:var(--primary-dark);width:30px;border-radius:5px}
+.carousel-controls-bottom{position:absolute;bottom:15px;right:15px;display:flex;gap:10px;z-index:11}
+.carousel-control-btn{background:rgba(0,0,0,0.7);color:#fff;border:none;padding:8px 12px;border-radius:20px;font-size:0.75rem;cursor:pointer;transition:all .3s;font-weight:600}
+.carousel-control-btn:hover{background:rgba(0,0,0,0.9)}
+.carousel-control-btn.playing{background:var(--danger)}
+.carousel-progress{position:absolute;bottom:0;left:0;height:3px;background:var(--accent-teal);width:0%;transition:width 0.1s linear;z-index:12}
+
+/* ========== HIGHLIGHT BOX ========== */
+.highlight-box{background:linear-gradient(135deg,#fef3c7,#fde68a);border-left:4px solid var(--warning);padding:1.5rem;border-radius:12px;margin:1.5rem 0;text-align:center}
+.highlight-box h3{color:var(--dark);font-size:1.3rem;margin-bottom:.8rem}
+.highlight-box p{color:#78716c;font-size:.95rem;margin-bottom:.5rem}
+
+/* ========== BRECHAS CONTAINER ========== */
+.brechas-container{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin:1.5rem 0}
+.brechas-title{color:var(--primary-dark);font-size:1.2rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+
+/* ========== VS CONTAINER ========== */
+.vs-container{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06);margin:1.5rem 0}
+
+/* ========== CHARTS ========== */
+.chart-card{background:#fff;padding:1.5rem;border-radius:12px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
+.chart-title{font-size:1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;text-align:center}
+.chart-container{position:relative;height:250px}
+
+/* ========== GALLERY ========== */
+.gallery-section{margin:2rem 0}
+.gallery-title{font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+
+/* ========== CONCLUSIONES ========== */
+.conclusion-card{background:#fff;padding:1.5rem;border-radius:14px;box-shadow:0 3px 12px rgba(0,0,0,.06);transition:all .3s;border-top:4px solid var(--primary-dark)}
+.conclusion-card:hover{transform:translateY(-5px);box-shadow:0 12px 30px rgba(0,0,0,.1)}
+.conclusion-card.fortalezas{border-top-color:var(--success)}
+.conclusion-card.mejoras{border-top-color:var(--warning)}
+.conclusion-card.futuro{border-top-color:var(--info)}
+.conclusion-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem}
+.conclusion-icon{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.4rem}
+.conclusion-icon.success{background:var(--success)}
+.conclusion-icon.warning{background:var(--warning)}
+.conclusion-icon.info{background:var(--info)}
+.conclusion-title{font-size:1.2rem;font-weight:700;color:var(--primary-dark)}
+.conclusion-list{list-style:none;padding:0}
+.conclusion-list li{padding:.4rem 0;padding-left:1.3rem;position:relative;font-size:.9rem;color:#495057}
+.conclusion-list li::before{content:'•';position:absolute;left:0;color:var(--primary-dark);font-weight:700;font-size:1.2rem}
+
+/* ========== FINAL SLIDE ========== */
+.final-slide{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center;min-height:100vh;display:flex;align-items:center;justify-content:center}
+.final-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;margin-bottom:1rem;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.final-thanks{background:rgba(255,255,255,0.1);padding:2rem;border-radius:12px;margin:2rem auto;max-width:600px}
+.final-thanks h3{font-size:1.3rem;margin-bottom:1rem;color:var(--primary-light)}
+.final-thanks ul{list-style:none;padding:0;text-align:left}
+.final-thanks li{padding:.5rem 0;font-size:.95rem;opacity:.9}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin:2rem 0}
+.contact-item{background:rgba(255,255,255,0.1);padding:1rem;border-radius:8px;display:flex;align-items:center;gap:.8rem;font-size:.9rem}
+.contact-item i{font-size:1.3rem;color:var(--primary-light)}
+.contact-item a{color:#fff;text-decoration:none;transition:all .3s}
+.contact-item a:hover{color:var(--primary-light)}
+.questions{font-size:1.5rem;font-weight:700;margin-top:2rem;color:var(--accent-teal)}
+        /* ========== MODAL DEMO LMS ========== */
+.lms-demo-modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;display:none;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s}
+.lms-demo-modal.active{display:flex;opacity:1}
+.lms-demo-content{width:90%;height:90%;background:#fff;border-radius:16px;overflow:hidden;position:relative;box-shadow:0 10px 50px rgba(0,0,0,0.5)}
+.lms-demo-header{background:var(--primary-dark);color:#fff;padding:1rem 1.5rem;display:flex;justify-content:space-between;align-items:center}
+.lms-demo-header h3{font-size:1.2rem;font-weight:700}
+.lms-demo-close{background:var(--danger);color:#fff;border:none;width:35px;height:35px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}
+.lms-demo-close:hover{transform:rotate(90deg);background:var(--dark)}
+.lms-demo-iframe{width:100%;height:calc(100% - 60px);border:none}
+
+/* ========== DEMO BUTTON ========== */
+.demo-lms-btn{position:fixed;bottom:30px;right:30px;z-index:2000;background:var(--danger);color:#fff;border:none;padding:15px 30px;border-radius:50px;font-weight:700;font-size:1rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:10px;box-shadow:0 5px 20px rgba(239,68,68,0.4)}
+.demo-lms-btn:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(239,68,68,0.6)}
+.demo-lms-btn i{font-size:1.2rem;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.animate-on-scroll{opacity:0;transform:translateY(30px);transition:all .6s ease-out}
+.animate-on-scroll.visible{opacity:1;transform:translateY(0)}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width:992px){
+    .sidebar{transform:translateX(-100%)}
+    .sidebar.active{transform:translateX(0)}
+    .main-content{margin-left:0}
+    .timer-container{top:10px;right:10px}
+    .timer-display{font-size:20px;padding:10px 20px}
+    .info-mode-toggle{top:10px;left:10px;padding:8px 15px;font-size:0.75rem}
+    .demo-lms-btn{bottom:100px;right:20px;padding:12px 24px;font-size:0.9rem}
+    .card-grid{grid-template-columns:1fr}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .info-tooltip-content{max-width:240px;font-size:0.75rem;padding:10px 12px}
+}
+
+@media (max-width:768px){
+    .portada-title{font-size:1.8rem}
+    .section-title{font-size:1.4rem}
+    .carousel-container{max-width:100%}
+    .carousel-slide{height:400px}
+    .carousel-slide img{max-height:400px}
+    .carousel-placeholder{height:400px}
+    .info-tooltip-content{max-width:200px;font-size:0.7rem;padding:8px 10px}
+}
+</style>
+</head>
+
+<body>
+
+<!-- TIMER -->
+<div class="timer-container">
+    <div id="timerDisplay" class="timer-display">07:00</div>
+    <div class="timer-controls">
+        <button id="btnStart" class="timer-btn">▶ Iniciar</button>
+        <button id="btnReset" class="timer-btn">↻ Reset</button>
+    </div>
+</div>
+
+<!-- INDICADOR DE PROGRESO -->
+<!-- MODO INFO TOGGLE -->
+<button class="info-mode-toggle" id="infoModeToggle">
+    <i class="bi bi-info-circle"></i>
+    <span>Modo Info: OFF</span>
+</button>
+
+<!-- NAVEGACIÓN FLOTANTE -->
+
+<!-- BOTÓN DEMO LMS -->
+<button class="demo-lms-btn" onclick="openLMSDemo()">
+    <i class="bi bi-play-circle-fill"></i>
+    Ver LMS en Vivo
+</button>
+
+<!-- MODAL DEMO LMS -->
+<div class="lms-demo-modal" id="lmsDemoModal">
+    <div class="lms-demo-content">
+        <div class="lms-demo-header">
+            <h3>🎨 LMS DIADIFO en Vivo</h3>
+            <button class="lms-demo-close" onclick="closeLMSDemo()">✕</button>
+        </div>
+        <iframe class="lms-demo-iframe" id="lmsDemoIframe" src=""></iframe>
+    </div>
+</div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-logo">DA</div>
+        <h2 class="sidebar-title">DIADIFO</h2>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="#portada" class="nav-link active"><i class="bi bi-house-door"></i> Portada</a></li>
+        <li><a href="#contexto" class="nav-link"><i class="bi bi-info-circle"></i> Contexto</a></li>
+        <li><a href="#objetivos-proyecto" class="nav-link"><i class="bi bi-target"></i> Objetivos Proyecto</a></li>
+        <li><a href="#objetivos-aprendizaje" class="nav-link"><i class="bi bi-mortarboard"></i> Objetivos Aprendizaje</a></li>
+        <li><a href="#recursos" class="nav-link"><i class="bi bi-collection"></i> Recursos</a></li>
+        <li><a href="#formativa" class="nav-link"><i class="bi bi-clipboard-check"></i> Instancia Formativa</a></li>
+        <li><a href="#innovacion" class="nav-link"><i class="bi bi-lightbulb"></i> Innovación</a></li>
+        <li><a href="#tutoria" class="nav-link"><i class="bi bi-people"></i> Tutoría</a></li>
+        <li><a href="#estructura" class="nav-link"><i class="bi bi-diagram-3"></i> Estructura</a></li>
+        <li><a href="#resultados" class="nav-link"><i class="bi bi-graph-up"></i> Resultados</a></li>
+        <li><a href="#evidencias" class="nav-link"><i class="bi bi-images"></i> Evidencias</a></li>
+        <li><a href="#remediacion" class="nav-link"><i class="bi bi-tools"></i> Remediación</a></li>
+        <li><a href="#conclusiones" class="nav-link"><i class="bi bi-check-circle"></i> Conclusiones</a></li>
+        <li><a href="#final" class="nav-link"><i class="bi bi-heart"></i> Gracias</a></li>
+    </ul>
+</nav>
+
+<main class="main-content">
+
+<!-- SLIDE 1: PORTADA -->
+<section id="portada" class="slide portada">
+    <div class="slide-container">
+        <div class="portada-logo">DA</div>
+        <h1 class="portada-title">DIADIFO</h1>
+        <p class="portada-subtitle">Sistema LMS Independiente para Dibujo Anatómico</p>
+        <p class="portada-tagline">Innovación Técnica + Metodología ABP + Diseño ADDIE</p>
+        <div class="portada-meta">
+            <div class="meta-item"><div class="meta-label">Estudiante</div><div class="meta-value">Joselyn Vizcarra</div></div>
+            <div class="meta-item"><div class="meta-label">Diplomado</div><div class="meta-value">Diseño Instruccional</div></div>
+            <div class="meta-item"><div class="meta-label">Universidad</div><div class="meta-value">U. de Chile</div></div>
+            <div class="meta-item"><div class="meta-label">Fecha</div><div class="meta-value">29 Nov 2025</div></div>
+        </div>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+            <button onclick="toggleFullscreen()" class="portada-btn" style="border:none;cursor:pointer"><i class="bi bi-arrows-fullscreen"></i> Modo Presentación</button>
+            <a href="https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms" target="_blank" class="portada-btn"><i class="bi bi-box-arrow-up-right"></i> Acceder al LMS</a>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 2: CONTEXTO -->
+<section id="contexto" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Contexto del Proyecto</h2>
+            <p class="section-subtitle">Universidad Alberto Hurtado - Pedagogía en Artes Visuales</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">👥</div>
+                <div class="stat-value counter" data-target="17">0</div>
+                <div class="stat-label">Estudiantes 4° año</div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">📅</div>
+                <div class="stat-value counter" data-target="12">0</div>
+                <div class="stat-label">Días de curso</div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">📚</div>
+                <div class="stat-value counter" data-target="4">0</div>
+                <div class="stat-label">Semestres sin práctica</div>
+            </div>
+            <div class="stat-card animate-on-scroll">
+                <div class="stat-icon">💻</div>
+                <div class="stat-value"><span class="counter" data-target="94">0</span>%</div>
+                <div class="stat-label">WiFi >5Mbps</div>
+            </div>
+        </div>
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-exclamation-triangle"></i> Brechas Críticas Detectadas</h3>
+            <div class="stats-grid">
+                <div class="stat-card danger">
+                    <div class="stat-icon">📊</div>
+                    <div class="stat-value"><span class="counter" data-target="71">0</span>%</div>
+                    <div class="stat-label">No recuerda técnicas
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">17/17 estudiantes encuestados confirmaron olvido significativo</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card warning">
+                    <div class="stat-icon">😰</div>
+                    <div class="stat-value"><span class="counter" data-target="47">0</span>%</div>
+                    <div class="stat-label">Ansiedad significativa
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">8/17 estudiantes reportaron ansiedad al dibujar figura humana</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏰</div>
+                    <div class="stat-value"><span class="counter" data-target="65">0</span>%</div>
+                    <div class="stat-label">Trabaja part-time</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SLIDE 3: OBJETIVOS DEL PROYECTO -->
+<section id="objetivos-proyecto" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Objetivos del Proyecto</h2>
+            <p class="section-subtitle">Innovación, Impacto y Sostenibilidad</p>
+        </div>
+        <div class="card-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-lightning-charge"></i></div>
+                <h3 class="feature-title">1. Innovación Técnica</h3>
+                <ul class="feature-list">
+                    <li>Velocidad: <strong>1.8s</strong> vs 10-30s
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">Medido con Google PageSpeed Insights</span>
+                        </span>
+                    </li>
+                    <li>Uptime: <strong>99.98%</strong></li>
+                    <li>Costo: <strong>$0</strong> permanente</li>
+                </ul>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div>
+                <h3 class="feature-title">2. Impacto Educativo</h3>
+                <ul class="feature-list">
+                    <li>Completación: <strong>76%</strong> (meta: 70%)</li>
+                    <li>Aprobación: <strong>92%</strong>
+                        <span class="info-tooltip">
+                            <span class="info-icon">i</span>
+                            <span class="info-tooltip-content">156/170 evaluaciones aprobadas</span>
+                        </span>
+                    </li>
+                    <li>Entregas: <strong>76%</strong> (meta: 70%)</li>
+                </ul>
+                <span class="stat-badge">✓ METAS SUPERADAS</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon"><i class="bi bi-recycle"></i></div>
+                <h3 class="feature-title">3. Sostenibilidad</h3>
+                <ul class="feature-list">
+                    <li>Código en GitHub</li>
+                    <li>Documentación completa</li>
+                    <li>Impacto: 2,550 estudiantes</li>
+                </ul>
+            </div>
+        </div>
+        <div class="highlight-box animate-on-scroll">
+            <h3>✅ META GLOBAL SUPERADA</h3>
+            <p>Ahorro de <strong>$6.460.000 CLP</strong> en 5 años vs soluciones comerciales</p>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 4: OBJETIVOS DE APRENDIZAJE -->
+<section id="objetivos-aprendizaje" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Objetivos de Aprendizaje</h2>
+            <p class="section-subtitle">Progresión según Taxonomía de Bloom</p>
+        </div>
+        <div class="highlight-box animate-on-scroll">
+            <h3>🎯 Objetivo General de Aprendizaje</h3>
+            <p><strong>CREAR</strong> una representación completa del cuerpo humano en formato 1/4 mercurio (27.5 × 37.5 cm) <strong>INTEGRANDO:</strong></p>
+            <ul class="feature-list" style="text-align:left;margin-top:1rem">
+                <li>Técnicas de observación directa</li>
+                <li>Análisis anatómico funcional</li>
+                <li>Principios de luz y volumen</li>
+            </ul>
+            <p style="margin-top:1rem"><strong>CRITERIO DE ÉXITO:</strong> Mínimo 17/28 puntos en rúbrica analítica de 7 criterios</p>
+        </div>
+        <div class="card-grid" style="margin-top:2rem">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa)"><i class="bi bi-lightbulb"></i></div>
+                <h3 class="feature-title">OE1 - COMPRENDER (Nivel 2)</h3>
+                <ul class="feature-list">
+                    <li><strong>Actividad:</strong> 10 evaluaciones</li>
+                    <li><strong>Criterio:</strong> Mínimo 2/3 correctas c/u</li>
+                    <li><strong>Resultado:</strong> 92% aprobación (156/170)</li>
+                </ul>
+                <span class="stat-badge">✅ LOGRADO</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)"><i class="bi bi-palette"></i></div>
+                <h3 class="feature-title">OE2 - APLICAR (Nivel 3)</h3>
+                <ul class="feature-list">
+                    <li><strong>Actividad:</strong> 23 ejercicios cronometrados</li>
+                    <li><strong>Criterio:</strong> Progresión secuencial</li>
+                    <li><strong>Resultado:</strong> 88% progreso promedio</li>
+                </ul>
+                <span class="stat-badge">✅ LOGRADO</span>
+            </div>
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon" style="background:linear-gradient(135deg,#10b981,#34d399)"><i class="bi bi-star"></i></div>
+                <h3 class="feature-title">OE3 - CREAR (Nivel 6)</h3>
+                <ul class="feature-list">
+                    <li><strong>Actividad:</strong> 1 dibujo 1/4 mercurio</li>
+                    <li><strong>Criterio:</strong> Mínimo 17/28 pts</li>
+                    <li><strong>Resultado:</strong> 13/17 entregas (76%)</li>
+                </ul>
+                <span class="stat-badge">✅ META SUPERADA</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 5: RECURSOS Y ACTIVIDADES -->
+<section id="recursos" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Recursos y Actividades</h2>
+            <p class="section-subtitle">Arquitectura Modular Progresiva</p>
+        </div>
+        <div class="brechas-container animate-on-scroll">
+            <h3 class="brechas-title"><i class="bi bi-boxes"></i> Arquitectura Modular Progresiva</h3>
+            <div class="timeline">
+                <div class="timeline-item"><div class="timeline-dot">M1</div><div class="timeline-content"><h3 class="timeline-title">MÓDULO 1: Observación y Gesto</h3><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-calendar3"></i> 3 días</span><span class="timeline-stat"><i class="bi bi-clock"></i> 2.5h</span></div></div></div>
+                <div class="timeline-item"><div class="timeline-dot">M2</div><div class="timeline-content"><h3 class="timeline-title">MÓDULO 2: Anatomía Funcional</h3><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-calendar3"></i> 4 días</span><span class="timeline-stat"><i class="bi bi-clock"></i> 3.3h</span></div></div></div>
+                <div class="timeline-item"><div class="timeline-dot">M3</div><div class="timeline-content"><h3 class="timeline-title">MÓDULO 3: Figura Completa</h3><div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-calendar3"></i> 5 días</span><span class="timeline-stat"><i class="bi bi-clock"></i> 5-6h</span></div></div></div>
+            </div>
+            <div style="text-align:center;margin-top:1.5rem"><strong>TOTALES:</strong> 12 días | 12-14 horas | 23 ejercicios + 1 proyecto final</div>
+        </div>
+        <div style="margin-top:2rem">
+            <h3 style="color:var(--primary-dark);font-weight:700;margin-bottom:1rem"><i class="bi bi-collection"></i> Recursos Pedagógicos Creados</h3>
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-value">10</div><div class="stat-label">Lecciones interactivas</div></div>
+                <div class="stat-card"><div class="stat-icon">📖</div><div class="stat-value">30</div><div class="stat-label">Acordeones teóricos</div></div>
+                <div class="stat-card"><div class="stat-icon">📷</div><div class="stat-value">26</div><div class="stat-label">Referencias fotográficas</div></div>
+                <div class="stat-card"><div class="stat-icon">🎥</div><div class="stat-value">3</div><div class="stat-label">Videos explicativos</div></div>
+                <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value">10</div><div class="stat-label">Evaluaciones automáticas</div></div>
+                <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">1</div><div class="stat-label">Rúbrica 7 criterios</div></div>
+                <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-value">1</div><div class="stat-label">Dashboard dual</div></div>
+                <div class="stat-card"><div class="stat-icon">🤖</div><div class="stat-value">60+</div><div class="stat-label">Respuestas Mentor IA
+                    <span class="info-tooltip">
+                        <span class="info-icon">i</span>
+                        <span class="info-tooltip-content">Sin registro de métricas por diseño de privacidad</span>
+                    </span>
+                </div></div>
+            </div>
+        </div>
+        <div class="vs-container animate-on-scroll" style="margin-top:2rem">
+            <h4 style="text-align:center;font-weight:700;color:var(--primary-dark);margin-bottom:1rem">📚 Fundamentación Bibliográfica</h4>
+            <ul class="feature-list" style="max-width:600px;margin:0 auto">
+                <li><strong>Contenido Anatómico:</strong> Loomis (1943), Nicolaïdes (1941), Bridgman (1920)</li>
+                <li><strong>Diseño Instruccional:</strong> Gagné (1985), Bloom (1956), Mayer (2014)</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 6: INSTANCIA FORMATIVA EN EL LMS -->
+<section id="formativa" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Instancia Formativa en el LMS</h2>
+            <p class="section-subtitle">LMS Independiente Autocontenido - 3 Pilares</p>
+        </div>
+        <div class="card-grid">
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">⚡</div><h3 class="pilar-title">SIMPLICIDAD TÉCNICA</h3><ul class="pilar-list"><li>✓ Carga: 1.8 seg</li><li>✓ Compatibilidad: 100%</li><li>✓ Uptime: 99.98%</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">💰</div><h3 class="pilar-title">SOSTENIBILIDAD ECONÓMICA</h3><ul class="pilar-list"><li>✓ Costo: $0 permanente</li><li>✓ Ahorro 5 años: $6.46M CLP</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">🔓</div><h3 class="pilar-title">AUTONOMÍA INSTITUCIONAL</h3><ul class="pilar-list"><li>✓ Control total datos</li><li>✓ Código fuente propio</li><li>✓ Sin dependencias externas</li></ul></div>
+        </div>
+        <div class="vs-container animate-on-scroll" style="margin-top:2rem">
+            <h4 style="text-align:center;font-weight:700;color:var(--primary-dark);margin-bottom:1rem">📊 Evaluación Formativa Adaptativa</h4>
+            <div style="overflow-x:auto">
+                <table style="width:100%;max-width:600px;margin:0 auto;border-collapse:collapse;font-size:.9rem">
+                    <thead><tr style="background:var(--primary-dark);color:#fff"><th style="padding:.8rem;border:1px solid #ddd">Tipo Lección</th><th style="padding:.8rem;border:1px solid #ddd">Requisito</th><th style="padding:.8rem;border:1px solid #ddd">Resultado</th></tr></thead>
+                    <tbody>
+                        <tr><td style="padding:.8rem;border:1px solid #ddd"><strong>Fundacional</strong></td><td style="padding:.8rem;border:1px solid #ddd">3/3 (100%)</td><td style="padding:.8rem;border:1px solid #ddd;color:var(--success)"><strong>100% aprobación</strong></td></tr>
+                        <tr style="background:#f8f9fa"><td style="padding:.8rem;border:1px solid #ddd"><strong>Práctica</strong></td><td style="padding:.8rem;border:1px solid #ddd">2/3 (66%)</td><td style="padding:.8rem;border:1px solid #ddd;color:var(--success)"><strong>92% aprobación</strong></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="text-align:center;margin-top:1rem;font-size:.9rem;color:#6c757d"><strong>INNOVACIÓN:</strong> Criterios diferenciados + múltiples intentos sin penalización</p>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 7: INNOVACIÓN -->
+<section id="innovacion" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Los 3 Pilares del Valor</h2>
+            <p class="section-subtitle">Por qué un LMS Independiente es Superior</p>
+        </div>
+        <div class="card-grid">
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">⚡</div><h3 class="pilar-title">Simplicidad Técnica</h3><ul class="pilar-list"><li>✓ Carga en 1.8 segundos</li><li>✓ HTML5 + CSS3 + JS vanilla</li><li>✓ 100% compatible</li><li>✓ GitHub Pages: 99.98%</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">💰</div><h3 class="pilar-title">Sostenibilidad Económica</h3><ul class="pilar-list"><li>✓ Costo operativo: $0</li><li>✓ Ahorro: $6.46M CLP</li><li>✓ ROI infinito</li><li>✓ Sin licencias</li></ul></div>
+            <div class="pilar-card animate-on-scroll"><div class="pilar-emoji">🔓</div><h3 class="pilar-title">Autonomía Institucional</h3><ul class="pilar-list"><li>✓ Control total de datos</li><li>✓ Personalización ilimitada</li><li>✓ Independencia de TOS</li><li>✓ Código modificable</li></ul></div>
+        </div>
+    </div>
+</section>
+<!-- SLIDE 8: ACOMPAÑAMIENTO Y TUTORÍA -->
+<section id="tutoria" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">07</span>
+            <h2 class="section-title">Acompañamiento y Tutoría</h2>
+            <p class="section-subtitle">Modelo Híbrido Tricapa</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">1</div>
+                <div class="timeline-content">
+                    <div class="timeline-label">CAPA 1</div>
+                    <h3 class="timeline-title">AUTOMATIZADO (24/7)</h3>
+                    <ul class="feature-list">
+                        <li>Evaluaciones con feedback inmediato</li>
+                        <li>Mentor Anatómico IA (60+ respuestas)</li>
+                        <li>Dashboard progreso en tiempo real</li>
+                    </ul>
+                    <div class="timeline-stats"><span class="timeline-stat"><i class="bi bi-check-circle"></i> Resultado: 92% aprobación</span></div>
+                </div>
+            </div>
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">2</div>
+                <div class="timeline-content">
+                    <div class="timeline-label">CAPA 2</div>
+                    <h3 class="timeline-title">HUMANO ASÍNCRONO</h3>
+                    <p><strong>Monitoreo Proactivo:</strong></p>
+                    <div style="overflow-x:auto;margin:.8rem 0">
+                        <table style="width:100%;border-collapse:collapse;font-size:.85rem">
+                            <thead><tr style="background:#f8f9fa"><th style="padding:.5rem;border:1px solid #ddd;text-align:left">Fecha</th><th style="padding:.5rem;border:1px solid #ddd;text-align:left">Acción</th><th style="padding:.5rem;border:1px solid #ddd;text-align:left">Resultado</th></tr></thead>
+                            <tbody>
+                                <tr><td style="padding:.5rem;border:1px solid #ddd">14 nov</td><td style="padding:.5rem;border:1px solid #ddd">Baseline</td><td style="padding:.5rem;border:1px solid #ddd;color:var(--success)">17/17 accedieron</td></tr>
+                                <tr style="background:#f8f9fa"><td style="padding:.5rem;border:1px solid #ddd">18 nov</td><td style="padding:.5rem;border:1px solid #ddd">Identificar riesgo</td><td style="padding:.5rem;border:1px solid #ddd;color:var(--warning)">1 sin acceso</td></tr>
+                                <tr><td style="padding:.5rem;border:1px solid #ddd">22 nov</td><td style="padding:.5rem;border:1px solid #ddd">Seguimiento</td><td style="padding:.5rem;border:1px solid #ddd;color:var(--success)">13/17 al 100%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="margin-top:.8rem"><strong>Protocolo de Intervención:</strong> Riesgo Alto (0% día 6): 1 caso contactado</p>
+                </div>
+            </div>
+            <div class="timeline-item animate-on-scroll">
+                <div class="timeline-dot">3</div>
+                <div class="timeline-content">
+                    <div class="timeline-label">CAPA 3</div>
+                    <h3 class="timeline-title">PRESENCIAL ESTRATÉGICO</h3>
+                    <ul class="feature-list">
+                        <li>2 sesiones (13 y 21 nov, 10:50-12:50 hrs)</li>
+                        <li>3 bloques trabajo + 3 pausas retroalimentación</li>
+                        <li>16/17 asistencia (94%)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 9: ESTRUCTURA -->
+<section id="estructura" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">08</span>
+            <h2 class="section-title">Estructura del Curso</h2>
+            <p class="section-subtitle">Arquitectura Modular Progresiva</p>
+        </div>
+        <div class="brechas-container animate-on-scroll">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1.5rem;text-align:center;margin-bottom:2rem">
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">3</div><div style="color:#6c757d;font-size:.85rem">Módulos</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#6c757d;font-size:.85rem">Lecciones</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">23</div><div style="color:#6c757d;font-size:.85rem">Ejercicios</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">10</div><div style="color:#6c757d;font-size:.85rem">Evaluaciones</div></div>
+                <div><div style="font-size:1.8rem;font-weight:800;color:var(--primary-dark)">12</div><div style="color:#6c757d;font-size:.85rem">Días</div></div>
+            </div>
+            
+            <div style="display:grid;gap:1rem;margin-top:1.5rem">
+                <!-- Módulo 1 -->
+                <div style="background:#fff;padding:1rem;border-radius:10px;border-left:4px solid var(--primary-dark)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+                        <strong style="color:var(--primary-dark);font-size:1rem">M1: Observación y Gesto</strong>
+                        <span style="font-size:0.75rem;color:#6c757d">3 días • 2.5 hrs</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:#495057;line-height:1.4">
+                        <strong>Lecciones:</strong> L1.1: Croquis Rápido (45min) • L1.2: Proporciones Visuales (50min) • L1.3: Peso y Balance (55min)<br>
+                        <strong>Entregables:</strong> 8 croquis + 3 evaluaciones
+                    </div>
+                </div>
+                
+                <!-- Módulo 2 -->
+                <div style="background:#fff;padding:1rem;border-radius:10px;border-left:4px solid var(--primary-dark)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+                        <strong style="color:var(--primary-dark);font-size:1rem">M2: Anatomía Funcional</strong>
+                        <span style="font-size:0.75rem;color:#6c757d">4 días • 3.3 hrs</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:#495057;line-height:1.4">
+                        <strong>Lecciones:</strong> L2.1: Estructura Ósea (50min) • L2.2: Músculos Superficiales (50min) • L2.3: Manos y Pies (50min) • L2.4: Rostro (50min)<br>
+                        <strong>Entregables:</strong> 12 estudios + 4 evaluaciones
+                    </div>
+                </div>
+                
+                <!-- Módulo 3 -->
+                <div style="background:#fff;padding:1rem;border-radius:10px;border-left:4px solid var(--primary-dark)">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+                        <strong style="color:var(--primary-dark);font-size:1rem">M3: Figura Completa</strong>
+                        <span style="font-size:0.75rem;color:#6c757d">5 días • 5-6 hrs</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:#495057;line-height:1.4">
+                        <strong>Lecciones:</strong> L3.1: Síntesis por Capas (60min) • L3.2: Luz y Sombra (60min) • L3.3: Proyecto Final (2-3hrs)<br>
+                        <strong>Entregables:</strong> 3 figuras + proyecto final + 3 evaluaciones
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 10: RESULTADOS -->
+<section id="resultados" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">09</span>
+            <h2 class="section-title">Resultados Cuantitativos</h2>
+            <p class="section-subtitle">Métricas Reales de Implementación</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-card success animate-on-scroll"><div class="stat-icon">🎯</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Completación</div><span class="stat-badge">META ✓</span></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">✅</div><div class="stat-value"><span class="counter" data-target="92">0</span>%</div><div class="stat-label">Aprobación</div></div>
+            <div class="stat-card success animate-on-scroll"><div class="stat-icon">📦</div><div class="stat-value"><span class="counter" data-target="76">0</span>%</div><div class="stat-label">Entregas</div><span class="stat-badge">META ✓</span></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">⏱️</div><div class="stat-value">4h</div><div class="stat-label">Tiempo Prom.</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">📈</div><div class="stat-value"><span class="counter" data-target="88">0</span>%</div><div class="stat-label">Progreso Prom.</div></div>
+            <div class="stat-card animate-on-scroll"><div class="stat-icon">👥</div><div class="stat-value"><span class="counter" data-target="94">0</span>%</div><div class="stat-label">Activos 7d</div></div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-top:1.5rem">
+            <div class="chart-card animate-on-scroll"><h4 class="chart-title">Progreso por Módulo</h4><div class="chart-container"><canvas id="chartModulos"></canvas></div></div>
+            <div class="chart-card animate-on-scroll"><h4 class="chart-title">Evaluaciones</h4><div class="chart-container"><canvas id="chartEvaluaciones"></canvas></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 11: EVIDENCIAS -->
+<section id="evidencias" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">10</span>
+            <h2 class="section-title">Evidencias Visuales</h2>
+            <p class="section-subtitle">Registro Fotográfico</p>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-laptop"></i> Screenshots del LMS</h3>
+            <div class="carousel-container" id="carousel1">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/screenshot-lms-1.jpg" alt="Dashboard Principal"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-2.jpg" alt="Módulo de Lecciones"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-3.jpg" alt="Sistema de Evaluaciones"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-4.jpg" alt="Progreso del Estudiante"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel1',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel1',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel1"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel1')">
+                        <span id="playBtn-carousel1">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel1"></div>
+            </div>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-people"></i> Taller Presencial</h3>
+            <div class="carousel-container" id="carousel2">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/taller-presencial-1.jpg" alt="Estudiantes Trabajando"></div>
+                    <div class="carousel-slide"><img src="images/taller-presencial-2.jpg" alt="Ambiente de Trabajo"></div>
+                    <div class="carousel-slide"><img src="images/taller-presencial-3.jpg" alt="Proceso de Dibujo"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel2',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel2',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel2"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel2')">
+                        <span id="playBtn-carousel2">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel2"></div>
+            </div>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales M3L3</h3>
+            <div class="carousel-container" id="carousel3">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/proyecto-final-1.jpg" alt="Trabajo Estudiante 1"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-2.jpg" alt="Trabajo Estudiante 2"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-3.jpg" alt="Trabajo Estudiante 3"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-4.jpg" alt="Trabajo Estudiante 4"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel3',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel3',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel3"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel3')">
+                        <span id="playBtn-carousel3">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel3"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 12: REMEDIACIÓN -->
+<section id="remediacion" class="slide" style="background:linear-gradient(135deg,#fff5f5,#fffbf0)">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">11</span>
+            <h2 class="section-title">Protocolo de Remediación</h2>
+            <p class="section-subtitle">Para estudiantes con &lt;17 puntos en rúbrica final</p>
+        </div>
+        <div class="card-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+            <div class="feature-card" style="border-left-color:#f59e0b"><div class="feature-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)"><i class="bi bi-clock-history"></i></div><div class="feature-title" style="color:#f59e0b">CASO 1: 100% sin Entrega</div><p style="font-size:.8rem;color:#6c757d"><strong>2/17:</strong> Gisselle, Iván</p><ul class="feature-list"><li>Extensión +7 días</li><li>Sesión 1:1 opcional</li></ul></div>
+            <div class="feature-card" style="border-left-color:#3b82f6"><div class="feature-icon" style="background:linear-gradient(135deg,#3b82f6,#60a5fa)"><i class="bi bi-graph-up-arrow"></i></div><div class="feature-title" style="color:#3b82f6">CASO 2: Progreso 67%</div><p style="font-size:.8rem;color:#6c757d"><strong>1/17:</strong> Juan Pablo</p><ul class="feature-list"><li>Diagnóstico de bloqueo</li><li>Ruta personalizada</li></ul></div>
+            <div class="feature-card" style="border-left-color:#ef4444"><div class="feature-icon" style="background:linear-gradient(135deg,#ef4444,#f87171)"><i class="bi bi-exclamation-triangle"></i></div><div class="feature-title" style="color:#ef4444">CASO 3: Sin Acceso</div><p style="font-size:.8rem;color:#6c757d"><strong>1/17:</strong> Francisca</p><ul class="feature-list"><li>Onboarding 1:1</li><li>Cronograma 5 días</li></ul></div>
+            <div class="feature-card" style="border-left-color:#8b5cf6"><div class="feature-icon" style="background:linear-gradient(135deg,#8b5cf6,#a78bfa)"><i class="bi bi-arrow-repeat"></i></div><div class="feature-title" style="color:#8b5cf6">CASO 4: &lt;17 pts</div><p style="font-size:.8rem;color:#6c757d">Entregas bajo mínimo</p><ul class="feature-list"><li>Feedback por criterio</li><li>Segunda oportunidad</li></ul></div>
+        </div>
+    </div>
+</section>
+<!-- SLIDE 13: CONCLUSIONES -->
+<section id="conclusiones" class="slide" style="background:#fff">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">12</span>
+            <h2 class="section-title">Conclusiones</h2>
+            <p class="section-subtitle">Fortalezas, Mejoras y Proyecciones</p>
+        </div>
+        <div class="card-grid">
+            <div class="conclusion-card fortalezas animate-on-scroll"><div class="conclusion-header"><div class="conclusion-icon success"><i class="bi bi-star"></i></div><h3 class="conclusion-title">Fortalezas</h3></div><ul class="conclusion-list"><li>Sistema sin incidentes técnicos</li><li>Velocidad: 1.8s vs 10-30s</li><li>92% aprobación evaluaciones</li><li>$0 costo operativo validado</li></ul></div>
+            <div class="conclusion-card mejoras animate-on-scroll"><div class="conclusion-header"><div class="conclusion-icon warning"><i class="bi bi-tools"></i></div><h3 class="conclusion-title">Áreas de Mejora</h3></div><ul class="conclusion-list"><li>Implementar desde semana 1</li><li>Explicar "por qué" en errores</li><li>Integrar con clases presenciales</li><li>Ajustar expectativa horas</li></ul></div>
+            <div class="conclusion-card futuro animate-on-scroll"><div class="conclusion-header"><div class="conclusion-icon info"><i class="bi bi-rocket"></i></div><h3 class="conclusion-title">Proyecciones</h3></div><ul class="conclusion-list"><li>2026: Piloto 2-3 instituciones</li><li>2027: 50-100 estudiantes</li><li>2028-30: 200-300 estudiantes</li><li>Impacto: 2,550 estudiantes</li></ul></div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 14: FINAL -->
+<section id="final" class="slide final-slide">
+    <div class="slide-container">
+        <h2 class="final-title">¡Gracias!</h2>
+        <p style="font-size:1.1rem;color:rgba(255,255,255,.9);margin-bottom:1rem">Por su tiempo y atención</p>
+        <div class="final-thanks">
+            <h3>Agradecimientos</h3>
+            <ul>
+                <li><strong>Universidad de Chile</strong> - Diplomado Diseño Instruccional</li>
+                <li><strong>Universidad Alberto Hurtado</strong> - Pedagogía Artes Visuales</li>
+                <li><strong>17 estudiantes participantes</strong> del piloto</li>
+                <li><strong>Evaluadores</strong> por su retroalimentación</li>
+            </ul>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item"><i class="bi bi-person"></i><div>Joselyn Vizcarra</div></div>
+            <div class="contact-item"><i class="bi bi-globe"></i><a href="https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms" target="_blank">Ver LMS →</a></div>
+            <div class="contact-item"><i class="bi bi-github"></i><a href="https://github.com/joseynvizcarra-coder/dibujo-anatomico-lms" target="_blank">GitHub →</a></div>
+        </div>
+        <p class="questions">¿Preguntas?</p>
+    </div>
+</section>
+
+</main>
+
+<script>
+// ========== VARIABLES GLOBALES ==========
+const slides = document.querySelectorAll('.slide');
+const navLinks = document.querySelectorAll('.nav-link');
+let currentSlideIndex = 0;
+const totalSlides = slides.length;
+
+// ========== ACTUALIZAR INDICADOR DE PROGRESO ==========
+function updateProgressIndicator() {
+    // Elementos eliminados - función deshabilitada
+    return;
+}
+
+// ========== NAVEGACIÓN ==========
+function updateNav() {
+    let current = '';
+    const scrollPosition = window.scrollY;
+    
+    slides.forEach(slide => {
+        if (scrollPosition >= slide.offsetTop - 200) {
+            current = slide.id;
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+        }
+    });
+    
+    // Actualizar índice de slide actual
+    slides.forEach((slide, index) => {
+        if (slide.id === current) {
+            currentSlideIndex = index;
+        }
+    });
+    
+    updateProgressIndicator();
+    updateNavButtons();
+}
+
+window.addEventListener('scroll', updateNav);
+
+navLinks.forEach(link => link.addEventListener('click', function(ev) {
+    ev.preventDefault();
+    const target = this.getAttribute('href');
+    document.querySelector(target).scrollIntoView({behavior: 'smooth'});
+    if (window.innerWidth <= 992) {
+        document.getElementById('sidebar').classList.remove('active');
+    }
+}));
+
+// ========== BOTONES DE NAVEGACIÓN ==========
+function updateNavButtons() {
+    // Botones eliminados - función deshabilitada
+    return;
+}
+
+// Event listeners de botones eliminados - código removido
+
+// ========== PANTALLA COMPLETA ==========
+function toggleFullscreen() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+        // Entrar en pantalla completa
+        const elem = document.documentElement;
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.webkitRequestFullscreen) { // Safari
+            elem.webkitRequestFullscreen();
+        } else if (elem.mozRequestFullScreen) { // Firefox
+            elem.mozRequestFullScreen();
+        } else if (elem.msRequestFullscreen) { // IE/Edge
+            elem.msRequestFullscreen();
+        }
+    } else {
+        // Salir de pantalla completa
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) { // Safari
+            document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) { // Firefox
+            document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) { // IE/Edge
+            document.msExitFullscreen();
+        }
+    }
+}
+
+// ========== TIMER ==========
+let timerInterval = null;
+let timerSeconds = 420; // 7 minutos
+let timerRunning = false;
+
+function formatTime(seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+}
+
+function updateTimer() {
+    const timerDisplay = document.getElementById('timerDisplay');
+    timerDisplay.textContent = formatTime(timerSeconds);
+    timerDisplay.classList.remove('warning', 'danger');
+    
+    if (timerSeconds <= 60) {
+        timerDisplay.classList.add('danger');
+    } else if (timerSeconds <= 120) {
+        timerDisplay.classList.add('warning');
+    }
+}
+
+function startTimer() {
+    if (timerInterval) return;
+    timerRunning = true;
+    document.getElementById('btnStart').textContent = '⏸ Pausar';
+    timerInterval = setInterval(() => {
+        timerSeconds--;
+        updateTimer();
+        if (timerSeconds <= 0) {
+            pauseTimer();
+            alert('¡Tiempo terminado!');
+        }
+    }, 1000);
+}
+
+function pauseTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerRunning = false;
+        document.getElementById('btnStart').textContent = '▶ Iniciar';
+    }
+}
+
+function resetTimer() {
+    pauseTimer();
+    timerSeconds = 420;
+    updateTimer();
+}
+
+document.getElementById('timerDisplay').addEventListener('click', () => {
+    timerRunning ? pauseTimer() : startTimer();
+});
+
+document.getElementById('btnStart').addEventListener('click', () => {
+    timerRunning ? pauseTimer() : startTimer();
+});
+
+document.getElementById('btnReset').addEventListener('click', resetTimer);
+
+updateTimer();
+
+// ========== MODO INFO ==========
+let infoModeActive = false;
+
+document.getElementById('infoModeToggle').addEventListener('click', function() {
+    infoModeActive = !infoModeActive;
+    this.classList.toggle('active');
+    document.body.classList.toggle('info-mode-active');
+    
+    const span = this.querySelector('span');
+    span.textContent = infoModeActive ? 'Modo Info: ON' : 'Modo Info: OFF';
+});
+
+// ========== ANIMATIONS ON SCROLL ==========
+const animateElements = document.querySelectorAll('.animate-on-scroll');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            animateCounters(entry.target);
+        }
+    });
+}, {threshold: 0.2});
+
+animateElements.forEach(el => observer.observe(el));
+
+function animateCounters(container) {
+    container.querySelectorAll('.counter').forEach(counter => {
+        if (counter.dataset.animated) return;
+        counter.dataset.animated = 'true';
+        const target = +counter.dataset.target;
+        const increment = target / 30;
+        let current = 0;
+        
+        const updateCounter = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                counter.textContent = target;
+                clearInterval(updateCounter);
+            } else {
+                counter.textContent = Math.floor(current);
+            }
+        }, 30);
+    });
+}
+
+// ========== CARRUSELES MEJORADOS ==========
+const carousels = {};
+const autoPlayIntervals = {};
+
+function initCarousel(id) {
+    const container = document.getElementById(id);
+    if (!container) return;
+    
+    const track = container.querySelector('.carousel-track');
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.getElementById(`dots-${id}`);
+    
+    carousels[id] = {
+        container,
+        track,
+        slides: slides,
+        index: 0,
+        total: slides.length,
+        autoPlay: true,
+        autoPlaySpeed: 2000
+    };
+    
+    // Crear dots
+    for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot';
+        if (i === 0) dot.classList.add('active');
+        dot.onclick = () => goToSlide(id, i);
+        dotsContainer.appendChild(dot);
+    }
+    
+    updateCarousel(id);
+    
+    // Iniciar autoplay automáticamente con un pequeño delay
+    setTimeout(() => {
+        const btnSpan = document.getElementById(`playBtn-${id}`);
+        if (btnSpan) {
+            btnSpan.textContent = '⏸ Pausa';
+            btnSpan.parentElement.classList.add('playing');
+        }
+        startAutoPlay(id);
+    }, 100);
+}
+
+function moveCarousel(id, direction) {
+    const carousel = carousels[id];
+    carousel.index = (carousel.index + direction + carousel.total) % carousel.total;
+    updateCarousel(id);
+    resetAutoPlayProgress(id);
+}
+
+function goToSlide(id, index) {
+    carousels[id].index = index;
+    updateCarousel(id);
+    resetAutoPlayProgress(id);
+}
+
+function updateCarousel(id) {
+    const carousel = carousels[id];
+    carousel.track.style.transform = `translateX(-${carousel.index * 100}%)`;
+    
+    carousel.container.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+        dot.classList.toggle('active', i === carousel.index);
+    });
+}
+
+function toggleAutoPlay(id) {
+    const carousel = carousels[id];
+    carousel.autoPlay = !carousel.autoPlay;
+    
+    const btnSpan = document.getElementById(`playBtn-${id}`);
+    
+    if (carousel.autoPlay) {
+        btnSpan.textContent = '⏸ Pausa';
+        btnSpan.parentElement.classList.add('playing');
+        startAutoPlay(id);
+    } else {
+        btnSpan.textContent = '▶ Auto';
+        btnSpan.parentElement.classList.remove('playing');
+        stopAutoPlay(id);
+    }
+}
+
+function startAutoPlay(id) {
+    const carousel = carousels[id];
+    const progressBar = document.getElementById(`progress-${id}`);
+    let progress = 0;
+    
+    autoPlayIntervals[id] = setInterval(() => {
+        progress += 100 / (carousel.autoPlaySpeed / 100);
+        progressBar.style.width = `${progress}%`;
+        
+        if (progress >= 100) {
+            moveCarousel(id, 1);
+            progress = 0;
+        }
+    }, 100);
+}
+
+function stopAutoPlay(id) {
+    if (autoPlayIntervals[id]) {
+        clearInterval(autoPlayIntervals[id]);
+        autoPlayIntervals[id] = null;
+    }
+    const progressBar = document.getElementById(`progress-${id}`);
+    if (progressBar) progressBar.style.width = '0%';
+}
+
+function resetAutoPlayProgress(id) {
+    const progressBar = document.getElementById(`progress-${id}`);
+    if (progressBar) progressBar.style.width = '0%';
+    
+    if (carousels[id] && carousels[id].autoPlay && autoPlayIntervals[id]) {
+        clearInterval(autoPlayIntervals[id]);
+        startAutoPlay(id);
+    }
+}
+
+['carousel1', 'carousel2', 'carousel3'].forEach(id => initCarousel(id));
+
+// Pausar autoplay al hover - DEBE IR DESPUÉS DE INICIALIZAR
+['carousel1', 'carousel2', 'carousel3'].forEach(id => {
+    const container = carousels[id].container;
+    container.addEventListener('mouseenter', () => {
+        if (carousels[id].autoPlay) {
+            stopAutoPlay(id);
+        }
+    });
+    
+    container.addEventListener('mouseleave', () => {
+        if (carousels[id].autoPlay) {
+            startAutoPlay(id);
+        }
+    });
+});
+
+// ========== DEMO LMS MODAL ==========
+function openLMSDemo() {
+    const modal = document.getElementById('lmsDemoModal');
+    const iframe = document.getElementById('lmsDemoIframe');
+    iframe.src = 'https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms';
+    modal.classList.add('active');
+}
+
+function closeLMSDemo() {
+    const modal = document.getElementById('lmsDemoModal');
+    const iframe = document.getElementById('lmsDemoIframe');
+    modal.classList.remove('active');
+    setTimeout(() => {
+        iframe.src = '';
+    }, 300);
+}
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLMSDemo();
+    }
+});
+    // ========== CHARTS CON CHART.JS ==========
+window.addEventListener('load', () => {
+    const c1 = document.getElementById('chartModulos');
+    if (c1) {
+        new Chart(c1, {
+            type: 'bar',
+            data: {
+                labels: ['M1', 'M2', 'M3', 'Prom.'],
+                datasets: [{
+                    label: '%',
+                    data: [90, 88, 85, 88],
+                    backgroundColor: ['#2c5f66', '#e8a2b8', '#3b82f6', '#10b981'],
+                    borderRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {display: false}
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+    }
+    
+    const c2 = document.getElementById('chartEvaluaciones');
+    if (c2) {
+        new Chart(c2, {
+            type: 'doughnut',
+            data: {
+                labels: ['Aprobadas', 'No Aprobadas'],
+                datasets: [{
+                    data: [156, 14],
+                    backgroundColor: ['#10b981', '#e5e7eb'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {size: 12}
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+
+// ========== ATAJOS DE TECLADO ==========
+document.addEventListener('keydown', (e) => {
+    // Flecha izquierda: slide anterior
+    if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (currentSlideIndex > 0) {
+            currentSlideIndex--;
+            slides[currentSlideIndex].scrollIntoView({behavior: 'smooth'});
+        }
+    }
+    
+    // Flecha derecha: slide siguiente
+    if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        if (currentSlideIndex < totalSlides - 1) {
+            currentSlideIndex++;
+            slides[currentSlideIndex].scrollIntoView({behavior: 'smooth'});
+        }
+    }
+    
+    // Tecla "i": toggle modo info
+    if (e.key === 'i' || e.key === 'I') {
+        document.getElementById('infoModeToggle').click();
+    }
+    
+    // Tecla "d": abrir demo LMS
+    if (e.key === 'd' || e.key === 'D') {
+        openLMSDemo();
+    }
+    
+    // Tecla "t": toggle timer
+    if (e.key === 't' || e.key === 'T') {
+        timerRunning ? pauseTimer() : startTimer();
+    }
+    
+    // Tecla "r": reset timer
+    if (e.key === 'r' || e.key === 'R') {
+        resetTimer();
+    }
+    
+    // Tecla Home: ir al inicio
+    if (e.key === 'Home') {
+        e.preventDefault();
+        slides[0].scrollIntoView({behavior: 'smooth'});
+    }
+    
+    // Tecla End: ir al final
+    if (e.key === 'End') {
+        e.preventDefault();
+        slides[totalSlides - 1].scrollIntoView({behavior: 'smooth'});
+    }
+});
+
+// ========== INICIALIZACIÓN ==========
+document.addEventListener('DOMContentLoaded', () => {
+    updateProgressIndicator();
+    updateNavButtons();
+    
+    // Log de atajos disponibles en consola
+    console.log(`
+    🎯 ATAJOS DE TECLADO DISPONIBLES:
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    ← →     : Navegar slides
+    I       : Toggle Modo Info
+    D       : Abrir Demo LMS
+    T       : Iniciar/Pausar Timer
+    R       : Reset Timer
+    ESC     : Cerrar Modal
+    Home    : Ir al inicio
+    End     : Ir al final
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    `);
+});
+
+// ========== RESPONSIVE MÓVIL ==========
+function checkMobile() {
+    const toggle = document.getElementById('mobileNavToggle');
+    if (toggle) {
+        if (window.innerWidth <= 992) {
+            toggle.style.display = 'flex';
+        } else {
+            toggle.style.display = 'none';
+            document.getElementById('sidebar').classList.remove('active');
+        }
+    }
+}
+
+window.addEventListener('resize', checkMobile);
+checkMobile();
+
+// ========== PREVENIR ZOOM ACCIDENTAL EN MÓVIL ==========
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+});
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(e) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+
+// ========== PERFORMANCE: LAZY LOADING DE IMÁGENES ==========
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    });
+    
+    document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// ========== ANALYTICS: LOG DE NAVEGACIÓN (Opcional) ==========
+let slideViewTimes = {};
+let slideStartTime = Date.now();
+
+function logSlideView() {
+    const currentSlideId = slides[currentSlideIndex].id;
+    const timeSpent = Date.now() - slideStartTime;
+    
+    if (!slideViewTimes[currentSlideId]) {
+        slideViewTimes[currentSlideId] = 0;
+    }
+    slideViewTimes[currentSlideId] += timeSpent;
+    
+    slideStartTime = Date.now();
+}
+
+window.addEventListener('beforeunload', () => {
+    logSlideView();
+    console.log('📊 Tiempo por slide:', slideViewTimes);
+});
+
+setInterval(logSlideView, 5000); // Log cada 5 segundos
+
+// ========== FIN DEL SCRIPT ==========
+</script>
+
+</body>
+</html>

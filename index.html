@@ -126,9 +126,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 /* ========== CARRUSEL MEJORADO ========== */
 .carousel-container{position:relative;width:100%;max-width:650px;margin:1.5rem auto;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.15)}
 .carousel-track{display:flex;transition:transform .5s ease}
-.carousel-slide{min-width:100%;display:flex;align-items:center;justify-content:center;background:#f8f9fa;position:relative}
-.carousel-slide img{width:100%;height:auto;display:block;object-fit:cover}
-.carousel-placeholder{width:100%;height:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5e7eb,#f3f4f6);color:#6b7280;font-size:1rem}
+.carousel-slide{min-width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f8f9fa;position:relative}
+.carousel-slide img{max-width:100%;max-height:500px;width:auto;height:auto;display:block;object-fit:contain}
+.carousel-placeholder{width:100%;height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5e7eb,#f3f4f6);color:#6b7280;font-size:1rem}
 .carousel-placeholder i{font-size:3rem;margin-bottom:1rem;opacity:.5}
 .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.7);color:#fff;border:none;width:45px;height:45px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
 .carousel-btn:hover{background:rgba(0,0,0,0.9);transform:translateY(-50%) scale(1.1)}
@@ -232,7 +232,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     .portada-title{font-size:1.8rem}
     .section-title{font-size:1.4rem}
     .carousel-container{max-width:100%}
-    .carousel-placeholder{height:300px}
+    .carousel-slide{height:400px}
+    .carousel-slide img{max-height:400px}
+    .carousel-placeholder{height:400px}
     .info-tooltip-content{max-width:200px;font-size:0.7rem;padding:8px 10px}
 }
 </style>

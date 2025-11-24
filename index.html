@@ -439,15 +439,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 <section id="portada" class="slide portada">
     <div class="slide-container">
         <div class="portada-logo">DA</div>
-        <h1 class="portada-title">
-            DIADIFO
-            <span class="info-tooltip">
-                <i class="info-icon">i</i>
-                <div class="info-tooltip-content">
-                    Proyecto final Diplomado en Diseño Instruccional
-                </div>
-            </span>
-        </h1>
+        <h1 class="portada-title">DIADIFO</h1>
         <p class="portada-subtitle">LMS Independiente para Dibujo Anatómico</p>
         <p class="portada-tagline">Innovación Técnica + Diseño Instruccional ADDIE + ABP</p>
         
@@ -483,30 +475,14 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <div class="slide-container">
         <div class="section-header">
             <div class="section-number">2</div>
-            <h2 class="section-title">
-                Contexto y Necesidad
-                <span class="info-tooltip">
-                    <i class="info-icon">i</i>
-                    <div class="info-tooltip-content">
-                        Descripción del entorno institucional y población objetivo
-                    </div>
-                </span>
-            </h2>
+            <h2 class="section-title">Contexto y Necesidad</h2>
             <p class="section-subtitle">Diagnóstico empírico y oportunidad de intervención</p>
         </div>
 
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:2rem">
             <div class="feature-card">
                 <div class="feature-icon"><i class="bi bi-building"></i></div>
-                <h3 class="feature-title">
-                    🎯 Contexto Institucional
-                    <span class="info-tooltip">
-                        <i class="info-icon">i</i>
-                        <div class="info-tooltip-content data-highlight">
-                            Datos específicos de población y temporalidad
-                        </div>
-                    </span>
-                </h3>
+                <h3 class="feature-title">🎯 Contexto Institucional</h3>
                 <ul class="feature-list">
                     <li><strong>Institución:</strong> Universidad Alberto Hurtado - Pedagogía en Artes Visuales</li>
                     <li><strong>Población:</strong> 17 estudiantes de 4° año</li>
@@ -1303,6 +1279,76 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     <li>Referencias cruzadas LMS ↔ clases</li>
                     <li>Explicación del "por qué" del error en evaluaciones</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 9B: EVIDENCIAS VISUALES -->
+<section id="evidencias-visuales" class="slide">
+    <div class="slide-container">
+        <div class="section-header">
+            <span class="section-number">9B</span>
+            <h2 class="section-title">Evidencias Visuales</h2>
+            <p class="section-subtitle">Registro Fotográfico</p>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-laptop"></i> Screenshots del LMS</h3>
+            <div class="carousel-container" id="carousel1">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/screenshot-lms-1.jpg" alt="Dashboard Principal"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-2.jpg" alt="Módulo de Lecciones"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-3.jpg" alt="Sistema de Evaluaciones"></div>
+                    <div class="carousel-slide"><img src="images/screenshot-lms-4.jpg" alt="Progreso del Estudiante"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel1',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel1',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel1"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel1')">
+                        <span id="playBtn-carousel1">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel1"></div>
+            </div>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-people"></i> Taller Presencial</h3>
+            <div class="carousel-container" id="carousel2">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/taller-presencial-1.jpg" alt="Estudiantes Trabajando"></div>
+                    <div class="carousel-slide"><img src="images/taller-presencial-2.jpg" alt="Ambiente de Trabajo"></div>
+                    <div class="carousel-slide"><img src="images/taller-presencial-3.jpg" alt="Proceso de Dibujo"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel2',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel2',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel2"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel2')">
+                        <span id="playBtn-carousel2">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel2"></div>
+            </div>
+        </div>
+        <div class="gallery-section animate-on-scroll">
+            <h3 class="gallery-title"><i class="bi bi-palette"></i> Proyectos Finales M3L3</h3>
+            <div class="carousel-container" id="carousel3">
+                <div class="carousel-track">
+                    <div class="carousel-slide"><img src="images/proyecto-final-1.jpg" alt="Trabajo Estudiante 1"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-2.jpg" alt="Trabajo Estudiante 2"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-3.jpg" alt="Trabajo Estudiante 3"></div>
+                    <div class="carousel-slide"><img src="images/proyecto-final-4.jpg" alt="Trabajo Estudiante 4"></div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveCarousel('carousel3',-1)"><i class="bi bi-chevron-left"></i></button>
+                <button class="carousel-btn next" onclick="moveCarousel('carousel3',1)"><i class="bi bi-chevron-right"></i></button>
+                <div class="carousel-dots" id="dots-carousel3"></div>
+                <div class="carousel-controls-bottom">
+                    <button class="carousel-control-btn" onclick="toggleAutoPlay('carousel3')">
+                        <span id="playBtn-carousel3">▶ Auto</span>
+                    </button>
+                </div>
+                <div class="carousel-progress" id="progress-carousel3"></div>
             </div>
         </div>
     </div>

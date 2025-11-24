@@ -10,114 +10,164 @@
 :root{--primary-dark:#003C71;--primary-light:#e8a2b8;--accent-teal:#4ecdc4;--dark:#1a1a1a;--gray-light:#f8f9fa;--success:#28A745;--danger:#ef4444;--warning:#FFC107;--info:#3b82f6}
 *{margin:0;padding:0;box-sizing:border-box}
 
-/* ========== TIMER MEJORADO ========== */
-.timer-container{position:fixed;top:20px;right:20px;z-index:2000}
-.timer-display{background:rgba(0,0,0,.9);backdrop-filter:blur(10px);color:var(--accent-teal);font-family:'Courier New',monospace;font-size:16px;font-weight:700;padding:8px 16px;border-radius:30px;border:2px solid var(--accent-teal);min-width:140px;text-align:center;cursor:pointer;transition:all .3s;box-shadow:0 5px 20px rgba(0,0,0,.4)}
-.timer-display:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(78,205,196,.5)}
+/* ========== TIMER OPTIMIZADO Y MÁS PEQUEÑO ========== */
+.timer-container{position:fixed;top:15px;right:15px;z-index:2000}
+.timer-display{background:rgba(0,0,0,.85);backdrop-filter:blur(8px);color:var(--accent-teal);font-family:'Courier New',monospace;font-size:14px;font-weight:700;padding:6px 12px;border-radius:20px;border:2px solid var(--accent-teal);min-width:100px;text-align:center;cursor:pointer;transition:all .3s;box-shadow:0 3px 12px rgba(0,0,0,.3)}
+.timer-display:hover{transform:translateY(-2px);box-shadow:0 5px 18px rgba(78,205,196,.4)}
 .timer-display.warning{color:var(--warning);border-color:var(--warning);animation:pulse 1s infinite}
 .timer-display.danger{color:var(--danger);border-color:var(--danger);animation:pulse .5s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.8;transform:scale(1.05)}}
-.timer-controls{display:flex;gap:8px;margin-top:10px;justify-content:center}
-.timer-btn{background:rgba(0,0,0,.8);border:2px solid var(--accent-teal);color:var(--accent-teal);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:12px;font-weight:600;transition:all .3s}
+.timer-controls{display:flex;gap:6px;margin-top:8px;justify-content:center}
+.timer-btn{background:rgba(0,0,0,.75);border:1.5px solid var(--accent-teal);color:var(--accent-teal);padding:5px 10px;border-radius:15px;cursor:pointer;font-size:10px;font-weight:600;transition:all .3s}
 .timer-btn:hover{background:var(--accent-teal);color:var(--dark)}
 
 /* ========== MODO INFO TOGGLE ========== */
-.info-mode-toggle{position:fixed;top:20px;left:260px;z-index:2001;background:rgba(59,130,246,0.9);color:#fff;border:2px solid #3b82f6;padding:10px 20px;border-radius:25px;font-weight:600;font-size:0.85rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:8px}
+.info-mode-toggle{position:fixed;top:15px;left:260px;z-index:2001;background:rgba(59,130,246,0.9);color:#fff;border:2px solid #3b82f6;padding:8px 16px;border-radius:20px;font-weight:600;font-size:0.8rem;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;gap:6px}
 .info-mode-toggle:hover{background:#3b82f6;transform:scale(1.05)}
 .info-mode-toggle.active{background:var(--success);border-color:var(--success)}
 
-/* ========== TOOLTIPS DE INFO MODE MEJORADOS ========== */
+/* ========== TOOLTIPS MEJORADOS SIN RÚBRICA ========== */
 .info-tooltip{position:relative;display:inline-flex;align-items:center}
-.info-icon{width:20px;height:20px;background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:700;margin-left:6px;cursor:help;opacity:0;transition:opacity 0.3s;box-shadow:0 2px 8px rgba(59,130,246,0.3)}
+.info-icon{width:18px;height:18px;background:linear-gradient(135deg,#3b82f6,#60a5fa);color:#fff;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:700;margin-left:5px;cursor:help;opacity:0;transition:opacity 0.3s;box-shadow:0 2px 6px rgba(59,130,246,0.3)}
 .info-mode-active .info-icon{opacity:1}
 
-/* Tooltip mejorado con mejor diseño */
 .info-tooltip-content{
-    position:fixed;
+    position:absolute;
     background:linear-gradient(135deg,#ffffff,#f8fafc);
     color:#1e293b;
-    padding:14px 18px;
-    border-radius:12px;
-    font-size:0.85rem;
-    max-width:320px;
+    padding:10px 14px;
+    border-radius:10px;
+    font-size:0.75rem;
+    max-width:280px;
     width:max-content;
-    min-width:180px;
+    min-width:150px;
     white-space:normal;
-    line-height:1.5;
+    line-height:1.4;
     opacity:0;
     visibility:hidden;
-    transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+    transition:all 0.3s ease;
     pointer-events:none;
     z-index:99999;
-    box-shadow:0 10px 40px rgba(0,0,0,0.15),0 0 0 1px rgba(59,130,246,0.1);
+    box-shadow:0 8px 30px rgba(0,0,0,0.12);
     border:2px solid #3b82f6;
     font-weight:500;
-    text-align:left
+    text-align:left;
+    bottom:calc(100% + 8px);
+    left:50%;
+    transform:translateX(-50%);
 }
 
-.info-tooltip-content::before{
+.info-tooltip-content::after{
     content:'';
     position:absolute;
-    width:12px;
-    height:12px;
-    background:linear-gradient(135deg,#ffffff,#f8fafc);
-    border-right:2px solid #3b82f6;
-    border-bottom:2px solid #3b82f6;
-    transform:rotate(45deg);
-    z-index:-1
-}
-
-/* Posicionamiento del tooltip según ubicación */
-.info-tooltip-content.tooltip-bottom::before{
-    top:-7px;
+    top:100%;
     left:50%;
-    transform:translateX(-50%) rotate(-135deg)
+    transform:translateX(-50%);
+    border:6px solid transparent;
+    border-top-color:#3b82f6;
 }
 
-.info-tooltip-content.tooltip-top::before{
-    bottom:-7px;
-    left:50%;
-    transform:translateX(-50%) rotate(45deg)
-}
-
-.info-tooltip-content.tooltip-left::before{
-    right:-7px;
-    top:50%;
-    transform:translateY(-50%) rotate(-45deg)
-}
-
-.info-tooltip-content.tooltip-right::before{
-    left:-7px;
-    top:50%;
-    transform:translateY(-50%) rotate(135deg)
-}
-
-.info-icon:hover + .info-tooltip-content,
-.info-icon:focus + .info-tooltip-content{
+.info-icon:hover + .info-tooltip-content{
     opacity:1;
     visibility:visible;
-    transform:scale(1)
-}
-
-/* Estilos para diferentes tipos de tooltips */
-.info-tooltip-content.rubrica-highlight{
-    border-color:var(--success);
-    background:linear-gradient(135deg,#f0fdf4,#dcfce7)
-}
-
-.info-tooltip-content.rubrica-highlight::before{
-    background:linear-gradient(135deg,#f0fdf4,#dcfce7);
-    border-color:var(--success)
 }
 
 .info-tooltip-content.data-highlight{
     border-color:var(--warning);
-    background:linear-gradient(135deg,#fffbeb,#fef3c7)
+    background:linear-gradient(135deg,#fffbeb,#fef3c7);
 }
 
-.info-tooltip-content.data-highlight::before{
-    background:linear-gradient(135deg,#fffbeb,#fef3c7);
-    border-color:var(--warning)
+.info-tooltip-content.data-highlight::after{
+    border-top-color:var(--warning);
+}
+
+/* ========== BOTÓN LMS FLOTANTE OPTIMIZADO ========== */
+.demo-lms-btn{
+    position:fixed;
+    bottom:100px;
+    right:25px;
+    z-index:1999;
+    background:var(--danger);
+    color:#fff;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    font-weight:700;
+    font-size:0.85rem;
+    cursor:pointer;
+    transition:all 0.3s;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 4px 15px rgba(239,68,68,0.4);
+}
+.demo-lms-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 6px 25px rgba(239,68,68,0.6);
+}
+.demo-lms-btn i{
+    font-size:1rem;
+    animation:blink 1.5s infinite;
+}
+@keyframes blink{
+    0%,100%{opacity:1}
+    50%{opacity:0.3}
+}
+
+/* ========== MODAL LMS ========== */
+.lms-demo-modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    backdrop-filter:blur(5px);
+}
+.lms-demo-modal.active{display:flex}
+.lms-demo-content{
+    background:#fff;
+    border-radius:16px;
+    width:90%;
+    height:90vh;
+    max-width:1200px;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+}
+.lms-demo-header{
+    background:var(--primary-dark);
+    color:#fff;
+    padding:1rem 1.5rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.lms-demo-header h3{font-size:1.2rem;font-weight:700}
+.lms-demo-close{
+    background:var(--danger);
+    color:#fff;
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:1.2rem;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:all 0.3s;
+}
+.lms-demo-close:hover{
+    transform:rotate(90deg);
+    background:var(--dark);
+}
+.lms-demo-iframe{
+    width:100%;
+    height:calc(100% - 60px);
+    border:none;
 }
 
 /* ========== BASE ========== */
@@ -139,8 +189,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .slide{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:2.5rem 2rem;position:relative}
 .slide-container{max-width:1000px;width:100%;animation:fadeInUp .5s ease-out}
 
-/* ========== PORTADA ========== */
-.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center}
+/* ========== PORTADA CON BOTÓN FULLSCREEN ========== */
+.portada{background:linear-gradient(135deg,var(--primary-dark),var(--dark));color:#fff;text-align:center;position:relative}
 .portada-logo{width:90px;height:90px;background:linear-gradient(135deg,var(--primary-light),#fff);border-radius:18px;margin:0 auto 1.25rem;display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--primary-dark);font-weight:800;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 .portada-title{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;background:linear-gradient(135deg,#fff,var(--primary-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.4rem}
@@ -152,6 +202,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .meta-value{font-weight:600;font-size:.9rem}
 .portada-btn{display:inline-flex;align-items:center;gap:.4rem;background:var(--primary-light);color:var(--dark);padding:.75rem 1.5rem;border-radius:50px;text-decoration:none;font-weight:600;transition:all .3s}
 .portada-btn:hover{transform:translateY(-2px)}
+
+/* Botón fullscreen en portada */
+.fullscreen-btn-portada{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,0.15);
+    color:#fff;
+    border:2px solid rgba(255,255,255,0.3);
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+    font-size:0.85rem;
+    font-weight:600;
+    transition:all .3s;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    backdrop-filter:blur(10px);
+}
+.fullscreen-btn-portada:hover{
+    background:rgba(255,255,255,0.25);
+    border-color:rgba(255,255,255,0.5);
+    transform:translateX(-50%) translateY(-2px);
+}
 
 /* ========== SECTION HEADERS ========== */
 .section-header{text-align:center;margin-bottom:2rem}
@@ -171,7 +247,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .stat-value{font-size:1.7rem;font-weight:800;color:var(--primary-dark)}
 .stat-label{font-size:.8rem;color:#6c757d}
 .stat-badge{display:inline-block;background:var(--success);color:#fff;padding:.15rem .5rem;border-radius:15px;font-size:.65rem;font-weight:600;margin-top:.4rem}
-        /* CONTINUACIÓN PARTE 2 - ESTILOS */
 
 /* ========== CARD GRIDS ========== */
 .card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.2rem}
@@ -213,21 +288,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .check-icon{color:var(--success);font-weight:700;font-size:1.1rem}
 .times-icon{color:var(--danger);font-weight:700;font-size:1.1rem}
 
-/* ========== CARRUSEL MEJORADO ========== */
-.carousel-container{position:relative;width:100%;max-width:650px;margin:1.5rem auto;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.15)}
-.carousel-track{display:flex;transition:transform .5s ease}
-.carousel-slide{min-width:100%;height:500px;display:flex;align-items:center;justify-content:center;background:#f8f9fa;position:relative}
-.carousel-slide img{max-width:100%;max-height:500px;width:auto;height:auto;display:block;object-fit:contain}
-.carousel-placeholder{width:100%;height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5e7eb,#f3f4f6);color:#6b7280;font-size:1rem}
-.carousel-placeholder i{font-size:3rem;margin-bottom:1rem;opacity:.5}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.7);color:#fff;border:none;width:45px;height:45px;border-radius:50%;cursor:pointer;font-size:1.2rem;display:flex;align-items:center;justify-content:center;transition:all .3s;z-index:10}
-.carousel-btn:hover{background:rgba(0,0,0,0.9);transform:translateY(-50%) scale(1.1)}
-.carousel-btn.prev{left:15px}
-.carousel-btn.next{right:15px}
-.carousel-dots{display:flex;justify-content:center;gap:8px;padding:15px 0;background:rgba(0,0,0,0.05)}
-.carousel-dot{width:10px;height:10px;border-radius:50%;background:#ccc;border:none;cursor:pointer;transition:all .3s}
-.carousel-dot.active{background:var(--primary-dark);width:30px;border-radius:5px}
-
 /* ========== PROGRESS BAR ========== */
 .progress-container{position:fixed;bottom:0;left:240px;right:0;height:4px;background:rgba(0,0,0,0.05);z-index:999}
 .progress-bar{height:100%;background:linear-gradient(90deg,var(--primary-dark),var(--primary-light));transition:width .3s;border-radius:0 4px 4px 0}
@@ -238,40 +298,25 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .nav-circle-btn:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(0,0,0,.3);background:var(--primary-light);color:var(--dark)}
 .nav-circle-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 
-/* ========== MODAL ========== */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(5px)}
-.modal-overlay.active{display:flex}
-.modal-content{background:#fff;border-radius:16px;max-width:90%;max-height:90vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,.3);position:relative}
-.modal-header{padding:1.5rem;border-bottom:2px solid #eee;display:flex;justify-content:space-between;align-items:center}
-.modal-title{font-size:1.5rem;font-weight:700;color:var(--primary-dark)}
-.modal-close{background:none;border:none;font-size:2rem;cursor:pointer;color:#6c757d;transition:color .3s}
-.modal-close:hover{color:var(--danger)}
-.modal-body{padding:2rem}
-.modal-body iframe{width:100%;height:70vh;border:none;border-radius:8px}
-
-/* ========== FULLSCREEN BUTTON ========== */
-.fullscreen-btn{position:fixed;top:80px;right:20px;z-index:2000;background:rgba(0,0,0,0.7);color:#fff;border:2px solid var(--accent-teal);padding:10px;border-radius:50%;width:45px;height:45px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;font-size:1.2rem}
-.fullscreen-btn:hover{background:rgba(0,0,0,0.9);transform:scale(1.1)}
-
 /* ========== RESPONSIVE MOBILE ========== */
 @media (max-width: 992px){
     .sidebar{transform:translateX(-100%)}
     .sidebar.active{transform:translateX(0)}
     .main-content{margin-left:0}
     .progress-container{left:0}
-    .info-mode-toggle{left:20px;font-size:0.75rem;padding:8px 15px}
-    .timer-container{top:80px}
-    .fullscreen-btn{top:140px}
+    .info-mode-toggle{left:15px;font-size:0.7rem;padding:6px 12px}
+    .timer-container{top:10px;right:10px}
+    .timer-display{font-size:12px;padding:5px 10px;min-width:85px}
+    .timer-btn{font-size:9px;padding:4px 8px}
     .nav-buttons{bottom:20px;right:20px}
     .nav-circle-btn{width:48px;height:48px;font-size:1.1rem}
+    .demo-lms-btn{bottom:80px;right:20px;padding:8px 16px;font-size:0.75rem}
     .slide{padding:2rem 1.5rem}
     .stats-grid{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
     .card-grid{grid-template-columns:1fr;gap:1rem}
     .comparison-table{font-size:.75rem}
     .comparison-table th,.comparison-table td{padding:.7rem .6rem}
-    .carousel-container{max-width:100%}
-    .carousel-slide{height:350px}
-    .carousel-slide img{max-height:350px}
+    .info-tooltip-content{max-width:220px;font-size:0.7rem;padding:8px 12px}
 }
 
 @media (max-width: 576px){
@@ -279,12 +324,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     .portada-subtitle{font-size:1rem}
     .section-title{font-size:1.4rem}
     .stat-value{font-size:1.4rem}
-    .info-tooltip-content{max-width:250px;font-size:0.75rem;padding:10px 14px}
+    .info-tooltip-content{max-width:200px;font-size:0.65rem;padding:6px 10px}
+    .fullscreen-btn-portada{font-size:0.75rem;padding:8px 16px}
 }
 
 /* ========== ANIMATIONS ========== */
 @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideInRight{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
 
 /* ========== UTILITIES ========== */
 .text-center{text-align:center}
@@ -301,7 +346,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
 .badge-warning{background:var(--warning);color:var(--dark);padding:.2rem .6rem;border-radius:12px;font-size:.75rem;font-weight:600}
 
 /* Mobile nav toggle */
-#mobileNavToggle{position:fixed;top:20px;left:20px;z-index:2002;background:var(--primary-dark);color:#fff;border:none;padding:12px;border-radius:10px;cursor:pointer;display:none;font-size:1.5rem;width:50px;height:50px;align-items:center;justify-content:center}
+#mobileNavToggle{position:fixed;top:15px;left:15px;z-index:2002;background:var(--primary-dark);color:#fff;border:none;padding:10px;border-radius:10px;cursor:pointer;display:none;font-size:1.3rem;width:45px;height:45px;align-items:center;justify-content:center}
 #mobileNavToggle:hover{background:var(--primary-light);color:var(--dark)}
 
 </style>
@@ -313,28 +358,40 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
     <i class="bi bi-list"></i>
 </button>
 
-<!-- Timer -->
+<!-- Timer Optimizado -->
 <div class="timer-container">
     <div class="timer-display" id="timerDisplay" onclick="document.getElementById('timerDisplay').classList.contains('danger') ? resetTimer() : null">
-        00:00
+        07:00
     </div>
     <div class="timer-controls">
-        <button class="timer-btn" onclick="startTimer()">▶ Iniciar</button>
-        <button class="timer-btn" onclick="pauseTimer()">⏸ Pausar</button>
-        <button class="timer-btn" onclick="resetTimer()">↻ Reset</button>
+        <button class="timer-btn" onclick="startTimer()">▶</button>
+        <button class="timer-btn" onclick="pauseTimer()">⏸</button>
+        <button class="timer-btn" onclick="resetTimer()">↻</button>
     </div>
 </div>
 
 <!-- Modo Info Toggle -->
 <button class="info-mode-toggle" id="infoModeToggle" onclick="toggleInfoMode()">
     <i class="bi bi-info-circle"></i>
-    <span id="infoModeText">Activar Modo Info</span>
+    <span id="infoModeText">Modo Info</span>
 </button>
 
-<!-- Fullscreen Button -->
-<button class="fullscreen-btn" onclick="toggleFullscreen()" title="Pantalla completa (F11)">
-    <i class="bi bi-arrows-fullscreen"></i>
+<!-- Botón LMS Flotante -->
+<button class="demo-lms-btn" onclick="openLMSDemo()">
+    <i class="bi bi-play-circle-fill"></i>
+    Ver LMS
 </button>
+
+<!-- Modal LMS -->
+<div class="lms-demo-modal" id="lmsDemoModal">
+    <div class="lms-demo-content">
+        <div class="lms-demo-header">
+            <h3>🎨 LMS DIADIFO en Vivo</h3>
+            <button class="lms-demo-close" onclick="closeLMSDemo()">✕</button>
+        </div>
+        <iframe class="lms-demo-iframe" id="lmsDemoIframe" src=""></iframe>
+    </div>
+</div>
 
 <!-- Progress Bar -->
 <div class="progress-container">
@@ -350,7 +407,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <i class="bi bi-chevron-right"></i>
     </button>
 </div>
-<!-- CONTINUACIÓN PARTE 3 - SIDEBAR Y SLIDES -->
 
 <!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
@@ -387,8 +443,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             DIADIFO
             <span class="info-tooltip">
                 <i class="info-icon">i</i>
-                <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                    Rúbrica Ítem 1 (5%): Descripción del entorno del proyecto
+                <div class="info-tooltip-content">
+                    Proyecto final Diplomado en Diseño Instruccional
                 </div>
             </span>
         </h1>
@@ -414,6 +470,12 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             <i class="bi bi-globe"></i> Acceso Público al LMS
         </a>
     </div>
+    
+    <!-- Botón Fullscreen Fijo en Portada -->
+    <button class="fullscreen-btn-portada" onclick="toggleFullscreen()">
+        <i class="bi bi-arrows-fullscreen"></i>
+        Pantalla Completa
+    </button>
 </section>
 
 <!-- SLIDE 2: CONTEXTO Y NECESIDAD -->
@@ -425,8 +487,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Contexto y Necesidad
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 1: Descripción completa del entorno institucional y población objetivo
+                    <div class="info-tooltip-content">
+                        Descripción del entorno institucional y población objetivo
                     </div>
                 </span>
             </h2>
@@ -440,8 +502,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     🎯 Contexto Institucional
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Datos específicos de la población objetivo y temporalidad del proyecto
+                        <div class="info-tooltip-content data-highlight">
+                            Datos específicos de población y temporalidad
                         </div>
                     </span>
                 </h3>
@@ -459,8 +521,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     📊 Diagnóstico Empírico (n=17)
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Metodología: Focus groups (100% cobertura) + 5 entrevistas en profundidad
+                        <div class="info-tooltip-content data-highlight">
+                            Focus groups + 5 entrevistas en profundidad
                         </div>
                     </span>
                 </h3>
@@ -503,8 +565,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Objetivo General del Proyecto
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 2 (5%): Definición de objetivos y alcances del proyecto
+                    <div class="info-tooltip-content">
+                        Objetivos claramente definidos y medibles
                     </div>
                 </span>
             </h2>
@@ -521,8 +583,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             Metas Establecidas vs Resultados Alcanzados
             <span class="info-tooltip">
                 <i class="info-icon">i</i>
-                <div class="info-tooltip-content tooltip-bottom data-highlight">
-                    Comparación entre metas proyectadas y resultados reales de implementación
+                <div class="info-tooltip-content data-highlight">
+                    Comparación metas vs resultados reales
                 </div>
             </span>
         </h3>
@@ -607,7 +669,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-<!-- CONTINUACIÓN PARTE 4 - OBJETIVOS APRENDIZAJE Y ARQUITECTURA -->
 
 <!-- SLIDE 4: OBJETIVOS DE APRENDIZAJE -->
 <section id="objetivos-aprendizaje" class="slide" style="background:#fff">
@@ -618,8 +679,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Objetivos de Aprendizaje
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 2 (5%): Objetivos alcanzables claramente definidos, específicos, medibles y temporales
+                    <div class="info-tooltip-content">
+                        Progresión según Taxonomía de Bloom
                     </div>
                 </span>
             </h2>
@@ -648,8 +709,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             Objetivos Específicos de Aprendizaje (Progresión Bloom)
             <span class="info-tooltip">
                 <i class="info-icon">i</i>
-                <div class="info-tooltip-content tooltip-bottom data-highlight">
-                    Progresión desde nivel 2 (Comprender) hasta nivel 6 (Crear) de la Taxonomía de Bloom
+                <div class="info-tooltip-content data-highlight">
+                    De nivel 2 (Comprender) a nivel 6 (Crear)
                 </div>
             </span>
         </h3>
@@ -717,8 +778,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Arquitectura Pedagógica
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 3 (15%): Construcción de recursos didácticos totalmente alineados con objetivos y público objetivo
+                    <div class="info-tooltip-content">
+                        Recursos alineados con objetivos
                     </div>
                 </span>
             </h2>
@@ -733,8 +794,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         Módulo 1 - 3 días
                         <span class="info-tooltip">
                             <i class="info-icon">i</i>
-                            <div class="info-tooltip-content tooltip-right data-highlight">
-                                Nivel Bloom: Comprender (Nivel 2) - Fundamentos perceptuales
+                            <div class="info-tooltip-content data-highlight">
+                                Nivel 2 Bloom: Fundamentos perceptuales
                             </div>
                         </span>
                     </div>
@@ -758,8 +819,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         Módulo 2 - 4 días
                         <span class="info-tooltip">
                             <i class="info-icon">i</i>
-                            <div class="info-tooltip-content tooltip-right data-highlight">
-                                Nivel Bloom: Aplicar (Nivel 3) - Técnicas anatómicas específicas
+                            <div class="info-tooltip-content data-highlight">
+                                Nivel 3 Bloom: Técnicas anatómicas
                             </div>
                         </span>
                     </div>
@@ -783,8 +844,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                         Módulo 3 - 5 días
                         <span class="info-tooltip">
                             <i class="info-icon">i</i>
-                            <div class="info-tooltip-content tooltip-right data-highlight">
-                                Nivel Bloom: Crear (Nivel 6) - Síntesis autónoma
+                            <div class="info-tooltip-content data-highlight">
+                                Nivel 6 Bloom: Síntesis autónoma
                             </div>
                         </span>
                     </div>
@@ -831,7 +892,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-<!-- CONTINUACIÓN PARTE 5 - INNOVACIÓN Y EVALUACIÓN -->
 
 <!-- SLIDE 6: INNOVACIÓN TÉCNICA -->
 <section id="innovacion" class="slide" style="background:#fff">
@@ -842,8 +902,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Innovación Técnica
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 3 (15%) y 4 (15%): Innovación TIC que supera plataformas comerciales
+                    <div class="info-tooltip-content">
+                        Innovación TIC que supera plataformas comerciales
                     </div>
                 </span>
             </h2>
@@ -863,8 +923,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             Comparativa: DIADIFO vs Plataformas Comerciales
             <span class="info-tooltip">
                 <i class="info-icon">i</i>
-                <div class="info-tooltip-content tooltip-bottom data-highlight">
-                    Datos reales de rendimiento y costos proyectados a 5 años
+                <div class="info-tooltip-content data-highlight">
+                    Datos reales de rendimiento a 5 años
                 </div>
             </span>
         </h3>
@@ -915,8 +975,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     Stack Técnico Universal
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom">
-                            Tecnologías estándar sin dependencias propietarias
+                        <div class="info-tooltip-content">
+                            Tecnologías estándar sin dependencias
                         </div>
                     </span>
                 </h4>
@@ -934,7 +994,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     Viabilidad: Análisis PESTEL
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
+                        <div class="info-tooltip-content">
                             25 factores positivos vs 1 negativo menor
                         </div>
                     </span>
@@ -959,8 +1019,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Sistema de Evaluación Adaptativa
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 5 (20%): Evaluación con criterios diferenciados y evidencias múltiples
+                    <div class="info-tooltip-content">
+                        Criterios diferenciados con evidencias múltiples
                     </div>
                 </span>
             </h2>
@@ -973,8 +1033,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     📝 Evaluación Formativa Inteligente
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Sistema adaptativo según tipo de lección
+                        <div class="info-tooltip-content data-highlight">
+                            Sistema adaptativo por tipo de lección
                         </div>
                     </span>
                 </h3>
@@ -1015,8 +1075,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     🤖 Mentor Anatómico IA (24/7)
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Sistema de soporte automatizado sin costos de APIs
+                        <div class="info-tooltip-content data-highlight">
+                            Soporte automatizado sin costos de APIs
                         </div>
                     </span>
                 </h3>
@@ -1046,7 +1106,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-<!-- CONTINUACIÓN PARTE 6 - RESULTADOS Y EVIDENCIAS -->
 
 <!-- SLIDE 8: RESULTADOS CUANTITATIVOS -->
 <section id="resultados" class="slide" style="background:#fff">
@@ -1057,8 +1116,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Resultados Cuantitativos
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 5 (20%): Ejecución con evidencias concretas que concretizan el proyecto
+                    <div class="info-tooltip-content">
+                        Evidencias concretas del proyecto
                     </div>
                 </span>
             </h2>
@@ -1069,8 +1128,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
             📊 Dashboard de Implementación
             <span class="info-tooltip">
                 <i class="info-icon">i</i>
-                <div class="info-tooltip-content tooltip-bottom data-highlight">
-                    Todas las metas proyectadas fueron superadas
+                <div class="info-tooltip-content data-highlight">
+                    Todas las metas fueron superadas
                 </div>
             </span>
         </h3>
@@ -1161,8 +1220,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Evidencias Cualitativas
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 5 (20%): Testimonios reales de estudiantes participantes
+                    <div class="info-tooltip-content">
+                        Testimonios reales de estudiantes
                     </div>
                 </span>
             </h2>
@@ -1194,8 +1253,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     ✅ FORTALEZAS IDENTIFICADAS
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Aspectos destacados por los estudiantes
+                        <div class="info-tooltip-content data-highlight">
+                            Aspectos destacados por estudiantes
                         </div>
                     </span>
                 </h3>
@@ -1226,8 +1285,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     ⚠️ ÁREAS DE MEJORA
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                            Críticas constructivas para futuras iteraciones
+                        <div class="info-tooltip-content">
+                            Críticas constructivas futuras
                         </div>
                     </span>
                 </h3>
@@ -1248,7 +1307,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-<!-- CONTINUACIÓN PARTE 7 - ACOMPAÑAMIENTO Y SLIDES FINALES -->
 
 <!-- SLIDE 10: ACOMPAÑAMIENTO HÍBRIDO -->
 <section id="acompanamiento" class="slide" style="background:#fff">
@@ -1259,8 +1317,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Acompañamiento Híbrido
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 6 (10%): Plan estructurado con trazabilidad completa de interacciones
+                    <div class="info-tooltip-content">
+                        Plan con trazabilidad completa
                     </div>
                 </span>
             </h2>
@@ -1274,8 +1332,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     CAPA AUTOMATIZADA (24/7)
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Sistema autónomo sin intervención humana
+                        <div class="info-tooltip-content data-highlight">
+                            Sistema autónomo permanente
                         </div>
                     </span>
                 </h3>
@@ -1293,8 +1351,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     CAPA ASÍNCRONA
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Monitoreo proactivo con protocolo de intervención
+                        <div class="info-tooltip-content data-highlight">
+                            Monitoreo proactivo escalonado
                         </div>
                     </span>
                 </h3>
@@ -1320,8 +1378,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                     CAPA PRESENCIAL
                     <span class="info-tooltip">
                         <i class="info-icon">i</i>
-                        <div class="info-tooltip-content tooltip-bottom data-highlight">
-                            Sesiones sincrónicas con retroalimentación individualizada
+                        <div class="info-tooltip-content data-highlight">
+                            Sesiones con retroalimentación individualizada
                         </div>
                     </span>
                 </h3>
@@ -1352,8 +1410,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Protocolo de Remediación
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 6 (10%): Plan de remediación con acciones específicas
+                    <div class="info-tooltip-content">
+                        Plan con acciones específicas
                     </div>
                 </span>
             </h2>
@@ -1427,8 +1485,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Lecciones Aprendidas
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 7 (15%): Conclusiones profundas y reflexivas con áreas de mejora
+                    <div class="info-tooltip-content">
+                        Conclusiones profundas con áreas de mejora
                     </div>
                 </span>
             </h2>
@@ -1495,8 +1553,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 Escalabilidad y Proyección
                 <span class="info-tooltip">
                     <i class="info-icon">i</i>
-                    <div class="info-tooltip-content tooltip-bottom rubrica-highlight">
-                        Rúbrica Ítem 7 (15%): Proyección clara para futuras implementaciones
+                    <div class="info-tooltip-content">
+                        Proyección clara futuras implementaciones
                     </div>
                 </span>
             </h2>
@@ -1555,7 +1613,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         </div>
     </div>
 </section>
-<!-- CONTINUACIÓN PARTE 8 FINAL - CIERRE Y JAVASCRIPT -->
 
 <!-- SLIDE 14: CIERRE -->
 <section id="cierre" class="slide portada">
@@ -1633,7 +1690,7 @@ const totalSlides = slides.length;
 let timerInterval = null;
 let timerSeconds = 0;
 let timerRunning = false;
-const TARGET_TIME = 7 * 60; // 7 minutos
+const TARGET_TIME = 7 * 60; // 7 minutos exactos
 
 // ========== TIMER FUNCTIONS ==========
 function startTimer() {
@@ -1668,9 +1725,9 @@ function updateTimerDisplay() {
     
     // Update timer style based on time
     display.classList.remove('warning', 'danger');
-    if (timerSeconds >= TARGET_TIME + 60) { // Más de 8 minutos
+    if (timerSeconds >= TARGET_TIME + 30) { // Más de 7:30 minutos
         display.classList.add('danger');
-    } else if (timerSeconds >= TARGET_TIME - 60) { // Últimos 60 segundos de los 7 minutos
+    } else if (timerSeconds >= TARGET_TIME - 30) { // Entre 6:30 y 7:00
         display.classList.add('warning');
     }
 }
@@ -1687,13 +1744,35 @@ function toggleInfoMode() {
     if (infoModeActive) {
         body.classList.add('info-mode-active');
         toggle.classList.add('active');
-        text.textContent = 'Desactivar Modo Info';
+        text.textContent = 'Info ON';
     } else {
         body.classList.remove('info-mode-active');
         toggle.classList.remove('active');
-        text.textContent = 'Activar Modo Info';
+        text.textContent = 'Modo Info';
     }
 }
+
+// ========== LMS DEMO FUNCTIONS ==========
+function openLMSDemo() {
+    const modal = document.getElementById('lmsDemoModal');
+    const iframe = document.getElementById('lmsDemoIframe');
+    iframe.src = 'https://joseynvizcarra-coder.github.io/dibujo-anatomico-lms';
+    modal.classList.add('active');
+}
+
+function closeLMSDemo() {
+    const modal = document.getElementById('lmsDemoModal');
+    const iframe = document.getElementById('lmsDemoIframe');
+    iframe.src = '';
+    modal.classList.remove('active');
+}
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeLMSDemo();
+    }
+});
 
 // ========== NAVIGATION ==========
 function navigateToSlide(index) {
@@ -1713,7 +1792,6 @@ function navigateSlide(direction) {
 }
 
 function updateNavigation() {
-    // Update active nav link
     navLinks.forEach((link, index) => {
         link.classList.remove('active');
         if (index === currentSlideIndex) {
@@ -1721,14 +1799,12 @@ function updateNavigation() {
         }
     });
     
-    // Update navigation buttons
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     
     prevBtn.disabled = currentSlideIndex === 0;
     nextBtn.disabled = currentSlideIndex === totalSlides - 1;
     
-    // Update progress bar
     updateProgressIndicator();
 }
 
@@ -1779,7 +1855,6 @@ navLinks.forEach((link, index) => {
         e.preventDefault();
         navigateToSlide(index);
         
-        // Close mobile sidebar if open
         if (window.innerWidth <= 992) {
             document.getElementById('sidebar').classList.remove('active');
         }
@@ -1788,18 +1863,11 @@ navLinks.forEach((link, index) => {
 
 // ========== KEYBOARD SHORTCUTS ==========
 document.addEventListener('keydown', (e) => {
-    // Tecla ESC: salir de fullscreen
-    if (e.key === 'Escape' && document.fullscreenElement) {
-        document.exitFullscreen();
-    }
-    
-    // Tecla F11: toggle fullscreen
     if (e.key === 'F11') {
         e.preventDefault();
         toggleFullscreen();
     }
     
-    // Flechas izquierda/derecha: navegar slides
     if (e.key === 'ArrowLeft') {
         e.preventDefault();
         if (currentSlideIndex > 0) {
@@ -1816,78 +1884,31 @@ document.addEventListener('keydown', (e) => {
         }
     }
     
-    // Tecla "i": toggle modo info
     if (e.key === 'i' || e.key === 'I') {
         toggleInfoMode();
     }
     
-    // Tecla "t": toggle timer
     if (e.key === 't' || e.key === 'T') {
         timerRunning ? pauseTimer() : startTimer();
     }
     
-    // Tecla "r": reset timer
     if (e.key === 'r' || e.key === 'R') {
         resetTimer();
     }
     
-    // Tecla Home: ir al inicio
+    if (e.key === 'd' || e.key === 'D') {
+        openLMSDemo();
+    }
+    
     if (e.key === 'Home') {
         e.preventDefault();
         slides[0].scrollIntoView({behavior: 'smooth'});
     }
     
-    // Tecla End: ir al final
     if (e.key === 'End') {
         e.preventDefault();
         slides[totalSlides - 1].scrollIntoView({behavior: 'smooth'});
     }
-});
-
-// ========== POSICIONAMIENTO DINÁMICO DE TOOLTIPS ==========
-document.querySelectorAll('.info-icon').forEach(icon => {
-    icon.addEventListener('mouseenter', function() {
-        const tooltip = this.nextElementSibling;
-        if (!tooltip || !tooltip.classList.contains('info-tooltip-content')) return;
-        
-        const rect = this.getBoundingClientRect();
-        const tooltipRect = tooltip.getBoundingClientRect();
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-        
-        // Reset classes
-        tooltip.classList.remove('tooltip-top', 'tooltip-bottom', 'tooltip-left', 'tooltip-right');
-        
-        // Determine best position
-        const spaceAbove = rect.top;
-        const spaceBelow = viewportHeight - rect.bottom;
-        const spaceLeft = rect.left;
-        const spaceRight = viewportWidth - rect.right;
-        
-        // Position tooltip
-        if (spaceBelow > 200 || spaceBelow > spaceAbove) {
-            tooltip.classList.add('tooltip-bottom');
-            tooltip.style.top = (rect.bottom + 10) + 'px';
-            tooltip.style.left = (rect.left + rect.width / 2) + 'px';
-            tooltip.style.transform = 'translateX(-50%)';
-        } else {
-            tooltip.classList.add('tooltip-top');
-            tooltip.style.bottom = (viewportHeight - rect.top + 10) + 'px';
-            tooltip.style.left = (rect.left + rect.width / 2) + 'px';
-            tooltip.style.transform = 'translateX(-50%)';
-        }
-        
-        // Adjust horizontal position if needed
-        const tooltipWidth = 320; // max-width from CSS
-        if (rect.left + rect.width / 2 - tooltipWidth / 2 < 10) {
-            tooltip.style.left = '10px';
-            tooltip.style.transform = 'none';
-        } else if (rect.left + rect.width / 2 + tooltipWidth / 2 > viewportWidth - 10) {
-            tooltip.style.left = 'auto';
-            tooltip.style.right = '10px';
-            tooltip.style.transform = 'none';
-        }
-    });
 });
 
 // ========== INICIALIZACIÓN ==========
@@ -1895,19 +1916,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressIndicator();
     updateNavigation();
     
-    // Log de atajos disponibles en consola
     console.log(`
-    🎯 ATAJOS DE TECLADO DISPONIBLES:
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    ← →     : Navegar slides
-    I       : Toggle Modo Info
-    T       : Iniciar/Pausar Timer
+    🎯 ATAJOS DE TECLADO:
+    ━━━━━━━━━━━━━━━━━━━━
+    ← →     : Navegar
+    I       : Modo Info
+    T       : Timer
     R       : Reset Timer
-    F11     : Pantalla completa
-    ESC     : Salir fullscreen
-    Home    : Ir al inicio
-    End     : Ir al final
-    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    D       : Demo LMS
+    F11     : Fullscreen
+    ESC     : Cerrar modal
+    Home/End: Inicio/Final
+    ━━━━━━━━━━━━━━━━━━━━
     `);
 });
 
@@ -1927,7 +1947,7 @@ function checkMobile() {
 window.addEventListener('resize', checkMobile);
 checkMobile();
 
-// ========== PREVENIR ZOOM ACCIDENTAL EN MÓVIL ==========
+// ========== PREVENIR ZOOM ACCIDENTAL ==========
 document.addEventListener('gesturestart', function(e) {
     e.preventDefault();
 });
@@ -1940,8 +1960,6 @@ document.addEventListener('touchend', function(e) {
     }
     lastTouchEnd = now;
 }, false);
-
-// ========== FIN DEL SCRIPT ==========
 </script>
 
 </body>

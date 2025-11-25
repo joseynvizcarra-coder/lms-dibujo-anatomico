@@ -447,6 +447,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
         <li><a href="#innovacion" class="nav-link"><i class="bi bi-rocket"></i> Innovación Técnica</a></li>
         <li><a href="#evaluacion" class="nav-link"><i class="bi bi-clipboard-check"></i> Sistema Evaluación</a></li>
         <li><a href="#resultados" class="nav-link"><i class="bi bi-graph-up"></i> Resultados</a></li>
+        <li><a href="#resultados-criterio" class="nav-link"><i class="bi bi-bar-chart"></i> Resultados por Criterio</a></li>
         <li><a href="#evidencias" class="nav-link"><i class="bi bi-chat-quote"></i> Evidencias</a></li>
         <li><a href="#acompanamiento" class="nav-link"><i class="bi bi-people"></i> Acompañamiento</a></li>
         <li><a href="#remediacion" class="nav-link"><i class="bi bi-tools"></i> Remediación</a></li>
@@ -1248,6 +1249,222 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;b
                 <div>
                     <strong>Vista Instructor:</strong> Analytics y estudiantes en riesgo
                 </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SLIDE 8B: RESULTADOS DE DESEMPEÑO POR CRITERIO -->
+<section id="resultados-criterio" class="slide" style="background:var(--gray-light)">
+    <div class="slide-container">
+        <div class="section-header">
+            <div class="section-number">8B</div>
+            <h2 class="section-title">
+                Resultados de Desempeño por Criterio
+                <span class="info-tooltip">
+                    <i class="info-icon">i</i>
+                    <div class="info-tooltip-content">
+                        Análisis detallado del proyecto final (n=13)
+                    </div>
+                </span>
+            </h2>
+            <p class="section-subtitle">Análisis Detallado del Proyecto Final (n=13)</p>
+        </div>
+
+        <div class="stats-grid" style="margin-bottom:2rem">
+            <div class="stat-card success">
+                <div class="stat-icon">📊</div>
+                <div class="stat-value">19.31/28</div>
+                <div class="stat-label">Puntaje Promedio</div>
+                <div class="stat-badge">69% del máximo</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-icon">✅</div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Aprobación Proyecto</div>
+                <div class="stat-badge">13/13 estudiantes</div>
+            </div>
+            <div class="stat-card success">
+                <div class="stat-icon">✓</div>
+                <div class="stat-value">3.08/4</div>
+                <div class="stat-label">Criterio Más Alto</div>
+                <div class="stat-badge">Gesto y Línea</div>
+            </div>
+            <div class="stat-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a)">
+                <div class="stat-icon">⚠️</div>
+                <div class="stat-value">2.31/4</div>
+                <div class="stat-label">Criterio Más Bajo</div>
+                <div class="stat-badge" style="background:#f59e0b">Volumetría</div>
+            </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));gap:1.5rem;margin-bottom:2rem">
+            <div class="chart-card">
+                <h4 class="chart-title">
+                    📈 Desempeño por Criterio
+                    <span class="info-tooltip">
+                        <i class="info-icon">i</i>
+                        <div class="info-tooltip-content data-highlight">
+                            Gráfico de radar comparando desempeño promedio
+                        </div>
+                    </span>
+                </h4>
+                <div class="chart-container" style="height:400px">
+                    <canvas id="chartCriterios"></canvas>
+                </div>
+                <div style="margin-top:1rem;font-size:0.8rem;color:#6c757d;text-align:center">
+                    Promedio del curso: <strong style="color:var(--primary-dark)">19.31/28</strong> | 
+                    Puntaje máximo: <strong style="color:#6c757d">28</strong>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:1rem">
+                <div class="feature-card" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-left-color:var(--success);flex:1">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#10b981,#34d399)"><i class="bi bi-check-circle"></i></div>
+                    <h3 class="feature-title" style="color:var(--success)">
+                        🎯 FORTALEZAS DEL GRUPO
+                        <span class="info-tooltip">
+                            <i class="info-icon">i</i>
+                            <div class="info-tooltip-content">
+                                Puntaje ≥ 3.0 promedio
+                            </div>
+                        </span>
+                    </h3>
+                    <p style="font-size:0.9rem;margin-bottom:1rem;color:#1e293b">
+                        Los estudiantes han demostrado <strong>dominio sólido</strong> de los conocimientos básicos del <strong>Módulo 1 (Gesto)</strong> y el <strong>Módulo 2 (Anatomía Funcional)</strong>.
+                    </p>
+                    
+                    <div style="background:rgba(255,255,255,0.6);padding:0.8rem;border-radius:8px;margin-bottom:0.8rem">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem">
+                            <i class="bi bi-check2-circle" style="color:var(--success);font-size:1.2rem"></i>
+                            <strong style="color:var(--primary-dark)">Gesto y Línea de Acción (3.08 / 4)</strong>
+                        </div>
+                        <p style="font-size:0.85rem;margin:0;color:#495057">
+                            Fuerte capacidad para capturar la intención corporal y el balance de la pose.
+                        </p>
+                    </div>
+                    
+                    <div style="background:rgba(255,255,255,0.6);padding:0.8rem;border-radius:8px">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem">
+                            <i class="bi bi-check2-circle" style="color:var(--success);font-size:1.2rem"></i>
+                            <strong style="color:var(--primary-dark)">Síntesis del Proceso (3.00 / 4)</strong>
+                        </div>
+                        <p style="font-size:0.85rem;margin:0;color:#495057">
+                            Buena integración y aplicación coherente de los aprendizajes del curso.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="feature-card" style="background:linear-gradient(135deg,#fef3c7,#fde68a);border-left-color:var(--warning);flex:1">
+                    <div class="feature-icon" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)"><i class="bi bi-exclamation-triangle"></i></div>
+                    <h3 class="feature-title" style="color:var(--warning)">
+                        ⚠️ ÁREAS DE OPORTUNIDAD
+                        <span class="info-tooltip">
+                            <i class="info-icon">i</i>
+                            <div class="info-tooltip-content">
+                                Puntaje ≤ 2.4 promedio
+                            </div>
+                        </span>
+                    </h3>
+                    <p style="font-size:0.9rem;margin-bottom:1rem;color:#1e293b">
+                        Se requiere <strong>refuerzo sistemático</strong> en las habilidades de refinamiento y acabado, correspondientes al <strong>Módulo 3 (Figura Completa)</strong>.
+                    </p>
+                    
+                    <div style="background:rgba(255,255,255,0.6);padding:0.8rem;border-radius:8px;margin-bottom:0.8rem">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem">
+                            <i class="bi bi-lightbulb" style="color:var(--warning);font-size:1.2rem"></i>
+                            <strong style="color:var(--primary-dark)">Valores Tonales y Volumetría (2.31 / 4)</strong>
+                        </div>
+                        <p style="font-size:0.85rem;margin:0;color:#495057">
+                            El criterio más bajo. Necesidad de dominar la gradación de tonos para lograr un volumen tridimensional sólido (Mód. 3).
+                        </p>
+                    </div>
+                    
+                    <div style="background:rgba(255,255,255,0.6);padding:0.8rem;border-radius:8px">
+                        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem">
+                            <i class="bi bi-hand-index" style="color:var(--warning);font-size:1.2rem"></i>
+                            <strong style="color:var(--primary-dark)">Extremidades (Manos y Pies) (2.38 / 4)</strong>
+                        </div>
+                        <p style="font-size:0.85rem;margin:0;color:#495057">
+                            La estructura y articulación de manos y pies aún es simplificada o elemental, requiriendo mayor detalle y refinamiento.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-card" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);border-left-color:var(--info)">
+            <h4 style="color:var(--primary-dark);margin-bottom:0.8rem">📋 Resumen de los 7 Criterios de Evaluación</h4>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:35%">Criterio</th>
+                            <th style="text-align:center;width:15%">Puntaje Promedio</th>
+                            <th style="text-align:center;width:15%">Máximo</th>
+                            <th style="text-align:center;width:15%">% del Máximo</th>
+                            <th style="text-align:center;width:20%">Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Gesto y Línea de Acción</strong></td>
+                            <td style="text-align:center"><strong style="color:var(--success)">3.08</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">77%</td>
+                            <td style="text-align:center"><span class="badge-success">✅ FORTALEZA</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Síntesis del Proceso</strong></td>
+                            <td style="text-align:center"><strong style="color:var(--success)">3.00</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">75%</td>
+                            <td style="text-align:center"><span class="badge-success">✅ FORTALEZA</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Encaje y Proporciones</strong></td>
+                            <td style="text-align:center"><strong>2.85</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">71%</td>
+                            <td style="text-align:center"><span style="padding:0.25rem 0.5rem;background:#e5e7eb;border-radius:4px;font-size:0.7rem;font-weight:600">COMPETENTE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Anatomía y Masa Muscular</strong></td>
+                            <td style="text-align:center"><strong>2.69</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">67%</td>
+                            <td style="text-align:center"><span style="padding:0.25rem 0.5rem;background:#e5e7eb;border-radius:4px;font-size:0.7rem;font-weight:600">COMPETENTE</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Articulaciones y Uniones</strong></td>
+                            <td style="text-align:center"><strong>2.69</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">67%</td>
+                            <td style="text-align:center"><span style="padding:0.25rem 0.5rem;background:#e5e7eb;border-radius:4px;font-size:0.7rem;font-weight:600">COMPETENTE</span></td>
+                        </tr>
+                        <tr style="background:rgba(255,193,7,0.1)">
+                            <td><strong>Extremidades (Manos y Pies)</strong></td>
+                            <td style="text-align:center"><strong style="color:var(--warning)">2.38</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">60%</td>
+                            <td style="text-align:center"><span class="badge-warning">⚠️ MEJORAR</span></td>
+                        </tr>
+                        <tr style="background:rgba(255,193,7,0.1)">
+                            <td><strong>Valores Tonales y Volumetría</strong></td>
+                            <td style="text-align:center"><strong style="color:var(--warning)">2.31</strong></td>
+                            <td style="text-align:center">4</td>
+                            <td style="text-align:center">58%</td>
+                            <td style="text-align:center"><span class="badge-warning">⚠️ MEJORAR</span></td>
+                        </tr>
+                        <tr style="background:linear-gradient(135deg,#e0f2fe,#bae6fd);font-weight:700">
+                            <td><strong>TOTAL PROMEDIO</strong></td>
+                            <td style="text-align:center"><strong style="color:var(--primary-dark)">19.31</strong></td>
+                            <td style="text-align:center">28</td>
+                            <td style="text-align:center">69%</td>
+                            <td style="text-align:center"><span class="badge-success">✅ APROBADO</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -2097,6 +2314,125 @@ function initResultadosCharts() {
                         },
                         grid: {
                             display: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Gráfico 3: Desempeño por Criterio (Radar) - Slide 8B
+    const ctxCriterios = document.getElementById('chartCriterios');
+    if (ctxCriterios) {
+        new Chart(ctxCriterios, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Gesto y Línea',
+                    'Síntesis',
+                    'Encaje y Prop.',
+                    'Anatomía y Masa',
+                    'Articulaciones',
+                    'Extremidades',
+                    'Volumetría'
+                ],
+                datasets: [
+                    {
+                        label: 'Promedio del Curso',
+                        data: [3.08, 3.00, 2.85, 2.69, 2.69, 2.38, 2.31],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: '#3b82f6',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#3b82f6',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 7
+                    },
+                    {
+                        label: 'Puntaje Máximo',
+                        data: [4, 4, 4, 4, 4, 4, 4],
+                        backgroundColor: 'rgba(156, 163, 175, 0.1)',
+                        borderColor: '#9ca3af',
+                        borderWidth: 2,
+                        borderDash: [5, 5],
+                        pointBackgroundColor: '#9ca3af',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    },
+                    {
+                        label: 'Fortalezas (≥3.0)',
+                        data: [3.08, 3.00, null, null, null, null, null],
+                        backgroundColor: 'rgba(16, 185, 129, 0.2)',
+                        borderColor: '#10b981',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#10b981',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    },
+                    {
+                        label: 'Áreas de Mejora (≤2.4)',
+                        data: [null, null, null, null, null, 2.38, 2.31],
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderColor: '#f59e0b',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#f59e0b',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 6,
+                        pointHoverRadius: 8
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: { size: 11 },
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.dataset.label || '';
+                                const value = context.parsed.r;
+                                if (value === null || value === undefined) return null;
+                                return `${label}: ${value.toFixed(2)} / 4`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        max: 4,
+                        min: 0,
+                        ticks: {
+                            stepSize: 1,
+                            font: { size: 10 },
+                            callback: function(value) {
+                                return value;
+                            }
+                        },
+                        pointLabels: {
+                            font: { size: 11, weight: '600' },
+                            color: '#1e293b'
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.1)'
+                        },
+                        angleLines: {
+                            color: 'rgba(0,0,0,0.1)'
                         }
                     }
                 }
